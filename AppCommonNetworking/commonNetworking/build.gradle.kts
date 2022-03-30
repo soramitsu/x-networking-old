@@ -10,6 +10,34 @@ group = "jp.co.soramitsu"
 
 version = "0.0.1"
 
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            groupId = "jp.co.soramitsu"
+            artifactId = "common-networking"
+            version = "0.0.1"
+
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "scnRepo"
+            url = uri(if (hasProperty("RELEASE_REPOSITORY_URL")) property("RELEASE_REPOSITORY_URL")!! else System.getenv()["RELEASE_REPOSITORY_URL"]!!)
+            credentials {
+                username = if (hasProperty("NEXUS_USERNAME")) (property("NEXUS_USERNAME") as String) else System.getenv()["NEXUS_USERNAME"]
+                password = if (hasProperty("NEXUS_PASSWORD")) (property("NEXUS_PASSWORD") as String) else System.getenv()["NEXUS_PASSWORD"]
+            }
+        }
+        maven {
+            name = "scnRepoLocal"
+            url = uri("${project.buildDir}/scnrepo")
+        }
+    }
+}
+
 kotlin {
     android()
     iosX64()
@@ -77,7 +105,7 @@ kotlin {
         }
     }
     android {
-        publishLibraryVariants("release", "debug")
+        publishAllLibraryVariants()
     }
 }
 
