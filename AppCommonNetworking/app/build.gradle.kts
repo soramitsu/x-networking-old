@@ -11,6 +11,7 @@ android {
         targetSdk = 31
         versionCode = 1
         versionName = "1.0"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         getByName("release") {
@@ -51,4 +52,5 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.4.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.3")
     implementation(project(mapOf("path" to ":commonNetworking")))
+    testImplementation("junit:junit:4.12")
 }
