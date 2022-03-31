@@ -59,12 +59,6 @@ class SoraNetworkClient(private val timeout: Long = 10000, private val logging: 
             connectTimeoutMillis = timeout
             socketTimeoutMillis = timeout
         }
-//        defaultRequest {
-//            host = "hibiny.com"
-//            url {
-//                protocol = URLProtocol.HTTPS
-//            }
-//        }
     }
 
     @Throws(SoraNetworkException::class, CancellationException::class)
