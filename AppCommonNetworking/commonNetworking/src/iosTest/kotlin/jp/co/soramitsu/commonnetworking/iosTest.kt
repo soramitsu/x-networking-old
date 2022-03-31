@@ -7,6 +7,6 @@ class IosGreetingTest {
 
     @Test
     fun testExample() {
-        assertEquals(sha(byteArrayOf()), "Check iOS is mentioned")
+        assertEquals(sha(byteArrayOf()), "")
     }
 }

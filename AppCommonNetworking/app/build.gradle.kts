@@ -52,5 +52,14 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.4.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.3")
     implementation(project(mapOf("path" to ":commonNetworking")))
-    testImplementation("junit:junit:4.12")
+
+    //test
+//    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.test.ext:junit:1.1.3")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test:runner:1.4.0")
+    androidTestImplementation("androidx.test:rules:1.4.0")
+    androidTestImplementation("androidx.work:work-testing:2.7.1")
+    androidTestImplementation("androidx.arch.core:core-testing:2.1.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 }

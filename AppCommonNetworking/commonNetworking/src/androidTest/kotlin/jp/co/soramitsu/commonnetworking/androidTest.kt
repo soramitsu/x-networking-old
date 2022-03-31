@@ -8,6 +8,6 @@ class AndroidGreetingTest {
 
     @Test
     fun testExample() {
-        assertEquals("Check Android is mentioned", sha(byteArrayOf()))
+        assertEquals("", sha(byteArrayOf()))
     }
 }
