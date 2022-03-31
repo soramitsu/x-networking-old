@@ -21,11 +21,11 @@ node(jenkinsAgent) {
                 docker.withRegistry('https://docker.soramitsu.co.jp', 'bot-build-tools-ro') {
                     docker.image("${dockerImage}").inside() {
                         stage('Build library') {
-                            sh "./gradlew clean build"
+                            sh "./AppCommonNetworking/gradlew clean build"
                         }
                         if (env.BRANCH_NAME in deploymentBranches) {
                             stage('Deploy library') {
-                                sh "./gradlew :commonNeetworking:publishAndroidReleasePublicationToScnRepoRepository"
+                                sh "./AppCommonNetworking/gradlew :commonNetworking:publishAndroidReleasePublicationToScnRepoRepository"
                             }
                         }
                     }
