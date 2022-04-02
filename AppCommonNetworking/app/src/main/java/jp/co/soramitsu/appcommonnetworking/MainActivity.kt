@@ -5,7 +5,7 @@ import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import jp.co.soramitsu.commonnetworking.FearlessChainsBuilder
-import jp.co.soramitsu.commonnetworking.HistoryReader
+import jp.co.soramitsu.commonnetworking.SubQueryClient
 import jp.co.soramitsu.commonnetworking.SoraNetworkClient
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -17,13 +17,14 @@ class MainActivity : AppCompatActivity() {
 
         val btn1 = findViewById<Button>(R.id.btn1)
         val btn2 = findViewById<Button>(R.id.btn2)
+        val btn3 = findViewById<Button>(R.id.btn3)
 
         val c = SoraNetworkClient(logging = true)
         val f = FearlessChainsBuilder(
             c,
             "https://raw.githubusercontent.com/arvifox/arvifoxandroid/felete/felete/"
         )
-        val hi = HistoryReader(c, "https://api.subquery.network/sq/sora-xor/sora-dev")
+        val hi = SubQueryClient(c, "https://api.subquery.network/sq/sora-xor/sora-dev")
 
         btn1.setOnClickListener {
             GlobalScope.launch {
@@ -39,12 +40,23 @@ class MainActivity : AppCompatActivity() {
         btn2.setOnClickListener {
             GlobalScope.launch {
                 try {
-                    val r = hi.getSoraSubQuery(
+                    val r = hi.getTransactionHistory(
                         10, "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm"
                     )
                     Log.e("foxxx", "r = $r")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t= ${t.localizedMessage}")
+                }
+            }
+        }
+
+        btn3.setOnClickListener {
+            GlobalScope.launch {
+                try {
+                    val r = hi.getSpApy()
+                    Log.e("foxxx", "r = $r")
+                } catch (t: Throwable) {
+                    Log.e("foxxx", "t = ${t.localizedMessage}")
                 }
             }
         }

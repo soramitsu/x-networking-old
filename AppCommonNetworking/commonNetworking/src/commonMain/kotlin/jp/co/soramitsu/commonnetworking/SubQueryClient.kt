@@ -2,6 +2,7 @@ package jp.co.soramitsu.commonnetworking
 
 import io.ktor.http.HttpMethod
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
@@ -73,7 +74,8 @@ data class SoraHistoryItem(
     val timestamp: String,
     val networkFee: String,
     val success: Boolean,
-    val data: List<SoraHistoryItemParam>,
+    val data: List<SoraHistoryItemParam>?,
+    val nestedData: List<SoraHistoryItemNested>?
 )
 
 data class SoraHistoryItemParam(
@@ -81,12 +83,41 @@ data class SoraHistoryItemParam(
     val paramValue: String,
 )
 
-class HistoryReader(
+data class SoraHistoryItemNested(
+    val module: String,
+    val method: String,
+    val data: List<SoraHistoryItemParam>
+)
+
+data class SbApyInfo(
+    val tokenId: String,
+    val priceUsd: Double,
+    val sbApy: Double,
+)
+
+class SubQueryClient(
     private val networkClient: SoraNetworkClient,
     private val baseUrl: String,
 ) {
+
     @Throws(SoraNetworkException::class, CancellationException::class)
-    suspend fun getSoraSubQuery(
+    suspend fun getSpApy(): List<SbApyInfo> {
+        val response = networkClient.createJsonRequest<SubQuerySbApyResponse>(
+            baseUrl,
+            HttpMethod.Post,
+            SubqueryRequest(sbApyRequest())
+        )
+        return response.data.poolXYKEntities.nodes.firstOrNull()?.pools?.edges?.map {
+            SbApyInfo(
+                tokenId = it.node.targetAssetId,
+                priceUsd = it.node.priceUSD.toDoubleOrNull() ?: 0.0,
+                sbApy = it.node.strategicBonusApy.toDoubleOrNull() ?: 0.0,
+            )
+        } ?: emptyList()
+    }
+
+    @Throws(SoraNetworkException::class, CancellationException::class)
+    suspend fun getTransactionHistory(
         amount: Int,
         address: String,
         cursor: String = "",
@@ -98,7 +129,6 @@ class HistoryReader(
             SubqueryRequest(soraSubqueryRequest(amount, address, cursor, assetId))
         )
         val elements = response.data.historyElements
-
         return SoraHistoryInfo(
             elements.pageInfo.endCursor,
             elements.pageInfo.hasNextPage,
@@ -111,12 +141,28 @@ class HistoryReader(
                     item.timestamp,
                     item.networkFee,
                     item.execution.success,
-                    (item.data as JsonObject).map {
-                        SoraHistoryItemParam(
-                            it.key,
-                            (it.value as JsonPrimitive).content
-                        )
-                    }
+                    if (item.data is JsonObject) {
+                        item.data.map {
+                            SoraHistoryItemParam(
+                                it.key,
+                                (it.value as JsonPrimitive).content
+                            )
+                        }
+                    } else null,
+                    if (item.data is JsonArray) {
+                        item.data.filterIsInstance<JsonObject>().map { json ->
+                            SoraHistoryItemNested(
+                                (json["module"] as JsonPrimitive).content,
+                                (json["method"] as JsonPrimitive).content,
+                                ((json["data"] as JsonObject)["args"] as JsonObject).map {
+                                    SoraHistoryItemParam(
+                                        it.key,
+                                        (it.value as JsonPrimitive).content
+                                    )
+                                }
+                            )
+                        }
+                    } else null
                 )
             }
         )
