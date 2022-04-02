@@ -48,6 +48,7 @@ internal fun soraSubqueryRequest(
                             } 
                             { 
                               data: { contains: { to: "$myAddress" } }
+                              module: { equalTo: "assets" } method: { equalTo: "transfer" }
                               execution: { contains: { success: true } }
                             } 
                           ] 
