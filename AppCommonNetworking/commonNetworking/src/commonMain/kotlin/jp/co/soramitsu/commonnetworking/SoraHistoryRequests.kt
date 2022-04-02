@@ -1,5 +1,26 @@
 package jp.co.soramitsu.commonnetworking
 
+internal fun sbApyRequest() = """ query {
+                poolXYKEntities (
+                    first: 1
+                    orderBy: UPDATED_DESC
+                  )
+                  {
+                    nodes {
+                      pools {
+                        edges {
+                          node {
+                            targetAssetId,
+                            priceUSD,
+                            strategicBonusApy
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                    """.trimIndent()
+
 internal fun soraSubqueryRequest(
     countRemote: Int,
     myAddress: String,
@@ -49,7 +70,7 @@ internal fun soraSubqueryRequest(
                         }
                       } 
                     }
-                """
+                """.trimIndent()
 } else {
     """
                     query {
@@ -323,5 +344,5 @@ internal fun soraSubqueryRequest(
                         }
                       }
                     }
-        """
+        """.trimIndent()
 }
