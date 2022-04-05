@@ -91,8 +91,8 @@ data class SoraHistoryItemNested(
 
 data class SbApyInfo(
     val tokenId: String,
-    val priceUsd: Double,
-    val sbApy: Double,
+    val priceUsd: Double? = null,
+    val sbApy: Double? = null,
 )
 
 class SubQueryClient(
@@ -110,8 +110,8 @@ class SubQueryClient(
         return response.data.poolXYKEntities.nodes.firstOrNull()?.pools?.edges?.map {
             SbApyInfo(
                 tokenId = it.node.targetAssetId,
-                priceUsd = it.node.priceUSD.toDoubleOrNull() ?: 0.0,
-                sbApy = it.node.strategicBonusApy.toDoubleOrNull() ?: 0.0,
+                priceUsd = it.node.priceUSD?.toDouble(),
+                sbApy = it.node.strategicBonusApy?.toDouble(),
             )
         } ?: emptyList()
     }
