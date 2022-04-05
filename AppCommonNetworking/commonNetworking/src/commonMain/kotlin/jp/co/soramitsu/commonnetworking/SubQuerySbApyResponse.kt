@@ -23,6 +23,6 @@ data class PoolsInfoResponseDataElement(val node: PoolsInfoResponseData)
 @Serializable
 data class PoolsInfoResponseData(
     val targetAssetId: String,
-    val priceUSD: String,
-    val strategicBonusApy: String
+    val priceUSD: String? = null,
+    val strategicBonusApy: String? = null
 )
