@@ -1,8 +1,6 @@
-package jp.co.soramitsu.commonnetworking
+package jp.co.soramitsu.commonnetworking.networkclient
 
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.HttpClientEngineConfig
-import io.ktor.client.engine.HttpClientEngineFactory
 import io.ktor.client.features.ClientRequestException
 import io.ktor.client.features.HttpTimeout
 import io.ktor.client.features.RedirectResponseException
@@ -15,32 +13,22 @@ import io.ktor.client.features.logging.Logger
 import io.ktor.client.features.logging.Logging
 import io.ktor.client.features.logging.SIMPLE
 import io.ktor.client.request.get
+import io.ktor.client.request.headers
 import io.ktor.client.request.request
 import io.ktor.client.request.url
 import io.ktor.client.utils.EmptyContent
 import io.ktor.http.ContentType
 import io.ktor.http.Headers
+import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpMethod
 import io.ktor.http.contentType
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import kotlin.coroutines.cancellation.CancellationException
 
-expect class HttpEngineFactory constructor() {
-    fun createEngine(): HttpClientEngineFactory<HttpClientEngineConfig>
-}
-
-open class SoraNetworkException(m: String, c: Throwable?) : Throwable(m, c)
-
-class CodeNetworkException(val code: Int, m: String, c: Throwable?) : SoraNetworkException(m, c)
-
-class SerializationNetworkException(m: String, c: Throwable?) : SoraNetworkException(m, c)
-
-class GeneralNetworkException(m: String, c: Throwable?) : SoraNetworkException(m, c)
-
 class SoraNetworkClient(private val timeout: Long = 10000, private val logging: Boolean = false) {
 
-    private val httpClient = HttpClient(HttpEngineFactory().createEngine()) {
+    val httpClient = HttpClient(HttpEngineFactory().createEngine()) {
         if (logging) {
             install(Logging) {
                 level = LogLevel.ALL
@@ -73,11 +61,19 @@ class SoraNetworkClient(private val timeout: Long = 10000, private val logging: 
         path: String,
         methodType: HttpMethod = HttpMethod.Get,
         body: Any = EmptyContent,
-        contentType: ContentType? = null
+        contentType: ContentType? = null,
+        headersList: List<Pair<String, String>>? = null
     ): Value {
         @Suppress("SwallowedException")
         return wrapInExceptionHandler {
             httpClient.request {
+                if (!headersList.isNullOrEmpty()) {
+                    headers {
+                        headersList.forEach { pair ->
+                            append(pair.first, pair.second)
+                        }
+                    }
+                }
                 method = methodType
                 url(path)
                 if (contentType != null) contentType(contentType)
@@ -93,6 +89,15 @@ class SoraNetworkClient(private val timeout: Long = 10000, private val logging: 
         body: Any = EmptyContent
     ): Value =
         createRequest(path, methodType, body, ContentType.Application.Json)
+
+    @Throws(SoraNetworkException::class, CancellationException::class)
+    internal suspend inline fun <reified Value : Any> createJsonRequest(
+        path: String,
+        methodType: HttpMethod = HttpMethod.Get,
+        body: Any = EmptyContent,
+        headers: List<Pair<String, String>>,
+    ): Value =
+        createRequest(path, methodType, body, ContentType.Application.Json, headers)
 
     @Throws(SoraNetworkException::class)
     private inline fun <reified Type : Any> wrapInExceptionHandler(block: () -> Type): Type {

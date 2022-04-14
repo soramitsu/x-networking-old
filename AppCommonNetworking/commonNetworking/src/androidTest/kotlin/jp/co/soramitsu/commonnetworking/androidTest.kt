@@ -1,7 +1,7 @@
 package jp.co.soramitsu.commonnetworking
 
+import jp.co.soramitsu.commonnetworking.tbd.sha
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class AndroidGreetingTest {

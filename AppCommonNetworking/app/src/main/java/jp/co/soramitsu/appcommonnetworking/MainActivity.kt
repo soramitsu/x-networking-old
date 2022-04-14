@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import jp.co.soramitsu.commonnetworking.FearlessChainsBuilder
-import jp.co.soramitsu.commonnetworking.SubQueryClient
-import jp.co.soramitsu.commonnetworking.SoraNetworkClient
+import jp.co.soramitsu.commonnetworking.fearless.FearlessChainsBuilder
+import jp.co.soramitsu.commonnetworking.subquery.SubQueryClient
+import jp.co.soramitsu.commonnetworking.networkclient.SoraNetworkClient
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -22,15 +22,15 @@ class MainActivity : AppCompatActivity() {
         val c = SoraNetworkClient(logging = true)
         val f = FearlessChainsBuilder(
             c,
-            "https://raw.githubusercontent.com/arvifox/arvifoxandroid/felete/felete/"
+            "https://raw.githubusercontent.com/arvifox/arvifoxandroid/develop/felete/"
         )
         val hi = SubQueryClient(c, "https://api.subquery.network/sq/sora-xor/sora-dev")
 
         btn1.setOnClickListener {
             GlobalScope.launch {
                 try {
-                    val r = f.getChains("2.0.8")
-                    Log.e("foxxx", "r = ${r.size}")
+                    val r = f.getChains("2.0.8", emptyList())
+                    Log.e("foxxx", "r = ${r}")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t= ${t.localizedMessage}")
                 }
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             GlobalScope.launch {
                 try {
                     val r = hi.getTransactionHistory(
-                        10, "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm"
+                        10, "cnWP7dPbnWKYuE8zCJ7hQLywnef7U6UKPx1AznjKEXDxedBGv"
                     )
                     Log.e("foxxx", "r = $r")
                 } catch (t: Throwable) {

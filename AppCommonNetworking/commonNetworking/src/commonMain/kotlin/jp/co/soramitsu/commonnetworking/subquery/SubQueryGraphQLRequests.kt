@@ -1,6 +1,6 @@
-package jp.co.soramitsu.commonnetworking
+package jp.co.soramitsu.commonnetworking.subquery
 
-internal fun sbApyRequest() = """ query {
+internal fun sbApyGraphQLRequest() = """ query {
                 poolXYKEntities (
                     first: 1
                     orderBy: UPDATED_DESC
@@ -21,7 +21,7 @@ internal fun sbApyRequest() = """ query {
                 }
                     """.trimIndent()
 
-internal fun soraSubqueryRequest(
+internal fun soraHistoryGraphQLRequest(
     countRemote: Int,
     myAddress: String,
     cursor: String,
