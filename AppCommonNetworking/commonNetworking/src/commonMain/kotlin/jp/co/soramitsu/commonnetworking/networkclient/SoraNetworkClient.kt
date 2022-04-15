@@ -57,7 +57,7 @@ class SoraNetworkClient(private val timeout: Long = 10000, private val logging: 
     }
 
     @Throws(SoraNetworkException::class, CancellationException::class)
-    internal suspend inline fun <reified Value : Any> createRequest(
+    suspend inline fun <reified Value : Any> createRequest(
         path: String,
         methodType: HttpMethod = HttpMethod.Get,
         body: Any = EmptyContent,
@@ -83,7 +83,7 @@ class SoraNetworkClient(private val timeout: Long = 10000, private val logging: 
     }
 
     @Throws(SoraNetworkException::class, CancellationException::class)
-    internal suspend inline fun <reified Value : Any> createJsonRequest(
+    suspend inline fun <reified Value : Any> createJsonRequest(
         path: String,
         methodType: HttpMethod = HttpMethod.Get,
         body: Any = EmptyContent
@@ -91,7 +91,7 @@ class SoraNetworkClient(private val timeout: Long = 10000, private val logging: 
         createRequest(path, methodType, body, ContentType.Application.Json)
 
     @Throws(SoraNetworkException::class, CancellationException::class)
-    internal suspend inline fun <reified Value : Any> createJsonRequest(
+    suspend inline fun <reified Value : Any> createJsonRequest(
         path: String,
         methodType: HttpMethod = HttpMethod.Get,
         body: Any = EmptyContent,
@@ -100,7 +100,7 @@ class SoraNetworkClient(private val timeout: Long = 10000, private val logging: 
         createRequest(path, methodType, body, ContentType.Application.Json, headers)
 
     @Throws(SoraNetworkException::class)
-    private inline fun <reified Type : Any> wrapInExceptionHandler(block: () -> Type): Type {
+    inline fun <reified Type : Any> wrapInExceptionHandler(block: () -> Type): Type {
         return try {
             block.invoke()
         } catch (e: ResponseException) {
