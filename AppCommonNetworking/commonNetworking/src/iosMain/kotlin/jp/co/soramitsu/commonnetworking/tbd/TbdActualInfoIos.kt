@@ -1,7 +1,5 @@
-package jp.co.soramitsu.commonnetworking
+package jp.co.soramitsu.commonnetworking.tbd
 
-import io.ktor.client.engine.*
-import io.ktor.client.engine.ios.*
 import kotlinx.cinterop.addressOf
 import kotlinx.cinterop.alloc
 import kotlinx.cinterop.memScoped
@@ -12,16 +10,6 @@ import platform.CoreCrypto.CC_SHA256_CTX
 import platform.CoreCrypto.CC_SHA256_Final
 import platform.CoreCrypto.CC_SHA256_Init
 import platform.CoreCrypto.CC_SHA256_Update
-import platform.Foundation.NSBundle
-
-actual class HttpEngineFactory actual constructor() {
-    actual fun createEngine(): HttpClientEngineFactory<HttpClientEngineConfig> = Ios
-}
-
-internal actual fun platform(): String = "ios"
-
-//CFBundleShortVersionString
-internal actual fun version(): String = NSBundle.mainBundle.objectForInfoDictionaryKey("CFBundleVersion").toString()
 
 actual fun sha(a: ByteArray): String = ""
 //actual fun sha(a: ByteArray): String = memScoped {
