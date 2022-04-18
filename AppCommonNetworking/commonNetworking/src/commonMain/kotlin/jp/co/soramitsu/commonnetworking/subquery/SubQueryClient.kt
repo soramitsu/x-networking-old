@@ -3,6 +3,7 @@ package jp.co.soramitsu.commonnetworking.subquery
 import io.ktor.http.HttpMethod
 import jp.co.soramitsu.commonnetworking.networkclient.SoraNetworkClient
 import jp.co.soramitsu.commonnetworking.networkclient.SoraNetworkException
+import jp.co.soramitsu.commonnetworking.networkclient.createJsonRequest
 import kotlin.coroutines.cancellation.CancellationException
 
 class SubQueryClient(

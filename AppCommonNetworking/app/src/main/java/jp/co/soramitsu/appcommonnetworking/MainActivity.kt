@@ -5,8 +5,9 @@ import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import jp.co.soramitsu.commonnetworking.fearless.FearlessChainsBuilder
-import jp.co.soramitsu.commonnetworking.subquery.SubQueryClient
 import jp.co.soramitsu.commonnetworking.networkclient.SoraNetworkClient
+import jp.co.soramitsu.commonnetworking.subquery.SubQueryClient
+import jp.co.soramitsu.commonnetworking.networkclient.SoraNetworkClientImpl
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -19,12 +20,12 @@ class MainActivity : AppCompatActivity() {
         val btn2 = findViewById<Button>(R.id.btn2)
         val btn3 = findViewById<Button>(R.id.btn3)
 
-        val c = SoraNetworkClient(logging = true)
+        val soraNetworkClient: SoraNetworkClient = SoraNetworkClientImpl(logging = true)
         val f = FearlessChainsBuilder(
-            c,
+            soraNetworkClient,
             "https://raw.githubusercontent.com/arvifox/arvifoxandroid/develop/felete/"
         )
-        val hi = SubQueryClient(c, "https://api.subquery.network/sq/sora-xor/sora-dev")
+        val hi = SubQueryClient(soraNetworkClient, "https://api.subquery.network/sq/sora-xor/sora-dev")
 
         btn1.setOnClickListener {
             GlobalScope.launch {

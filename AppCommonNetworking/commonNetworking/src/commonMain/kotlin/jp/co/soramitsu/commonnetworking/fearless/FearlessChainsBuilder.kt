@@ -2,6 +2,8 @@ package jp.co.soramitsu.commonnetworking.fearless
 
 import jp.co.soramitsu.commonnetworking.networkclient.SoraNetworkClient
 import jp.co.soramitsu.commonnetworking.networkclient.SoraNetworkException
+import jp.co.soramitsu.commonnetworking.networkclient.createJsonRequest
+import jp.co.soramitsu.commonnetworking.networkclient.createRequest
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
