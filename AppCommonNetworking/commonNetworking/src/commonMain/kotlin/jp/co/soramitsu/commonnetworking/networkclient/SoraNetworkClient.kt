@@ -24,16 +24,8 @@ interface SoraNetworkClient {
 suspend inline fun <reified Value : Any> SoraNetworkClient.createJsonRequest(
     path: String,
     methodType: HttpMethod = HttpMethod.Get,
-    body: Any = EmptyContent
-): Value =
-    createRequest(path, methodType, body, ContentType.Application.Json)
-
-@Throws(SoraNetworkException::class, CancellationException::class)
-suspend inline fun <reified Value : Any> SoraNetworkClient.createJsonRequest(
-    path: String,
-    methodType: HttpMethod = HttpMethod.Get,
     body: Any = EmptyContent,
-    headers: List<Pair<String, String>>,
+    headers: List<Pair<String, String>>? = null,
 ): Value =
     createRequest(path, methodType, body, ContentType.Application.Json, headers)
 
