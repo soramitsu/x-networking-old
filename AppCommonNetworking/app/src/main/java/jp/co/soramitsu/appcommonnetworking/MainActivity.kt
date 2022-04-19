@@ -7,10 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import jp.co.soramitsu.commonnetworking.fearless.FearlessChainsBuilder
 import jp.co.soramitsu.commonnetworking.networkclient.SoraNetworkClient
 import jp.co.soramitsu.commonnetworking.subquery.SubQueryClient
-import jp.co.soramitsu.commonnetworking.networkclient.SoraNetworkClientImpl
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+@OptIn(DelicateCoroutinesApi::class)
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,17 +21,20 @@ class MainActivity : AppCompatActivity() {
         val btn2 = findViewById<Button>(R.id.btn2)
         val btn3 = findViewById<Button>(R.id.btn3)
 
-        val soraNetworkClient: SoraNetworkClient = SoraNetworkClientImpl(logging = true)
+
+        val soraNetworkClient = SoraNetworkClient(logging = true)
         val f = FearlessChainsBuilder(
             soraNetworkClient,
             "https://raw.githubusercontent.com/arvifox/arvifoxandroid/develop/felete/"
         )
-        val hi = SubQueryClient(soraNetworkClient, "https://api.subquery.network/sq/sora-xor/sora-dev")
+        val hi =
+            SubQueryClient(soraNetworkClient, "https://api.subquery.network/sq/sora-xor/sora-dev")
+        val networkService = NetworkService(soraNetworkClient, f, hi)
 
         btn1.setOnClickListener {
             GlobalScope.launch {
                 try {
-                    val r = f.getChains("2.0.8", emptyList())
+                    val r = networkService.getChains()
                     Log.e("foxxx", "r = ${r}")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t= ${t.localizedMessage}")
@@ -41,9 +45,7 @@ class MainActivity : AppCompatActivity() {
         btn2.setOnClickListener {
             GlobalScope.launch {
                 try {
-                    val r = hi.getTransactionHistory(
-                        10, "cnWP7dPbnWKYuE8zCJ7hQLywnef7U6UKPx1AznjKEXDxedBGv"
-                    )
+                    val r = networkService.getHistory()
                     Log.e("foxxx", "r = $r")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t= ${t.localizedMessage}")
@@ -54,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         btn3.setOnClickListener {
             GlobalScope.launch {
                 try {
-                    val r = hi.getSpApy()
+                    val r = networkService.getApy()
                     Log.e("foxxx", "r = $r")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t = ${t.localizedMessage}")
