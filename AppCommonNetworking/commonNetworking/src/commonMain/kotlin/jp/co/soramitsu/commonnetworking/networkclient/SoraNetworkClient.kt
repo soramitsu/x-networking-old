@@ -1,13 +1,15 @@
 package jp.co.soramitsu.commonnetworking.networkclient
 
 import io.ktor.client.HttpClient
-import io.ktor.client.features.ClientRequestException
-import io.ktor.client.features.RedirectResponseException
-import io.ktor.client.features.ResponseException
-import io.ktor.client.features.ServerResponseException
+import io.ktor.client.call.body
+import io.ktor.client.plugins.ClientRequestException
+import io.ktor.client.plugins.RedirectResponseException
+import io.ktor.client.plugins.ResponseException
+import io.ktor.client.plugins.ServerResponseException
 import io.ktor.client.request.get
 import io.ktor.client.request.headers
 import io.ktor.client.request.request
+import io.ktor.client.request.setBody
 import io.ktor.client.request.url
 import io.ktor.client.utils.EmptyContent
 import io.ktor.http.ContentType
@@ -27,7 +29,7 @@ class SoraNetworkClient(
 
     suspend fun get(url: String): String {
         return wrapInExceptionHandler {
-            httpClient.get(url)
+            httpClient.get(url).body()
         }
     }
 
@@ -61,8 +63,8 @@ class SoraNetworkClient(
                 method = methodType
                 url(path)
                 if (contentType != null) contentType(contentType)
-                this.body = body
-            }
+                setBody(body)
+            }.body()
         }
     }
 

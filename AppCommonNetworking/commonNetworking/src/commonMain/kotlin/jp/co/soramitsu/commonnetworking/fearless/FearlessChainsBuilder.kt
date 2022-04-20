@@ -72,10 +72,11 @@ class FearlessChainsBuilder(
     }
 
     private fun List<Int>.match(cur: List<Int>): Boolean {
-        for (i in 0..min(this.lastIndex, cur.lastIndex)) {
-            if (this[i] > cur[i]) return false
+        val min = min(this.lastIndex, cur.lastIndex)
+        for (i in 0..min) {
+            if ((cur[i] > this[i]) || (cur[i] == this[i] && i == min)) return true
         }
-        return true
+        return false
     }
 
     private fun String.versionSplit(): List<Int> = this.split(".").map { it.toInt() }
