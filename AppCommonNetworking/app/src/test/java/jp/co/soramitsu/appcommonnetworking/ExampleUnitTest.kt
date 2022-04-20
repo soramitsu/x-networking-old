@@ -1,15 +1,29 @@
 package jp.co.soramitsu.appcommonnetworking
 
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.mock.MockEngine
+import io.ktor.client.engine.mock.respond
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.http.ContentType
+import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.headersOf
+import io.ktor.serialization.kotlinx.json.json
+import io.ktor.utils.io.ByteReadChannel
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import jp.co.soramitsu.commonnetworking.fearless.FearlessChainsBuilder
 import jp.co.soramitsu.commonnetworking.fearless.ResultChainInfo
+import jp.co.soramitsu.commonnetworking.networkclient.SoraHttpClientProvider
 import jp.co.soramitsu.commonnetworking.networkclient.SoraNetworkClient
 import jp.co.soramitsu.commonnetworking.subquery.SubQueryClient
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
@@ -54,5 +68,41 @@ class ExampleUnitTest {
         } returns ResultChainInfo(emptyList(), emptyList(), emptyList())
         val chains = networkService.getChains()
         assertEquals(0, chains.newChains.size)
+    }
+
+    @Serializable
+    data class Reply(
+        val ip: String
+    )
+
+    @Test
+    fun testClientMock() = runTest {
+        val mockEngine = MockEngine { request ->
+            respond(
+                content = ByteReadChannel("""{"ip":"127.0.0.1"}"""),
+                status = HttpStatusCode.OK,
+                headers = headersOf(HttpHeaders.ContentType, "application/json")
+            )
+        }
+        val client = SoraNetworkClient(
+            provider = object : SoraHttpClientProvider {
+                override fun provide(logging: Boolean, timeout: Long): HttpClient {
+                    return HttpClient(mockEngine) {
+                        install(ContentNegotiation) {
+                            json(
+                                Json {
+                                    prettyPrint = true
+                                    isLenient = true
+                                    ignoreUnknownKeys = true
+                                },
+                                contentType = ContentType.Any
+                            )
+                        }
+                    }
+                }
+            }
+        )
+        val s: Reply = client.createJsonRequest("https://www.sora.org")
+        assertTrue(s.ip.contains("127."))
     }
 }

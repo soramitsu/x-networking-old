@@ -8,14 +8,14 @@ plugins {
 
 group = "jp.co.soramitsu"
 
-version = "0.0.8"
+version = "0.0.9"
 
 publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "jp.co.soramitsu"
             artifactId = "common-networking"
-            version = "0.0.8"
+            version = "0.0.9"
 
             afterEvaluate {
                 from(components["release"])
@@ -38,6 +38,9 @@ publishing {
     }
 }
 
+val coroutineVersion = "1.6.1"
+val ktorVersion = "2.0.0"
+
 kotlin {
     android()
     iosX64()
@@ -58,16 +61,17 @@ kotlin {
             dependencies {
                 api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 
-                implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"){
+                implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"){
                     version {
-                        strictly("1.6.0")
+                        strictly(coroutineVersion)
                     }
                 }
 
-                implementation("io.ktor:ktor-client-core:1.6.8")
-                implementation("io.ktor:ktor-client-serialization:1.6.8")
-                implementation("io.ktor:ktor-client-json:1.6.8")
-                implementation("io.ktor:ktor-client-logging:1.6.8")
+                implementation("io.ktor:ktor-client-core:$ktorVersion")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+                //implementation("io.ktor:ktor-client-json:$ktorVersion")
+                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+                implementation("io.ktor:ktor-client-logging:$ktorVersion")
             }
         }
         val commonTest by getting {
@@ -77,8 +81,8 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                api("io.ktor:ktor-client-okhttp:1.6.8")
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+                api("io.ktor:ktor-client-okhttp:$ktorVersion")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion")
             }
         }
         val androidTest by getting
@@ -88,7 +92,7 @@ kotlin {
         val iosMain by creating {
             dependsOn(commonMain)
             dependencies {
-                implementation("io.ktor:ktor-client-ios:1.6.8")
+                implementation("io.ktor:ktor-client-darwin:$ktorVersion")
             }
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)

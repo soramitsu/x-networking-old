@@ -1,14 +1,14 @@
 package jp.co.soramitsu.commonnetworking.networkclient
 
 import io.ktor.client.HttpClient
-import io.ktor.client.features.HttpTimeout
-import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.json.serializer.KotlinxSerializer
-import io.ktor.client.features.logging.LogLevel
-import io.ktor.client.features.logging.Logger
-import io.ktor.client.features.logging.Logging
-import io.ktor.client.features.logging.SIMPLE
+import io.ktor.client.plugins.HttpTimeout
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.plugins.logging.SIMPLE
 import io.ktor.http.ContentType
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
 interface SoraHttpClientProvider {
@@ -24,12 +24,16 @@ class SoraHttpClientProviderImpl : SoraHttpClientProvider {
                     logger = Logger.SIMPLE
                 }
             }
-            install(JsonFeature) {
-                serializer = KotlinxSerializer(Json {
-                    isLenient = true
-                    ignoreUnknownKeys = true
-                })
-                acceptContentTypes = acceptContentTypes + ContentType.Any
+            expectSuccess = true
+            install(ContentNegotiation) {
+                json(
+                    Json {
+                        prettyPrint = true
+                        isLenient = true
+                        ignoreUnknownKeys = true
+                    },
+                    contentType = ContentType.Any
+                )
             }
             install(HttpTimeout) {
                 requestTimeoutMillis = timeout
