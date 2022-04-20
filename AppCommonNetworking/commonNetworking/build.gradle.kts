@@ -77,6 +77,8 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation("io.ktor:ktor-client-mock:$ktorVersion")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutineVersion")
             }
         }
         val androidMain by getting {
@@ -121,3 +123,10 @@ android {
         targetSdk = 31
     }
 }
+
+tasks.register<Copy>("copyiOSTestResources") {
+    from("src/iosTest/resources")
+    into("build/bin/iosX64/debugTest/resources")
+}
+
+tasks.findByName("iosX64Test")!!.dependsOn("copyiOSTestResources")
