@@ -8,14 +8,14 @@ plugins {
 
 group = "jp.co.soramitsu"
 
-version = "0.0.9"
+version = "0.0.10"
 
 publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "jp.co.soramitsu"
             artifactId = "common-networking"
-            version = "0.0.9"
+            version = "0.0.10"
 
             afterEvaluate {
                 from(components["release"])
@@ -61,11 +61,7 @@ kotlin {
             dependencies {
                 api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 
-                implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"){
-                    version {
-                        strictly(coroutineVersion)
-                    }
-                }
+                implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion")
 
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
