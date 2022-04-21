@@ -1,5 +1,12 @@
 package jp.co.soramitsu.commonnetworking
 
+import kotlinx.cinterop.addressOf
+import kotlinx.cinterop.usePinned
+import platform.Foundation.NSBundle
+import platform.Foundation.NSData
+import platform.Foundation.dataWithContentsOfFile
+import platform.posix.memcpy
+
 actual fun readBinaryResource(
     resourceName: String
 ): ByteArray {
