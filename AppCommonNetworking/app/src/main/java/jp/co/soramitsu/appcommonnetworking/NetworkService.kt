@@ -19,4 +19,8 @@ class NetworkService(
     suspend fun getHistory() = subQueryClient.getTransactionHistory(
         10, "cnWP7dPbnWKYuE8zCJ7hQLywnef7U6UKPx1AznjKEXDxedBGv"
     )
+
+    suspend fun getRewards() = subQueryClient.getReferrerRewards(
+        address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
+    )
 }
