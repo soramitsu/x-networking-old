@@ -8,14 +8,14 @@ plugins {
 
 group = "jp.co.soramitsu"
 
-version = "0.0.10"
+version = "0.0.11"
 
 publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "jp.co.soramitsu"
             artifactId = "common-networking"
-            version = "0.0.10"
+            version = "0.0.11"
 
             afterEvaluate {
                 from(components["release"])
@@ -68,6 +68,8 @@ kotlin {
                 //implementation("io.ktor:ktor-client-json:$ktorVersion")
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
+
+                implementation("com.ionspin.kotlin:bignum:0.3.4")
             }
         }
         val commonTest by getting {

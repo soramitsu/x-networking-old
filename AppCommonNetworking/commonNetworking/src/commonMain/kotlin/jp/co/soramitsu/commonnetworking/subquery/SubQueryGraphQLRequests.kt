@@ -1,5 +1,31 @@
 package jp.co.soramitsu.commonnetworking.subquery
 
+internal fun referrerRewardsGraphQLRequest(
+    count: Int,
+    address: String,
+    cursor: String = "",
+) = """
+    query {
+        referrerRewards(
+          first: $count
+          orderBy: TIMESTAMP_DESC
+          after: "$cursor"
+          filter: { referral: {equalTo: "$address"}}
+        ) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        nodes {
+          id
+          blockHeight
+          referrer
+          amount
+        }
+      }
+    }
+""".trimIndent()
+
 internal fun sbApyGraphQLRequest() = """ query {
                 poolXYKEntities (
                     first: 1
