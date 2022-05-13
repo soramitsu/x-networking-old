@@ -8,14 +8,14 @@ plugins {
 
 group = "jp.co.soramitsu"
 
-version = "0.0.11"
+version = "0.0.12"
 
 publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "jp.co.soramitsu"
             artifactId = "common-networking"
-            version = "0.0.11"
+            version = "0.0.12"
 
             afterEvaluate {
                 from(components["release"])
