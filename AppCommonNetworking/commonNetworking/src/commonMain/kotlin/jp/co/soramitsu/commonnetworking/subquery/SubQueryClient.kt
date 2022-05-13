@@ -80,6 +80,6 @@ class SubQueryClient(
         }
         return ReferrerRewardsInfo(
             blockHeight = blockNumber,
-            tempStorage.map { ReferrerRewards(it.key, it.value) })
+            tempStorage.map { ReferrerRewards(it.key, it.value.toString(base)) })
     }
 }

@@ -1,7 +1,5 @@
 package jp.co.soramitsu.commonnetworking.subquery
 
-import com.ionspin.kotlin.bignum.integer.BigInteger
-
 data class SoraHistoryInfo(
     val endCursor: String?,
     val hasNextPage: Boolean,
@@ -44,5 +42,5 @@ data class ReferrerRewardsInfo(
 
 data class ReferrerRewards(
     val referral: String,
-    val amount: BigInteger,
+    val amount: String,
 )
