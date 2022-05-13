@@ -1,0 +1,16 @@
+PODS:
+  - commonNetworking (0.0.12)
+
+DEPENDENCIES:
+  - commonNetworking (from `../commonNetworking`)
+
+EXTERNAL SOURCES:
+  commonNetworking:
+    :path: "../commonNetworking"
+
+SPEC CHECKSUMS:
+  commonNetworking: 70fa49bff4102ab0725a742eae68fe6d7b210c1f
+
+PODFILE CHECKSUM: 3f2a417604dca29fd621e02b1f651023e707212f
+
+COCOAPODS: 1.11.3
