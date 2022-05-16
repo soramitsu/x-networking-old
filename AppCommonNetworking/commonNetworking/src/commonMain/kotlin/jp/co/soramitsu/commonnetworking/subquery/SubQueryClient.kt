@@ -40,46 +40,21 @@ class SubQueryClient(
     @Throws(SoraNetworkException::class, CancellationException::class)
     suspend fun getReferrerRewards(
         address: String,
-        blockHeight: Long = 0,
-        base: Int = 18,
     ): ReferrerRewardsInfo {
-        val tempStorage = mutableMapOf<String, BigInteger>()
-        val pageSize = 40
-        var cursor: String? = ""
-        var blockNumber = 0L
-        var exit = false
-        while (!exit && cursor != null) {
-            val response = networkClient.createJsonRequest<ReferrerRewardsResponse>(
-                baseUrl,
-                HttpMethod.Post,
-                SubqueryRequest(referrerRewardsGraphQLRequest(pageSize, address, cursor))
-            )
-            val rewardsCount = response.data.referrerRewards.nodes.size
-            if (rewardsCount == 0) {
-                exit = true
-            } else {
-                if (blockNumber == 0L) {
-                    blockNumber = response.data.referrerRewards.nodes.first().blockHeight.toLong()
-                }
-                cursor = response.data.referrerRewards.pageInfo.endCursor
-                exit = (rewardsCount < pageSize
-                    || response.data.referrerRewards.nodes.last().blockHeight.toLong() <= blockHeight
-                    || response.data.referrerRewards.pageInfo.hasNextPage.not()
+        val response = networkClient.createJsonRequest<ReferrerRewardsResponse>(
+            baseUrl,
+            HttpMethod.Post,
+            SubqueryRequest(referrerRewardsGraphQLRequest(address))
+        )
+        return if (response.data.referrerRewards.groupedAggregates.isEmpty()) {
+            ReferrerRewardsInfo(rewards = emptyList())
+        } else {
+            ReferrerRewardsInfo(rewards = response.data.referrerRewards.groupedAggregates.map {
+                ReferrerRewards(
+                    referral = it.keys.firstOrNull().orEmpty(),
+                    amount = it.sum.amount
                 )
-                response.data.referrerRewards.nodes
-                    .takeWhile { it.blockHeight.toLong() > blockHeight }
-                    .groupBy { it.referrer }
-                    .forEach {
-                        val sum = it.value.fold(BigInteger.ZERO) { acc, item ->
-                            acc + item.amount.toBigInteger(base)
-                        }
-                        val cur = tempStorage[it.key] ?: BigInteger.ZERO
-                        tempStorage[it.key] = sum + cur
-                    }
-            }
+            })
         }
-        return ReferrerRewardsInfo(
-            blockHeight = blockNumber,
-            tempStorage.map { ReferrerRewards(it.key, it.value.toString(base)) })
     }
 }

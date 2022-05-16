@@ -36,7 +36,6 @@ data class SbApyInfo(
 )
 
 data class ReferrerRewardsInfo(
-    val blockHeight: Long,
     val rewards: List<ReferrerRewards>,
 )
 
