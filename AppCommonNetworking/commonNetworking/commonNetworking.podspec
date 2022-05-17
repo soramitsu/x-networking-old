@@ -2,7 +2,7 @@ Pod::Spec.new do |spec|
     spec.name                     = 'commonNetworking'
     spec.version                  = '0.0.14'
     spec.homepage                 = 'Link to the Shared Module homepage'
-    spec.source                   = { :git => 'https://github.com/soramitsu/common-mobile-libraries.git', :tag => '0.0.13' }
+    spec.source                   = { :git => 'https://github.com/soramitsu/common-mobile-libraries.git', :tag => '0.0.14' }
     spec.authors                  = ''
     spec.license                  = ''
     spec.summary                  = 'Some description for the Shared Module'
@@ -28,7 +28,7 @@ Pod::Spec.new do |spec|
                 fi
                 set -ev
                 REPO_ROOT="$PODS_TARGET_SRCROOT"
-                "$REPO_ROOT/../gradlew" -p "$REPO_ROOT" $KOTLIN_PROJECT_PATH:syncFramework \
+                "$HOME/.cocoapods/repos/commonNetworking/AppCommonNetworking/gradlew" -p "$HOME/.cocoapods/repos/commonNetworking/AppCommonNetworking" $KOTLIN_PROJECT_PATH:syncFramework \
                     -Pkotlin.native.cocoapods.platform=$PLATFORM_NAME \
                     -Pkotlin.native.cocoapods.archs="$ARCHS" \
                     -Pkotlin.native.cocoapods.configuration="$CONFIGURATION"
