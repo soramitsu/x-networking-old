@@ -2,7 +2,7 @@ Pod::Spec.new do |spec|
     spec.name                     = 'commonNetworking'
     spec.version                  = '0.0.15'
     spec.homepage                 = 'Link to the Shared Module homepage'
-    spec.source                   = { :git => 'https://github.com/soramitsu/common-mobile-libraries.git', :tag => '0.0.14' }
+    spec.source                   = { :git => 'https://github.com/soramitsu/common-mobile-libraries.git', :tag => '0.0.15' }
     spec.authors                  = ''
     spec.license                  = ''
     spec.summary                  = 'Some description for the Shared Module'
