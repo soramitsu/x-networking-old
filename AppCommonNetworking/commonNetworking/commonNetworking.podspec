@@ -1,14 +1,14 @@
 Pod::Spec.new do |spec|
-    spec.name                     = 'commonNetworking'
-    spec.version                  = '0.0.15'
+    spec.name                     = 'X-Networking'
+    spec.version                  = '0.0.16'
     spec.homepage                 = 'Link to the Shared Module homepage'
-    spec.source                   = { :git => 'https://github.com/soramitsu/common-mobile-libraries.git', :tag => '0.0.15' }
+    spec.source                   = { :git => 'https://github.com/soramitsu/common-mobile-libraries.git', :tag => '0.0.16' }
     spec.authors                  = ''
     spec.license                  = ''
     spec.summary                  = 'Some description for the Shared Module'
     spec.vendored_frameworks      = 'AppCommonNetworking/commonNetworking/build/cocoapods/framework/commonNetworking.framework'
     spec.libraries                = 'c++'
-    spec.ios.deployment_target = '14.1'
+    spec.ios.deployment_target = '11.0'
                 
                 
     spec.pod_target_xcconfig = {
