@@ -1,9 +1,9 @@
-package jp.co.soramitsu.commonnetworking.subquery
+package jp.co.soramitsu.commonnetworking.subquery.graphql
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class SubqueryRequest(
+data class SubQueryRequest(
     val query: String,
     val variables: String? = null
 )

@@ -4,18 +4,19 @@ plugins {
     kotlin("plugin.serialization")
     kotlin("native.cocoapods")
     id("maven-publish")
+    id("com.squareup.sqldelight")
 }
 
 group = "jp.co.soramitsu"
 
-version = "0.0.16"
+version = "0.0.17"
 
 publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "jp.co.soramitsu"
             artifactId = "common-networking"
-            version = "0.0.16"
+            version = "0.0.17"
 
             afterEvaluate {
                 from(components["release"])
@@ -52,9 +53,11 @@ kotlin {
         homepage = "Link to the Shared Module homepage"
         ios.deploymentTarget = "14.1"
         framework {
-            baseName = "commonNetworking"
+            baseName = "X-Networking"
         }
     }
+
+    val sqlDelightVersion: String by project
     
     sourceSets {
         val commonMain by getting {
@@ -69,7 +72,8 @@ kotlin {
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
 
-                implementation("com.ionspin.kotlin:bignum:0.3.4")
+                //implementation("com.ionspin.kotlin:bignum:0.3.4")
+                implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
             }
         }
         val commonTest by getting {
@@ -83,6 +87,7 @@ kotlin {
             dependencies {
                 api("io.ktor:ktor-client-okhttp:$ktorVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion")
+                implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
             }
         }
         val androidTest by getting
@@ -93,6 +98,7 @@ kotlin {
             dependsOn(commonMain)
             dependencies {
                 implementation("io.ktor:ktor-client-darwin:$ktorVersion")
+                implementation("com.squareup.sqldelight:native-driver:$sqlDelightVersion")
             }
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
@@ -110,6 +116,12 @@ kotlin {
     }
     android {
         publishAllLibraryVariants()
+    }
+}
+
+sqldelight {
+    database("SoraHistoryDatabase") {
+        packageName = "jp.co.soramitsu.commonnetworking.db"
     }
 }
 
