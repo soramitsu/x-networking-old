@@ -2,7 +2,7 @@ Pod::Spec.new do |spec|
     spec.name                     = 'X-Networking'
     spec.version                  = '0.0.16'
     spec.homepage                 = 'Link to the Shared Module homepage'
-    spec.source                   = { :git => 'https://github.com/soramitsu/common-mobile-libraries.git', :tag => '0.0.16' }
+    spec.source                   = { :git => 'https://github.com/soramitsu/x-networking.git', :tag => '0.0.16' }
     spec.authors                  = ''
     spec.license                  = ''
     spec.summary                  = 'Some description for the Shared Module'
@@ -13,7 +13,7 @@ Pod::Spec.new do |spec|
                 
     spec.pod_target_xcconfig = {
         'KOTLIN_PROJECT_PATH' => ':commonNetworking',
-        'PRODUCT_MODULE_NAME' => 'commonNetworking',
+        'PRODUCT_MODULE_NAME' => 'X-Networking',
     }
                 
     spec.script_phases = [
