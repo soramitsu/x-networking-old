@@ -142,14 +142,14 @@ class SubQueryClient internal constructor(
         val mapped = extrinsics.map { extrinsic ->
             if (extrinsic.batch.not()) {
                 val params = historyDatabase.getExtrinsicParams(extrinsic.txHash)
-                HistoryMapper.map(extrinsic, params)
+                HistoryMapper.mapParams(extrinsic, params)
             } else {
                 val nestedExtrinsics = historyDatabase.getExtrinsicNested(extrinsic.txHash)
                 val nestedMapped = nestedExtrinsics.map {
                     val nestedParams = historyDatabase.getExtrinsicParams(it.txHash)
                     HistoryMapper.mapItemNested(it, nestedParams)
                 }
-                HistoryMapper.map(extrinsic, nestedMapped)
+                HistoryMapper.mapItems(extrinsic, nestedMapped)
             }
         }
         return SoraHistoryInfo(endReached, mapped)

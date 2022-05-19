@@ -5,7 +5,7 @@ import jp.co.soramitsu.commonnetworking.db.Extrinsics
 
 object HistoryMapper {
 
-    fun map(extrinsic: Extrinsics, params: List<ExtrinsicParam>): SoraHistoryItem =
+    fun mapParams(extrinsic: Extrinsics, params: List<ExtrinsicParam>): SoraHistoryItem =
         SoraHistoryItem(
             id = extrinsic.txHash,
             blockHash = extrinsic.blockHash.orEmpty(),
@@ -18,7 +18,7 @@ object HistoryMapper {
             nestedData = null,
         )
 
-    fun map(extrinsic: Extrinsics, params: List<SoraHistoryItemNested>): SoraHistoryItem =
+    fun mapItems(extrinsic: Extrinsics, params: List<SoraHistoryItemNested>): SoraHistoryItem =
         SoraHistoryItem(
             id = extrinsic.txHash,
             blockHash = extrinsic.blockHash.orEmpty(),

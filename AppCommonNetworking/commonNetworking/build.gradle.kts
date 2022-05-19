@@ -9,14 +9,14 @@ plugins {
 
 group = "jp.co.soramitsu"
 
-version = "0.0.16"
+version = "0.0.17"
 
 publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "jp.co.soramitsu"
             artifactId = "common-networking"
-            version = "0.0.16"
+            version = "0.0.17"
 
             afterEvaluate {
                 from(components["release"])
@@ -53,7 +53,7 @@ kotlin {
         homepage = "Link to the Shared Module homepage"
         ios.deploymentTarget = "14.1"
         framework {
-            baseName = "commonNetworking"
+            baseName = "X-Networking"
         }
     }
 
