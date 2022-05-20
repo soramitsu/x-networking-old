@@ -43,6 +43,10 @@ selectExtrinsicsNested:
 SELECT Extrinsics.*
 FROM Extrinsics WHERE parentHash = ?;
 
+selectExtrinsic:
+SELECT Extrinsics.*
+FROM Extrinsics WHERE txHash = :hash AND signAddress = :address;
+
 selectExtrinsicParams:
 SELECT ExtrinsicParam.*
 FROM ExtrinsicParam WHERE extrinsicHash = ?;

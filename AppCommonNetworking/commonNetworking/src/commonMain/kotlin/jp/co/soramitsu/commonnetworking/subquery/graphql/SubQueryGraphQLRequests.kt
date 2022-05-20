@@ -36,7 +36,7 @@ internal fun sbApyGraphQLRequest() = """ query {
                     """.trimIndent()
 
 internal fun soraHistoryGraphQLRequest(
-    countRemote: Long,
+    countRemote: Int,
     myAddress: String,
     cursor: String,
 ) = """
