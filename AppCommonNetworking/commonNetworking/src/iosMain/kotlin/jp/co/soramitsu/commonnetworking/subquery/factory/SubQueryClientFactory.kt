@@ -6,10 +6,11 @@ import jp.co.soramitsu.commonnetworking.networkclient.SoraNetworkClient
 import jp.co.soramitsu.commonnetworking.subquery.SubQueryClient
 
 actual class SubQueryClientFactory {
-    actual fun create(soraNetworkClient: SoraNetworkClient, baseUrl: String): SubQueryClient {
+    actual fun create(soraNetworkClient: SoraNetworkClient, baseUrl: String, pageSize: Int): SubQueryClient {
         return SubQueryClient(
             soraNetworkClient,
             baseUrl,
+            pageSize,
             HistoryDatabaseProvider(DatabaseDriverFactory())
         )
     }

@@ -20,6 +20,7 @@ import kotlin.math.min
 class SubQueryClient internal constructor(
     private val networkClient: SoraNetworkClient,
     private val baseUrl: String,
+    private val pageSize: Int,
     historyDatabaseProvider: HistoryDatabaseProvider
 ) {
     private val historyDatabase = historyDatabaseProvider.provide()
@@ -63,47 +64,53 @@ class SubQueryClient internal constructor(
         }
     }
 
-    private var historyPageSize: Long = 40
     private var historyAddress: String = ""
-    private var dbOffset: Long = 0
     private lateinit var curSignerInfo: SignerInfo
 
-    @Throws(SoraNetworkException::class, CancellationException::class)
-    suspend fun initTransactionHistory(
-        pageSize: Long,
+    fun getTransactionHistoryCached(
         address: String,
     ): SoraHistoryInfo {
-        historyPageSize = pageSize
-        historyAddress = address
-        dbOffset = 0
-        curSignerInfo = historyDatabase.getSignerInfo(historyAddress)
-        loadInfo()
-        return getHistoryInfo(historyPageSize)
+        val extrinsics = historyDatabase.getExtrinsics(historyAddress, 0, pageSize)
+        return buildResultHistoryInfo(true, extrinsics)
     }
 
-    @Throws(SoraNetworkException::class, CancellationException::class)
-    suspend fun getNextPageOfTransactionHistory(): SoraHistoryInfo {
-        return getHistoryInfo(historyPageSize)
+    fun getTransactionCached(
+        address: String,
+        txHash: String,
+    ): SoraHistoryInfo {
+        val extrinsic = historyDatabase.getExtrinsic(address, txHash)
+        return buildResultHistoryInfo(true, if (extrinsic == null) emptyList() else listOf(extrinsic))
     }
 
-    private suspend fun getHistoryInfo(count: Long): SoraHistoryInfo {
-        val extrinsics = historyDatabase.getExtrinsics(historyAddress, dbOffset, count)
-        println("foxxx gethistoryinfo $count curoffset $dbOffset got ${extrinsics.size}")
+    @Throws(SoraNetworkException::class, CancellationException::class, IllegalArgumentException::class)
+    suspend fun getTransactionHistoryPaged(
+        address: String,
+        page: Long,
+    ): SoraHistoryInfo {
+        require(((page > 1 && historyAddress.isEmpty()) || page < 1).not()) { "First page value must = 1" }
+        if (page == 1L) {
+            historyAddress = address
+            curSignerInfo = historyDatabase.getSignerInfo(historyAddress)
+            loadInfo()
+        }
+        return getHistoryInfo(page)
+    }
+
+    private suspend fun getHistoryInfo(page: Long): SoraHistoryInfo {
+        var dbOffset = (page - 1) * pageSize
+        val extrinsics = historyDatabase.getExtrinsics(historyAddress, dbOffset, pageSize)
         dbOffset += extrinsics.size
-        return if (extrinsics.size.toLong() >= count) {
+        return if (extrinsics.size.toLong() >= pageSize) {
             buildResultHistoryInfo(false, extrinsics)
         } else {
-            println("foxxx sig $curSignerInfo")
             if (curSignerInfo.endReached) {
                 buildResultHistoryInfo(true, extrinsics)
             } else {
                 loadInfo(curSignerInfo.oldCursor.orEmpty())
-                val moreCount = count - extrinsics.size
-                println("foxxx more $moreCount")
+                val moreCount = pageSize - extrinsics.size
                 val moreExtrinsics =
                     historyDatabase.getExtrinsics(historyAddress, dbOffset, moreCount)
                 dbOffset += moreExtrinsics.size
-                println("foxxx loaded more ${moreExtrinsics.size} offset=$dbOffset")
                 buildResultHistoryInfo(curSignerInfo.endReached, extrinsics + moreExtrinsics)
             }
         }
@@ -115,7 +122,7 @@ class SubQueryClient internal constructor(
             HttpMethod.Post,
             SubQueryRequest(
                 soraHistoryGraphQLRequest(
-                    historyPageSize,
+                    pageSize,
                     historyAddress,
                     cursor
                 )

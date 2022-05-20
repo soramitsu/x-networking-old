@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             "https://raw.githubusercontent.com/arvifox/arvifoxandroid/develop/felete/"
         )
         val sfa = SubQueryClientFactory(applicationContext)
-        val hi = sfa.create(soraNetworkClient, "https://api.subquery.network/sq/sora-xor/sora-dev")
+        val hi = sfa.create(soraNetworkClient, "https://api.subquery.network/sq/sora-xor/sora-dev", 20)
         val networkService = NetworkService(soraNetworkClient, f, hi)
 
         btn1.setOnClickListener {
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             GlobalScope.launch {
                 Log.e("foxxx", "button 2")
                 try {
-                    val r = networkService.getHistory()
+                    val r = networkService.getHistory(1)
                     Log.e("foxxx", "r = ${r.endReached} ${r.items.size}")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t= ${t.localizedMessage}")
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             GlobalScope.launch {
                 Log.e("foxxx", "button 3")
                 try {
-                    val r = networkService.getHistory2()
+                    val r = networkService.getHistory(2)
                     Log.e("foxxx", "r = ${r.endReached} ${r.items.size}")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t = ${t.localizedMessage}")

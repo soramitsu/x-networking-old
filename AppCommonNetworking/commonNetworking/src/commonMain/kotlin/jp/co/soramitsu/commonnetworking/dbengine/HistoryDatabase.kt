@@ -38,8 +38,12 @@ internal class HistoryDatabase(historyDatabaseFactory: DatabaseDriverFactory) {
 
     internal fun insertSignerInfo(info: SignerInfo) = dbQuery.insertSignerInfoFull(info)
 
-    internal fun getExtrinsics(signAddress: String, offset: Long, count: Long): List<Extrinsics> {
-        return dbQuery.selectExtrinsicsPaged(signAddress, count, offset).executeAsList()
+    internal fun getExtrinsics(signAddress: String, offset: Long, count: Int): List<Extrinsics> {
+        return dbQuery.selectExtrinsicsPaged(signAddress, count.toLong(), offset).executeAsList()
+    }
+
+    internal fun getExtrinsic(signAddress: String, txHash: String): Extrinsics? {
+        return dbQuery.selectExtrinsic(txHash, signAddress).executeAsOneOrNull()
     }
 
     internal fun getExtrinsicParams(extrinsicHash: String): List<ExtrinsicParam> {
