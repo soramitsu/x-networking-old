@@ -6,7 +6,7 @@ Pod::Spec.new do |spec|
     spec.authors                  = ''
     spec.license                  = ''
     spec.summary                  = 'Some description for the Shared Module'
-    spec.vendored_frameworks      = 'AppCommonNetworking/commonNetworking/build/cocoapods/framework/commonNetworking.framework'
+    spec.vendored_frameworks      = '../commonNetworking/build/cocoapods/framework/commonNetworking.framework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target = '11.0'
                 
