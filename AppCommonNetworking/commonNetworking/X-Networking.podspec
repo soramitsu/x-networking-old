@@ -1,8 +1,8 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'X-Networking'
-    spec.version                  = '0.0.21'
+    spec.version                  = '0.0.22'
     spec.homepage                 = 'Link to the Shared Module homepage'
-    spec.source                   = { :git => 'https://github.com/soramitsu/x-networking.git', :tag => '0.0.21' }
+    spec.source                   = { :git => 'https://github.com/soramitsu/x-networking.git', :tag => '0.0.22' }
     spec.authors                  = ''
     spec.license                  = ''
     spec.summary                  = 'Some description for the Shared Module'
@@ -14,7 +14,8 @@ Pod::Spec.new do |spec|
     spec.pod_target_xcconfig = {
         'KOTLIN_PROJECT_PATH' => ':commonNetworking',
         'PRODUCT_MODULE_NAME' => 'X-Networking',
-	'ENABLED_TESTABILITY' => 'NO'
+	'ENABLED_TESTABILITY' => 'NO',
+	'ONLY_ACTIVE_ARCH' => 'YES'
     }
                 
     spec.script_phases = [
@@ -28,6 +29,7 @@ Pod::Spec.new do |spec|
                   exit 0
                 fi
                 set -ev
+                echo "Hello from future"
                 REPO_ROOT="$PODS_TARGET_SRCROOT"
                 "$HOME/.cocoapods/repos/commonNetworking/AppCommonNetworking/gradlew" -p "$HOME/.cocoapods/repos/commonNetworking/AppCommonNetworking" $KOTLIN_PROJECT_PATH:syncFramework \
                     -Pkotlin.native.cocoapods.platform=$PLATFORM_NAME \

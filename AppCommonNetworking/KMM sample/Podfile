@@ -1,5 +1,8 @@
 target 'KMM sample' do
   use_frameworks!
+  source 'https://github.com/soramitsu/common-mobile-libraries.git'
   platform :ios, '14.1'
-  pod 'commonNetworking', :path => '../commonNetworking'
+  #pod 'X-Networking', '~>0.0.19'
+  #pod 'commonNetworking', :path => '../commonNetworking'
+  pod 'X-Networking', :podspec => 'https://raw.githubusercontent.com/soramitsu/x-networking/5ddd78713bd3b1d330f2c6c528a4abfa2e4d45f3/AppCommonNetworking/commonNetworking/X-Networking.podspec'
 end

@@ -7,31 +7,31 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		126814E290EA5FDBDA50FCDA220D687C /* commonNetworking */ = {
+		6BF89BBD970EC62DB701696602A4E164 /* X-Networking */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 3EA06BD83DDFED5F264799680956990D /* Build configuration list for PBXAggregateTarget "commonNetworking" */;
+			buildConfigurationList = F7044E2EF3A5C6990A559B4C9A7626FE /* Build configuration list for PBXAggregateTarget "X-Networking" */;
 			buildPhases = (
-				253CFA39C52248EEFB7DD999A85D9C5D /* [CP-User] Build commonNetworking */,
+				7431454DCF494A3F515ACD924CA30651 /* [CP-User] Build commonNetworking */,
 			);
 			dependencies = (
 			);
-			name = commonNetworking;
+			name = "X-Networking";
 		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		35851907414E0B3A4E79D0F877968763 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		9A7C40B7A0D8C9D070AED408C6A17FBF /* Pods-KMM sample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DB078738D77F7D92CA3E749DD5737644 /* Pods-KMM sample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9C7F6775169C89829CDB53FE81A83051 /* Pods-KMM sample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B893FD6FFC333CDA86D32E204C51CB /* Pods-KMM sample-dummy.m */; };
+		6453C83B985419D012793066508F95E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		6570B3FF88D9FD377170CC3A2114383E /* Pods-KMM sample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DB078738D77F7D92CA3E749DD5737644 /* Pods-KMM sample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE2D6CC8B27142599BDC03E7D761C25B /* Pods-KMM sample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B893FD6FFC333CDA86D32E204C51CB /* Pods-KMM sample-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C494B0511F46B6177C226619BE8EF178 /* PBXContainerItemProxy */ = {
+		BBC82D7C9569BA765DFFE683AF773BD7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 126814E290EA5FDBDA50FCDA220D687C;
-			remoteInfo = commonNetworking;
+			remoteGlobalIDString = 6BF89BBD970EC62DB701696602A4E164;
+			remoteInfo = "X-Networking";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -41,36 +41,47 @@
 		29833F601F3C768AEAC2BA62EA79F0F1 /* Pods-KMM sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-KMM sample.debug.xcconfig"; sourceTree = "<group>"; };
 		3261B892FCD6C535780311C3D511D3D2 /* Pods-KMM sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-KMM sample.release.xcconfig"; sourceTree = "<group>"; };
 		3BAC15A1CE9A425D86BAD946E4202F4D /* Pods-KMM sample-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-KMM sample-Info.plist"; sourceTree = "<group>"; };
-		52BAF58FBA0B07ABC98ED7727B99F031 /* commonNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = commonNetworking.framework; path = build/cocoapods/framework/commonNetworking.framework; sourceTree = "<group>"; };
+		54E0BC89C0D1B5604A13932102AE8A2C /* X-Networking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "X-Networking.release.xcconfig"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A6DFD8D2AFB384358A1E35E68039AAA9 /* Pods-KMM sample */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-KMM sample"; path = Pods_KMM_sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE75E6C0430B2A4D7156D2F705A36482 /* commonNetworking.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = commonNetworking.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		C191047EC92783A9F567D557BFDB430D /* X-Networking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "X-Networking.debug.xcconfig"; sourceTree = "<group>"; };
+		C4835314DEF5B29B8953E30D8CA4F07D /* commonNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = commonNetworking.framework; path = AppCommonNetworking/commonNetworking/build/cocoapods/framework/commonNetworking.framework; sourceTree = "<group>"; };
 		D0B893FD6FFC333CDA86D32E204C51CB /* Pods-KMM sample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-KMM sample-dummy.m"; sourceTree = "<group>"; };
 		DB078738D77F7D92CA3E749DD5737644 /* Pods-KMM sample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-KMM sample-umbrella.h"; sourceTree = "<group>"; };
-		DEE45D7F9967214823AAFFC3A1D7E1F5 /* commonNetworking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = commonNetworking.debug.xcconfig; sourceTree = "<group>"; };
 		E847F19A50A568864A1D201527680C08 /* Pods-KMM sample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-KMM sample.modulemap"; sourceTree = "<group>"; };
-		FA378FDC4E3C90235D69136C85EE70BE /* commonNetworking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = commonNetworking.release.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E07030E172D98B8D212FDEABF0B69AD0 /* Frameworks */ = {
+		003670B621E29A51E70176F7FB0154A1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35851907414E0B3A4E79D0F877968763 /* Foundation.framework in Frameworks */,
+				6453C83B985419D012793066508F95E4 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		46D85B2F7CF6A1DC61300AFD6954D462 /* Development Pods */ = {
+		14B4ADEF3A211625F2938F3ECE6A3ECA /* X-Networking */ = {
 			isa = PBXGroup;
 			children = (
-				7FBCF1BDC43FC957126FC58805E9767F /* commonNetworking */,
+				D7ECC1A084E7B94731ED48BEB31291FB /* Frameworks */,
+				3583167B932BB662FAAFCF49392984DF /* Support Files */,
 			);
-			name = "Development Pods";
+			name = "X-Networking";
+			path = "X-Networking";
+			sourceTree = "<group>";
+		};
+		3583167B932BB662FAAFCF49392984DF /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C191047EC92783A9F567D557BFDB430D /* X-Networking.debug.xcconfig */,
+				54E0BC89C0D1B5604A13932102AE8A2C /* X-Networking.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/X-Networking";
 			sourceTree = "<group>";
 		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
@@ -89,25 +100,6 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		7FBCF1BDC43FC957126FC58805E9767F /* commonNetworking */ = {
-			isa = PBXGroup;
-			children = (
-				A3A1599C8D6BB50A402822EC87CE5560 /* Frameworks */,
-				B02753F8C717CD6AD885B0745873A543 /* Pod */,
-				BED86B31D99E9E9AC2234DC475C0C6C3 /* Support Files */,
-			);
-			name = commonNetworking;
-			path = ../../commonNetworking;
-			sourceTree = "<group>";
-		};
-		A3A1599C8D6BB50A402822EC87CE5560 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				52BAF58FBA0B07ABC98ED7727B99F031 /* commonNetworking.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		AFAAE1F05AFBCB921C3AC7441E318996 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,30 +108,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B02753F8C717CD6AD885B0745873A543 /* Pod */ = {
+		BE1FD170FA2F0B9F9982EACA12545B0F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AE75E6C0430B2A4D7156D2F705A36482 /* commonNetworking.podspec */,
+				14B4ADEF3A211625F2938F3ECE6A3ECA /* X-Networking */,
 			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		BED86B31D99E9E9AC2234DC475C0C6C3 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				DEE45D7F9967214823AAFFC3A1D7E1F5 /* commonNetworking.debug.xcconfig */,
-				FA378FDC4E3C90235D69136C85EE70BE /* commonNetworking.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../KMM sample/Pods/Target Support Files/commonNetworking";
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				46D85B2F7CF6A1DC61300AFD6954D462 /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				BE1FD170FA2F0B9F9982EACA12545B0F /* Pods */,
 				AFAAE1F05AFBCB921C3AC7441E318996 /* Products */,
 				73DCA985AEEBB4E76208478531E8D4B4 /* Targets Support Files */,
 			);
@@ -149,6 +131,14 @@
 			isa = PBXGroup;
 			children = (
 				578452D2E740E91742655AC8F1636D1F /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D7ECC1A084E7B94731ED48BEB31291FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C4835314DEF5B29B8953E30D8CA4F07D /* commonNetworking.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -172,11 +162,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		5A1E69A5253D1B33A432E486F9B307D5 /* Headers */ = {
+		8CF985F5E6EF73E69D84498537F4445E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A7C40B7A0D8C9D070AED408C6A17FBF /* Pods-KMM sample-umbrella.h in Headers */,
+				6570B3FF88D9FD377170CC3A2114383E /* Pods-KMM sample-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,17 +175,17 @@
 /* Begin PBXNativeTarget section */
 		12E69F0AB433BE59C82991BE17B20663 /* Pods-KMM sample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 54941A26845A03DFB87E60A553E996CC /* Build configuration list for PBXNativeTarget "Pods-KMM sample" */;
+			buildConfigurationList = 4A16804E4C31FC0DCFC7AECC6292C9C9 /* Build configuration list for PBXNativeTarget "Pods-KMM sample" */;
 			buildPhases = (
-				5A1E69A5253D1B33A432E486F9B307D5 /* Headers */,
-				4F8E7D5084761EED635C68C40B08570F /* Sources */,
-				E07030E172D98B8D212FDEABF0B69AD0 /* Frameworks */,
-				EE891F536A7A7B3B146D38909D48AECE /* Resources */,
+				8CF985F5E6EF73E69D84498537F4445E /* Headers */,
+				406D75782A9684C835101650D0DAFE9E /* Sources */,
+				003670B621E29A51E70176F7FB0154A1 /* Frameworks */,
+				7B08BA3A0A797FB96244E091B4078864 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				304C0D6F758D579FC99F55ECD45A4A10 /* PBXTargetDependency */,
+				D1D46900E8484485384456D5A99FDC10 /* PBXTargetDependency */,
 			);
 			name = "Pods-KMM sample";
 			productName = Pods_KMM_sample;
@@ -224,14 +214,14 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				126814E290EA5FDBDA50FCDA220D687C /* commonNetworking */,
 				12E69F0AB433BE59C82991BE17B20663 /* Pods-KMM sample */,
+				6BF89BBD970EC62DB701696602A4E164 /* X-Networking */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		EE891F536A7A7B3B146D38909D48AECE /* Resources */ = {
+		7B08BA3A0A797FB96244E091B4078864 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -241,7 +231,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		253CFA39C52248EEFB7DD999A85D9C5D /* [CP-User] Build commonNetworking */ = {
+		7431454DCF494A3F515ACD924CA30651 /* [CP-User] Build commonNetworking */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -249,32 +239,32 @@
 			name = "[CP-User] Build commonNetworking";
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "                if [ \"YES\" = \"$COCOAPODS_SKIP_KOTLIN_BUILD\" ]; then\n                  echo \"Skipping Gradle build task invocation due to COCOAPODS_SKIP_KOTLIN_BUILD environment variable set to \"YES\"\"\n                  exit 0\n                fi\n                set -ev\n                REPO_ROOT=\"$PODS_TARGET_SRCROOT\"\n                \"$REPO_ROOT/../gradlew\" -p \"$REPO_ROOT\" $KOTLIN_PROJECT_PATH:syncFramework                     -Pkotlin.native.cocoapods.platform=$PLATFORM_NAME                     -Pkotlin.native.cocoapods.archs=\"$ARCHS\"                     -Pkotlin.native.cocoapods.configuration=\"$CONFIGURATION\"\n";
+			shellScript = "                if [ \"YES\" = \"$COCOAPODS_SKIP_KOTLIN_BUILD\" ]; then\n                  echo \"Skipping Gradle build task invocation due to COCOAPODS_SKIP_KOTLIN_BUILD environment variable set to \"YES\"\"\n                  exit 0\n                fi\n                set -ev\n                REPO_ROOT=\"$PODS_TARGET_SRCROOT\"\n                \"$HOME/.cocoapods/repos/commonNetworking/AppCommonNetworking/gradlew\" -p \"$HOME/.cocoapods/repos/commonNetworking/AppCommonNetworking\" $KOTLIN_PROJECT_PATH:syncFramework                     -Pkotlin.native.cocoapods.platform=$PLATFORM_NAME                     -Pkotlin.native.cocoapods.archs=\"$ARCHS\"                     -Pkotlin.native.cocoapods.configuration=\"$CONFIGURATION\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		4F8E7D5084761EED635C68C40B08570F /* Sources */ = {
+		406D75782A9684C835101650D0DAFE9E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C7F6775169C89829CDB53FE81A83051 /* Pods-KMM sample-dummy.m in Sources */,
+				CE2D6CC8B27142599BDC03E7D761C25B /* Pods-KMM sample-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		304C0D6F758D579FC99F55ECD45A4A10 /* PBXTargetDependency */ = {
+		D1D46900E8484485384456D5A99FDC10 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = commonNetworking;
-			target = 126814E290EA5FDBDA50FCDA220D687C /* commonNetworking */;
-			targetProxy = C494B0511F46B6177C226619BE8EF178 /* PBXContainerItemProxy */;
+			name = "X-Networking";
+			target = 6BF89BBD970EC62DB701696602A4E164 /* X-Networking */;
+			targetProxy = BBC82D7C9569BA765DFFE683AF773BD7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		006191DA4BE54E1B9AE306B76E8977B5 /* Release */ = {
+		2BAB76C1C295A2E7AA572AB85E7F8981 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3261B892FCD6C535780311C3D511D3D2 /* Pods-KMM sample.release.xcconfig */;
 			buildSettings = {
@@ -311,6 +301,43 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		3F7E57966948C620DB7E169D02DC4C8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29833F601F3C768AEAC2BA62EA79F0F1 /* Pods-KMM sample.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-KMM sample/Pods-KMM sample-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-KMM sample/Pods-KMM sample.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		593F10BFFA94DAC7D6E17FB8A7F32D72 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -374,59 +401,23 @@
 			};
 			name = Release;
 		};
-		5DF513E20BF2E321F08A5809025D3634 /* Debug */ = {
+		9D6E4C1DCE185B5F38B87BADB86C5F65 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 29833F601F3C768AEAC2BA62EA79F0F1 /* Pods-KMM sample.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-KMM sample/Pods-KMM sample-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-KMM sample/Pods-KMM sample.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		5F1C23F4712AB3547BDF983468147A7C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DEE45D7F9967214823AAFFC3A1D7E1F5 /* commonNetworking.debug.xcconfig */;
+			baseConfigurationReference = 54E0BC89C0D1B5604A13932102AE8A2C /* X-Networking.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_OBJC_WEAK = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
-			name = Debug;
+			name = Release;
 		};
 		A0374B8CF9A7D6A45F6D116D698D1C19 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -494,36 +485,26 @@
 			};
 			name = Debug;
 		};
-		A55FE88AF9B0AE811F3174A0C4FF44AB /* Release */ = {
+		AD4CC86B5949BB65E67B0936D9C41D60 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA378FDC4E3C90235D69136C85EE70BE /* commonNetworking.release.xcconfig */;
+			baseConfigurationReference = C191047EC92783A9F567D557BFDB430D /* X-Networking.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_OBJC_WEAK = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3EA06BD83DDFED5F264799680956990D /* Build configuration list for PBXAggregateTarget "commonNetworking" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5F1C23F4712AB3547BDF983468147A7C /* Debug */,
-				A55FE88AF9B0AE811F3174A0C4FF44AB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -533,11 +514,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		54941A26845A03DFB87E60A553E996CC /* Build configuration list for PBXNativeTarget "Pods-KMM sample" */ = {
+		4A16804E4C31FC0DCFC7AECC6292C9C9 /* Build configuration list for PBXNativeTarget "Pods-KMM sample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5DF513E20BF2E321F08A5809025D3634 /* Debug */,
-				006191DA4BE54E1B9AE306B76E8977B5 /* Release */,
+				3F7E57966948C620DB7E169D02DC4C8D /* Debug */,
+				2BAB76C1C295A2E7AA572AB85E7F8981 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F7044E2EF3A5C6990A559B4C9A7626FE /* Build configuration list for PBXAggregateTarget "X-Networking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD4CC86B5949BB65E67B0936D9C41D60 /* Debug */,
+				9D6E4C1DCE185B5F38B87BADB86C5F65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
