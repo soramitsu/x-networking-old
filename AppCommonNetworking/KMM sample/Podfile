@@ -3,6 +3,6 @@ target 'KMM sample' do
   source 'https://github.com/soramitsu/common-mobile-libraries.git'
   platform :ios, '14.1'
   #pod 'X-Networking', '~>0.0.19'
-  #pod 'commonNetworking', :path => '../commonNetworking'
+  #pod 'X-Networking', :path => '../commonNetworking'
   pod 'X-Networking', :podspec => 'https://raw.githubusercontent.com/soramitsu/x-networking/feature/experiments/AppCommonNetworking/commonNetworking/X-Networking.podspec'
 end
