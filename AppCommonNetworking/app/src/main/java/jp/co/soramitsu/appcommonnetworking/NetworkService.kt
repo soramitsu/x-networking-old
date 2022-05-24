@@ -18,7 +18,7 @@ class NetworkService(
 
     suspend fun getHistory(page: Long) = subQueryClient.getTransactionHistoryPaged("cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm", page)
 
-    suspend fun getPeers() = subQueryClient.getTransactionPeers()
+    suspend fun getPeers(query: String) = subQueryClient.getTransactionPeers(query)
 
     suspend fun getRewards() = subQueryClient.getReferrerRewards(
         address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",

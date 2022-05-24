@@ -53,7 +53,7 @@ FROM ExtrinsicParam WHERE extrinsicHash = ?;
 
 selectTransfersPeers:
 SELECT DISTINCT ExtrinsicParam.paramValue
-FROM ExtrinsicParam WHERE paramName = "to" OR paramName = "from";
+FROM ExtrinsicParam WHERE (paramName = "to" OR paramName = "from") AND paramValue LIKE '%' || :query || "%";
 
 selectSignerInfo:
 SELECT SignerInfo.*

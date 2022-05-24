@@ -67,7 +67,7 @@ class SubQueryClient internal constructor(
     private var historyAddress: String = ""
     private lateinit var curSignerInfo: SignerInfo
 
-    fun getTransactionPeers(): List<String> = historyDatabase.getTransfersAddress()
+    fun getTransactionPeers(query: String): List<String> = historyDatabase.getTransfersAddress(query)
 
     fun getTransactionHistoryCached(
         address: String,
