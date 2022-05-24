@@ -9,7 +9,7 @@
   "authors": "",
   "license": "",
   "summary": "Some description for the Shared Module",
-  "vendored_frameworks": "../commonNetworking/build/cocoapods/framework/commonNetworking.framework",
+  "vendored_frameworks": "build/bin/universal/release/X_Networking.framework",
   "libraries": "c++",
   "platforms": {
     "ios": "11.0"
