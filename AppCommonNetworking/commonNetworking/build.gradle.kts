@@ -9,14 +9,14 @@ plugins {
 
 group = "jp.co.soramitsu"
 
-version = "0.0.22"
+version = "0.0.23"
 
 publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "jp.co.soramitsu"
             artifactId = "common-networking"
-            version = "0.0.22"
+            version = "0.0.23"
 
             afterEvaluate {
                 from(components["release"])
@@ -43,9 +43,11 @@ val coroutineVersion = "1.6.1"
 val ktorVersion = "2.0.0"
 
 kotlin {
+    val iosFrameworkName = "X-Networking"
+
     android()
-    iosX64()
-    iosArm64()
+    iosX64 { binaries.framework(iosFrameworkName) }
+    iosArm64 { binaries.framework(iosFrameworkName) }
     iosSimulatorArm64()
 
     cocoapods {
@@ -114,6 +116,40 @@ kotlin {
             iosSimulatorArm64Test.dependsOn(this)
         }
     }
+
+    tasks {
+        register("universalFrameworkDebug",
+            org.jetbrains.kotlin.gradle.tasks.FatFrameworkTask::class) {
+            baseName = iosFrameworkName
+            from(
+                iosArm64().binaries.getFramework(iosFrameworkName, "Debug"),
+                iosX64().binaries.getFramework(iosFrameworkName, "Debug")
+            )
+            destinationDir = buildDir.resolve("bin/universal/debug")
+            group = "Universal framework"
+            description = "Builds a universal (fat) debug framework"
+            dependsOn("link${iosFrameworkName}DebugFrameworkIosArm64")
+            dependsOn("link${iosFrameworkName}DebugFrameworkIosX64")
+        }
+        register("universalFrameworkRelease",
+            org.jetbrains.kotlin.gradle.tasks.FatFrameworkTask::class) {
+            baseName = iosFrameworkName
+            from(
+                iosArm64().binaries.getFramework(iosFrameworkName, "Release"),
+                iosX64().binaries.getFramework(iosFrameworkName, "Release")
+            )
+            destinationDir = buildDir.resolve("bin/universal/release")
+            group = "Universal framework"
+            description = "Builds a universal (fat) release framework"
+            dependsOn("link${iosFrameworkName}ReleaseFrameworkIosArm64")
+            dependsOn("link${iosFrameworkName}ReleaseFrameworkIosX64")
+        }
+        register("universalFramework") {
+            dependsOn("universalFrameworkDebug")
+            dependsOn("universalFrameworkRelease")
+        }
+    }
+
     android {
         publishAllLibraryVariants()
     }
