@@ -51,6 +51,10 @@ selectExtrinsicParams:
 SELECT ExtrinsicParam.*
 FROM ExtrinsicParam WHERE extrinsicHash = ?;
 
+selectTransfersPeers:
+SELECT DISTINCT ExtrinsicParam.paramValue
+FROM ExtrinsicParam WHERE paramName = "to" OR paramName = "from";
+
 selectSignerInfo:
 SELECT SignerInfo.*
 FROM SignerInfo WHERE signAddress = ?;

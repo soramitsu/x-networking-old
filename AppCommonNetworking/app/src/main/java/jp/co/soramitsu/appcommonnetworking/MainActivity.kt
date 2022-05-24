@@ -57,8 +57,8 @@ class MainActivity : AppCompatActivity() {
             GlobalScope.launch {
                 Log.e("foxxx", "button 3")
                 try {
-                    val r = networkService.getHistory(2)
-                    Log.e("foxxx", "r = ${r.endReached} ${r.items.size}")
+                    val r = networkService.getPeers()
+                    Log.e("foxxx", "r = $r")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t = ${t.localizedMessage}")
                 }

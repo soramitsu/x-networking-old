@@ -27,6 +27,10 @@ internal class HistoryDatabase(historyDatabaseFactory: DatabaseDriverFactory) {
         }
     }
 
+    internal fun getTransfersAddress(): List<String> {
+        return dbQuery.selectTransfersPeers().executeAsList()
+    }
+
     internal fun getSignerInfo(signAddress: String): SignerInfo =
         dbQuery.selectSignerInfo(signAddress).executeAsOneOrNull() ?: SignerInfo(
             signAddress,
