@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
@@ -9,14 +11,14 @@ plugins {
 
 group = "jp.co.soramitsu"
 
-version = "0.0.21"
+version = "0.0.22"
 
 publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "jp.co.soramitsu"
             artifactId = "common-networking"
-            version = "0.0.21"
+            version = "0.0.22"
 
             afterEvaluate {
                 from(components["release"])
@@ -43,17 +45,36 @@ val coroutineVersion = "1.6.1"
 val ktorVersion = "2.0.0"
 
 kotlin {
+    val iosFrameworkName = "commonNetworking"
+    val xcf = XCFramework()
+
     android()
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
+    iosX64 {
+        binaries.framework {
+            baseName = iosFrameworkName
+            xcf.add(this)
+        }
+    }
+    iosArm64 {
+        binaries.framework {
+            baseName = iosFrameworkName
+            xcf.add(this)
+        }
+    }
+
+    iosSimulatorArm64 {
+        binaries.framework {
+            baseName = iosFrameworkName
+            xcf.add(this)
+        }
+    }
 
     cocoapods {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
         ios.deploymentTarget = "14.1"
         framework {
-            baseName = "X-Networking"
+            baseName = iosFrameworkName
         }
     }
 
