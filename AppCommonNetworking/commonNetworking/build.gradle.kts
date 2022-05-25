@@ -48,7 +48,7 @@ kotlin {
     android()
     iosX64 { binaries.framework(iosFrameworkName) }
     iosArm64 { binaries.framework(iosFrameworkName) }
-    iosSimulatorArm64()
+    iosSimulatorArm64 { binaries.framework(iosFrameworkName) }
 
     cocoapods {
         summary = "Some description for the Shared Module"
