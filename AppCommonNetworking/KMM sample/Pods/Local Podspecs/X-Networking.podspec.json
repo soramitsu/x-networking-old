@@ -1,10 +1,10 @@
 {
   "name": "X-Networking",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "homepage": "Link to the Shared Module homepage",
   "source": {
     "git": "https://github.com/soramitsu/x-networking.git",
-    "tag": "0.0.23"
+    "tag": "0.0.24"
   },
   "authors": "",
   "license": "",

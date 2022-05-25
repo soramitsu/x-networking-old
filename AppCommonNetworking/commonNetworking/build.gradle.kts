@@ -46,18 +46,35 @@ val ktorVersion = "2.0.0"
 
 kotlin {
     val iosFrameworkName = "commonNetworking"
+    val xcf = XCFramework()
 
     android()
-    iosX64 { binaries.framework(iosFrameworkName) }
-    iosArm64 { binaries.framework(iosFrameworkName) }
-    iosSimulatorArm64 { binaries.framework(iosFrameworkName) }
+    iosX64 {
+        binaries.framework {
+            baseName = iosFrameworkName
+            xcf.add(this)
+        }
+    }
+    iosArm64 {
+        binaries.framework {
+            baseName = iosFrameworkName
+            xcf.add(this)
+        }
+    }
+
+    iosSimulatorArm64 {
+        binaries.framework {
+            baseName = iosFrameworkName
+            xcf.add(this)
+        }
+    }
 
     cocoapods {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
         ios.deploymentTarget = "14.1"
         framework {
-            baseName = "X-Networking"
+            baseName = "commonNetworking"
         }
     }
 
@@ -149,15 +166,6 @@ kotlin {
         register("universalFramework") {
             dependsOn("universalFrameworkDebug")
             dependsOn("universalFrameworkRelease")
-        }
-    }
-
-    val xcf = XCFramework()
-
-    ios {
-        binaries.framework {
-            baseName = iosFrameworkName
-            xcf.add(this)
         }
     }
 

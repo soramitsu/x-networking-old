@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import X_Networking
+import commonNetworking
 
 struct ContentView: View {
     var body: some View {
