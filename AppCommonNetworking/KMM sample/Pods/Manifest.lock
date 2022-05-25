@@ -1,5 +1,5 @@
 PODS:
-  - X-Networking (0.0.24)
+  - X-Networking (0.0.25)
 
 DEPENDENCIES:
   - X-Networking (from `https://raw.githubusercontent.com/soramitsu/x-networking/feature/experiments/AppCommonNetworking/commonNetworking/X-Networking.podspec`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :podspec: https://raw.githubusercontent.com/soramitsu/x-networking/feature/experiments/AppCommonNetworking/commonNetworking/X-Networking.podspec
 
 SPEC CHECKSUMS:
-  X-Networking: f9a4d29c2f6c9300a648493b6e6d36d2fb4d37d9
+  X-Networking: b2aba8d240c0690ec118ed3cfa1bb1130e274a97
 
 PODFILE CHECKSUM: 15e765bd9eea8a56b19e0107a7ab3f53e2bc7c4c
 
