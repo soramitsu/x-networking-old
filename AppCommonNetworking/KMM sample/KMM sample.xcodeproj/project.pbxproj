@@ -163,6 +163,7 @@
 				36C37050282265F10027BA77 /* Sources */,
 				36C37051282265F10027BA77 /* Frameworks */,
 				36C37052282265F10027BA77 /* Resources */,
+				0224775B7173DA5C96799E2F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -279,6 +280,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0224775B7173DA5C96799E2F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KMM sample/Pods-KMM sample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KMM sample/Pods-KMM sample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KMM sample/Pods-KMM sample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4096DEEBD94CA5381542AF40 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
