@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :podspec: https://raw.githubusercontent.com/soramitsu/x-networking/feature/experiments/AppCommonNetworking/commonNetworking/X-Networking.podspec
 
 SPEC CHECKSUMS:
-  X-Networking: 7149042dd513051eaacc327598cf104fd0563166
+  X-Networking: 28531c916bad10b29107f61b9976ac8cfe1dea9a
 
 PODFILE CHECKSUM: 15e765bd9eea8a56b19e0107a7ab3f53e2bc7c4c
 

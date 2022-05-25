@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
@@ -147,6 +149,15 @@ kotlin {
         register("universalFramework") {
             dependsOn("universalFrameworkDebug")
             dependsOn("universalFrameworkRelease")
+        }
+    }
+
+    val xcf = XCFramework()
+
+    ios {
+        binaries.framework {
+            baseName = iosFrameworkName
+            xcf.add(this)
         }
     }
 

@@ -6,8 +6,7 @@ Pod::Spec.new do |spec|
     spec.authors                  = ''
     spec.license                  = ''
     spec.summary                  = 'Some description for the Shared Module'
-    #spec.vendored_frameworks      = 'AppCommonNetworking/commonNetworking/build/bin/universal/release/X_Networking.framework'
-    spec.vendored_frameworks      = 'X_Networking.framework'
+    spec.vendored_frameworks      = 'AppCommonNetworking/commonNetworking/build/XCFrameworks/release/commonNetworking.xcframework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target = '11.0'
                 

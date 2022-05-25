@@ -9,7 +9,7 @@
   "authors": "",
   "license": "",
   "summary": "Some description for the Shared Module",
-  "vendored_frameworks": "AppCommonNetworking/commonNetworking/build/bin/universal/release/X_Networking.framework",
+  "vendored_frameworks": "X_Networking.framework",
   "libraries": "c++",
   "platforms": {
     "ios": "11.0"
@@ -19,13 +19,5 @@
     "PRODUCT_MODULE_NAME": "X-Networking",
     "ENABLED_TESTABILITY": "NO",
     "ONLY_ACTIVE_ARCH": "YES"
-  },
-  "script_phases": [
-    {
-      "name": "Build commonNetworking",
-      "execution_position": "before_compile",
-      "shell_path": "/bin/sh",
-      "script": "                if [ \"YES\" = \"$COCOAPODS_SKIP_KOTLIN_BUILD\" ]; then\n                  echo \"Skipping Gradle build task invocation due to COCOAPODS_SKIP_KOTLIN_BUILD environment variable set to \"YES\"\"\n                  exit 0\n                fi\n                set -ev\n                echo \"Hello from future\"\n                REPO_ROOT=\"$PODS_TARGET_SRCROOT\"\n                \"$HOME/.cocoapods/repos/commonNetworking/AppCommonNetworking/gradlew\" -p \"$HOME/.cocoapods/repos/commonNetworking/AppCommonNetworking\" $KOTLIN_PROJECT_PATH:syncFramework                     -Pkotlin.native.cocoapods.platform=$PLATFORM_NAME                     -Pkotlin.native.cocoapods.archs=\"$ARCHS\"                     -Pkotlin.native.cocoapods.configuration=\"$CONFIGURATION\"\n"
-    }
-  ]
+  }
 }
