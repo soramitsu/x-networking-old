@@ -12,8 +12,8 @@ import io.ktor.http.headersOf
 import io.ktor.serialization.kotlinx.json.json
 import jp.co.soramitsu.commonnetworking.fearless.FearlessChainsBuilder
 import jp.co.soramitsu.commonnetworking.fearless.VersionNotFoundException
-import jp.co.soramitsu.commonnetworking.networkclient.SoraHttpClientProvider
-import jp.co.soramitsu.commonnetworking.networkclient.SoraNetworkClient
+import jp.co.soramitsu.commonnetworking.networkclient.SoramitsuHttpClientProvider
+import jp.co.soramitsu.commonnetworking.networkclient.SoramitsuNetworkClient
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
@@ -25,7 +25,7 @@ import kotlin.test.assertTrue
 @OptIn(ExperimentalCoroutinesApi::class)
 class FearlessChainsBuilderTest {
 
-    lateinit var client: SoraNetworkClient
+    lateinit var client: SoramitsuNetworkClient
     lateinit var builder: FearlessChainsBuilder
 
     private val response = readBinaryResource("index.json").decodeToString()
@@ -39,8 +39,8 @@ class FearlessChainsBuilderTest {
 
     @BeforeTest
     fun setUp() {
-        client = SoraNetworkClient(
-            provider = object : SoraHttpClientProvider {
+        client = SoramitsuNetworkClient(
+            provider = object : SoramitsuHttpClientProvider {
                 override fun provide(logging: Boolean, timeout: Long): HttpClient {
                     return HttpClient(mockEngine) {
                         install(ContentNegotiation) {

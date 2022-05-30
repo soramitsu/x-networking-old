@@ -5,7 +5,7 @@ import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import jp.co.soramitsu.commonnetworking.fearless.FearlessChainsBuilder
-import jp.co.soramitsu.commonnetworking.networkclient.SoraNetworkClient
+import jp.co.soramitsu.commonnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.commonnetworking.subquery.factory.SubQueryClientFactory
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         val btn2 = findViewById<Button>(R.id.btn2)
         val btn3 = findViewById<Button>(R.id.btn3)
 
-        val soraNetworkClient = SoraNetworkClient(logging = true)
+        val soraNetworkClient = SoramitsuNetworkClient(logging = true)
         val f = FearlessChainsBuilder(
             soraNetworkClient,
             "https://raw.githubusercontent.com/arvifox/arvifoxandroid/develop/felete/"

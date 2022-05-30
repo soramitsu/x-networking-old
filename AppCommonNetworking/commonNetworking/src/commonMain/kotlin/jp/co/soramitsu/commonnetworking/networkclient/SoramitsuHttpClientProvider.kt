@@ -11,11 +11,11 @@ import io.ktor.http.ContentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
-interface SoraHttpClientProvider {
+interface SoramitsuHttpClientProvider {
     fun provide(logging: Boolean, timeout: Long): HttpClient
 }
 
-class SoraHttpClientProviderImpl : SoraHttpClientProvider {
+class SoramitsuHttpClientProviderImpl : SoramitsuHttpClientProvider {
     override fun provide(logging: Boolean, timeout: Long): HttpClient {
         return HttpClient(HttpEngineFactory().createEngine()) {
             if (logging) {

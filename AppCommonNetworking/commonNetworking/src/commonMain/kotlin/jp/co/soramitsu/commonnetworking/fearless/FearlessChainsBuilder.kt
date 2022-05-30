@@ -1,7 +1,7 @@
 package jp.co.soramitsu.commonnetworking.fearless
 
-import jp.co.soramitsu.commonnetworking.networkclient.SoraNetworkClient
-import jp.co.soramitsu.commonnetworking.networkclient.SoraNetworkException
+import jp.co.soramitsu.commonnetworking.networkclient.SoramitsuNetworkClient
+import jp.co.soramitsu.commonnetworking.networkclient.SoramitsuNetworkException
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
@@ -11,7 +11,7 @@ import kotlin.coroutines.cancellation.CancellationException
 import kotlin.math.min
 
 class FearlessChainsBuilder(
-    private val networkClient: SoraNetworkClient,
+    private val networkClient: SoramitsuNetworkClient,
     private val baseUrl: String,
 ) {
 
@@ -23,7 +23,7 @@ class FearlessChainsBuilder(
      * @param version version of the app, e.g. 2.4.51
      * @param existedChains list of chains stored in the app, <id of chain, md5 hash of chain>
      */
-    @Throws(SoraNetworkException::class, ChainBuilderException::class, CancellationException::class)
+    @Throws(SoramitsuNetworkException::class, ChainBuilderException::class, CancellationException::class)
     suspend fun getChains(
         version: String,
         existedChains: List<Pair<String, String>>
