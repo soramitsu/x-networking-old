@@ -15,8 +15,8 @@ import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import jp.co.soramitsu.commonnetworking.fearless.FearlessChainsBuilder
 import jp.co.soramitsu.commonnetworking.fearless.ResultChainInfo
-import jp.co.soramitsu.commonnetworking.networkclient.SoraHttpClientProvider
-import jp.co.soramitsu.commonnetworking.networkclient.SoraNetworkClient
+import jp.co.soramitsu.commonnetworking.networkclient.SoramitsuHttpClientProvider
+import jp.co.soramitsu.commonnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.commonnetworking.subquery.SubQueryClient
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -36,7 +36,7 @@ import org.junit.Test
 class ExampleUnitTest {
 
     @MockK
-    lateinit var soraNetworkClient: SoraNetworkClient
+    lateinit var soramitsuNetworkClient: SoramitsuNetworkClient
 
     @MockK
     lateinit var fearlessChainsBuilder: FearlessChainsBuilder
@@ -50,7 +50,7 @@ class ExampleUnitTest {
     fun setUp() {
         MockKAnnotations.init(this)
         networkService =
-            NetworkService(soraNetworkClient, fearlessChainsBuilder, subQueryClient)
+            NetworkService(soramitsuNetworkClient, fearlessChainsBuilder, subQueryClient)
     }
 
     @Test
@@ -84,8 +84,8 @@ class ExampleUnitTest {
                 headers = headersOf(HttpHeaders.ContentType, "application/json")
             )
         }
-        val client = SoraNetworkClient(
-            provider = object : SoraHttpClientProvider {
+        val client = SoramitsuNetworkClient(
+            provider = object : SoramitsuHttpClientProvider {
                 override fun provide(logging: Boolean, timeout: Long): HttpClient {
                     return HttpClient(mockEngine) {
                         install(ContentNegotiation) {

@@ -4,8 +4,8 @@ import io.ktor.http.HttpMethod
 import jp.co.soramitsu.commonnetworking.db.Extrinsics
 import jp.co.soramitsu.commonnetworking.db.SignerInfo
 import jp.co.soramitsu.commonnetworking.dbengine.HistoryDatabaseProvider
-import jp.co.soramitsu.commonnetworking.networkclient.SoraNetworkClient
-import jp.co.soramitsu.commonnetworking.networkclient.SoraNetworkException
+import jp.co.soramitsu.commonnetworking.networkclient.SoramitsuNetworkClient
+import jp.co.soramitsu.commonnetworking.networkclient.SoramitsuNetworkException
 import jp.co.soramitsu.commonnetworking.subquery.graphql.SubQueryRequest
 import jp.co.soramitsu.commonnetworking.subquery.graphql.referrerRewardsGraphQLRequest
 import jp.co.soramitsu.commonnetworking.subquery.graphql.sbApyGraphQLRequest
@@ -18,7 +18,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 class SubQueryClient internal constructor(
-    private val networkClient: SoraNetworkClient,
+    private val networkClient: SoramitsuNetworkClient,
     private val baseUrl: String,
     private val pageSize: Int,
     historyDatabaseProvider: HistoryDatabaseProvider
@@ -33,7 +33,7 @@ class SubQueryClient internal constructor(
         historyDatabase.clearAddressData(address)
     }
 
-    @Throws(SoraNetworkException::class, CancellationException::class)
+    @Throws(SoramitsuNetworkException::class, CancellationException::class)
     suspend fun getSpApy(): List<SbApyInfo> {
         val response = networkClient.createJsonRequest<SubQuerySbApyResponse>(
             baseUrl,
@@ -43,7 +43,7 @@ class SubQueryClient internal constructor(
         return SubQueryMapper.map(response)
     }
 
-    @Throws(SoraNetworkException::class, CancellationException::class)
+    @Throws(SoramitsuNetworkException::class, CancellationException::class)
     suspend fun getReferrerRewards(
         address: String,
     ): ReferrerRewardsInfo {
@@ -84,7 +84,7 @@ class SubQueryClient internal constructor(
         return buildResultHistoryInfo(true, if (extrinsic == null) emptyList() else listOf(extrinsic))
     }
 
-    @Throws(SoraNetworkException::class, CancellationException::class, IllegalArgumentException::class)
+    @Throws(SoramitsuNetworkException::class, CancellationException::class, IllegalArgumentException::class)
     suspend fun getTransactionHistoryPaged(
         address: String,
         page: Long,

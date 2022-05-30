@@ -19,10 +19,10 @@ import io.ktor.http.contentType
 import kotlinx.serialization.SerializationException
 import kotlin.coroutines.cancellation.CancellationException
 
-class SoraNetworkClient(
+class SoramitsuNetworkClient(
     timeout: Long = 10000,
     logging: Boolean = false,
-    provider: SoraHttpClientProvider = SoraHttpClientProviderImpl()
+    provider: SoramitsuHttpClientProvider = SoramitsuHttpClientProviderImpl()
 ) {
 
     val httpClient: HttpClient = provider.provide(logging, timeout)
@@ -33,7 +33,7 @@ class SoraNetworkClient(
         }
     }
 
-    @Throws(SoraNetworkException::class, CancellationException::class)
+    @Throws(SoramitsuNetworkException::class, CancellationException::class)
     suspend inline fun <reified Value : Any> createJsonRequest(
         path: String,
         methodType: HttpMethod = HttpMethod.Get,
@@ -42,7 +42,7 @@ class SoraNetworkClient(
     ): Value =
         createRequest(path, methodType, body, ContentType.Application.Json, headers)
 
-    @Throws(SoraNetworkException::class, CancellationException::class)
+    @Throws(SoramitsuNetworkException::class, CancellationException::class)
     suspend inline fun <reified Value : Any> createRequest(
         path: String,
         methodType: HttpMethod = HttpMethod.Get,
@@ -68,7 +68,7 @@ class SoraNetworkClient(
         }
     }
 
-    @Throws(SoraNetworkException::class)
+    @Throws(SoramitsuNetworkException::class)
     inline fun <reified Type : Any> wrapInExceptionHandler(block: () -> Type): Type {
         return try {
             block.invoke()
