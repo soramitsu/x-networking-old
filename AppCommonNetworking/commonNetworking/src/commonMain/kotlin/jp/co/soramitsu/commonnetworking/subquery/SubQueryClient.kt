@@ -161,6 +161,6 @@ class SubQueryClient internal constructor(
                 HistoryMapper.mapItems(extrinsic, nestedMapped)
             }
         }
-        return SoraHistoryInfo(endReached, mapped)
+        return SoraHistoryInfo(endReached, mapped, curSignerInfo.oldCursor)
     }
 }
