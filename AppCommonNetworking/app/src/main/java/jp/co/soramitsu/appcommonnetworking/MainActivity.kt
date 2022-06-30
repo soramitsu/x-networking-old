@@ -6,7 +6,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import jp.co.soramitsu.commonnetworking.fearless.FearlessChainsBuilder
 import jp.co.soramitsu.commonnetworking.networkclient.SoramitsuNetworkClient
-import jp.co.soramitsu.commonnetworking.subquery.factory.SubQueryClientFactory
+import jp.co.soramitsu.commonnetworking.subquery.factory.SubQueryClientForSora
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -26,9 +26,13 @@ class MainActivity : AppCompatActivity() {
             soraNetworkClient,
             "https://raw.githubusercontent.com/arvifox/arvifoxandroid/develop/felete/"
         )
-        val sfa = SubQueryClientFactory(applicationContext)
-        val hi = sfa.create(soraNetworkClient, "https://api.subquery.network/sq/sora-xor/sora-dev", 20)
-        val networkService = NetworkService(soraNetworkClient, f, hi)
+        val subQueryClient = SubQueryClientForSora.build(
+            applicationContext,
+            soraNetworkClient,
+            "https://api.subquery.network/sq/sora-xor/sora-dev",
+            20
+        )
+        val networkService = NetworkService(soraNetworkClient, f, subQueryClient)
 
         btn1.setOnClickListener {
             GlobalScope.launch {

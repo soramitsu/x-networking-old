@@ -1,6 +1,6 @@
 package jp.co.soramitsu.commonnetworking.subquery
 
-import io.ktor.http.HttpMethod
+import io.ktor.http.*
 import jp.co.soramitsu.commonnetworking.db.Extrinsics
 import jp.co.soramitsu.commonnetworking.db.SignerInfo
 import jp.co.soramitsu.commonnetworking.dbengine.HistoryDatabaseProvider
@@ -11,16 +11,20 @@ import jp.co.soramitsu.commonnetworking.subquery.graphql.referrerRewardsGraphQLR
 import jp.co.soramitsu.commonnetworking.subquery.graphql.sbApyGraphQLRequest
 import jp.co.soramitsu.commonnetworking.subquery.graphql.soraHistoryGraphQLRequest
 import jp.co.soramitsu.commonnetworking.subquery.history.HistoryMapper
-import jp.co.soramitsu.commonnetworking.subquery.history.SoraHistoryInfo
-import jp.co.soramitsu.commonnetworking.subquery.history.SoraSubqueryResponse
+import jp.co.soramitsu.commonnetworking.subquery.history.SubQueryHistoryInfo
+import jp.co.soramitsu.commonnetworking.subquery.history.SubQueryPageInfo
+import kotlinx.serialization.DeserializationStrategy
+import kotlinx.serialization.json.Json
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.math.max
 import kotlin.math.min
 
-class SubQueryClient internal constructor(
+class SubQueryClient<T> internal constructor(
     private val networkClient: SoramitsuNetworkClient,
     private val baseUrl: String,
     private val pageSize: Int,
+    private val des: DeserializationStrategy<T>,
+    private val to: (T) -> SubQueryHistoryInfo,
     historyDatabaseProvider: HistoryDatabaseProvider
 ) {
     private val historyDatabase = historyDatabaseProvider.provide()
@@ -67,28 +71,36 @@ class SubQueryClient internal constructor(
     private var historyAddress: String = ""
     private lateinit var curSignerInfo: SignerInfo
 
-    fun getTransactionPeers(query: String): List<String> = historyDatabase.getTransfersAddress(query)
+    fun getTransactionPeers(query: String): List<String> =
+        historyDatabase.getTransfersAddress(query)
 
     fun getTransactionHistoryCached(
         address: String,
-    ): SoraHistoryInfo {
-        val extrinsics = historyDatabase.getExtrinsics(historyAddress, 0, pageSize)
+    ): SubQueryHistoryInfo {
+        val extrinsics = historyDatabase.getExtrinsics(address, 0, pageSize)
         return buildResultHistoryInfo(true, extrinsics)
     }
 
     fun getTransactionCached(
         address: String,
         txHash: String,
-    ): SoraHistoryInfo {
+    ): SubQueryHistoryInfo {
         val extrinsic = historyDatabase.getExtrinsic(address, txHash)
-        return buildResultHistoryInfo(true, if (extrinsic == null) emptyList() else listOf(extrinsic))
+        return buildResultHistoryInfo(
+            true,
+            if (extrinsic == null) emptyList() else listOf(extrinsic)
+        )
     }
 
-    @Throws(SoramitsuNetworkException::class, CancellationException::class, IllegalArgumentException::class)
+    @Throws(
+        SoramitsuNetworkException::class,
+        CancellationException::class,
+        IllegalArgumentException::class
+    )
     suspend fun getTransactionHistoryPaged(
         address: String,
         page: Long,
-    ): SoraHistoryInfo {
+    ): SubQueryHistoryInfo {
         require(((page > 1 && historyAddress.isEmpty()) || page < 1).not()) { "First page value must = 1" }
         if (page == 1L) {
             historyAddress = address
@@ -98,7 +110,7 @@ class SubQueryClient internal constructor(
         return getHistoryInfo(page)
     }
 
-    private suspend fun getHistoryInfo(page: Long): SoraHistoryInfo {
+    private suspend fun getHistoryInfo(page: Long): SubQueryHistoryInfo {
         var dbOffset = (page - 1) * pageSize
         val extrinsics = historyDatabase.getExtrinsics(historyAddress, dbOffset, pageSize)
         dbOffset += extrinsics.size
@@ -119,7 +131,7 @@ class SubQueryClient internal constructor(
     }
 
     private suspend fun loadInfo(cursor: String = "") {
-        val response = networkClient.createJsonRequest<SoraSubqueryResponse>(
+        val response = networkClient.createRequest<String>(
             baseUrl,
             HttpMethod.Post,
             SubQueryRequest(
@@ -128,9 +140,16 @@ class SubQueryClient internal constructor(
                     historyAddress,
                     cursor
                 )
-            )
+            ),
+            ContentType.Application.Json
         )
-        val info = historyDatabase.insertExtrinsics(historyAddress, response)
+        val f = Json {
+            prettyPrint = true
+            isLenient = true
+            ignoreUnknownKeys = true
+        }
+        val rr = f.decodeFromString(des, response)
+        val info = historyDatabase.insertExtrinsics(historyAddress, to.invoke(rr))
         curSignerInfo = SignerInfo(
             signAddress = historyAddress,
             topTime = max(info.topTime, curSignerInfo.topTime),
@@ -147,7 +166,7 @@ class SubQueryClient internal constructor(
     private fun buildResultHistoryInfo(
         endReached: Boolean,
         extrinsics: List<Extrinsics>
-    ): SoraHistoryInfo {
+    ): SubQueryHistoryInfo {
         val mapped = extrinsics.map { extrinsic ->
             if (extrinsic.batch.not()) {
                 val params = historyDatabase.getExtrinsicParams(extrinsic.txHash)
@@ -161,6 +180,6 @@ class SubQueryClient internal constructor(
                 HistoryMapper.mapItems(extrinsic, nestedMapped)
             }
         }
-        return SoraHistoryInfo(endReached, mapped)
+        return SubQueryHistoryInfo(SubQueryPageInfo("", endReached), mapped)
     }
 }

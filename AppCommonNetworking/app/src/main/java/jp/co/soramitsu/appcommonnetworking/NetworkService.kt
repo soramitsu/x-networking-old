@@ -7,7 +7,7 @@ import jp.co.soramitsu.commonnetworking.subquery.SubQueryClient
 class NetworkService(
     private val client: SoramitsuNetworkClient,
     private val fearlessChainsBuilder: FearlessChainsBuilder,
-    private val subQueryClient: SubQueryClient,
+    private val subQueryClient: SubQueryClient<*>,
 ) {
 
     suspend fun getRequest() = client.createJsonRequest<List<Int>>("https://www.github.com")

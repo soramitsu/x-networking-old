@@ -1,11 +1,16 @@
 package jp.co.soramitsu.commonnetworking.subquery.history
 
-data class SoraHistoryInfo(
-    val endReached: Boolean,
-    val items: List<SoraHistoryItem>
+data class SubQueryHistoryInfo(
+    val pageInfo: SubQueryPageInfo,
+    val items: List<SubQueryHistoryItem>
 )
 
-data class SoraHistoryItem(
+class SubQueryPageInfo(
+    val endCursor: String?,
+    val endReached: Boolean,
+)
+
+data class SubQueryHistoryItem(
     val id: String,
     val blockHash: String,
     val module: String,
@@ -13,18 +18,18 @@ data class SoraHistoryItem(
     val timestamp: String,
     val networkFee: String,
     val success: Boolean,
-    val data: List<SoraHistoryItemParam>?,
-    val nestedData: List<SoraHistoryItemNested>?
+    val data: List<SubQueryHistoryItemParam>?,
+    val nestedData: List<SubQueryHistoryItemNested>?
 )
 
-data class SoraHistoryItemParam(
+data class SubQueryHistoryItemParam(
     val paramName: String,
     val paramValue: String,
 )
 
-data class SoraHistoryItemNested(
+data class SubQueryHistoryItemNested(
     val module: String,
     val method: String,
     val hash: String,
-    val data: List<SoraHistoryItemParam>
+    val data: List<SubQueryHistoryItemParam>
 )
