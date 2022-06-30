@@ -1,54 +1,16 @@
 package jp.co.soramitsu.commonnetworking.subquery.graphql
 
-internal fun referrerRewardsGraphQLRequest(
-    address: String,
-) = """
-    query {
-        referrerRewards(
-          filter: { referrer: {equalTo: "$address"} }
-        ) {
-            groupedAggregates(groupBy: REFERRAL) {
-                keys sum {amount}
-            }
-        }
-    }
-""".trimIndent()
-
-internal fun sbApyGraphQLRequest() = """ query {
-                poolXYKEntities (
-                    first: 1
-                    orderBy: UPDATED_DESC
-                  )
-                  {
-                    nodes {
-                      pools {
-                        edges {
-                          node {
-                            targetAssetId,
-                            priceUSD,
-                            strategicBonusApy
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                    """.trimIndent()
-
 internal fun soraHistoryGraphQLRequest(
-    countRemote: Int,
-    myAddress: String,
-    cursor: String,
 ) = """
-                    query { 
+                    query ($varCountRemote: Int, $varMyAddress: String, $varAfterCursor: Cursor) { 
                       historyElements( 
-                        first: $countRemote 
+                        first: $varCountRemote 
                         orderBy: TIMESTAMP_DESC 
-                        after: "$cursor" 
+                        after: $varAfterCursor 
                         filter: { 
                           or: [ 
                             { 
-                              address: { equalTo: "$myAddress" } 
+                              address: { equalTo: $varMyAddress } 
                               or: [
                                 { module: { equalTo: "assets" } method: { equalTo: "transfer" }} 
                                 { module: { equalTo: "liquidityProxy" } method: { equalTo: "swap" }} 
@@ -60,12 +22,12 @@ internal fun soraHistoryGraphQLRequest(
                               ] 
                             } 
                             { 
-                              data: { contains: { to: "$myAddress" } }
+                              data: { contains: { to: $varMyAddress } }
                               module: { equalTo: "assets" } method: { equalTo: "transfer" }
                               execution: { contains: { success: true } }
                             } 
                             {
-                              data: { contains: { to: "$myAddress" } }
+                              data: { contains: { to: $varMyAddress } }
                               module: { equalTo: "referrals" } method: { equalTo: "setReferrer" }
                               execution: { contains: { success: true } }
                             }

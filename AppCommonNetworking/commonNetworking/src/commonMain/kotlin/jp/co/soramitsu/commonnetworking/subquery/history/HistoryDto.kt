@@ -1,13 +1,9 @@
 package jp.co.soramitsu.commonnetworking.subquery.history
 
 data class SubQueryHistoryInfo(
-    val pageInfo: SubQueryPageInfo,
-    val items: List<SubQueryHistoryItem>
-)
-
-class SubQueryPageInfo(
     val endCursor: String?,
     val endReached: Boolean,
+    val items: List<SubQueryHistoryItem>
 )
 
 data class SubQueryHistoryItem(

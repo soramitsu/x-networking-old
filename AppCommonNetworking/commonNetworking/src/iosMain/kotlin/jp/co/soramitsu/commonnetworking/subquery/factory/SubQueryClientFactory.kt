@@ -7,20 +7,24 @@ import jp.co.soramitsu.commonnetworking.subquery.SubQueryClient
 import jp.co.soramitsu.commonnetworking.subquery.history.SubQueryHistoryInfo
 import kotlinx.serialization.DeserializationStrategy
 
-actual class SubQueryClientFactory<T> {
+actual class SubQueryClientFactory<T, R> {
     actual fun create(
         soramitsuNetworkClient: SoramitsuNetworkClient,
         baseUrl: String,
         pageSize: Int,
-        str: DeserializationStrategy<T>,
-        to: (T) -> SubQueryHistoryInfo,
-    ): SubQueryClient<T> {
+        deserializationStrategy: DeserializationStrategy<T>,
+        jsonToHistoryInfo: (T) -> SubQueryHistoryInfo,
+        historyIntoToResult: (SubQueryHistoryInfo) -> R,
+        historyRequest: String,
+    ): SubQueryClient<T, R> {
         return SubQueryClient(
             soramitsuNetworkClient,
             baseUrl,
             pageSize,
-            str,
-            to,
+            deserializationStrategy,
+            jsonToHistoryInfo,
+            historyIntoToResult,
+            historyRequest,
             HistoryDatabaseProvider(DatabaseDriverFactory())
         )
     }

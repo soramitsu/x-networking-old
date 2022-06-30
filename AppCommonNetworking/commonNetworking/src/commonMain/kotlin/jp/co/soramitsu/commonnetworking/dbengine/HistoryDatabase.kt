@@ -113,8 +113,8 @@ internal class HistoryDatabase(historyDatabaseFactory: DatabaseDriverFactory) {
             signAddress = signAddress,
             topTime = response.items.firstOrNull()?.timestamp?.toLong() ?: 0,
             oldTime = response.items.lastOrNull()?.timestamp?.toLong() ?: 0,
-            oldCursor = response.pageInfo.endCursor,
-            endReached = response.pageInfo.endReached,
+            oldCursor = response.endCursor,
+            endReached = response.endReached,
         )
     }
 }

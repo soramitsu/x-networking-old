@@ -1,4 +1,4 @@
-package jp.co.soramitsu.commonnetworking.subquery
+package jp.co.soramitsu.commonnetworking.subquery.response
 
 import kotlinx.serialization.Serializable
 

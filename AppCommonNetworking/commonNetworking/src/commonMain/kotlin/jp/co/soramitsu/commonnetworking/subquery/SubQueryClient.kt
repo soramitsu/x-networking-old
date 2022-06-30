@@ -6,25 +6,24 @@ import jp.co.soramitsu.commonnetworking.db.SignerInfo
 import jp.co.soramitsu.commonnetworking.dbengine.HistoryDatabaseProvider
 import jp.co.soramitsu.commonnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.commonnetworking.networkclient.SoramitsuNetworkException
-import jp.co.soramitsu.commonnetworking.subquery.graphql.SubQueryRequest
-import jp.co.soramitsu.commonnetworking.subquery.graphql.referrerRewardsGraphQLRequest
-import jp.co.soramitsu.commonnetworking.subquery.graphql.sbApyGraphQLRequest
-import jp.co.soramitsu.commonnetworking.subquery.graphql.soraHistoryGraphQLRequest
+import jp.co.soramitsu.commonnetworking.subquery.graphql.*
 import jp.co.soramitsu.commonnetworking.subquery.history.HistoryMapper
 import jp.co.soramitsu.commonnetworking.subquery.history.SubQueryHistoryInfo
-import jp.co.soramitsu.commonnetworking.subquery.history.SubQueryPageInfo
+import jp.co.soramitsu.commonnetworking.subquery.response.ReferrerRewardsResponse
+import jp.co.soramitsu.commonnetworking.subquery.response.SubQuerySbApyResponse
 import kotlinx.serialization.DeserializationStrategy
-import kotlinx.serialization.json.Json
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.math.max
 import kotlin.math.min
 
-class SubQueryClient<T> internal constructor(
+class SubQueryClient<T, R> internal constructor(
     private val networkClient: SoramitsuNetworkClient,
-    private val baseUrl: String,
+    private var baseUrl: String,
     private val pageSize: Int,
-    private val des: DeserializationStrategy<T>,
-    private val to: (T) -> SubQueryHistoryInfo,
+    private val deserializationStrategy: DeserializationStrategy<T>,
+    private val jsonToHistoryInfo: (T) -> SubQueryHistoryInfo,
+    private val historyInfoToResult: (SubQueryHistoryInfo) -> R,
+    private val historyRequest: String,
     historyDatabaseProvider: HistoryDatabaseProvider
 ) {
     private val historyDatabase = historyDatabaseProvider.provide()
@@ -38,9 +37,11 @@ class SubQueryClient<T> internal constructor(
     }
 
     @Throws(SoramitsuNetworkException::class, CancellationException::class)
-    suspend fun getSpApy(): List<SbApyInfo> {
+    suspend fun getSpApy(
+        url: String = baseUrl,
+    ): List<SbApyInfo> {
         val response = networkClient.createJsonRequest<SubQuerySbApyResponse>(
-            baseUrl,
+            url,
             HttpMethod.Post,
             SubQueryRequest(sbApyGraphQLRequest())
         )
@@ -50,9 +51,10 @@ class SubQueryClient<T> internal constructor(
     @Throws(SoramitsuNetworkException::class, CancellationException::class)
     suspend fun getReferrerRewards(
         address: String,
+        url: String = baseUrl,
     ): ReferrerRewardsInfo {
         val response = networkClient.createJsonRequest<ReferrerRewardsResponse>(
-            baseUrl,
+            url,
             HttpMethod.Post,
             SubQueryRequest(referrerRewardsGraphQLRequest(address))
         )
@@ -100,14 +102,16 @@ class SubQueryClient<T> internal constructor(
     suspend fun getTransactionHistoryPaged(
         address: String,
         page: Long,
-    ): SubQueryHistoryInfo {
+        url: String? = null,
+    ): R {
         require(((page > 1 && historyAddress.isEmpty()) || page < 1).not()) { "First page value must = 1" }
+        if (url != null) baseUrl = url
         if (page == 1L) {
             historyAddress = address
             curSignerInfo = historyDatabase.getSignerInfo(historyAddress)
             loadInfo()
         }
-        return getHistoryInfo(page)
+        return historyInfoToResult.invoke(getHistoryInfo(page))
     }
 
     private suspend fun getHistoryInfo(page: Long): SubQueryHistoryInfo {
@@ -131,25 +135,24 @@ class SubQueryClient<T> internal constructor(
     }
 
     private suspend fun loadInfo(cursor: String = "") {
+        val request = SubQueryRequest(
+            query = historyRequest,
+            variables = soraHistoryGraphQLVariables(
+                countRemote = pageSize,
+                myAddress = historyAddress,
+                cursor = cursor,
+            )
+        )
         val response = networkClient.createRequest<String>(
             baseUrl,
             HttpMethod.Post,
-            SubQueryRequest(
-                soraHistoryGraphQLRequest(
-                    pageSize,
-                    historyAddress,
-                    cursor
-                )
-            ),
+            request,
             ContentType.Application.Json
         )
-        val f = Json {
-            prettyPrint = true
-            isLenient = true
-            ignoreUnknownKeys = true
-        }
-        val rr = f.decodeFromString(des, response)
-        val info = historyDatabase.insertExtrinsics(historyAddress, to.invoke(rr))
+        val decoded = networkClient.json.decodeFromString(deserializationStrategy, response)
+        val infoDecoded = jsonToHistoryInfo.invoke(decoded)
+        val info =
+            historyDatabase.insertExtrinsics(historyAddress, infoDecoded)
         curSignerInfo = SignerInfo(
             signAddress = historyAddress,
             topTime = max(info.topTime, curSignerInfo.topTime),
@@ -180,6 +183,6 @@ class SubQueryClient<T> internal constructor(
                 HistoryMapper.mapItems(extrinsic, nestedMapped)
             }
         }
-        return SubQueryHistoryInfo(SubQueryPageInfo("", endReached), mapped)
+        return SubQueryHistoryInfo("", endReached, mapped)
     }
 }

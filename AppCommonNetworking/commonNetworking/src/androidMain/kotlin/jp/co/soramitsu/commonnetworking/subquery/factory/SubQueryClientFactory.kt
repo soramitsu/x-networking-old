@@ -5,26 +5,32 @@ import jp.co.soramitsu.commonnetworking.dbengine.DatabaseDriverFactory
 import jp.co.soramitsu.commonnetworking.dbengine.HistoryDatabaseProvider
 import jp.co.soramitsu.commonnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.commonnetworking.subquery.SubQueryClient
+import jp.co.soramitsu.commonnetworking.subquery.graphql.soraHistoryGraphQLRequest
 import jp.co.soramitsu.commonnetworking.subquery.history.*
+import jp.co.soramitsu.commonnetworking.subquery.history.sora.SoraSubqueryResponse
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 
-actual class SubQueryClientFactory<T>(private val context: Context) {
+actual class SubQueryClientFactory<T, R>(private val context: Context) {
     actual fun create(
         soramitsuNetworkClient: SoramitsuNetworkClient,
         baseUrl: String,
         pageSize: Int,
-        str: DeserializationStrategy<T>,
-        to: (T) -> SubQueryHistoryInfo,
-    ): SubQueryClient<T> {
+        deserializationStrategy: DeserializationStrategy<T>,
+        jsonToHistoryInfo: (T) -> SubQueryHistoryInfo,
+        historyIntoToResult: (SubQueryHistoryInfo) -> R,
+        historyRequest: String,
+    ): SubQueryClient<T, R> {
         return SubQueryClient(
             soramitsuNetworkClient,
             baseUrl,
             pageSize,
-            str,
-            to,
+            deserializationStrategy,
+            jsonToHistoryInfo,
+            historyIntoToResult,
+            historyRequest,
             HistoryDatabaseProvider(DatabaseDriverFactory(context))
         )
     }
@@ -36,18 +42,16 @@ object SubQueryClientForSora {
         soramitsuNetworkClient: SoramitsuNetworkClient,
         baseUrl: String,
         pageSize: Int,
-    ): SubQueryClient<SoraSubqueryResponse> {
-        return SubQueryClientFactory<SoraSubqueryResponse>(context).create(
+    ): SubQueryClient<SoraSubqueryResponse, SubQueryHistoryInfo> {
+        return SubQueryClientFactory<SoraSubqueryResponse, SubQueryHistoryInfo>(context).create(
             soramitsuNetworkClient = soramitsuNetworkClient,
             baseUrl = baseUrl,
             pageSize = pageSize,
-            SoraSubqueryResponse.serializer(),
-            to = { response ->
+            deserializationStrategy = SoraSubqueryResponse.serializer(),
+            jsonToHistoryInfo = { response ->
                 SubQueryHistoryInfo(
-                    pageInfo = SubQueryPageInfo(
-                        endCursor = response.data.historyElements.pageInfo.endCursor,
-                        endReached = response.data.historyElements.pageInfo.hasNextPage.not(),
-                    ),
+                    endCursor = response.data.historyElements.pageInfo.endCursor,
+                    endReached = response.data.historyElements.pageInfo.hasNextPage.not(),
                     items = response.data.historyElements.nodes.map {
                         SubQueryHistoryItem(
                             id = it.id,
@@ -83,7 +87,9 @@ object SubQueryClientForSora {
                         )
                     },
                 )
-            }
+            },
+            historyIntoToResult = { it },
+            historyRequest = soraHistoryGraphQLRequest(),
         )
     }
 }

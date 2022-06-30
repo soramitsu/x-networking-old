@@ -1,5 +1,7 @@
 package jp.co.soramitsu.commonnetworking.subquery
 
+import jp.co.soramitsu.commonnetworking.subquery.response.SubQuerySbApyResponse
+
 object SubQueryMapper {
 
     fun map(subQuerySbApyResponse: SubQuerySbApyResponse): List<SbApyInfo> {

@@ -5,12 +5,14 @@ import jp.co.soramitsu.commonnetworking.subquery.SubQueryClient
 import jp.co.soramitsu.commonnetworking.subquery.history.SubQueryHistoryInfo
 import kotlinx.serialization.DeserializationStrategy
 
-expect class SubQueryClientFactory<T> {
+expect class SubQueryClientFactory<T, R> {
     fun create(
         soramitsuNetworkClient: SoramitsuNetworkClient,
         baseUrl: String,
         pageSize: Int,
-        str: DeserializationStrategy<T>,
-        to: (T) -> SubQueryHistoryInfo,
-    ): SubQueryClient<T>
+        deserializationStrategy: DeserializationStrategy<T>,
+        jsonToHistoryInfo: (T) -> SubQueryHistoryInfo,
+        historyIntoToResult: (SubQueryHistoryInfo) -> R,
+        historyRequest: String,
+    ): SubQueryClient<T, R>
 }
