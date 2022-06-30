@@ -56,6 +56,7 @@ internal fun soraHistoryGraphQLRequest(
                                 { data: { contains: [{ method: "depositLiquidity" }] }} 
                                 { module: { equalTo: "poolXYK" } method: { equalTo: "withdrawLiquidity" }} 
                                 { data: { contains: [{ method: "withdrawLiquidity" }] }} 
+                                { module: { equalTo: "referrals" } }
                               ] 
                             } 
                             { 
@@ -63,6 +64,11 @@ internal fun soraHistoryGraphQLRequest(
                               module: { equalTo: "assets" } method: { equalTo: "transfer" }
                               execution: { contains: { success: true } }
                             } 
+                            {
+                              data: { contains: { to: "$myAddress" } }
+                              module: { equalTo: "referrals" } method: { equalTo: "setReferrer" }
+                              execution: { contains: { success: true } }
+                            }
                           ] 
                         } 
                       ) { 
