@@ -44,7 +44,7 @@ data class ExecutionResult(
 
 @Serializable
 data class Error(
-    val moduleErrorId: Int? = null,
+    val moduleErrorId: String? = null,
     val moduleErrorIndex: Int? = null,
     val nonModuleErrorMessage: String? = null
 )
