@@ -1,15 +1,11 @@
 package jp.co.soramitsu.appcommonnetworking
 
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.mock.MockEngine
-import io.ktor.client.engine.mock.respond
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.http.ContentType
-import io.ktor.http.HttpHeaders
-import io.ktor.http.HttpStatusCode
-import io.ktor.http.headersOf
-import io.ktor.serialization.kotlinx.json.json
-import io.ktor.utils.io.ByteReadChannel
+import io.ktor.client.*
+import io.ktor.client.engine.mock.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
+import io.ktor.utils.io.*
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -42,9 +38,9 @@ class ExampleUnitTest {
     lateinit var fearlessChainsBuilder: FearlessChainsBuilder
 
     @MockK
-    lateinit var subQueryClient: SubQueryClient
+    lateinit var subQueryClient: SubQueryClient<*, *>
 
-    lateinit var networkService: NetworkService
+    lateinit var networkService: NetworkService<*, *>
 
     @Before
     fun setUp() {
@@ -86,7 +82,7 @@ class ExampleUnitTest {
         }
         val client = SoramitsuNetworkClient(
             provider = object : SoramitsuHttpClientProvider {
-                override fun provide(logging: Boolean, timeout: Long): HttpClient {
+                override fun provide(logging: Boolean, timeout: Long, json: Json): HttpClient {
                     return HttpClient(mockEngine) {
                         install(ContentNegotiation) {
                             json(
