@@ -4,10 +4,7 @@ import jp.co.soramitsu.commonnetworking.db.ExtrinsicParam
 import jp.co.soramitsu.commonnetworking.db.Extrinsics
 import jp.co.soramitsu.commonnetworking.db.SignerInfo
 import jp.co.soramitsu.commonnetworking.db.SoraHistoryDatabase
-import jp.co.soramitsu.commonnetworking.subquery.history.SoraSubqueryResponse
-import kotlinx.serialization.json.JsonArray
-import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.JsonPrimitive
+import jp.co.soramitsu.commonnetworking.subquery.history.SubQueryHistoryInfo
 
 internal class HistoryDatabase(historyDatabaseFactory: DatabaseDriverFactory) {
     private val db = SoraHistoryDatabase(historyDatabaseFactory.createDriver())
@@ -58,9 +55,12 @@ internal class HistoryDatabase(historyDatabaseFactory: DatabaseDriverFactory) {
         return dbQuery.selectExtrinsicsNested(extrinsicHash).executeAsList()
     }
 
-    internal fun insertExtrinsics(signAddress: String, response: SoraSubqueryResponse): SignerInfo {
+    internal fun insertExtrinsics(
+        signAddress: String,
+        response: SubQueryHistoryInfo
+    ): SignerInfo {
         dbQuery.transaction {
-            response.data.historyElements.nodes.forEach { historyResponseItem ->
+            response.items.forEach { historyResponseItem ->
                 val time = historyResponseItem.timestamp.toLong()
                 dbQuery.insertExtrinsic(
                     txHash = historyResponseItem.id,
@@ -70,39 +70,39 @@ internal class HistoryDatabase(historyDatabaseFactory: DatabaseDriverFactory) {
                     method = historyResponseItem.method,
                     timestamp = time,
                     networkFee = historyResponseItem.networkFee,
-                    success = historyResponseItem.execution.success,
-                    batch = historyResponseItem.data is JsonArray,
+                    success = historyResponseItem.success,
+                    batch = historyResponseItem.nestedData != null,
                     parentHash = null,
                 )
-                if (historyResponseItem.data is JsonObject) {
-                    historyResponseItem.data.map {
+                if (historyResponseItem.data != null) {
+                    historyResponseItem.data.forEach {
                         dbQuery.insertExtrinsicParam(
                             historyResponseItem.id,
-                            it.key,
-                            (it.value as JsonPrimitive).content
+                            it.paramName,
+                            it.paramValue
                         )
                     }
                 }
-                if (historyResponseItem.data is JsonArray) {
-                    historyResponseItem.data.filterIsInstance<JsonObject>().map { json ->
-                        val hash = (json["hash"] as JsonPrimitive).content
+                if (historyResponseItem.nestedData != null) {
+                    historyResponseItem.nestedData.forEach { itemNested ->
+                        val hash = itemNested.hash
                         dbQuery.insertExtrinsic(
                             txHash = hash,
                             signAddress = signAddress,
                             blockHash = historyResponseItem.blockHash,
-                            module = (json["module"] as JsonPrimitive).content,
-                            method = (json["method"] as JsonPrimitive).content,
+                            module = itemNested.module,
+                            method = itemNested.method,
                             timestamp = time,
                             networkFee = "",
-                            success = historyResponseItem.execution.success,
+                            success = historyResponseItem.success,
                             batch = false,
                             parentHash = historyResponseItem.id
                         )
-                        ((json["data"] as JsonObject)["args"] as JsonObject).map { nested ->
+                        itemNested.data.forEach { nested ->
                             dbQuery.insertExtrinsicParam(
                                 hash,
-                                nested.key,
-                                (nested.value as JsonPrimitive).content
+                                nested.paramName,
+                                nested.paramValue,
                             )
                         }
                     }
@@ -111,10 +111,10 @@ internal class HistoryDatabase(historyDatabaseFactory: DatabaseDriverFactory) {
         }
         return SignerInfo(
             signAddress = signAddress,
-            topTime = response.data.historyElements.nodes.firstOrNull()?.timestamp?.toLong() ?: 0,
-            oldTime = response.data.historyElements.nodes.lastOrNull()?.timestamp?.toLong() ?: 0,
-            oldCursor = response.data.historyElements.pageInfo.endCursor,
-            endReached = response.data.historyElements.pageInfo.hasNextPage.not(),
+            topTime = response.items.firstOrNull()?.timestamp?.toLong() ?: 0,
+            oldTime = response.items.lastOrNull()?.timestamp?.toLong() ?: 0,
+            oldCursor = response.endCursor,
+            endReached = response.endReached,
         )
     }
 }

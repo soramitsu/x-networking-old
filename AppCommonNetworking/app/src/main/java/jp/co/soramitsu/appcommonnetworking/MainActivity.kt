@@ -6,7 +6,8 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import jp.co.soramitsu.commonnetworking.fearless.FearlessChainsBuilder
 import jp.co.soramitsu.commonnetworking.networkclient.SoramitsuNetworkClient
-import jp.co.soramitsu.commonnetworking.subquery.factory.SubQueryClientFactory
+import jp.co.soramitsu.commonnetworking.subquery.factory.SubQueryClientForFearless
+import jp.co.soramitsu.commonnetworking.subquery.factory.SubQueryClientForSora
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -26,14 +27,24 @@ class MainActivity : AppCompatActivity() {
             soraNetworkClient,
             "https://raw.githubusercontent.com/arvifox/arvifoxandroid/develop/felete/"
         )
-        val sfa = SubQueryClientFactory(applicationContext)
-        val hi = sfa.create(soraNetworkClient, "https://api.subquery.network/sq/sora-xor/sora-dev", 20)
-        val networkService = NetworkService(soraNetworkClient, f, hi)
+        val subQueryClient = SubQueryClientForSora.build(
+            applicationContext,
+            soraNetworkClient,
+            "https://api.subquery.network/sq/sora-xor/sora-dev",
+            20
+        )
+//        val subQueryClient = SubQueryClientForFearless.build(
+//            applicationContext,
+//            soraNetworkClient,
+//            "https://api.subquery.network/sq/soramitsu/fearless-wallet-westend",
+//            20
+//        )
+        val networkService = NetworkService(soraNetworkClient, f, subQueryClient)
 
         btn1.setOnClickListener {
             GlobalScope.launch {
                 try {
-                    val r = networkService.getChains()
+                    val r = networkService.getApy()
                     Log.e("foxxx", "r = ${r}")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t= ${t.localizedMessage}")
@@ -45,8 +56,10 @@ class MainActivity : AppCompatActivity() {
             GlobalScope.launch {
                 Log.e("foxxx", "button 2")
                 try {
-                    val r = networkService.getHistory(1)
-                    Log.e("foxxx", "r = ${r.endReached} ${r.items.size}")
+                    val r = networkService.getHistory(1) {
+                        it.module == "referrals"
+                    }
+                    Log.e("foxxx", "r = ${r.endReached} ${r.page} ${r.items.size}")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t= ${t.localizedMessage}")
                 }

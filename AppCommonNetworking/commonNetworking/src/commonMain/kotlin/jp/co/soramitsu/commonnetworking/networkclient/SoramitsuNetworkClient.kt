@@ -17,6 +17,7 @@ import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.contentType
 import kotlinx.serialization.SerializationException
+import kotlinx.serialization.json.Json
 import kotlin.coroutines.cancellation.CancellationException
 
 class SoramitsuNetworkClient(
@@ -24,8 +25,13 @@ class SoramitsuNetworkClient(
     logging: Boolean = false,
     provider: SoramitsuHttpClientProvider = SoramitsuHttpClientProviderImpl()
 ) {
+    val json = Json {
+        prettyPrint = true
+        isLenient = true
+        ignoreUnknownKeys = true
+    }
 
-    val httpClient: HttpClient = provider.provide(logging, timeout)
+    val httpClient: HttpClient = provider.provide(logging, timeout, json)
 
     suspend fun get(url: String): String {
         return wrapInExceptionHandler {

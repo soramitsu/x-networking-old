@@ -12,11 +12,11 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
 interface SoramitsuHttpClientProvider {
-    fun provide(logging: Boolean, timeout: Long): HttpClient
+    fun provide(logging: Boolean, timeout: Long, json: Json): HttpClient
 }
 
 class SoramitsuHttpClientProviderImpl : SoramitsuHttpClientProvider {
-    override fun provide(logging: Boolean, timeout: Long): HttpClient {
+    override fun provide(logging: Boolean, timeout: Long, json: Json): HttpClient {
         return HttpClient(HttpEngineFactory().createEngine()) {
             if (logging) {
                 install(Logging) {
@@ -27,11 +27,7 @@ class SoramitsuHttpClientProviderImpl : SoramitsuHttpClientProvider {
             expectSuccess = true
             install(ContentNegotiation) {
                 json(
-                    Json {
-                        prettyPrint = true
-                        isLenient = true
-                        ignoreUnknownKeys = true
-                    },
+                    json,
                     contentType = ContentType.Any
                 )
             }

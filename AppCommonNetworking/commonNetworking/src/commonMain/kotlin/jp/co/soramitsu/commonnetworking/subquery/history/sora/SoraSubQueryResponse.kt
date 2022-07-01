@@ -1,4 +1,4 @@
-package jp.co.soramitsu.commonnetworking.subquery.history
+package jp.co.soramitsu.commonnetworking.subquery.history.sora
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonElement
