@@ -41,7 +41,7 @@ class FearlessChainsBuilderTest {
     fun setUp() {
         client = SoramitsuNetworkClient(
             provider = object : SoramitsuHttpClientProvider {
-                override fun provide(logging: Boolean, timeout: Long): HttpClient {
+                override fun provide(logging: Boolean, timeout: Long, json: Json): HttpClient {
                     return HttpClient(mockEngine) {
                         install(ContentNegotiation) {
                             json(
