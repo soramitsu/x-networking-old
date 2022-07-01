@@ -6,9 +6,14 @@ import jp.co.soramitsu.commonnetworking.db.SignerInfo
 import jp.co.soramitsu.commonnetworking.dbengine.HistoryDatabaseProvider
 import jp.co.soramitsu.commonnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.commonnetworking.networkclient.SoramitsuNetworkException
-import jp.co.soramitsu.commonnetworking.subquery.graphql.*
+import jp.co.soramitsu.commonnetworking.subquery.graphql.SubQueryRequest
+import jp.co.soramitsu.commonnetworking.subquery.graphql.referrerRewardsGraphQLRequest
+import jp.co.soramitsu.commonnetworking.subquery.graphql.sbApyGraphQLRequest
+import jp.co.soramitsu.commonnetworking.subquery.graphql.soraHistoryGraphQLVariables
 import jp.co.soramitsu.commonnetworking.subquery.history.HistoryMapper
 import jp.co.soramitsu.commonnetworking.subquery.history.SubQueryHistoryInfo
+import jp.co.soramitsu.commonnetworking.subquery.history.SubQueryHistoryItem
+import jp.co.soramitsu.commonnetworking.subquery.history.SubQueryHistoryResult
 import jp.co.soramitsu.commonnetworking.subquery.response.ReferrerRewardsResponse
 import jp.co.soramitsu.commonnetworking.subquery.response.SubQuerySbApyResponse
 import kotlinx.serialization.DeserializationStrategy
@@ -22,7 +27,7 @@ class SubQueryClient<T, R> internal constructor(
     private val pageSize: Int,
     private val deserializationStrategy: DeserializationStrategy<T>,
     private val jsonToHistoryInfo: (T) -> SubQueryHistoryInfo,
-    private val historyInfoToResult: (SubQueryHistoryInfo) -> R,
+    private val historyInfoToResult: (SubQueryHistoryItem) -> R,
     private val historyRequest: String,
     historyDatabaseProvider: HistoryDatabaseProvider
 ) {
@@ -53,25 +58,28 @@ class SubQueryClient<T, R> internal constructor(
         address: String,
         url: String = baseUrl,
     ): ReferrerRewardsInfo {
-        val response = networkClient.createJsonRequest<ReferrerRewardsResponse>(
-            url,
-            HttpMethod.Post,
-            SubQueryRequest(referrerRewardsGraphQLRequest(address))
-        )
-        return if (response.data.referrerRewards.groupedAggregates.isEmpty()) {
-            ReferrerRewardsInfo(rewards = emptyList())
-        } else {
-            ReferrerRewardsInfo(rewards = response.data.referrerRewards.groupedAggregates.map {
-                ReferrerRewards(
-                    referral = it.keys.firstOrNull().orEmpty(),
-                    amount = it.sum.amount
+        var cursor = ""
+        val list = mutableListOf<ReferrerReward>()
+        while (true) {
+            val response = networkClient.createJsonRequest<ReferrerRewardsResponse>(
+                url,
+                HttpMethod.Post,
+                SubQueryRequest(referrerRewardsGraphQLRequest(address, cursor))
+            )
+            list.addAll(response.data.referrerRewards.nodes.map {
+                ReferrerReward(
+                    referral = it.referral,
+                    amount = it.amount,
                 )
             })
+            if (response.data.referrerRewards.pageInfo.hasNextPage && response.data.referrerRewards.pageInfo.endCursor != null) {
+                cursor = response.data.referrerRewards.pageInfo.endCursor
+            } else {
+                break
+            }
         }
+        return ReferrerRewardsInfo(list)
     }
-
-    private var historyAddress: String = ""
-    private lateinit var curSignerInfo: SignerInfo
 
     fun getTransactionPeers(query: String): List<String> =
         historyDatabase.getTransfersAddress(query)
@@ -94,6 +102,8 @@ class SubQueryClient<T, R> internal constructor(
         )
     }
 
+    private lateinit var curSignerInfo: SignerInfo
+
     @Throws(
         SoramitsuNetworkException::class,
         CancellationException::class,
@@ -103,20 +113,47 @@ class SubQueryClient<T, R> internal constructor(
         address: String,
         page: Long,
         url: String? = null,
-    ): R {
-        require(((page > 1 && historyAddress.isEmpty()) || page < 1).not()) { "First page value must = 1" }
+        filter: ((R) -> Boolean)? = null
+    ): SubQueryHistoryResult<R> {
+        require(page >= 1) { "Page value must >= 1" }
         if (url != null) baseUrl = url
+        curSignerInfo = historyDatabase.getSignerInfo(address)
         if (page == 1L) {
-            historyAddress = address
-            curSignerInfo = historyDatabase.getSignerInfo(historyAddress)
-            loadInfo()
+            loadInfo(address = address)
         }
-        return historyInfoToResult.invoke(getHistoryInfo(page))
+        var curPage = page
+        val list = mutableListOf<R>()
+        var endCursor: String?
+        var endReached: Boolean
+        while (true) {
+            val info = getHistoryInfo(curPage, address)
+            endCursor = info.endCursor
+            endReached = info.endReached
+            val itemsMapped = info.items.map(historyInfoToResult)
+            val itemsFiltered = if (filter != null) itemsMapped.filter {
+                filter.invoke(it)
+            } else itemsMapped
+            list.addAll(itemsFiltered)
+            if (list.size >= pageSize || info.endReached) {
+                break
+            } else {
+                curPage++
+            }
+        }
+        return SubQueryHistoryResult(
+            endCursor = endCursor,
+            endReached = endReached,
+            page = curPage,
+            items = list
+        )
     }
 
-    private suspend fun getHistoryInfo(page: Long): SubQueryHistoryInfo {
+    private suspend fun getHistoryInfo(
+        page: Long,
+        address: String,
+    ): SubQueryHistoryInfo {
         var dbOffset = (page - 1) * pageSize
-        val extrinsics = historyDatabase.getExtrinsics(historyAddress, dbOffset, pageSize)
+        val extrinsics = historyDatabase.getExtrinsics(address, dbOffset, pageSize)
         dbOffset += extrinsics.size
         return if (extrinsics.size.toLong() >= pageSize) {
             buildResultHistoryInfo(false, extrinsics)
@@ -124,22 +161,22 @@ class SubQueryClient<T, R> internal constructor(
             if (curSignerInfo.endReached) {
                 buildResultHistoryInfo(true, extrinsics)
             } else {
-                loadInfo(curSignerInfo.oldCursor.orEmpty())
+                loadInfo(curSignerInfo.oldCursor.orEmpty(), address)
                 val moreCount = pageSize - extrinsics.size
                 val moreExtrinsics =
-                    historyDatabase.getExtrinsics(historyAddress, dbOffset, moreCount)
+                    historyDatabase.getExtrinsics(address, dbOffset, moreCount)
                 dbOffset += moreExtrinsics.size
                 buildResultHistoryInfo(curSignerInfo.endReached, extrinsics + moreExtrinsics)
             }
         }
     }
 
-    private suspend fun loadInfo(cursor: String = "") {
+    private suspend fun loadInfo(cursor: String = "", address: String) {
         val request = SubQueryRequest(
             query = historyRequest,
             variables = soraHistoryGraphQLVariables(
                 countRemote = pageSize,
-                myAddress = historyAddress,
+                myAddress = address,
                 cursor = cursor,
             )
         )
@@ -152,9 +189,9 @@ class SubQueryClient<T, R> internal constructor(
         val decoded = networkClient.json.decodeFromString(deserializationStrategy, response)
         val infoDecoded = jsonToHistoryInfo.invoke(decoded)
         val info =
-            historyDatabase.insertExtrinsics(historyAddress, infoDecoded)
+            historyDatabase.insertExtrinsics(address, infoDecoded)
         curSignerInfo = SignerInfo(
-            signAddress = historyAddress,
+            signAddress = address,
             topTime = max(info.topTime, curSignerInfo.topTime),
             oldTime = if (curSignerInfo.oldTime == 0L) info.oldTime else min(
                 info.oldTime,

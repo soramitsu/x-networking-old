@@ -14,16 +14,18 @@ data class ReferrerRewardsResponseData(
 
 @Serializable
 data class ReferrerRewardsData(
-    val groupedAggregates: List<ReferrerRewardsItem>,
+    val pageInfo: ReferrerRewardsPageInfo,
+    val nodes: List<ReferrerRewardsItem>,
+)
+
+@Serializable
+data class ReferrerRewardsPageInfo(
+    val hasNextPage: Boolean,
+    val endCursor: String?,
 )
 
 @Serializable
 data class ReferrerRewardsItem(
-    val keys: List<String>,
-    val sum: ReferrerRewardsItemAmount,
-)
-
-@Serializable
-data class ReferrerRewardsItemAmount(
+    val referral: String,
     val amount: String,
 )

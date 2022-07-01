@@ -7,10 +7,10 @@ data class SbApyInfo(
 )
 
 data class ReferrerRewardsInfo(
-    val rewards: List<ReferrerRewards>,
+    val rewards: List<ReferrerReward>,
 )
 
-data class ReferrerRewards(
+data class ReferrerReward(
     val referral: String,
     val amount: String,
 )

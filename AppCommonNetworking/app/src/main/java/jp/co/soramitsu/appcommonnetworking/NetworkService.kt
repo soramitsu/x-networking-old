@@ -16,9 +16,11 @@ class NetworkService<T, R>(
 
     suspend fun getApy() = subQueryClient.getSpApy()
 
-    suspend fun getHistory(page: Long) = subQueryClient.getTransactionHistoryPaged(
-        "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
-        page
+    suspend fun getHistory(page: Long, f: (R) -> Boolean) = subQueryClient.getTransactionHistoryPaged(
+        address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
+//        address = "5HpLdCTNBQDjFomqpG2XWadgB4zHTuqQqNHhUyYbett7k1RR",
+        page = page,
+        filter = f
     )
 
     suspend fun getPeers(query: String) = subQueryClient.getTransactionPeers(query)

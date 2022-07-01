@@ -5,13 +5,15 @@ import jp.co.soramitsu.commonnetworking.dbengine.DatabaseDriverFactory
 import jp.co.soramitsu.commonnetworking.dbengine.HistoryDatabaseProvider
 import jp.co.soramitsu.commonnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.commonnetworking.subquery.SubQueryClient
+import jp.co.soramitsu.commonnetworking.subquery.graphql.fearlessHistoryGraphQLRequest
 import jp.co.soramitsu.commonnetworking.subquery.graphql.soraHistoryGraphQLRequest
-import jp.co.soramitsu.commonnetworking.subquery.history.*
+import jp.co.soramitsu.commonnetworking.subquery.history.SubQueryHistoryInfo
+import jp.co.soramitsu.commonnetworking.subquery.history.SubQueryHistoryItem
+import jp.co.soramitsu.commonnetworking.subquery.history.fearless.FearlessMapper
+import jp.co.soramitsu.commonnetworking.subquery.history.fearless.FearlessSubQueryResponse
+import jp.co.soramitsu.commonnetworking.subquery.history.sora.SoraMapper
 import jp.co.soramitsu.commonnetworking.subquery.history.sora.SoraSubqueryResponse
 import kotlinx.serialization.DeserializationStrategy
-import kotlinx.serialization.json.JsonArray
-import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.JsonPrimitive
 
 actual class SubQueryClientFactory<T, R>(private val context: Context) {
     actual fun create(
@@ -20,7 +22,7 @@ actual class SubQueryClientFactory<T, R>(private val context: Context) {
         pageSize: Int,
         deserializationStrategy: DeserializationStrategy<T>,
         jsonToHistoryInfo: (T) -> SubQueryHistoryInfo,
-        historyIntoToResult: (SubQueryHistoryInfo) -> R,
+        historyIntoToResult: (SubQueryHistoryItem) -> R,
         historyRequest: String,
     ): SubQueryClient<T, R> {
         return SubQueryClient(
@@ -36,58 +38,38 @@ actual class SubQueryClientFactory<T, R>(private val context: Context) {
     }
 }
 
+object SubQueryClientForFearless {
+    fun build(
+        context: Context,
+        soramitsuNetworkClient: SoramitsuNetworkClient,
+        baseUrl: String,
+        pageSize: Int,
+    ): SubQueryClient<FearlessSubQueryResponse, SubQueryHistoryItem> {
+        return SubQueryClientFactory<FearlessSubQueryResponse, SubQueryHistoryItem>(context).create(
+            soramitsuNetworkClient = soramitsuNetworkClient,
+            baseUrl = baseUrl,
+            pageSize = pageSize,
+            deserializationStrategy = FearlessSubQueryResponse.serializer(),
+            historyIntoToResult = { it },
+            historyRequest = fearlessHistoryGraphQLRequest(),
+            jsonToHistoryInfo = { response -> FearlessMapper.map(response) },
+        )
+    }
+}
+
 object SubQueryClientForSora {
     fun build(
         context: Context,
         soramitsuNetworkClient: SoramitsuNetworkClient,
         baseUrl: String,
         pageSize: Int,
-    ): SubQueryClient<SoraSubqueryResponse, SubQueryHistoryInfo> {
-        return SubQueryClientFactory<SoraSubqueryResponse, SubQueryHistoryInfo>(context).create(
+    ): SubQueryClient<SoraSubqueryResponse, SubQueryHistoryItem> {
+        return SubQueryClientFactory<SoraSubqueryResponse, SubQueryHistoryItem>(context).create(
             soramitsuNetworkClient = soramitsuNetworkClient,
             baseUrl = baseUrl,
             pageSize = pageSize,
             deserializationStrategy = SoraSubqueryResponse.serializer(),
-            jsonToHistoryInfo = { response ->
-                SubQueryHistoryInfo(
-                    endCursor = response.data.historyElements.pageInfo.endCursor,
-                    endReached = response.data.historyElements.pageInfo.hasNextPage.not(),
-                    items = response.data.historyElements.nodes.map {
-                        SubQueryHistoryItem(
-                            id = it.id,
-                            blockHash = it.blockHash,
-                            module = it.module,
-                            method = it.method,
-                            timestamp = it.timestamp,
-                            networkFee = it.networkFee,
-                            success = it.execution.success,
-                            data = (it.data as? JsonObject)?.let { json ->
-                                json.map { mapItem ->
-                                    SubQueryHistoryItemParam(
-                                        paramName = mapItem.key,
-                                        paramValue = (mapItem.value as? JsonPrimitive)?.content.orEmpty()
-                                    )
-                                }
-                            },
-                            nestedData = (it.data as? JsonArray)?.let { jsonArray ->
-                                jsonArray.filterIsInstance<JsonObject>().map { jsonObject ->
-                                    SubQueryHistoryItemNested(
-                                        hash = (jsonObject["hash"] as? JsonPrimitive)?.content.orEmpty(),
-                                        module = (jsonObject["module"] as? JsonPrimitive)?.content.orEmpty(),
-                                        method = (jsonObject["method"] as? JsonPrimitive)?.content.orEmpty(),
-                                        data = ((jsonObject["data"] as? JsonObject)?.get("args") as? JsonObject)?.map { mapItem ->
-                                            SubQueryHistoryItemParam(
-                                                paramName = mapItem.key,
-                                                paramValue = (mapItem.value as? JsonPrimitive)?.content.orEmpty()
-                                            )
-                                        } ?: emptyList()
-                                    )
-                                }
-                            },
-                        )
-                    },
-                )
-            },
+            jsonToHistoryInfo = { response -> SoraMapper.map(response) },
             historyIntoToResult = { it },
             historyRequest = soraHistoryGraphQLRequest(),
         )

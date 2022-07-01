@@ -2,13 +2,21 @@ package jp.co.soramitsu.commonnetworking.subquery.graphql
 
 internal fun referrerRewardsGraphQLRequest(
     address: String,
+    cursor: String,
 ) = """
     query {
         referrerRewards(
+          first: 100
+          after: "$cursor"
           filter: { referrer: {equalTo: "$address"} }
         ) {
-            groupedAggregates(groupBy: REFERRAL) {
-                keys sum {amount}
+            pageInfo {
+                hasNextPage
+                endCursor
+            }
+            nodes {
+                referral
+                amount
             }
         }
     }

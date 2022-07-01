@@ -8,9 +8,9 @@ data class SubQueryRequest(
     val variables: String? = null
 )
 
-internal val varCountRemote = "\$countRemote"
-internal val varAfterCursor = "\$afterCursor"
-internal val varMyAddress = "\$myAddress"
+internal const val varCountRemote = "\$countRemote"
+internal const val varAfterCursor = "\$afterCursor"
+internal const val varMyAddress = "\$myAddress"
 
 internal fun soraHistoryGraphQLVariables(
     countRemote: Int,
