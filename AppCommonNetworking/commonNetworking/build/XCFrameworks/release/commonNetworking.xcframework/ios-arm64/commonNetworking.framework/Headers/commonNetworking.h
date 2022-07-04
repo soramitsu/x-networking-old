@@ -6,9 +6,9 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class CommonNetworkingKotlinThrowable, CommonNetworkingKotlinArray<T>, CommonNetworkingChainModelCompanion, CommonNetworkingChainModel, CommonNetworkingChainResponseCompanion, CommonNetworkingChainResponse, CommonNetworkingSoramitsuNetworkClient, CommonNetworkingFearlessChainsBuilderCompanion, CommonNetworkingKotlinPair<__covariant A, __covariant B>, CommonNetworkingResultChainInfo, CommonNetworkingChainBuilderException, CommonNetworkingErrorCompanion, CommonNetworkingError, CommonNetworkingExecutionResultCompanion, CommonNetworkingExecutionResult, CommonNetworkingHistoryResponseItem, CommonNetworkingHistoryResponsePageInfo, CommonNetworkingHistoryResponseDataElementsCompanion, CommonNetworkingHistoryResponseDataElements, CommonNetworkingKotlinx_serialization_jsonJsonElement, CommonNetworkingHistoryResponseItemCompanion, CommonNetworkingHistoryResponsePageInfoCompanion, CommonNetworkingPoolsInfoResponseDataCompanion, CommonNetworkingPoolsInfoResponseData, CommonNetworkingPoolsInfoResponseDataElementCompanion, CommonNetworkingPoolsInfoResponseDataElement, CommonNetworkingPoolsInfoResponseNodesElement, CommonNetworkingPoolsInfoResponseNodesCompanion, CommonNetworkingPoolsInfoResponseNodes, CommonNetworkingPoolsInfoResponsePools, CommonNetworkingPoolsInfoResponseNodesElementCompanion, CommonNetworkingPoolsInfoResponsePoolXykEntityCompanion, CommonNetworkingPoolsInfoResponsePoolXykEntity, CommonNetworkingPoolsInfoResponsePoolsCompanion, CommonNetworkingReferrerRewards, CommonNetworkingReferrerRewardsItem, CommonNetworkingReferrerRewardsDataCompanion, CommonNetworkingReferrerRewardsData, CommonNetworkingReferrerRewardsInfo, CommonNetworkingReferrerRewardsItemAmount, CommonNetworkingReferrerRewardsItemCompanion, CommonNetworkingReferrerRewardsItemAmountCompanion, CommonNetworkingReferrerRewardsResponseData, CommonNetworkingReferrerRewardsResponseCompanion, CommonNetworkingReferrerRewardsResponse, CommonNetworkingReferrerRewardsResponseDataCompanion, CommonNetworkingSbApyInfo, CommonNetworkingSoraSubqueryResponseData, CommonNetworkingSoraSubqueryResponseCompanion, CommonNetworkingSoraSubqueryResponse, CommonNetworkingSoraSubqueryResponseDataCompanion, CommonNetworkingSoraHistoryInfo, CommonNetworkingSubQueryMapper, CommonNetworkingSubQuerySbApyResponse, CommonNetworkingSubQuerySbApyResponseCompanion, CommonNetworkingSubQueryRequestCompanion, CommonNetworkingSubQueryRequest, CommonNetworkingSubQueryClient, CommonNetworkingError_Companion, CommonNetworkingError_, CommonNetworkingExecutionResult_Companion, CommonNetworkingExecutionResult_, CommonNetworkingHistoryMapper, CommonNetworkingSoraHistoryItemNested, CommonNetworkingExtrinsics, CommonNetworkingExtrinsicParam, CommonNetworkingSoraHistoryItem, CommonNetworkingHistoryResponseItem_, CommonNetworkingHistoryResponsePageInfo_, CommonNetworkingHistoryResponseDataElements_Companion, CommonNetworkingHistoryResponseDataElements_, CommonNetworkingHistoryResponseItem_Companion, CommonNetworkingHistoryResponsePageInfo_Companion, CommonNetworkingSoraHistoryItemParam, CommonNetworkingSoraSubqueryResponseData_, CommonNetworkingSoraSubqueryResponse_Companion, CommonNetworkingSoraSubqueryResponse_, CommonNetworkingSoraSubqueryResponseData_Companion, CommonNetworkingDatabaseDriverFactory, CommonNetworkingSoramitsuNetworkException, CommonNetworkingKtor_client_coreHttpClient, CommonNetworkingKtor_httpHttpMethod, CommonNetworkingKtor_httpContentType, CommonNetworkingSignerInfo, CommonNetworkingSoraHistoryDatabaseCompanion, CommonNetworkingRuntimeQuery<__covariant RowType>, CommonNetworkingKotlinByteArray, CommonNetworkingKotlinException, CommonNetworkingKotlinRuntimeException, CommonNetworkingKotlinIllegalStateException, CommonNetworkingKotlinx_serialization_jsonJsonElementCompanion, CommonNetworkingKotlinUnit, CommonNetworkingRuntimeTransacterTransaction, CommonNetworkingKtor_client_coreHttpClientEngineConfig, CommonNetworkingKtor_client_coreHttpClientConfig<T>, CommonNetworkingKtor_eventsEvents, CommonNetworkingKtor_client_coreHttpReceivePipeline, CommonNetworkingKtor_client_coreHttpRequestPipeline, CommonNetworkingKtor_client_coreHttpResponsePipeline, CommonNetworkingKtor_client_coreHttpSendPipeline, CommonNetworkingKtor_httpHttpMethodCompanion, CommonNetworkingKtor_httpHeaderValueParam, CommonNetworkingKtor_httpHeaderValueWithParametersCompanion, CommonNetworkingKtor_httpHeaderValueWithParameters, CommonNetworkingKtor_httpContentTypeCompanion, CommonNetworkingKotlinByteIterator, CommonNetworkingKotlinx_serialization_coreSerializersModule, CommonNetworkingKotlinx_serialization_coreSerialKind, CommonNetworkingKotlinNothing, CommonNetworkingKtor_client_coreHttpRequestData, CommonNetworkingKtor_client_coreHttpResponseData, CommonNetworkingKotlinx_coroutines_coreCoroutineDispatcher, CommonNetworkingKtor_client_coreProxyConfig, CommonNetworkingKtor_utilsAttributeKey<T>, CommonNetworkingKtor_eventsEventDefinition<T>, CommonNetworkingKtor_utilsPipelinePhase, CommonNetworkingKtor_utilsPipeline<TSubject, TContext>, CommonNetworkingKtor_client_coreHttpReceivePipelinePhases, CommonNetworkingKtor_client_coreHttpResponse, CommonNetworkingKtor_client_coreHttpRequestPipelinePhases, CommonNetworkingKtor_client_coreHttpRequestBuilder, CommonNetworkingKtor_client_coreHttpResponsePipelinePhases, CommonNetworkingKtor_client_coreHttpResponseContainer, CommonNetworkingKtor_client_coreHttpClientCall, CommonNetworkingKtor_client_coreHttpSendPipelinePhases, CommonNetworkingKtor_httpUrl, CommonNetworkingKtor_httpOutgoingContent, CommonNetworkingKtor_httpHttpStatusCode, CommonNetworkingKtor_utilsGMTDate, CommonNetworkingKtor_httpHttpProtocolVersion, CommonNetworkingKotlinAbstractCoroutineContextElement, CommonNetworkingKotlinx_coroutines_coreCoroutineDispatcherKey, CommonNetworkingKtor_httpHeadersBuilder, CommonNetworkingKtor_client_coreHttpRequestBuilderCompanion, CommonNetworkingKtor_httpURLBuilder, CommonNetworkingKtor_utilsTypeInfo, CommonNetworkingKtor_client_coreHttpClientCallCompanion, CommonNetworkingKtor_httpUrlCompanion, CommonNetworkingKtor_httpURLProtocol, CommonNetworkingKotlinCancellationException, CommonNetworkingKtor_httpHttpStatusCodeCompanion, CommonNetworkingKtor_utilsGMTDateCompanion, CommonNetworkingKtor_utilsWeekDay, CommonNetworkingKtor_utilsMonth, CommonNetworkingKtor_httpHttpProtocolVersionCompanion, CommonNetworkingKotlinAbstractCoroutineContextKey<B, E>, CommonNetworkingKtor_ioMemory, CommonNetworkingKtor_ioChunkBuffer, CommonNetworkingKtor_ioBuffer, CommonNetworkingKtor_ioByteReadPacket, CommonNetworkingKtor_utilsStringValuesBuilderImpl, CommonNetworkingKtor_httpURLBuilderCompanion, CommonNetworkingKtor_httpURLProtocolCompanion, CommonNetworkingKotlinEnumCompanion, CommonNetworkingKotlinEnum<E>, CommonNetworkingKtor_utilsWeekDayCompanion, CommonNetworkingKtor_utilsMonthCompanion, CommonNetworkingKtor_ioMemoryCompanion, CommonNetworkingKtor_ioBufferCompanion, CommonNetworkingKtor_ioChunkBufferCompanion, CommonNetworkingKtor_ioInputCompanion, CommonNetworkingKtor_ioInput, CommonNetworkingKtor_ioByteReadPacketCompanion, CommonNetworkingKotlinKTypeProjection, CommonNetworkingKotlinx_coroutines_coreAtomicDesc, CommonNetworkingKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp, CommonNetworkingKotlinKVariance, CommonNetworkingKotlinKTypeProjectionCompanion, CommonNetworkingKotlinx_coroutines_coreAtomicOp<__contravariant T>, CommonNetworkingKotlinx_coroutines_coreOpDescriptor, CommonNetworkingKotlinx_coroutines_coreLockFreeLinkedListNode, CommonNetworkingKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc, CommonNetworkingKotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc<T>, CommonNetworkingKotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc<T>;
+@class CommonNetworkingKotlinThrowable, CommonNetworkingKotlinArray<T>, CommonNetworkingChainModelCompanion, CommonNetworkingChainModel, CommonNetworkingChainResponseCompanion, CommonNetworkingChainResponse, CommonNetworkingSoramitsuNetworkClient, CommonNetworkingFearlessChainsBuilderCompanion, CommonNetworkingKotlinPair<__covariant A, __covariant B>, CommonNetworkingResultChainInfo, CommonNetworkingChainBuilderException, CommonNetworkingReferrerReward, CommonNetworkingReferrerRewardsInfo, CommonNetworkingSbApyInfo, CommonNetworkingSubQueryHistoryInfo, CommonNetworkingSubQueryHistoryResult<R>, CommonNetworkingSubQueryMapper, CommonNetworkingSubQuerySbApyResponse, CommonNetworkingPoolsInfoResponseDataCompanion, CommonNetworkingPoolsInfoResponseData, CommonNetworkingPoolsInfoResponseDataElementCompanion, CommonNetworkingPoolsInfoResponseDataElement, CommonNetworkingPoolsInfoResponseNodesElement, CommonNetworkingPoolsInfoResponseNodesCompanion, CommonNetworkingPoolsInfoResponseNodes, CommonNetworkingPoolsInfoResponsePools, CommonNetworkingPoolsInfoResponseNodesElementCompanion, CommonNetworkingPoolsInfoResponsePoolXykEntityCompanion, CommonNetworkingPoolsInfoResponsePoolXykEntity, CommonNetworkingPoolsInfoResponsePoolsCompanion, CommonNetworkingReferrerRewardsPageInfo, CommonNetworkingReferrerRewardsItem, CommonNetworkingReferrerRewardsDataCompanion, CommonNetworkingReferrerRewardsData, CommonNetworkingReferrerRewardsItemCompanion, CommonNetworkingReferrerRewardsPageInfoCompanion, CommonNetworkingReferrerRewardsResponseData, CommonNetworkingReferrerRewardsResponseCompanion, CommonNetworkingReferrerRewardsResponse, CommonNetworkingReferrerRewardsResponseDataCompanion, CommonNetworkingSubQuerySbApyResponseCompanion, CommonNetworkingSubQueryRequestCompanion, CommonNetworkingSubQueryRequest, CommonNetworkingSubQueryClient<T, R>, CommonNetworkingSubQueryHistoryItem, CommonNetworkingSubQueryClientForFearless, CommonNetworkingFearlessSubQueryResponse, CommonNetworkingSubQueryClientForSora, CommonNetworkingSoraSubqueryResponse, CommonNetworkingHistoryMapper, CommonNetworkingSubQueryHistoryItemNested, CommonNetworkingExtrinsics, CommonNetworkingExtrinsicParam, CommonNetworkingSubQueryHistoryItemParam, CommonNetworkingFearlessExtrinsicItemCompanion, CommonNetworkingFearlessExtrinsicItem, CommonNetworkingFearlessHistoryResponseItem, CommonNetworkingFearlessHistoryResponsePageInfo, CommonNetworkingFearlessHistoryResponseDataElementsCompanion, CommonNetworkingFearlessHistoryResponseDataElements, CommonNetworkingFearlessRewardItem, CommonNetworkingFearlessTransferItem, CommonNetworkingFearlessHistoryResponseItemCompanion, CommonNetworkingFearlessHistoryResponsePageInfoCompanion, CommonNetworkingFearlessRewardItemCompanion, CommonNetworkingFearlessSubQueryResponseData, CommonNetworkingFearlessSubQueryResponseCompanion, CommonNetworkingFearlessSubQueryResponseDataCompanion, CommonNetworkingFearlessTransferItemCompanion, CommonNetworkingErrorCompanion, CommonNetworkingError, CommonNetworkingExecutionResultCompanion, CommonNetworkingExecutionResult, CommonNetworkingHistoryResponseItem, CommonNetworkingHistoryResponsePageInfo, CommonNetworkingHistoryResponseDataElementsCompanion, CommonNetworkingHistoryResponseDataElements, CommonNetworkingKotlinx_serialization_jsonJsonElement, CommonNetworkingHistoryResponseItemCompanion, CommonNetworkingHistoryResponsePageInfoCompanion, CommonNetworkingSoraSubqueryResponseData, CommonNetworkingSoraSubqueryResponseCompanion, CommonNetworkingSoraSubqueryResponseDataCompanion, CommonNetworkingDatabaseDriverFactory, CommonNetworkingSoramitsuNetworkException, CommonNetworkingKtor_client_coreHttpClient, CommonNetworkingKotlinx_serialization_jsonJson, CommonNetworkingKtor_httpHttpMethod, CommonNetworkingKtor_httpContentType, CommonNetworkingSignerInfo, CommonNetworkingSoraHistoryDatabaseCompanion, CommonNetworkingRuntimeQuery<__covariant RowType>, CommonNetworkingKotlinByteArray, CommonNetworkingKotlinException, CommonNetworkingKotlinRuntimeException, CommonNetworkingKotlinIllegalStateException, CommonNetworkingKotlinx_serialization_jsonJsonElementCompanion, CommonNetworkingKotlinUnit, CommonNetworkingRuntimeTransacterTransaction, CommonNetworkingKtor_client_coreHttpClientEngineConfig, CommonNetworkingKtor_client_coreHttpClientConfig<T>, CommonNetworkingKtor_eventsEvents, CommonNetworkingKtor_client_coreHttpReceivePipeline, CommonNetworkingKtor_client_coreHttpRequestPipeline, CommonNetworkingKtor_client_coreHttpResponsePipeline, CommonNetworkingKtor_client_coreHttpSendPipeline, CommonNetworkingKotlinx_serialization_coreSerializersModule, CommonNetworkingKotlinx_serialization_jsonJsonDefault, CommonNetworkingKotlinx_serialization_jsonJsonConfiguration, CommonNetworkingKtor_httpHttpMethodCompanion, CommonNetworkingKtor_httpHeaderValueParam, CommonNetworkingKtor_httpHeaderValueWithParametersCompanion, CommonNetworkingKtor_httpHeaderValueWithParameters, CommonNetworkingKtor_httpContentTypeCompanion, CommonNetworkingKotlinByteIterator, CommonNetworkingKotlinx_serialization_coreSerialKind, CommonNetworkingKotlinNothing, CommonNetworkingKtor_client_coreHttpRequestData, CommonNetworkingKtor_client_coreHttpResponseData, CommonNetworkingKotlinx_coroutines_coreCoroutineDispatcher, CommonNetworkingKtor_client_coreProxyConfig, CommonNetworkingKtor_utilsAttributeKey<T>, CommonNetworkingKtor_eventsEventDefinition<T>, CommonNetworkingKtor_utilsPipelinePhase, CommonNetworkingKtor_utilsPipeline<TSubject, TContext>, CommonNetworkingKtor_client_coreHttpReceivePipelinePhases, CommonNetworkingKtor_client_coreHttpResponse, CommonNetworkingKtor_client_coreHttpRequestPipelinePhases, CommonNetworkingKtor_client_coreHttpRequestBuilder, CommonNetworkingKtor_client_coreHttpResponsePipelinePhases, CommonNetworkingKtor_client_coreHttpResponseContainer, CommonNetworkingKtor_client_coreHttpClientCall, CommonNetworkingKtor_client_coreHttpSendPipelinePhases, CommonNetworkingKtor_httpUrl, CommonNetworkingKtor_httpOutgoingContent, CommonNetworkingKtor_httpHttpStatusCode, CommonNetworkingKtor_utilsGMTDate, CommonNetworkingKtor_httpHttpProtocolVersion, CommonNetworkingKotlinAbstractCoroutineContextElement, CommonNetworkingKotlinx_coroutines_coreCoroutineDispatcherKey, CommonNetworkingKtor_httpHeadersBuilder, CommonNetworkingKtor_client_coreHttpRequestBuilderCompanion, CommonNetworkingKtor_httpURLBuilder, CommonNetworkingKtor_utilsTypeInfo, CommonNetworkingKtor_client_coreHttpClientCallCompanion, CommonNetworkingKtor_httpUrlCompanion, CommonNetworkingKtor_httpURLProtocol, CommonNetworkingKotlinCancellationException, CommonNetworkingKtor_httpHttpStatusCodeCompanion, CommonNetworkingKtor_utilsGMTDateCompanion, CommonNetworkingKtor_utilsWeekDay, CommonNetworkingKtor_utilsMonth, CommonNetworkingKtor_httpHttpProtocolVersionCompanion, CommonNetworkingKotlinAbstractCoroutineContextKey<B, E>, CommonNetworkingKtor_ioMemory, CommonNetworkingKtor_ioChunkBuffer, CommonNetworkingKtor_ioBuffer, CommonNetworkingKtor_ioByteReadPacket, CommonNetworkingKtor_utilsStringValuesBuilderImpl, CommonNetworkingKtor_httpURLBuilderCompanion, CommonNetworkingKtor_httpURLProtocolCompanion, CommonNetworkingKotlinEnumCompanion, CommonNetworkingKotlinEnum<E>, CommonNetworkingKtor_utilsWeekDayCompanion, CommonNetworkingKtor_utilsMonthCompanion, CommonNetworkingKtor_ioMemoryCompanion, CommonNetworkingKtor_ioBufferCompanion, CommonNetworkingKtor_ioChunkBufferCompanion, CommonNetworkingKtor_ioInputCompanion, CommonNetworkingKtor_ioInput, CommonNetworkingKtor_ioByteReadPacketCompanion, CommonNetworkingKotlinKTypeProjection, CommonNetworkingKotlinx_coroutines_coreAtomicDesc, CommonNetworkingKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp, CommonNetworkingKotlinKVariance, CommonNetworkingKotlinKTypeProjectionCompanion, CommonNetworkingKotlinx_coroutines_coreAtomicOp<__contravariant T>, CommonNetworkingKotlinx_coroutines_coreOpDescriptor, CommonNetworkingKotlinx_coroutines_coreLockFreeLinkedListNode, CommonNetworkingKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc, CommonNetworkingKotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc<T>, CommonNetworkingKotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc<T>;
 
-@protocol CommonNetworkingKotlinx_serialization_coreKSerializer, CommonNetworkingKotlinx_coroutines_coreFlow, CommonNetworkingRuntimeSqlDriver, CommonNetworkingKtor_client_coreHttpClientEngineFactory, CommonNetworkingSoramitsuHttpClientProvider, CommonNetworkingSoraHistoryDatabaseQueries, CommonNetworkingRuntimeTransactionWithoutReturn, CommonNetworkingRuntimeTransactionWithReturn, CommonNetworkingRuntimeTransacter, CommonNetworkingSoraHistoryDatabase, CommonNetworkingRuntimeSqlDriverSchema, CommonNetworkingKtor_httpHeaders, CommonNetworkingKotlinIterator, CommonNetworkingKotlinx_serialization_coreEncoder, CommonNetworkingKotlinx_serialization_coreSerialDescriptor, CommonNetworkingKotlinx_serialization_coreSerializationStrategy, CommonNetworkingKotlinx_serialization_coreDecoder, CommonNetworkingKotlinx_serialization_coreDeserializationStrategy, CommonNetworkingKotlinx_coroutines_coreFlowCollector, CommonNetworkingRuntimeSqlPreparedStatement, CommonNetworkingRuntimeSqlCursor, CommonNetworkingRuntimeCloseable, CommonNetworkingKtor_client_coreHttpClientEngine, CommonNetworkingKotlinCoroutineContext, CommonNetworkingKotlinx_coroutines_coreCoroutineScope, CommonNetworkingKtor_ioCloseable, CommonNetworkingKtor_client_coreHttpClientEngineCapability, CommonNetworkingKtor_utilsAttributes, CommonNetworkingRuntimeTransactionCallbacks, CommonNetworkingRuntimeQueryListener, CommonNetworkingKotlinMapEntry, CommonNetworkingKtor_utilsStringValues, CommonNetworkingKotlinx_serialization_coreCompositeEncoder, CommonNetworkingKotlinAnnotation, CommonNetworkingKotlinx_serialization_coreCompositeDecoder, CommonNetworkingKotlinCoroutineContextElement, CommonNetworkingKotlinCoroutineContextKey, CommonNetworkingKtor_client_coreHttpClientPlugin, CommonNetworkingKotlinx_coroutines_coreDisposableHandle, CommonNetworkingKotlinSuspendFunction2, CommonNetworkingKotlinx_serialization_coreSerializersModuleCollector, CommonNetworkingKotlinKClass, CommonNetworkingKotlinx_coroutines_coreJob, CommonNetworkingKotlinContinuation, CommonNetworkingKotlinContinuationInterceptor, CommonNetworkingKotlinx_coroutines_coreRunnable, CommonNetworkingKotlinFunction, CommonNetworkingKtor_httpHttpMessage, CommonNetworkingKtor_ioByteReadChannel, CommonNetworkingKtor_httpHttpMessageBuilder, CommonNetworkingKtor_client_coreHttpRequest, CommonNetworkingKotlinKDeclarationContainer, CommonNetworkingKotlinKAnnotatedElement, CommonNetworkingKotlinKClassifier, CommonNetworkingKtor_httpParameters, CommonNetworkingKotlinx_coroutines_coreChildHandle, CommonNetworkingKotlinx_coroutines_coreChildJob, CommonNetworkingKotlinSequence, CommonNetworkingKotlinx_coroutines_coreSelectClause0, CommonNetworkingKotlinComparable, CommonNetworkingKtor_ioReadSession, CommonNetworkingKotlinSuspendFunction1, CommonNetworkingKotlinAppendable, CommonNetworkingKtor_utilsStringValuesBuilder, CommonNetworkingKtor_httpParametersBuilder, CommonNetworkingKotlinKType, CommonNetworkingKotlinx_coroutines_coreParentJob, CommonNetworkingKotlinx_coroutines_coreSelectInstance, CommonNetworkingKotlinSuspendFunction0, CommonNetworkingKtor_ioObjectPool;
+@protocol CommonNetworkingKotlinx_serialization_coreKSerializer, CommonNetworkingKotlinx_serialization_coreDeserializationStrategy, CommonNetworkingKotlinx_coroutines_coreFlow, CommonNetworkingRuntimeSqlDriver, CommonNetworkingKtor_client_coreHttpClientEngineFactory, CommonNetworkingSoramitsuHttpClientProvider, CommonNetworkingSoraHistoryDatabaseQueries, CommonNetworkingRuntimeTransactionWithoutReturn, CommonNetworkingRuntimeTransactionWithReturn, CommonNetworkingRuntimeTransacter, CommonNetworkingSoraHistoryDatabase, CommonNetworkingRuntimeSqlDriverSchema, CommonNetworkingKtor_httpHeaders, CommonNetworkingKotlinIterator, CommonNetworkingKotlinx_serialization_coreEncoder, CommonNetworkingKotlinx_serialization_coreSerialDescriptor, CommonNetworkingKotlinx_serialization_coreSerializationStrategy, CommonNetworkingKotlinx_serialization_coreDecoder, CommonNetworkingKotlinx_coroutines_coreFlowCollector, CommonNetworkingRuntimeSqlPreparedStatement, CommonNetworkingRuntimeSqlCursor, CommonNetworkingRuntimeCloseable, CommonNetworkingKtor_client_coreHttpClientEngine, CommonNetworkingKotlinCoroutineContext, CommonNetworkingKotlinx_coroutines_coreCoroutineScope, CommonNetworkingKtor_ioCloseable, CommonNetworkingKtor_client_coreHttpClientEngineCapability, CommonNetworkingKtor_utilsAttributes, CommonNetworkingKotlinx_serialization_coreSerialFormat, CommonNetworkingKotlinx_serialization_coreStringFormat, CommonNetworkingRuntimeTransactionCallbacks, CommonNetworkingRuntimeQueryListener, CommonNetworkingKotlinMapEntry, CommonNetworkingKtor_utilsStringValues, CommonNetworkingKotlinx_serialization_coreCompositeEncoder, CommonNetworkingKotlinAnnotation, CommonNetworkingKotlinx_serialization_coreCompositeDecoder, CommonNetworkingKotlinCoroutineContextElement, CommonNetworkingKotlinCoroutineContextKey, CommonNetworkingKtor_client_coreHttpClientPlugin, CommonNetworkingKotlinx_coroutines_coreDisposableHandle, CommonNetworkingKotlinSuspendFunction2, CommonNetworkingKotlinx_serialization_coreSerializersModuleCollector, CommonNetworkingKotlinKClass, CommonNetworkingKotlinx_coroutines_coreJob, CommonNetworkingKotlinContinuation, CommonNetworkingKotlinContinuationInterceptor, CommonNetworkingKotlinx_coroutines_coreRunnable, CommonNetworkingKotlinFunction, CommonNetworkingKtor_httpHttpMessage, CommonNetworkingKtor_ioByteReadChannel, CommonNetworkingKtor_httpHttpMessageBuilder, CommonNetworkingKtor_client_coreHttpRequest, CommonNetworkingKotlinKDeclarationContainer, CommonNetworkingKotlinKAnnotatedElement, CommonNetworkingKotlinKClassifier, CommonNetworkingKtor_httpParameters, CommonNetworkingKotlinx_coroutines_coreChildHandle, CommonNetworkingKotlinx_coroutines_coreChildJob, CommonNetworkingKotlinSequence, CommonNetworkingKotlinx_coroutines_coreSelectClause0, CommonNetworkingKotlinComparable, CommonNetworkingKtor_ioReadSession, CommonNetworkingKotlinSuspendFunction1, CommonNetworkingKotlinAppendable, CommonNetworkingKtor_utilsStringValuesBuilder, CommonNetworkingKtor_httpParametersBuilder, CommonNetworkingKotlinKType, CommonNetworkingKotlinx_coroutines_coreParentJob, CommonNetworkingKotlinx_coroutines_coreSelectInstance, CommonNetworkingKotlinSuspendFunction0, CommonNetworkingKtor_ioObjectPool;
 
 NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
@@ -273,142 +273,83 @@ __attribute__((swift_name("VersionNotFoundException")))
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Error")))
-@interface CommonNetworkingError : CommonNetworkingBase
-- (instancetype)initWithModuleErrorId:(CommonNetworkingInt * _Nullable)moduleErrorId moduleErrorIndex:(CommonNetworkingInt * _Nullable)moduleErrorIndex nonModuleErrorMessage:(NSString * _Nullable)nonModuleErrorMessage __attribute__((swift_name("init(moduleErrorId:moduleErrorIndex:nonModuleErrorMessage:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) CommonNetworkingErrorCompanion *companion __attribute__((swift_name("companion")));
-- (CommonNetworkingInt * _Nullable)component1 __attribute__((swift_name("component1()")));
-- (CommonNetworkingInt * _Nullable)component2 __attribute__((swift_name("component2()")));
-- (NSString * _Nullable)component3 __attribute__((swift_name("component3()")));
-- (CommonNetworkingError *)doCopyModuleErrorId:(CommonNetworkingInt * _Nullable)moduleErrorId moduleErrorIndex:(CommonNetworkingInt * _Nullable)moduleErrorIndex nonModuleErrorMessage:(NSString * _Nullable)nonModuleErrorMessage __attribute__((swift_name("doCopy(moduleErrorId:moduleErrorIndex:nonModuleErrorMessage:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) CommonNetworkingInt * _Nullable moduleErrorId __attribute__((swift_name("moduleErrorId")));
-@property (readonly) CommonNetworkingInt * _Nullable moduleErrorIndex __attribute__((swift_name("moduleErrorIndex")));
-@property (readonly) NSString * _Nullable nonModuleErrorMessage __attribute__((swift_name("nonModuleErrorMessage")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Error.Companion")))
-@interface CommonNetworkingErrorCompanion : CommonNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) CommonNetworkingErrorCompanion *shared __attribute__((swift_name("shared")));
-- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ExecutionResult")))
-@interface CommonNetworkingExecutionResult : CommonNetworkingBase
-- (instancetype)initWithSuccess:(BOOL)success error:(CommonNetworkingError * _Nullable)error __attribute__((swift_name("init(success:error:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) CommonNetworkingExecutionResultCompanion *companion __attribute__((swift_name("companion")));
-- (BOOL)component1 __attribute__((swift_name("component1()")));
-- (CommonNetworkingError * _Nullable)component2 __attribute__((swift_name("component2()")));
-- (CommonNetworkingExecutionResult *)doCopySuccess:(BOOL)success error:(CommonNetworkingError * _Nullable)error __attribute__((swift_name("doCopy(success:error:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) CommonNetworkingError * _Nullable error __attribute__((swift_name("error")));
-@property (readonly) BOOL success __attribute__((swift_name("success")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ExecutionResult.Companion")))
-@interface CommonNetworkingExecutionResultCompanion : CommonNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) CommonNetworkingExecutionResultCompanion *shared __attribute__((swift_name("shared")));
-- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("HistoryResponseDataElements")))
-@interface CommonNetworkingHistoryResponseDataElements : CommonNetworkingBase
-- (instancetype)initWithNodes:(NSArray<CommonNetworkingHistoryResponseItem *> *)nodes pageInfo:(CommonNetworkingHistoryResponsePageInfo *)pageInfo __attribute__((swift_name("init(nodes:pageInfo:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) CommonNetworkingHistoryResponseDataElementsCompanion *companion __attribute__((swift_name("companion")));
-- (NSArray<CommonNetworkingHistoryResponseItem *> *)component1 __attribute__((swift_name("component1()")));
-- (CommonNetworkingHistoryResponsePageInfo *)component2 __attribute__((swift_name("component2()")));
-- (CommonNetworkingHistoryResponseDataElements *)doCopyNodes:(NSArray<CommonNetworkingHistoryResponseItem *> *)nodes pageInfo:(CommonNetworkingHistoryResponsePageInfo *)pageInfo __attribute__((swift_name("doCopy(nodes:pageInfo:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<CommonNetworkingHistoryResponseItem *> *nodes __attribute__((swift_name("nodes")));
-@property (readonly) CommonNetworkingHistoryResponsePageInfo *pageInfo __attribute__((swift_name("pageInfo")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("HistoryResponseDataElements.Companion")))
-@interface CommonNetworkingHistoryResponseDataElementsCompanion : CommonNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) CommonNetworkingHistoryResponseDataElementsCompanion *shared __attribute__((swift_name("shared")));
-- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("HistoryResponseItem")))
-@interface CommonNetworkingHistoryResponseItem : CommonNetworkingBase
-- (instancetype)initWithId:(NSString *)id blockHash:(NSString *)blockHash module:(NSString *)module method:(NSString *)method timestamp:(NSString *)timestamp networkFee:(NSString *)networkFee execution:(CommonNetworkingExecutionResult *)execution data:(CommonNetworkingKotlinx_serialization_jsonJsonElement *)data __attribute__((swift_name("init(id:blockHash:module:method:timestamp:networkFee:execution:data:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) CommonNetworkingHistoryResponseItemCompanion *companion __attribute__((swift_name("companion")));
+__attribute__((swift_name("ReferrerReward")))
+@interface CommonNetworkingReferrerReward : CommonNetworkingBase
+- (instancetype)initWithReferral:(NSString *)referral amount:(NSString *)amount __attribute__((swift_name("init(referral:amount:)"))) __attribute__((objc_designated_initializer));
 - (NSString *)component1 __attribute__((swift_name("component1()")));
 - (NSString *)component2 __attribute__((swift_name("component2()")));
-- (NSString *)component3 __attribute__((swift_name("component3()")));
-- (NSString *)component4 __attribute__((swift_name("component4()")));
-- (NSString *)component5 __attribute__((swift_name("component5()")));
-- (NSString *)component6 __attribute__((swift_name("component6()")));
-- (CommonNetworkingExecutionResult *)component7 __attribute__((swift_name("component7()")));
-- (CommonNetworkingKotlinx_serialization_jsonJsonElement *)component8 __attribute__((swift_name("component8()")));
-- (CommonNetworkingHistoryResponseItem *)doCopyId:(NSString *)id blockHash:(NSString *)blockHash module:(NSString *)module method:(NSString *)method timestamp:(NSString *)timestamp networkFee:(NSString *)networkFee execution:(CommonNetworkingExecutionResult *)execution data:(CommonNetworkingKotlinx_serialization_jsonJsonElement *)data __attribute__((swift_name("doCopy(id:blockHash:module:method:timestamp:networkFee:execution:data:)")));
+- (CommonNetworkingReferrerReward *)doCopyReferral:(NSString *)referral amount:(NSString *)amount __attribute__((swift_name("doCopy(referral:amount:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString *blockHash __attribute__((swift_name("blockHash")));
-@property (readonly) CommonNetworkingKotlinx_serialization_jsonJsonElement *data __attribute__((swift_name("data")));
-@property (readonly) CommonNetworkingExecutionResult *execution __attribute__((swift_name("execution")));
-@property (readonly) NSString *id __attribute__((swift_name("id")));
-@property (readonly) NSString *method __attribute__((swift_name("method")));
-@property (readonly) NSString *module __attribute__((swift_name("module")));
-@property (readonly) NSString *networkFee __attribute__((swift_name("networkFee")));
-@property (readonly) NSString *timestamp __attribute__((swift_name("timestamp")));
+@property (readonly) NSString *amount __attribute__((swift_name("amount")));
+@property (readonly) NSString *referral __attribute__((swift_name("referral")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("HistoryResponseItem.Companion")))
-@interface CommonNetworkingHistoryResponseItemCompanion : CommonNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) CommonNetworkingHistoryResponseItemCompanion *shared __attribute__((swift_name("shared")));
-- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("HistoryResponsePageInfo")))
-@interface CommonNetworkingHistoryResponsePageInfo : CommonNetworkingBase
-- (instancetype)initWithEndCursor:(NSString * _Nullable)endCursor hasNextPage:(BOOL)hasNextPage __attribute__((swift_name("init(endCursor:hasNextPage:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) CommonNetworkingHistoryResponsePageInfoCompanion *companion __attribute__((swift_name("companion")));
-- (NSString * _Nullable)component1 __attribute__((swift_name("component1()")));
-- (BOOL)component2 __attribute__((swift_name("component2()")));
-- (CommonNetworkingHistoryResponsePageInfo *)doCopyEndCursor:(NSString * _Nullable)endCursor hasNextPage:(BOOL)hasNextPage __attribute__((swift_name("doCopy(endCursor:hasNextPage:)")));
+__attribute__((swift_name("ReferrerRewardsInfo")))
+@interface CommonNetworkingReferrerRewardsInfo : CommonNetworkingBase
+- (instancetype)initWithRewards:(NSArray<CommonNetworkingReferrerReward *> *)rewards __attribute__((swift_name("init(rewards:)"))) __attribute__((objc_designated_initializer));
+- (NSArray<CommonNetworkingReferrerReward *> *)component1 __attribute__((swift_name("component1()")));
+- (CommonNetworkingReferrerRewardsInfo *)doCopyRewards:(NSArray<CommonNetworkingReferrerReward *> *)rewards __attribute__((swift_name("doCopy(rewards:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString * _Nullable endCursor __attribute__((swift_name("endCursor")));
-@property (readonly) BOOL hasNextPage __attribute__((swift_name("hasNextPage")));
+@property (readonly) NSArray<CommonNetworkingReferrerReward *> *rewards __attribute__((swift_name("rewards")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("HistoryResponsePageInfo.Companion")))
-@interface CommonNetworkingHistoryResponsePageInfoCompanion : CommonNetworkingBase
+__attribute__((swift_name("SbApyInfo")))
+@interface CommonNetworkingSbApyInfo : CommonNetworkingBase
+- (instancetype)initWithTokenId:(NSString *)tokenId priceUsd:(CommonNetworkingDouble * _Nullable)priceUsd sbApy:(CommonNetworkingDouble * _Nullable)sbApy __attribute__((swift_name("init(tokenId:priceUsd:sbApy:)"))) __attribute__((objc_designated_initializer));
+- (NSString *)component1 __attribute__((swift_name("component1()")));
+- (CommonNetworkingDouble * _Nullable)component2 __attribute__((swift_name("component2()")));
+- (CommonNetworkingDouble * _Nullable)component3 __attribute__((swift_name("component3()")));
+- (CommonNetworkingSbApyInfo *)doCopyTokenId:(NSString *)tokenId priceUsd:(CommonNetworkingDouble * _Nullable)priceUsd sbApy:(CommonNetworkingDouble * _Nullable)sbApy __attribute__((swift_name("doCopy(tokenId:priceUsd:sbApy:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) CommonNetworkingDouble * _Nullable priceUsd __attribute__((swift_name("priceUsd")));
+@property (readonly) CommonNetworkingDouble * _Nullable sbApy __attribute__((swift_name("sbApy")));
+@property (readonly) NSString *tokenId __attribute__((swift_name("tokenId")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SubQueryClient")))
+@interface CommonNetworkingSubQueryClient<T, R> : CommonNetworkingBase
+- (void)clearAllData __attribute__((swift_name("clearAllData()")));
+- (void)clearDataAddress:(NSString *)address __attribute__((swift_name("clearData(address:)")));
+
+/**
+ @note This method converts instances of SoramitsuNetworkException, CancellationException to errors.
+ Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getReferrerRewardsAddress:(NSString *)address url:(NSString *)url completionHandler:(void (^)(CommonNetworkingReferrerRewardsInfo * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getReferrerRewards(address:url:completionHandler:)")));
+
+/**
+ @note This method converts instances of SoramitsuNetworkException, CancellationException to errors.
+ Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getSpApyUrl:(NSString *)url completionHandler:(void (^)(NSArray<CommonNetworkingSbApyInfo *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getSpApy(url:completionHandler:)")));
+- (CommonNetworkingSubQueryHistoryInfo *)getTransactionCachedAddress:(NSString *)address txHash:(NSString *)txHash __attribute__((swift_name("getTransactionCached(address:txHash:)")));
+- (CommonNetworkingSubQueryHistoryInfo *)getTransactionHistoryCachedAddress:(NSString *)address __attribute__((swift_name("getTransactionHistoryCached(address:)")));
+
+/**
+ @note This method converts instances of SoramitsuNetworkException, CancellationException, IllegalArgumentException to errors.
+ Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getTransactionHistoryPagedAddress:(NSString *)address page:(int64_t)page url:(NSString * _Nullable)url filter:(CommonNetworkingBoolean *(^ _Nullable)(R _Nullable))filter completionHandler:(void (^)(CommonNetworkingSubQueryHistoryResult<R> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getTransactionHistoryPaged(address:page:url:filter:completionHandler:)")));
+- (NSArray<NSString *> *)getTransactionPeersQuery:(NSString *)query __attribute__((swift_name("getTransactionPeers(query:)")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SubQueryMapper")))
+@interface CommonNetworkingSubQueryMapper : CommonNetworkingBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) CommonNetworkingHistoryResponsePageInfoCompanion *shared __attribute__((swift_name("shared")));
-- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
++ (instancetype)subQueryMapper __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) CommonNetworkingSubQueryMapper *shared __attribute__((swift_name("shared")));
+- (NSArray<CommonNetworkingSbApyInfo *> *)mapSubQuerySbApyResponse:(CommonNetworkingSubQuerySbApyResponse *)subQuerySbApyResponse __attribute__((swift_name("map(subQuerySbApyResponse:)")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -554,30 +495,18 @@ __attribute__((swift_name("PoolsInfoResponsePools.Companion")))
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ReferrerRewards")))
-@interface CommonNetworkingReferrerRewards : CommonNetworkingBase
-- (instancetype)initWithReferral:(NSString *)referral amount:(NSString *)amount __attribute__((swift_name("init(referral:amount:)"))) __attribute__((objc_designated_initializer));
-- (NSString *)component1 __attribute__((swift_name("component1()")));
-- (NSString *)component2 __attribute__((swift_name("component2()")));
-- (CommonNetworkingReferrerRewards *)doCopyReferral:(NSString *)referral amount:(NSString *)amount __attribute__((swift_name("doCopy(referral:amount:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString *amount __attribute__((swift_name("amount")));
-@property (readonly) NSString *referral __attribute__((swift_name("referral")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ReferrerRewardsData")))
 @interface CommonNetworkingReferrerRewardsData : CommonNetworkingBase
-- (instancetype)initWithGroupedAggregates:(NSArray<CommonNetworkingReferrerRewardsItem *> *)groupedAggregates __attribute__((swift_name("init(groupedAggregates:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithPageInfo:(CommonNetworkingReferrerRewardsPageInfo *)pageInfo nodes:(NSArray<CommonNetworkingReferrerRewardsItem *> *)nodes __attribute__((swift_name("init(pageInfo:nodes:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) CommonNetworkingReferrerRewardsDataCompanion *companion __attribute__((swift_name("companion")));
-- (NSArray<CommonNetworkingReferrerRewardsItem *> *)component1 __attribute__((swift_name("component1()")));
-- (CommonNetworkingReferrerRewardsData *)doCopyGroupedAggregates:(NSArray<CommonNetworkingReferrerRewardsItem *> *)groupedAggregates __attribute__((swift_name("doCopy(groupedAggregates:)")));
+- (CommonNetworkingReferrerRewardsPageInfo *)component1 __attribute__((swift_name("component1()")));
+- (NSArray<CommonNetworkingReferrerRewardsItem *> *)component2 __attribute__((swift_name("component2()")));
+- (CommonNetworkingReferrerRewardsData *)doCopyPageInfo:(CommonNetworkingReferrerRewardsPageInfo *)pageInfo nodes:(NSArray<CommonNetworkingReferrerRewardsItem *> *)nodes __attribute__((swift_name("doCopy(pageInfo:nodes:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<CommonNetworkingReferrerRewardsItem *> *groupedAggregates __attribute__((swift_name("groupedAggregates")));
+@property (readonly) NSArray<CommonNetworkingReferrerRewardsItem *> *nodes __attribute__((swift_name("nodes")));
+@property (readonly) CommonNetworkingReferrerRewardsPageInfo *pageInfo __attribute__((swift_name("pageInfo")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -591,30 +520,18 @@ __attribute__((swift_name("ReferrerRewardsData.Companion")))
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ReferrerRewardsInfo")))
-@interface CommonNetworkingReferrerRewardsInfo : CommonNetworkingBase
-- (instancetype)initWithRewards:(NSArray<CommonNetworkingReferrerRewards *> *)rewards __attribute__((swift_name("init(rewards:)"))) __attribute__((objc_designated_initializer));
-- (NSArray<CommonNetworkingReferrerRewards *> *)component1 __attribute__((swift_name("component1()")));
-- (CommonNetworkingReferrerRewardsInfo *)doCopyRewards:(NSArray<CommonNetworkingReferrerRewards *> *)rewards __attribute__((swift_name("doCopy(rewards:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<CommonNetworkingReferrerRewards *> *rewards __attribute__((swift_name("rewards")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ReferrerRewardsItem")))
 @interface CommonNetworkingReferrerRewardsItem : CommonNetworkingBase
-- (instancetype)initWithKeys:(NSArray<NSString *> *)keys sum:(CommonNetworkingReferrerRewardsItemAmount *)sum __attribute__((swift_name("init(keys:sum:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithReferral:(NSString *)referral amount:(NSString *)amount __attribute__((swift_name("init(referral:amount:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) CommonNetworkingReferrerRewardsItemCompanion *companion __attribute__((swift_name("companion")));
-- (NSArray<NSString *> *)component1 __attribute__((swift_name("component1()")));
-- (CommonNetworkingReferrerRewardsItemAmount *)component2 __attribute__((swift_name("component2()")));
-- (CommonNetworkingReferrerRewardsItem *)doCopyKeys:(NSArray<NSString *> *)keys sum:(CommonNetworkingReferrerRewardsItemAmount *)sum __attribute__((swift_name("doCopy(keys:sum:)")));
+- (NSString *)component1 __attribute__((swift_name("component1()")));
+- (NSString *)component2 __attribute__((swift_name("component2()")));
+- (CommonNetworkingReferrerRewardsItem *)doCopyReferral:(NSString *)referral amount:(NSString *)amount __attribute__((swift_name("doCopy(referral:amount:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<NSString *> *keys __attribute__((swift_name("keys")));
-@property (readonly) CommonNetworkingReferrerRewardsItemAmount *sum __attribute__((swift_name("sum")));
+@property (readonly) NSString *amount __attribute__((swift_name("amount")));
+@property (readonly) NSString *referral __attribute__((swift_name("referral")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -628,25 +545,27 @@ __attribute__((swift_name("ReferrerRewardsItem.Companion")))
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ReferrerRewardsItemAmount")))
-@interface CommonNetworkingReferrerRewardsItemAmount : CommonNetworkingBase
-- (instancetype)initWithAmount:(NSString *)amount __attribute__((swift_name("init(amount:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) CommonNetworkingReferrerRewardsItemAmountCompanion *companion __attribute__((swift_name("companion")));
-- (NSString *)component1 __attribute__((swift_name("component1()")));
-- (CommonNetworkingReferrerRewardsItemAmount *)doCopyAmount:(NSString *)amount __attribute__((swift_name("doCopy(amount:)")));
+__attribute__((swift_name("ReferrerRewardsPageInfo")))
+@interface CommonNetworkingReferrerRewardsPageInfo : CommonNetworkingBase
+- (instancetype)initWithHasNextPage:(BOOL)hasNextPage endCursor:(NSString * _Nullable)endCursor __attribute__((swift_name("init(hasNextPage:endCursor:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) CommonNetworkingReferrerRewardsPageInfoCompanion *companion __attribute__((swift_name("companion")));
+- (BOOL)component1 __attribute__((swift_name("component1()")));
+- (NSString * _Nullable)component2 __attribute__((swift_name("component2()")));
+- (CommonNetworkingReferrerRewardsPageInfo *)doCopyHasNextPage:(BOOL)hasNextPage endCursor:(NSString * _Nullable)endCursor __attribute__((swift_name("doCopy(hasNextPage:endCursor:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString *amount __attribute__((swift_name("amount")));
+@property (readonly) NSString * _Nullable endCursor __attribute__((swift_name("endCursor")));
+@property (readonly) BOOL hasNextPage __attribute__((swift_name("hasNextPage")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ReferrerRewardsItemAmount.Companion")))
-@interface CommonNetworkingReferrerRewardsItemAmountCompanion : CommonNetworkingBase
+__attribute__((swift_name("ReferrerRewardsPageInfo.Companion")))
+@interface CommonNetworkingReferrerRewardsPageInfoCompanion : CommonNetworkingBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) CommonNetworkingReferrerRewardsItemAmountCompanion *shared __attribute__((swift_name("shared")));
+@property (class, readonly, getter=shared) CommonNetworkingReferrerRewardsPageInfoCompanion *shared __attribute__((swift_name("shared")));
 - (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end;
 
@@ -694,106 +613,6 @@ __attribute__((swift_name("ReferrerRewardsResponseData.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) CommonNetworkingReferrerRewardsResponseDataCompanion *shared __attribute__((swift_name("shared")));
 - (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SbApyInfo")))
-@interface CommonNetworkingSbApyInfo : CommonNetworkingBase
-- (instancetype)initWithTokenId:(NSString *)tokenId priceUsd:(CommonNetworkingDouble * _Nullable)priceUsd sbApy:(CommonNetworkingDouble * _Nullable)sbApy __attribute__((swift_name("init(tokenId:priceUsd:sbApy:)"))) __attribute__((objc_designated_initializer));
-- (NSString *)component1 __attribute__((swift_name("component1()")));
-- (CommonNetworkingDouble * _Nullable)component2 __attribute__((swift_name("component2()")));
-- (CommonNetworkingDouble * _Nullable)component3 __attribute__((swift_name("component3()")));
-- (CommonNetworkingSbApyInfo *)doCopyTokenId:(NSString *)tokenId priceUsd:(CommonNetworkingDouble * _Nullable)priceUsd sbApy:(CommonNetworkingDouble * _Nullable)sbApy __attribute__((swift_name("doCopy(tokenId:priceUsd:sbApy:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) CommonNetworkingDouble * _Nullable priceUsd __attribute__((swift_name("priceUsd")));
-@property (readonly) CommonNetworkingDouble * _Nullable sbApy __attribute__((swift_name("sbApy")));
-@property (readonly) NSString *tokenId __attribute__((swift_name("tokenId")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraSubqueryResponse")))
-@interface CommonNetworkingSoraSubqueryResponse : CommonNetworkingBase
-- (instancetype)initWithData:(CommonNetworkingSoraSubqueryResponseData *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) CommonNetworkingSoraSubqueryResponseCompanion *companion __attribute__((swift_name("companion")));
-- (CommonNetworkingSoraSubqueryResponseData *)component1 __attribute__((swift_name("component1()")));
-- (CommonNetworkingSoraSubqueryResponse *)doCopyData:(CommonNetworkingSoraSubqueryResponseData *)data __attribute__((swift_name("doCopy(data:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) CommonNetworkingSoraSubqueryResponseData *data __attribute__((swift_name("data")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraSubqueryResponse.Companion")))
-@interface CommonNetworkingSoraSubqueryResponseCompanion : CommonNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) CommonNetworkingSoraSubqueryResponseCompanion *shared __attribute__((swift_name("shared")));
-- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraSubqueryResponseData")))
-@interface CommonNetworkingSoraSubqueryResponseData : CommonNetworkingBase
-- (instancetype)initWithHistoryElements:(CommonNetworkingHistoryResponseDataElements *)historyElements __attribute__((swift_name("init(historyElements:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) CommonNetworkingSoraSubqueryResponseDataCompanion *companion __attribute__((swift_name("companion")));
-- (CommonNetworkingHistoryResponseDataElements *)component1 __attribute__((swift_name("component1()")));
-- (CommonNetworkingSoraSubqueryResponseData *)doCopyHistoryElements:(CommonNetworkingHistoryResponseDataElements *)historyElements __attribute__((swift_name("doCopy(historyElements:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) CommonNetworkingHistoryResponseDataElements *historyElements __attribute__((swift_name("historyElements")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraSubqueryResponseData.Companion")))
-@interface CommonNetworkingSoraSubqueryResponseDataCompanion : CommonNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) CommonNetworkingSoraSubqueryResponseDataCompanion *shared __attribute__((swift_name("shared")));
-- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SubQueryClient")))
-@interface CommonNetworkingSubQueryClient : CommonNetworkingBase
-- (void)clearAllData __attribute__((swift_name("clearAllData()")));
-- (void)clearDataAddress:(NSString *)address __attribute__((swift_name("clearData(address:)")));
-
-/**
- @note This method converts instances of SoramitsuNetworkException, CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)getReferrerRewardsAddress:(NSString *)address completionHandler:(void (^)(CommonNetworkingReferrerRewardsInfo * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getReferrerRewards(address:completionHandler:)")));
-
-/**
- @note This method converts instances of SoramitsuNetworkException, CancellationException to errors.
- Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)getSpApyWithCompletionHandler:(void (^)(NSArray<CommonNetworkingSbApyInfo *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getSpApy(completionHandler:)")));
-- (CommonNetworkingSoraHistoryInfo *)getTransactionCachedAddress:(NSString *)address txHash:(NSString *)txHash __attribute__((swift_name("getTransactionCached(address:txHash:)")));
-- (CommonNetworkingSoraHistoryInfo *)getTransactionHistoryCachedAddress:(NSString *)address __attribute__((swift_name("getTransactionHistoryCached(address:)")));
-
-/**
- @note This method converts instances of SoramitsuNetworkException, CancellationException, IllegalArgumentException to errors.
- Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)getTransactionHistoryPagedAddress:(NSString *)address page:(int64_t)page completionHandler:(void (^)(CommonNetworkingSoraHistoryInfo * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getTransactionHistoryPaged(address:page:completionHandler:)")));
-- (NSArray<NSString *> *)getTransactionPeersQuery:(NSString *)query __attribute__((swift_name("getTransactionPeers(query:)")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SubQueryMapper")))
-@interface CommonNetworkingSubQueryMapper : CommonNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)subQueryMapper __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) CommonNetworkingSubQueryMapper *shared __attribute__((swift_name("shared")));
-- (NSArray<CommonNetworkingSbApyInfo *> *)mapSubQuerySbApyResponse:(CommonNetworkingSubQuerySbApyResponse *)subQuerySbApyResponse __attribute__((swift_name("map(subQuerySbApyResponse:)")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -846,62 +665,30 @@ __attribute__((swift_name("SubQueryRequest.Companion")))
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SubQueryClientFactory")))
-@interface CommonNetworkingSubQueryClientFactory : CommonNetworkingBase
+@interface CommonNetworkingSubQueryClientFactory<T, R> : CommonNetworkingBase
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (CommonNetworkingSubQueryClient *)createSoramitsuNetworkClient:(CommonNetworkingSoramitsuNetworkClient *)soramitsuNetworkClient baseUrl:(NSString *)baseUrl pageSize:(int32_t)pageSize __attribute__((swift_name("create(soramitsuNetworkClient:baseUrl:pageSize:)")));
+- (CommonNetworkingSubQueryClient<T, R> *)createSoramitsuNetworkClient:(CommonNetworkingSoramitsuNetworkClient *)soramitsuNetworkClient baseUrl:(NSString *)baseUrl pageSize:(int32_t)pageSize deserializationStrategy:(id<CommonNetworkingKotlinx_serialization_coreDeserializationStrategy>)deserializationStrategy jsonToHistoryInfo:(CommonNetworkingSubQueryHistoryInfo *(^)(T _Nullable))jsonToHistoryInfo historyIntoToResult:(R _Nullable (^)(CommonNetworkingSubQueryHistoryItem *))historyIntoToResult historyRequest:(NSString *)historyRequest __attribute__((swift_name("create(soramitsuNetworkClient:baseUrl:pageSize:deserializationStrategy:jsonToHistoryInfo:historyIntoToResult:historyRequest:)")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Error_")))
-@interface CommonNetworkingError_ : CommonNetworkingBase
-- (instancetype)initWithModuleErrorId:(CommonNetworkingInt * _Nullable)moduleErrorId moduleErrorIndex:(CommonNetworkingInt * _Nullable)moduleErrorIndex nonModuleErrorMessage:(NSString * _Nullable)nonModuleErrorMessage __attribute__((swift_name("init(moduleErrorId:moduleErrorIndex:nonModuleErrorMessage:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) CommonNetworkingError_Companion *companion __attribute__((swift_name("companion")));
-- (CommonNetworkingInt * _Nullable)component1 __attribute__((swift_name("component1()")));
-- (CommonNetworkingInt * _Nullable)component2 __attribute__((swift_name("component2()")));
-- (NSString * _Nullable)component3 __attribute__((swift_name("component3()")));
-- (CommonNetworkingError_ *)doCopyModuleErrorId:(CommonNetworkingInt * _Nullable)moduleErrorId moduleErrorIndex:(CommonNetworkingInt * _Nullable)moduleErrorIndex nonModuleErrorMessage:(NSString * _Nullable)nonModuleErrorMessage __attribute__((swift_name("doCopy(moduleErrorId:moduleErrorIndex:nonModuleErrorMessage:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) CommonNetworkingInt * _Nullable moduleErrorId __attribute__((swift_name("moduleErrorId")));
-@property (readonly) CommonNetworkingInt * _Nullable moduleErrorIndex __attribute__((swift_name("moduleErrorIndex")));
-@property (readonly) NSString * _Nullable nonModuleErrorMessage __attribute__((swift_name("nonModuleErrorMessage")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Error_.Companion")))
-@interface CommonNetworkingError_Companion : CommonNetworkingBase
+__attribute__((swift_name("SubQueryClientForFearless")))
+@interface CommonNetworkingSubQueryClientForFearless : CommonNetworkingBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) CommonNetworkingError_Companion *shared __attribute__((swift_name("shared")));
-- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
++ (instancetype)subQueryClientForFearless __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) CommonNetworkingSubQueryClientForFearless *shared __attribute__((swift_name("shared")));
+- (CommonNetworkingSubQueryClient<CommonNetworkingFearlessSubQueryResponse *, CommonNetworkingSubQueryHistoryItem *> *)buildSoramitsuNetworkClient:(CommonNetworkingSoramitsuNetworkClient *)soramitsuNetworkClient baseUrl:(NSString *)baseUrl pageSize:(int32_t)pageSize __attribute__((swift_name("build(soramitsuNetworkClient:baseUrl:pageSize:)")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ExecutionResult_")))
-@interface CommonNetworkingExecutionResult_ : CommonNetworkingBase
-- (instancetype)initWithSuccess:(BOOL)success error:(CommonNetworkingError_ * _Nullable)error __attribute__((swift_name("init(success:error:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) CommonNetworkingExecutionResult_Companion *companion __attribute__((swift_name("companion")));
-- (BOOL)component1 __attribute__((swift_name("component1()")));
-- (CommonNetworkingError_ * _Nullable)component2 __attribute__((swift_name("component2()")));
-- (CommonNetworkingExecutionResult_ *)doCopySuccess:(BOOL)success error:(CommonNetworkingError_ * _Nullable)error __attribute__((swift_name("doCopy(success:error:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) CommonNetworkingError_ * _Nullable error __attribute__((swift_name("error")));
-@property (readonly) BOOL success __attribute__((swift_name("success")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ExecutionResult_.Companion")))
-@interface CommonNetworkingExecutionResult_Companion : CommonNetworkingBase
+__attribute__((swift_name("SubQueryClientForSora")))
+@interface CommonNetworkingSubQueryClientForSora : CommonNetworkingBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) CommonNetworkingExecutionResult_Companion *shared __attribute__((swift_name("shared")));
-- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
++ (instancetype)subQueryClientForSora __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) CommonNetworkingSubQueryClientForSora *shared __attribute__((swift_name("shared")));
+- (CommonNetworkingSubQueryClient<CommonNetworkingSoraSubqueryResponse *, CommonNetworkingSubQueryHistoryItem *> *)buildSoramitsuNetworkClient:(CommonNetworkingSoramitsuNetworkClient *)soramitsuNetworkClient baseUrl:(NSString *)baseUrl pageSize:(int32_t)pageSize __attribute__((swift_name("build(soramitsuNetworkClient:baseUrl:pageSize:)")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -911,116 +698,31 @@ __attribute__((swift_name("HistoryMapper")))
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)historyMapper __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) CommonNetworkingHistoryMapper *shared __attribute__((swift_name("shared")));
-- (CommonNetworkingSoraHistoryItemNested *)mapItemNestedExtrinsic:(CommonNetworkingExtrinsics *)extrinsic params:(NSArray<CommonNetworkingExtrinsicParam *> *)params __attribute__((swift_name("mapItemNested(extrinsic:params:)")));
-- (CommonNetworkingSoraHistoryItem *)mapItemsExtrinsic:(CommonNetworkingExtrinsics *)extrinsic params:(NSArray<CommonNetworkingSoraHistoryItemNested *> *)params __attribute__((swift_name("mapItems(extrinsic:params:)")));
-- (CommonNetworkingSoraHistoryItem *)mapParamsExtrinsic:(CommonNetworkingExtrinsics *)extrinsic params:(NSArray<CommonNetworkingExtrinsicParam *> *)params __attribute__((swift_name("mapParams(extrinsic:params:)")));
+- (CommonNetworkingSubQueryHistoryItemNested *)mapItemNestedExtrinsic:(CommonNetworkingExtrinsics *)extrinsic params:(NSArray<CommonNetworkingExtrinsicParam *> *)params __attribute__((swift_name("mapItemNested(extrinsic:params:)")));
+- (CommonNetworkingSubQueryHistoryItem *)mapItemsExtrinsic:(CommonNetworkingExtrinsics *)extrinsic params:(NSArray<CommonNetworkingSubQueryHistoryItemNested *> *)params __attribute__((swift_name("mapItems(extrinsic:params:)")));
+- (CommonNetworkingSubQueryHistoryItem *)mapParamsExtrinsic:(CommonNetworkingExtrinsics *)extrinsic params:(NSArray<CommonNetworkingExtrinsicParam *> *)params __attribute__((swift_name("mapParams(extrinsic:params:)")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("HistoryResponseDataElements_")))
-@interface CommonNetworkingHistoryResponseDataElements_ : CommonNetworkingBase
-- (instancetype)initWithNodes:(NSArray<CommonNetworkingHistoryResponseItem_ *> *)nodes pageInfo:(CommonNetworkingHistoryResponsePageInfo_ *)pageInfo __attribute__((swift_name("init(nodes:pageInfo:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) CommonNetworkingHistoryResponseDataElements_Companion *companion __attribute__((swift_name("companion")));
-- (NSArray<CommonNetworkingHistoryResponseItem_ *> *)component1 __attribute__((swift_name("component1()")));
-- (CommonNetworkingHistoryResponsePageInfo_ *)component2 __attribute__((swift_name("component2()")));
-- (CommonNetworkingHistoryResponseDataElements_ *)doCopyNodes:(NSArray<CommonNetworkingHistoryResponseItem_ *> *)nodes pageInfo:(CommonNetworkingHistoryResponsePageInfo_ *)pageInfo __attribute__((swift_name("doCopy(nodes:pageInfo:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<CommonNetworkingHistoryResponseItem_ *> *nodes __attribute__((swift_name("nodes")));
-@property (readonly) CommonNetworkingHistoryResponsePageInfo_ *pageInfo __attribute__((swift_name("pageInfo")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("HistoryResponseDataElements_.Companion")))
-@interface CommonNetworkingHistoryResponseDataElements_Companion : CommonNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) CommonNetworkingHistoryResponseDataElements_Companion *shared __attribute__((swift_name("shared")));
-- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("HistoryResponseItem_")))
-@interface CommonNetworkingHistoryResponseItem_ : CommonNetworkingBase
-- (instancetype)initWithId:(NSString *)id blockHash:(NSString *)blockHash module:(NSString *)module method:(NSString *)method timestamp:(NSString *)timestamp networkFee:(NSString *)networkFee execution:(CommonNetworkingExecutionResult_ *)execution data:(CommonNetworkingKotlinx_serialization_jsonJsonElement *)data __attribute__((swift_name("init(id:blockHash:module:method:timestamp:networkFee:execution:data:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) CommonNetworkingHistoryResponseItem_Companion *companion __attribute__((swift_name("companion")));
-- (NSString *)component1 __attribute__((swift_name("component1()")));
-- (NSString *)component2 __attribute__((swift_name("component2()")));
-- (NSString *)component3 __attribute__((swift_name("component3()")));
-- (NSString *)component4 __attribute__((swift_name("component4()")));
-- (NSString *)component5 __attribute__((swift_name("component5()")));
-- (NSString *)component6 __attribute__((swift_name("component6()")));
-- (CommonNetworkingExecutionResult_ *)component7 __attribute__((swift_name("component7()")));
-- (CommonNetworkingKotlinx_serialization_jsonJsonElement *)component8 __attribute__((swift_name("component8()")));
-- (CommonNetworkingHistoryResponseItem_ *)doCopyId:(NSString *)id blockHash:(NSString *)blockHash module:(NSString *)module method:(NSString *)method timestamp:(NSString *)timestamp networkFee:(NSString *)networkFee execution:(CommonNetworkingExecutionResult_ *)execution data:(CommonNetworkingKotlinx_serialization_jsonJsonElement *)data __attribute__((swift_name("doCopy(id:blockHash:module:method:timestamp:networkFee:execution:data:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString *blockHash __attribute__((swift_name("blockHash")));
-@property (readonly) CommonNetworkingKotlinx_serialization_jsonJsonElement *data __attribute__((swift_name("data")));
-@property (readonly) CommonNetworkingExecutionResult_ *execution __attribute__((swift_name("execution")));
-@property (readonly) NSString *id __attribute__((swift_name("id")));
-@property (readonly) NSString *method __attribute__((swift_name("method")));
-@property (readonly) NSString *module __attribute__((swift_name("module")));
-@property (readonly) NSString *networkFee __attribute__((swift_name("networkFee")));
-@property (readonly) NSString *timestamp __attribute__((swift_name("timestamp")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("HistoryResponseItem_.Companion")))
-@interface CommonNetworkingHistoryResponseItem_Companion : CommonNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) CommonNetworkingHistoryResponseItem_Companion *shared __attribute__((swift_name("shared")));
-- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("HistoryResponsePageInfo_")))
-@interface CommonNetworkingHistoryResponsePageInfo_ : CommonNetworkingBase
-- (instancetype)initWithEndCursor:(NSString * _Nullable)endCursor hasNextPage:(BOOL)hasNextPage __attribute__((swift_name("init(endCursor:hasNextPage:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) CommonNetworkingHistoryResponsePageInfo_Companion *companion __attribute__((swift_name("companion")));
+__attribute__((swift_name("SubQueryHistoryInfo")))
+@interface CommonNetworkingSubQueryHistoryInfo : CommonNetworkingBase
+- (instancetype)initWithEndCursor:(NSString * _Nullable)endCursor endReached:(BOOL)endReached items:(NSArray<CommonNetworkingSubQueryHistoryItem *> *)items __attribute__((swift_name("init(endCursor:endReached:items:)"))) __attribute__((objc_designated_initializer));
 - (NSString * _Nullable)component1 __attribute__((swift_name("component1()")));
 - (BOOL)component2 __attribute__((swift_name("component2()")));
-- (CommonNetworkingHistoryResponsePageInfo_ *)doCopyEndCursor:(NSString * _Nullable)endCursor hasNextPage:(BOOL)hasNextPage __attribute__((swift_name("doCopy(endCursor:hasNextPage:)")));
+- (NSArray<CommonNetworkingSubQueryHistoryItem *> *)component3 __attribute__((swift_name("component3()")));
+- (CommonNetworkingSubQueryHistoryInfo *)doCopyEndCursor:(NSString * _Nullable)endCursor endReached:(BOOL)endReached items:(NSArray<CommonNetworkingSubQueryHistoryItem *> *)items __attribute__((swift_name("doCopy(endCursor:endReached:items:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString * _Nullable endCursor __attribute__((swift_name("endCursor")));
-@property (readonly) BOOL hasNextPage __attribute__((swift_name("hasNextPage")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("HistoryResponsePageInfo_.Companion")))
-@interface CommonNetworkingHistoryResponsePageInfo_Companion : CommonNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) CommonNetworkingHistoryResponsePageInfo_Companion *shared __attribute__((swift_name("shared")));
-- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraHistoryInfo")))
-@interface CommonNetworkingSoraHistoryInfo : CommonNetworkingBase
-- (instancetype)initWithEndReached:(BOOL)endReached items:(NSArray<CommonNetworkingSoraHistoryItem *> *)items __attribute__((swift_name("init(endReached:items:)"))) __attribute__((objc_designated_initializer));
-- (BOOL)component1 __attribute__((swift_name("component1()")));
-- (NSArray<CommonNetworkingSoraHistoryItem *> *)component2 __attribute__((swift_name("component2()")));
-- (CommonNetworkingSoraHistoryInfo *)doCopyEndReached:(BOOL)endReached items:(NSArray<CommonNetworkingSoraHistoryItem *> *)items __attribute__((swift_name("doCopy(endReached:items:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) BOOL endReached __attribute__((swift_name("endReached")));
-@property (readonly) NSArray<CommonNetworkingSoraHistoryItem *> *items __attribute__((swift_name("items")));
+@property (readonly) NSArray<CommonNetworkingSubQueryHistoryItem *> *items __attribute__((swift_name("items")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraHistoryItem")))
-@interface CommonNetworkingSoraHistoryItem : CommonNetworkingBase
-- (instancetype)initWithId:(NSString *)id blockHash:(NSString *)blockHash module:(NSString *)module method:(NSString *)method timestamp:(NSString *)timestamp networkFee:(NSString *)networkFee success:(BOOL)success data:(NSArray<CommonNetworkingSoraHistoryItemParam *> * _Nullable)data nestedData:(NSArray<CommonNetworkingSoraHistoryItemNested *> * _Nullable)nestedData __attribute__((swift_name("init(id:blockHash:module:method:timestamp:networkFee:success:data:nestedData:)"))) __attribute__((objc_designated_initializer));
+__attribute__((swift_name("SubQueryHistoryItem")))
+@interface CommonNetworkingSubQueryHistoryItem : CommonNetworkingBase
+- (instancetype)initWithId:(NSString *)id blockHash:(NSString *)blockHash module:(NSString *)module method:(NSString *)method timestamp:(NSString *)timestamp networkFee:(NSString *)networkFee success:(BOOL)success data:(NSArray<CommonNetworkingSubQueryHistoryItemParam *> * _Nullable)data nestedData:(NSArray<CommonNetworkingSubQueryHistoryItemNested *> * _Nullable)nestedData __attribute__((swift_name("init(id:blockHash:module:method:timestamp:networkFee:success:data:nestedData:)"))) __attribute__((objc_designated_initializer));
 - (NSString *)component1 __attribute__((swift_name("component1()")));
 - (NSString *)component2 __attribute__((swift_name("component2()")));
 - (NSString *)component3 __attribute__((swift_name("component3()")));
@@ -1028,48 +730,48 @@ __attribute__((swift_name("SoraHistoryItem")))
 - (NSString *)component5 __attribute__((swift_name("component5()")));
 - (NSString *)component6 __attribute__((swift_name("component6()")));
 - (BOOL)component7 __attribute__((swift_name("component7()")));
-- (NSArray<CommonNetworkingSoraHistoryItemParam *> * _Nullable)component8 __attribute__((swift_name("component8()")));
-- (NSArray<CommonNetworkingSoraHistoryItemNested *> * _Nullable)component9 __attribute__((swift_name("component9()")));
-- (CommonNetworkingSoraHistoryItem *)doCopyId:(NSString *)id blockHash:(NSString *)blockHash module:(NSString *)module method:(NSString *)method timestamp:(NSString *)timestamp networkFee:(NSString *)networkFee success:(BOOL)success data:(NSArray<CommonNetworkingSoraHistoryItemParam *> * _Nullable)data nestedData:(NSArray<CommonNetworkingSoraHistoryItemNested *> * _Nullable)nestedData __attribute__((swift_name("doCopy(id:blockHash:module:method:timestamp:networkFee:success:data:nestedData:)")));
+- (NSArray<CommonNetworkingSubQueryHistoryItemParam *> * _Nullable)component8 __attribute__((swift_name("component8()")));
+- (NSArray<CommonNetworkingSubQueryHistoryItemNested *> * _Nullable)component9 __attribute__((swift_name("component9()")));
+- (CommonNetworkingSubQueryHistoryItem *)doCopyId:(NSString *)id blockHash:(NSString *)blockHash module:(NSString *)module method:(NSString *)method timestamp:(NSString *)timestamp networkFee:(NSString *)networkFee success:(BOOL)success data:(NSArray<CommonNetworkingSubQueryHistoryItemParam *> * _Nullable)data nestedData:(NSArray<CommonNetworkingSubQueryHistoryItemNested *> * _Nullable)nestedData __attribute__((swift_name("doCopy(id:blockHash:module:method:timestamp:networkFee:success:data:nestedData:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *blockHash __attribute__((swift_name("blockHash")));
-@property (readonly) NSArray<CommonNetworkingSoraHistoryItemParam *> * _Nullable data __attribute__((swift_name("data")));
+@property (readonly) NSArray<CommonNetworkingSubQueryHistoryItemParam *> * _Nullable data __attribute__((swift_name("data")));
 @property (readonly) NSString *id __attribute__((swift_name("id")));
 @property (readonly) NSString *method __attribute__((swift_name("method")));
 @property (readonly) NSString *module __attribute__((swift_name("module")));
-@property (readonly) NSArray<CommonNetworkingSoraHistoryItemNested *> * _Nullable nestedData __attribute__((swift_name("nestedData")));
+@property (readonly) NSArray<CommonNetworkingSubQueryHistoryItemNested *> * _Nullable nestedData __attribute__((swift_name("nestedData")));
 @property (readonly) NSString *networkFee __attribute__((swift_name("networkFee")));
 @property (readonly) BOOL success __attribute__((swift_name("success")));
 @property (readonly) NSString *timestamp __attribute__((swift_name("timestamp")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraHistoryItemNested")))
-@interface CommonNetworkingSoraHistoryItemNested : CommonNetworkingBase
-- (instancetype)initWithModule:(NSString *)module method:(NSString *)method hash:(NSString *)hash data:(NSArray<CommonNetworkingSoraHistoryItemParam *> *)data __attribute__((swift_name("init(module:method:hash:data:)"))) __attribute__((objc_designated_initializer));
+__attribute__((swift_name("SubQueryHistoryItemNested")))
+@interface CommonNetworkingSubQueryHistoryItemNested : CommonNetworkingBase
+- (instancetype)initWithModule:(NSString *)module method:(NSString *)method hash:(NSString *)hash data:(NSArray<CommonNetworkingSubQueryHistoryItemParam *> *)data __attribute__((swift_name("init(module:method:hash:data:)"))) __attribute__((objc_designated_initializer));
 - (NSString *)component1 __attribute__((swift_name("component1()")));
 - (NSString *)component2 __attribute__((swift_name("component2()")));
 - (NSString *)component3 __attribute__((swift_name("component3()")));
-- (NSArray<CommonNetworkingSoraHistoryItemParam *> *)component4 __attribute__((swift_name("component4()")));
-- (CommonNetworkingSoraHistoryItemNested *)doCopyModule:(NSString *)module method:(NSString *)method hash:(NSString *)hash data:(NSArray<CommonNetworkingSoraHistoryItemParam *> *)data __attribute__((swift_name("doCopy(module:method:hash:data:)")));
+- (NSArray<CommonNetworkingSubQueryHistoryItemParam *> *)component4 __attribute__((swift_name("component4()")));
+- (CommonNetworkingSubQueryHistoryItemNested *)doCopyModule:(NSString *)module method:(NSString *)method hash:(NSString *)hash data:(NSArray<CommonNetworkingSubQueryHistoryItemParam *> *)data __attribute__((swift_name("doCopy(module:method:hash:data:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<CommonNetworkingSoraHistoryItemParam *> *data __attribute__((swift_name("data")));
+@property (readonly) NSArray<CommonNetworkingSubQueryHistoryItemParam *> *data __attribute__((swift_name("data")));
 @property (readonly, getter=hash_) NSString *hash __attribute__((swift_name("hash")));
 @property (readonly) NSString *method __attribute__((swift_name("method")));
 @property (readonly) NSString *module __attribute__((swift_name("module")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraHistoryItemParam")))
-@interface CommonNetworkingSoraHistoryItemParam : CommonNetworkingBase
+__attribute__((swift_name("SubQueryHistoryItemParam")))
+@interface CommonNetworkingSubQueryHistoryItemParam : CommonNetworkingBase
 - (instancetype)initWithParamName:(NSString *)paramName paramValue:(NSString *)paramValue __attribute__((swift_name("init(paramName:paramValue:)"))) __attribute__((objc_designated_initializer));
 - (NSString *)component1 __attribute__((swift_name("component1()")));
 - (NSString *)component2 __attribute__((swift_name("component2()")));
-- (CommonNetworkingSoraHistoryItemParam *)doCopyParamName:(NSString *)paramName paramValue:(NSString *)paramValue __attribute__((swift_name("doCopy(paramName:paramValue:)")));
+- (CommonNetworkingSubQueryHistoryItemParam *)doCopyParamName:(NSString *)paramName paramValue:(NSString *)paramValue __attribute__((swift_name("doCopy(paramName:paramValue:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -1078,48 +780,421 @@ __attribute__((swift_name("SoraHistoryItemParam")))
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraSubqueryResponse_")))
-@interface CommonNetworkingSoraSubqueryResponse_ : CommonNetworkingBase
-- (instancetype)initWithData:(CommonNetworkingSoraSubqueryResponseData_ *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) CommonNetworkingSoraSubqueryResponse_Companion *companion __attribute__((swift_name("companion")));
-- (CommonNetworkingSoraSubqueryResponseData_ *)component1 __attribute__((swift_name("component1()")));
-- (CommonNetworkingSoraSubqueryResponse_ *)doCopyData:(CommonNetworkingSoraSubqueryResponseData_ *)data __attribute__((swift_name("doCopy(data:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) CommonNetworkingSoraSubqueryResponseData_ *data __attribute__((swift_name("data")));
+__attribute__((swift_name("SubQueryHistoryResult")))
+@interface CommonNetworkingSubQueryHistoryResult<R> : CommonNetworkingBase
+- (instancetype)initWithEndCursor:(NSString * _Nullable)endCursor endReached:(BOOL)endReached page:(int64_t)page items:(NSArray<id> *)items __attribute__((swift_name("init(endCursor:endReached:page:items:)"))) __attribute__((objc_designated_initializer));
+@property (readonly) NSString * _Nullable endCursor __attribute__((swift_name("endCursor")));
+@property (readonly) BOOL endReached __attribute__((swift_name("endReached")));
+@property (readonly) NSArray<id> *items __attribute__((swift_name("items")));
+@property (readonly) int64_t page __attribute__((swift_name("page")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraSubqueryResponse_.Companion")))
-@interface CommonNetworkingSoraSubqueryResponse_Companion : CommonNetworkingBase
+__attribute__((swift_name("FearlessExtrinsicItem")))
+@interface CommonNetworkingFearlessExtrinsicItem : CommonNetworkingBase
+- (instancetype)initWithHash:(NSString *)hash module:(NSString *)module call:(NSString *)call fee:(NSString *)fee success:(BOOL)success __attribute__((swift_name("init(hash:module:call:fee:success:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) CommonNetworkingFearlessExtrinsicItemCompanion *companion __attribute__((swift_name("companion")));
+- (NSString *)component1 __attribute__((swift_name("component1()")));
+- (NSString *)component2 __attribute__((swift_name("component2()")));
+- (NSString *)component3 __attribute__((swift_name("component3()")));
+- (NSString *)component4 __attribute__((swift_name("component4()")));
+- (BOOL)component5 __attribute__((swift_name("component5()")));
+- (CommonNetworkingFearlessExtrinsicItem *)doCopyHash:(NSString *)hash module:(NSString *)module call:(NSString *)call fee:(NSString *)fee success:(BOOL)success __attribute__((swift_name("doCopy(hash:module:call:fee:success:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString *call __attribute__((swift_name("call")));
+@property (readonly) NSString *fee __attribute__((swift_name("fee")));
+@property (readonly, getter=hash_) NSString *hash __attribute__((swift_name("hash")));
+@property (readonly) NSString *module __attribute__((swift_name("module")));
+@property (readonly) BOOL success __attribute__((swift_name("success")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("FearlessExtrinsicItem.Companion")))
+@interface CommonNetworkingFearlessExtrinsicItemCompanion : CommonNetworkingBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) CommonNetworkingSoraSubqueryResponse_Companion *shared __attribute__((swift_name("shared")));
+@property (class, readonly, getter=shared) CommonNetworkingFearlessExtrinsicItemCompanion *shared __attribute__((swift_name("shared")));
 - (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraSubqueryResponseData_")))
-@interface CommonNetworkingSoraSubqueryResponseData_ : CommonNetworkingBase
-- (instancetype)initWithHistoryElements:(CommonNetworkingHistoryResponseDataElements_ *)historyElements __attribute__((swift_name("init(historyElements:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) CommonNetworkingSoraSubqueryResponseData_Companion *companion __attribute__((swift_name("companion")));
-- (CommonNetworkingHistoryResponseDataElements_ *)component1 __attribute__((swift_name("component1()")));
-- (CommonNetworkingSoraSubqueryResponseData_ *)doCopyHistoryElements:(CommonNetworkingHistoryResponseDataElements_ *)historyElements __attribute__((swift_name("doCopy(historyElements:)")));
+__attribute__((swift_name("FearlessHistoryResponseDataElements")))
+@interface CommonNetworkingFearlessHistoryResponseDataElements : CommonNetworkingBase
+- (instancetype)initWithNodes:(NSArray<CommonNetworkingFearlessHistoryResponseItem *> *)nodes pageInfo:(CommonNetworkingFearlessHistoryResponsePageInfo *)pageInfo __attribute__((swift_name("init(nodes:pageInfo:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) CommonNetworkingFearlessHistoryResponseDataElementsCompanion *companion __attribute__((swift_name("companion")));
+- (NSArray<CommonNetworkingFearlessHistoryResponseItem *> *)component1 __attribute__((swift_name("component1()")));
+- (CommonNetworkingFearlessHistoryResponsePageInfo *)component2 __attribute__((swift_name("component2()")));
+- (CommonNetworkingFearlessHistoryResponseDataElements *)doCopyNodes:(NSArray<CommonNetworkingFearlessHistoryResponseItem *> *)nodes pageInfo:(CommonNetworkingFearlessHistoryResponsePageInfo *)pageInfo __attribute__((swift_name("doCopy(nodes:pageInfo:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) CommonNetworkingHistoryResponseDataElements_ *historyElements __attribute__((swift_name("historyElements")));
+@property (readonly) NSArray<CommonNetworkingFearlessHistoryResponseItem *> *nodes __attribute__((swift_name("nodes")));
+@property (readonly) CommonNetworkingFearlessHistoryResponsePageInfo *pageInfo __attribute__((swift_name("pageInfo")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraSubqueryResponseData_.Companion")))
-@interface CommonNetworkingSoraSubqueryResponseData_Companion : CommonNetworkingBase
+__attribute__((swift_name("FearlessHistoryResponseDataElements.Companion")))
+@interface CommonNetworkingFearlessHistoryResponseDataElementsCompanion : CommonNetworkingBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) CommonNetworkingSoraSubqueryResponseData_Companion *shared __attribute__((swift_name("shared")));
+@property (class, readonly, getter=shared) CommonNetworkingFearlessHistoryResponseDataElementsCompanion *shared __attribute__((swift_name("shared")));
+- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("FearlessHistoryResponseItem")))
+@interface CommonNetworkingFearlessHistoryResponseItem : CommonNetworkingBase
+- (instancetype)initWithId:(NSString *)id timestamp:(NSString *)timestamp address:(NSString *)address reward:(CommonNetworkingFearlessRewardItem * _Nullable)reward transfer:(CommonNetworkingFearlessTransferItem * _Nullable)transfer extrinsic:(CommonNetworkingFearlessExtrinsicItem * _Nullable)extrinsic __attribute__((swift_name("init(id:timestamp:address:reward:transfer:extrinsic:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) CommonNetworkingFearlessHistoryResponseItemCompanion *companion __attribute__((swift_name("companion")));
+- (NSString *)component1 __attribute__((swift_name("component1()")));
+- (NSString *)component2 __attribute__((swift_name("component2()")));
+- (NSString *)component3 __attribute__((swift_name("component3()")));
+- (CommonNetworkingFearlessRewardItem * _Nullable)component4 __attribute__((swift_name("component4()")));
+- (CommonNetworkingFearlessTransferItem * _Nullable)component5 __attribute__((swift_name("component5()")));
+- (CommonNetworkingFearlessExtrinsicItem * _Nullable)component6 __attribute__((swift_name("component6()")));
+- (CommonNetworkingFearlessHistoryResponseItem *)doCopyId:(NSString *)id timestamp:(NSString *)timestamp address:(NSString *)address reward:(CommonNetworkingFearlessRewardItem * _Nullable)reward transfer:(CommonNetworkingFearlessTransferItem * _Nullable)transfer extrinsic:(CommonNetworkingFearlessExtrinsicItem * _Nullable)extrinsic __attribute__((swift_name("doCopy(id:timestamp:address:reward:transfer:extrinsic:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString *address __attribute__((swift_name("address")));
+@property (readonly) CommonNetworkingFearlessExtrinsicItem * _Nullable extrinsic __attribute__((swift_name("extrinsic")));
+@property (readonly) NSString *id __attribute__((swift_name("id")));
+@property (readonly) CommonNetworkingFearlessRewardItem * _Nullable reward __attribute__((swift_name("reward")));
+@property (readonly) NSString *timestamp __attribute__((swift_name("timestamp")));
+@property (readonly) CommonNetworkingFearlessTransferItem * _Nullable transfer __attribute__((swift_name("transfer")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("FearlessHistoryResponseItem.Companion")))
+@interface CommonNetworkingFearlessHistoryResponseItemCompanion : CommonNetworkingBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) CommonNetworkingFearlessHistoryResponseItemCompanion *shared __attribute__((swift_name("shared")));
+- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("FearlessHistoryResponsePageInfo")))
+@interface CommonNetworkingFearlessHistoryResponsePageInfo : CommonNetworkingBase
+- (instancetype)initWithEndCursor:(NSString * _Nullable)endCursor hasNextPage:(BOOL)hasNextPage __attribute__((swift_name("init(endCursor:hasNextPage:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) CommonNetworkingFearlessHistoryResponsePageInfoCompanion *companion __attribute__((swift_name("companion")));
+- (NSString * _Nullable)component1 __attribute__((swift_name("component1()")));
+- (BOOL)component2 __attribute__((swift_name("component2()")));
+- (CommonNetworkingFearlessHistoryResponsePageInfo *)doCopyEndCursor:(NSString * _Nullable)endCursor hasNextPage:(BOOL)hasNextPage __attribute__((swift_name("doCopy(endCursor:hasNextPage:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString * _Nullable endCursor __attribute__((swift_name("endCursor")));
+@property (readonly) BOOL hasNextPage __attribute__((swift_name("hasNextPage")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("FearlessHistoryResponsePageInfo.Companion")))
+@interface CommonNetworkingFearlessHistoryResponsePageInfoCompanion : CommonNetworkingBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) CommonNetworkingFearlessHistoryResponsePageInfoCompanion *shared __attribute__((swift_name("shared")));
+- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("FearlessRewardItem")))
+@interface CommonNetworkingFearlessRewardItem : CommonNetworkingBase
+- (instancetype)initWithEra:(int32_t)era amount:(NSString *)amount isReward:(BOOL)isReward validator:(NSString *)validator __attribute__((swift_name("init(era:amount:isReward:validator:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) CommonNetworkingFearlessRewardItemCompanion *companion __attribute__((swift_name("companion")));
+- (int32_t)component1 __attribute__((swift_name("component1()")));
+- (NSString *)component2 __attribute__((swift_name("component2()")));
+- (BOOL)component3 __attribute__((swift_name("component3()")));
+- (NSString *)component4 __attribute__((swift_name("component4()")));
+- (CommonNetworkingFearlessRewardItem *)doCopyEra:(int32_t)era amount:(NSString *)amount isReward:(BOOL)isReward validator:(NSString *)validator __attribute__((swift_name("doCopy(era:amount:isReward:validator:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString *amount __attribute__((swift_name("amount")));
+@property (readonly) int32_t era __attribute__((swift_name("era")));
+@property (readonly) BOOL isReward __attribute__((swift_name("isReward")));
+@property (readonly) NSString *validator __attribute__((swift_name("validator")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("FearlessRewardItem.Companion")))
+@interface CommonNetworkingFearlessRewardItemCompanion : CommonNetworkingBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) CommonNetworkingFearlessRewardItemCompanion *shared __attribute__((swift_name("shared")));
+- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("FearlessSubQueryResponse")))
+@interface CommonNetworkingFearlessSubQueryResponse : CommonNetworkingBase
+- (instancetype)initWithData:(CommonNetworkingFearlessSubQueryResponseData *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) CommonNetworkingFearlessSubQueryResponseCompanion *companion __attribute__((swift_name("companion")));
+- (CommonNetworkingFearlessSubQueryResponseData *)component1 __attribute__((swift_name("component1()")));
+- (CommonNetworkingFearlessSubQueryResponse *)doCopyData:(CommonNetworkingFearlessSubQueryResponseData *)data __attribute__((swift_name("doCopy(data:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) CommonNetworkingFearlessSubQueryResponseData *data __attribute__((swift_name("data")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("FearlessSubQueryResponse.Companion")))
+@interface CommonNetworkingFearlessSubQueryResponseCompanion : CommonNetworkingBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) CommonNetworkingFearlessSubQueryResponseCompanion *shared __attribute__((swift_name("shared")));
+- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("FearlessSubQueryResponseData")))
+@interface CommonNetworkingFearlessSubQueryResponseData : CommonNetworkingBase
+- (instancetype)initWithHistoryElements:(CommonNetworkingFearlessHistoryResponseDataElements *)historyElements __attribute__((swift_name("init(historyElements:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) CommonNetworkingFearlessSubQueryResponseDataCompanion *companion __attribute__((swift_name("companion")));
+- (CommonNetworkingFearlessHistoryResponseDataElements *)component1 __attribute__((swift_name("component1()")));
+- (CommonNetworkingFearlessSubQueryResponseData *)doCopyHistoryElements:(CommonNetworkingFearlessHistoryResponseDataElements *)historyElements __attribute__((swift_name("doCopy(historyElements:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) CommonNetworkingFearlessHistoryResponseDataElements *historyElements __attribute__((swift_name("historyElements")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("FearlessSubQueryResponseData.Companion")))
+@interface CommonNetworkingFearlessSubQueryResponseDataCompanion : CommonNetworkingBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) CommonNetworkingFearlessSubQueryResponseDataCompanion *shared __attribute__((swift_name("shared")));
+- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("FearlessTransferItem")))
+@interface CommonNetworkingFearlessTransferItem : CommonNetworkingBase
+- (instancetype)initWithAmount:(NSString *)amount to:(NSString *)to from:(NSString *)from fee:(NSString *)fee block:(NSString * _Nullable)block success:(BOOL)success extrinsicHash:(NSString * _Nullable)extrinsicHash __attribute__((swift_name("init(amount:to:from:fee:block:success:extrinsicHash:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) CommonNetworkingFearlessTransferItemCompanion *companion __attribute__((swift_name("companion")));
+- (NSString *)component1 __attribute__((swift_name("component1()")));
+- (NSString *)component2 __attribute__((swift_name("component2()")));
+- (NSString *)component3 __attribute__((swift_name("component3()")));
+- (NSString *)component4 __attribute__((swift_name("component4()")));
+- (NSString * _Nullable)component5 __attribute__((swift_name("component5()")));
+- (BOOL)component6 __attribute__((swift_name("component6()")));
+- (NSString * _Nullable)component7 __attribute__((swift_name("component7()")));
+- (CommonNetworkingFearlessTransferItem *)doCopyAmount:(NSString *)amount to:(NSString *)to from:(NSString *)from fee:(NSString *)fee block:(NSString * _Nullable)block success:(BOOL)success extrinsicHash:(NSString * _Nullable)extrinsicHash __attribute__((swift_name("doCopy(amount:to:from:fee:block:success:extrinsicHash:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString *amount __attribute__((swift_name("amount")));
+@property (readonly) NSString * _Nullable block __attribute__((swift_name("block")));
+@property (readonly) NSString * _Nullable extrinsicHash __attribute__((swift_name("extrinsicHash")));
+@property (readonly) NSString *fee __attribute__((swift_name("fee")));
+@property (readonly) NSString *from __attribute__((swift_name("from")));
+@property (readonly) BOOL success __attribute__((swift_name("success")));
+@property (readonly) NSString *to __attribute__((swift_name("to")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("FearlessTransferItem.Companion")))
+@interface CommonNetworkingFearlessTransferItemCompanion : CommonNetworkingBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) CommonNetworkingFearlessTransferItemCompanion *shared __attribute__((swift_name("shared")));
+- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Error")))
+@interface CommonNetworkingError : CommonNetworkingBase
+- (instancetype)initWithModuleErrorId:(CommonNetworkingInt * _Nullable)moduleErrorId moduleErrorIndex:(CommonNetworkingInt * _Nullable)moduleErrorIndex nonModuleErrorMessage:(NSString * _Nullable)nonModuleErrorMessage __attribute__((swift_name("init(moduleErrorId:moduleErrorIndex:nonModuleErrorMessage:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) CommonNetworkingErrorCompanion *companion __attribute__((swift_name("companion")));
+- (CommonNetworkingInt * _Nullable)component1 __attribute__((swift_name("component1()")));
+- (CommonNetworkingInt * _Nullable)component2 __attribute__((swift_name("component2()")));
+- (NSString * _Nullable)component3 __attribute__((swift_name("component3()")));
+- (CommonNetworkingError *)doCopyModuleErrorId:(CommonNetworkingInt * _Nullable)moduleErrorId moduleErrorIndex:(CommonNetworkingInt * _Nullable)moduleErrorIndex nonModuleErrorMessage:(NSString * _Nullable)nonModuleErrorMessage __attribute__((swift_name("doCopy(moduleErrorId:moduleErrorIndex:nonModuleErrorMessage:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) CommonNetworkingInt * _Nullable moduleErrorId __attribute__((swift_name("moduleErrorId")));
+@property (readonly) CommonNetworkingInt * _Nullable moduleErrorIndex __attribute__((swift_name("moduleErrorIndex")));
+@property (readonly) NSString * _Nullable nonModuleErrorMessage __attribute__((swift_name("nonModuleErrorMessage")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Error.Companion")))
+@interface CommonNetworkingErrorCompanion : CommonNetworkingBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) CommonNetworkingErrorCompanion *shared __attribute__((swift_name("shared")));
+- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ExecutionResult")))
+@interface CommonNetworkingExecutionResult : CommonNetworkingBase
+- (instancetype)initWithSuccess:(BOOL)success error:(CommonNetworkingError * _Nullable)error __attribute__((swift_name("init(success:error:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) CommonNetworkingExecutionResultCompanion *companion __attribute__((swift_name("companion")));
+- (BOOL)component1 __attribute__((swift_name("component1()")));
+- (CommonNetworkingError * _Nullable)component2 __attribute__((swift_name("component2()")));
+- (CommonNetworkingExecutionResult *)doCopySuccess:(BOOL)success error:(CommonNetworkingError * _Nullable)error __attribute__((swift_name("doCopy(success:error:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) CommonNetworkingError * _Nullable error __attribute__((swift_name("error")));
+@property (readonly) BOOL success __attribute__((swift_name("success")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ExecutionResult.Companion")))
+@interface CommonNetworkingExecutionResultCompanion : CommonNetworkingBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) CommonNetworkingExecutionResultCompanion *shared __attribute__((swift_name("shared")));
+- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("HistoryResponseDataElements")))
+@interface CommonNetworkingHistoryResponseDataElements : CommonNetworkingBase
+- (instancetype)initWithNodes:(NSArray<CommonNetworkingHistoryResponseItem *> *)nodes pageInfo:(CommonNetworkingHistoryResponsePageInfo *)pageInfo __attribute__((swift_name("init(nodes:pageInfo:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) CommonNetworkingHistoryResponseDataElementsCompanion *companion __attribute__((swift_name("companion")));
+- (NSArray<CommonNetworkingHistoryResponseItem *> *)component1 __attribute__((swift_name("component1()")));
+- (CommonNetworkingHistoryResponsePageInfo *)component2 __attribute__((swift_name("component2()")));
+- (CommonNetworkingHistoryResponseDataElements *)doCopyNodes:(NSArray<CommonNetworkingHistoryResponseItem *> *)nodes pageInfo:(CommonNetworkingHistoryResponsePageInfo *)pageInfo __attribute__((swift_name("doCopy(nodes:pageInfo:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSArray<CommonNetworkingHistoryResponseItem *> *nodes __attribute__((swift_name("nodes")));
+@property (readonly) CommonNetworkingHistoryResponsePageInfo *pageInfo __attribute__((swift_name("pageInfo")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("HistoryResponseDataElements.Companion")))
+@interface CommonNetworkingHistoryResponseDataElementsCompanion : CommonNetworkingBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) CommonNetworkingHistoryResponseDataElementsCompanion *shared __attribute__((swift_name("shared")));
+- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("HistoryResponseItem")))
+@interface CommonNetworkingHistoryResponseItem : CommonNetworkingBase
+- (instancetype)initWithId:(NSString *)id blockHash:(NSString *)blockHash module:(NSString *)module method:(NSString *)method timestamp:(NSString *)timestamp networkFee:(NSString *)networkFee execution:(CommonNetworkingExecutionResult *)execution data:(CommonNetworkingKotlinx_serialization_jsonJsonElement *)data __attribute__((swift_name("init(id:blockHash:module:method:timestamp:networkFee:execution:data:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) CommonNetworkingHistoryResponseItemCompanion *companion __attribute__((swift_name("companion")));
+- (NSString *)component1 __attribute__((swift_name("component1()")));
+- (NSString *)component2 __attribute__((swift_name("component2()")));
+- (NSString *)component3 __attribute__((swift_name("component3()")));
+- (NSString *)component4 __attribute__((swift_name("component4()")));
+- (NSString *)component5 __attribute__((swift_name("component5()")));
+- (NSString *)component6 __attribute__((swift_name("component6()")));
+- (CommonNetworkingExecutionResult *)component7 __attribute__((swift_name("component7()")));
+- (CommonNetworkingKotlinx_serialization_jsonJsonElement *)component8 __attribute__((swift_name("component8()")));
+- (CommonNetworkingHistoryResponseItem *)doCopyId:(NSString *)id blockHash:(NSString *)blockHash module:(NSString *)module method:(NSString *)method timestamp:(NSString *)timestamp networkFee:(NSString *)networkFee execution:(CommonNetworkingExecutionResult *)execution data:(CommonNetworkingKotlinx_serialization_jsonJsonElement *)data __attribute__((swift_name("doCopy(id:blockHash:module:method:timestamp:networkFee:execution:data:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString *blockHash __attribute__((swift_name("blockHash")));
+@property (readonly) CommonNetworkingKotlinx_serialization_jsonJsonElement *data __attribute__((swift_name("data")));
+@property (readonly) CommonNetworkingExecutionResult *execution __attribute__((swift_name("execution")));
+@property (readonly) NSString *id __attribute__((swift_name("id")));
+@property (readonly) NSString *method __attribute__((swift_name("method")));
+@property (readonly) NSString *module __attribute__((swift_name("module")));
+@property (readonly) NSString *networkFee __attribute__((swift_name("networkFee")));
+@property (readonly) NSString *timestamp __attribute__((swift_name("timestamp")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("HistoryResponseItem.Companion")))
+@interface CommonNetworkingHistoryResponseItemCompanion : CommonNetworkingBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) CommonNetworkingHistoryResponseItemCompanion *shared __attribute__((swift_name("shared")));
+- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("HistoryResponsePageInfo")))
+@interface CommonNetworkingHistoryResponsePageInfo : CommonNetworkingBase
+- (instancetype)initWithEndCursor:(NSString * _Nullable)endCursor hasNextPage:(BOOL)hasNextPage __attribute__((swift_name("init(endCursor:hasNextPage:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) CommonNetworkingHistoryResponsePageInfoCompanion *companion __attribute__((swift_name("companion")));
+- (NSString * _Nullable)component1 __attribute__((swift_name("component1()")));
+- (BOOL)component2 __attribute__((swift_name("component2()")));
+- (CommonNetworkingHistoryResponsePageInfo *)doCopyEndCursor:(NSString * _Nullable)endCursor hasNextPage:(BOOL)hasNextPage __attribute__((swift_name("doCopy(endCursor:hasNextPage:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString * _Nullable endCursor __attribute__((swift_name("endCursor")));
+@property (readonly) BOOL hasNextPage __attribute__((swift_name("hasNextPage")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("HistoryResponsePageInfo.Companion")))
+@interface CommonNetworkingHistoryResponsePageInfoCompanion : CommonNetworkingBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) CommonNetworkingHistoryResponsePageInfoCompanion *shared __attribute__((swift_name("shared")));
+- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraSubqueryResponse")))
+@interface CommonNetworkingSoraSubqueryResponse : CommonNetworkingBase
+- (instancetype)initWithData:(CommonNetworkingSoraSubqueryResponseData *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) CommonNetworkingSoraSubqueryResponseCompanion *companion __attribute__((swift_name("companion")));
+- (CommonNetworkingSoraSubqueryResponseData *)component1 __attribute__((swift_name("component1()")));
+- (CommonNetworkingSoraSubqueryResponse *)doCopyData:(CommonNetworkingSoraSubqueryResponseData *)data __attribute__((swift_name("doCopy(data:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) CommonNetworkingSoraSubqueryResponseData *data __attribute__((swift_name("data")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraSubqueryResponse.Companion")))
+@interface CommonNetworkingSoraSubqueryResponseCompanion : CommonNetworkingBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) CommonNetworkingSoraSubqueryResponseCompanion *shared __attribute__((swift_name("shared")));
+- (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraSubqueryResponseData")))
+@interface CommonNetworkingSoraSubqueryResponseData : CommonNetworkingBase
+- (instancetype)initWithHistoryElements:(CommonNetworkingHistoryResponseDataElements *)historyElements __attribute__((swift_name("init(historyElements:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) CommonNetworkingSoraSubqueryResponseDataCompanion *companion __attribute__((swift_name("companion")));
+- (CommonNetworkingHistoryResponseDataElements *)component1 __attribute__((swift_name("component1()")));
+- (CommonNetworkingSoraSubqueryResponseData *)doCopyHistoryElements:(CommonNetworkingHistoryResponseDataElements *)historyElements __attribute__((swift_name("doCopy(historyElements:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) CommonNetworkingHistoryResponseDataElements *historyElements __attribute__((swift_name("historyElements")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraSubqueryResponseData.Companion")))
+@interface CommonNetworkingSoraSubqueryResponseDataCompanion : CommonNetworkingBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) CommonNetworkingSoraSubqueryResponseDataCompanion *shared __attribute__((swift_name("shared")));
 - (id<CommonNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end;
 
@@ -1186,7 +1261,7 @@ __attribute__((swift_name("SerializationNetworkException")))
 __attribute__((swift_name("SoramitsuHttpClientProvider")))
 @protocol CommonNetworkingSoramitsuHttpClientProvider
 @required
-- (CommonNetworkingKtor_client_coreHttpClient *)provideLogging:(BOOL)logging timeout:(int64_t)timeout __attribute__((swift_name("provide(logging:timeout:)")));
+- (CommonNetworkingKtor_client_coreHttpClient *)provideLogging:(BOOL)logging timeout:(int64_t)timeout json:(CommonNetworkingKotlinx_serialization_jsonJson *)json __attribute__((swift_name("provide(logging:timeout:json:)")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -1194,7 +1269,7 @@ __attribute__((swift_name("SoramitsuHttpClientProviderImpl")))
 @interface CommonNetworkingSoramitsuHttpClientProviderImpl : CommonNetworkingBase <CommonNetworkingSoramitsuHttpClientProvider>
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (CommonNetworkingKtor_client_coreHttpClient *)provideLogging:(BOOL)logging timeout:(int64_t)timeout __attribute__((swift_name("provide(logging:timeout:)")));
+- (CommonNetworkingKtor_client_coreHttpClient *)provideLogging:(BOOL)logging timeout:(int64_t)timeout json:(CommonNetworkingKotlinx_serialization_jsonJson *)json __attribute__((swift_name("provide(logging:timeout:json:)")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -1226,6 +1301,7 @@ __attribute__((swift_name("SoramitsuNetworkClient")))
 */
 - (id _Nullable)wrapInExceptionHandlerAndReturnError:(NSError * _Nullable * _Nullable)error block:(id (^)(void))block __attribute__((swift_name("wrapInExceptionHandler(block:)")));
 @property (readonly) CommonNetworkingKtor_client_coreHttpClient *httpClient __attribute__((swift_name("httpClient")));
+@property (readonly) CommonNetworkingKotlinx_serialization_jsonJson *json __attribute__((swift_name("json")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -1435,11 +1511,6 @@ __attribute__((swift_name("KotlinPair")))
 @property (readonly) B _Nullable second __attribute__((swift_name("second")));
 @end;
 
-__attribute__((swift_name("Kotlinx_serialization_jsonJsonElement")))
-@interface CommonNetworkingKotlinx_serialization_jsonJsonElement : CommonNetworkingBase
-@property (class, readonly, getter=companion) CommonNetworkingKotlinx_serialization_jsonJsonElementCompanion *companion __attribute__((swift_name("companion")));
-@end;
-
 __attribute__((swift_name("KotlinIllegalArgumentException")))
 @interface CommonNetworkingKotlinIllegalArgumentException : CommonNetworkingKotlinRuntimeException
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
@@ -1447,6 +1518,11 @@ __attribute__((swift_name("KotlinIllegalArgumentException")))
 - (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithMessage:(NSString * _Nullable)message cause:(CommonNetworkingKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCause:(CommonNetworkingKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
+@end;
+
+__attribute__((swift_name("Kotlinx_serialization_jsonJsonElement")))
+@interface CommonNetworkingKotlinx_serialization_jsonJsonElement : CommonNetworkingBase
+@property (class, readonly, getter=companion) CommonNetworkingKotlinx_serialization_jsonJsonElementCompanion *companion __attribute__((swift_name("companion")));
 @end;
 
 __attribute__((swift_name("Kotlinx_coroutines_coreFlow")))
@@ -1510,6 +1586,31 @@ __attribute__((swift_name("Ktor_client_coreHttpClient")))
 @property (readonly) CommonNetworkingKtor_client_coreHttpRequestPipeline *requestPipeline __attribute__((swift_name("requestPipeline")));
 @property (readonly) CommonNetworkingKtor_client_coreHttpResponsePipeline *responsePipeline __attribute__((swift_name("responsePipeline")));
 @property (readonly) CommonNetworkingKtor_client_coreHttpSendPipeline *sendPipeline __attribute__((swift_name("sendPipeline")));
+@end;
+
+__attribute__((swift_name("Kotlinx_serialization_coreSerialFormat")))
+@protocol CommonNetworkingKotlinx_serialization_coreSerialFormat
+@required
+@property (readonly) CommonNetworkingKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
+@end;
+
+__attribute__((swift_name("Kotlinx_serialization_coreStringFormat")))
+@protocol CommonNetworkingKotlinx_serialization_coreStringFormat <CommonNetworkingKotlinx_serialization_coreSerialFormat>
+@required
+- (id _Nullable)decodeFromStringDeserializer:(id<CommonNetworkingKotlinx_serialization_coreDeserializationStrategy>)deserializer string:(NSString *)string __attribute__((swift_name("decodeFromString(deserializer:string:)")));
+- (NSString *)encodeToStringSerializer:(id<CommonNetworkingKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeToString(serializer:value:)")));
+@end;
+
+__attribute__((swift_name("Kotlinx_serialization_jsonJson")))
+@interface CommonNetworkingKotlinx_serialization_jsonJson : CommonNetworkingBase <CommonNetworkingKotlinx_serialization_coreStringFormat>
+@property (class, readonly, getter=companion) CommonNetworkingKotlinx_serialization_jsonJsonDefault *companion __attribute__((swift_name("companion")));
+- (id _Nullable)decodeFromJsonElementDeserializer:(id<CommonNetworkingKotlinx_serialization_coreDeserializationStrategy>)deserializer element:(CommonNetworkingKotlinx_serialization_jsonJsonElement *)element __attribute__((swift_name("decodeFromJsonElement(deserializer:element:)")));
+- (id _Nullable)decodeFromStringDeserializer:(id<CommonNetworkingKotlinx_serialization_coreDeserializationStrategy>)deserializer string:(NSString *)string __attribute__((swift_name("decodeFromString(deserializer:string:)")));
+- (CommonNetworkingKotlinx_serialization_jsonJsonElement *)encodeToJsonElementSerializer:(id<CommonNetworkingKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeToJsonElement(serializer:value:)")));
+- (NSString *)encodeToStringSerializer:(id<CommonNetworkingKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeToString(serializer:value:)")));
+- (CommonNetworkingKotlinx_serialization_jsonJsonElement *)parseToJsonElementString:(NSString *)string __attribute__((swift_name("parseToJsonElement(string:)")));
+@property (readonly) CommonNetworkingKotlinx_serialization_jsonJsonConfiguration *configuration __attribute__((swift_name("configuration")));
+@property (readonly) CommonNetworkingKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -1897,6 +1998,41 @@ __attribute__((swift_name("Ktor_client_coreHttpSendPipeline")))
 @property (readonly) BOOL developmentMode __attribute__((swift_name("developmentMode")));
 @end;
 
+__attribute__((swift_name("Kotlinx_serialization_coreSerializersModule")))
+@interface CommonNetworkingKotlinx_serialization_coreSerializersModule : CommonNetworkingBase
+- (void)dumpToCollector:(id<CommonNetworkingKotlinx_serialization_coreSerializersModuleCollector>)collector __attribute__((swift_name("dumpTo(collector:)")));
+- (id<CommonNetworkingKotlinx_serialization_coreKSerializer> _Nullable)getContextualKClass:(id<CommonNetworkingKotlinKClass>)kClass typeArgumentsSerializers:(NSArray<id<CommonNetworkingKotlinx_serialization_coreKSerializer>> *)typeArgumentsSerializers __attribute__((swift_name("getContextual(kClass:typeArgumentsSerializers:)")));
+- (id<CommonNetworkingKotlinx_serialization_coreSerializationStrategy> _Nullable)getPolymorphicBaseClass:(id<CommonNetworkingKotlinKClass>)baseClass value:(id)value __attribute__((swift_name("getPolymorphic(baseClass:value:)")));
+- (id<CommonNetworkingKotlinx_serialization_coreDeserializationStrategy> _Nullable)getPolymorphicBaseClass:(id<CommonNetworkingKotlinKClass>)baseClass serializedClassName:(NSString * _Nullable)serializedClassName __attribute__((swift_name("getPolymorphic(baseClass:serializedClassName:)")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_jsonJson.Default")))
+@interface CommonNetworkingKotlinx_serialization_jsonJsonDefault : CommonNetworkingKotlinx_serialization_jsonJson
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)default_ __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) CommonNetworkingKotlinx_serialization_jsonJsonDefault *shared __attribute__((swift_name("shared")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_jsonJsonConfiguration")))
+@interface CommonNetworkingKotlinx_serialization_jsonJsonConfiguration : CommonNetworkingBase
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) BOOL allowSpecialFloatingPointValues __attribute__((swift_name("allowSpecialFloatingPointValues")));
+@property (readonly) BOOL allowStructuredMapKeys __attribute__((swift_name("allowStructuredMapKeys")));
+@property (readonly) NSString *classDiscriminator __attribute__((swift_name("classDiscriminator")));
+@property (readonly) BOOL coerceInputValues __attribute__((swift_name("coerceInputValues")));
+@property (readonly) BOOL encodeDefaults __attribute__((swift_name("encodeDefaults")));
+@property (readonly) BOOL explicitNulls __attribute__((swift_name("explicitNulls")));
+@property (readonly) BOOL ignoreUnknownKeys __attribute__((swift_name("ignoreUnknownKeys")));
+@property (readonly) BOOL isLenient __attribute__((swift_name("isLenient")));
+@property (readonly) BOOL prettyPrint __attribute__((swift_name("prettyPrint")));
+@property (readonly) NSString *prettyPrintIndent __attribute__((swift_name("prettyPrintIndent")));
+@property (readonly) BOOL useAlternativeNames __attribute__((swift_name("useAlternativeNames")));
+@property (readonly) BOOL useArrayPolymorphism __attribute__((swift_name("useArrayPolymorphism")));
+@end;
+
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Ktor_httpHttpMethod.Companion")))
 @interface CommonNetworkingKtor_httpHttpMethodCompanion : CommonNetworkingBase
@@ -1989,14 +2125,6 @@ __attribute__((swift_name("Kotlinx_serialization_coreCompositeEncoder")))
 - (void)endStructureDescriptor:(id<CommonNetworkingKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("endStructure(descriptor:)")));
 - (BOOL)shouldEncodeElementDefaultDescriptor:(id<CommonNetworkingKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("shouldEncodeElementDefault(descriptor:index:)")));
 @property (readonly) CommonNetworkingKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
-@end;
-
-__attribute__((swift_name("Kotlinx_serialization_coreSerializersModule")))
-@interface CommonNetworkingKotlinx_serialization_coreSerializersModule : CommonNetworkingBase
-- (void)dumpToCollector:(id<CommonNetworkingKotlinx_serialization_coreSerializersModuleCollector>)collector __attribute__((swift_name("dumpTo(collector:)")));
-- (id<CommonNetworkingKotlinx_serialization_coreKSerializer> _Nullable)getContextualKClass:(id<CommonNetworkingKotlinKClass>)kClass typeArgumentsSerializers:(NSArray<id<CommonNetworkingKotlinx_serialization_coreKSerializer>> *)typeArgumentsSerializers __attribute__((swift_name("getContextual(kClass:typeArgumentsSerializers:)")));
-- (id<CommonNetworkingKotlinx_serialization_coreSerializationStrategy> _Nullable)getPolymorphicBaseClass:(id<CommonNetworkingKotlinKClass>)baseClass value:(id)value __attribute__((swift_name("getPolymorphic(baseClass:value:)")));
-- (id<CommonNetworkingKotlinx_serialization_coreDeserializationStrategy> _Nullable)getPolymorphicBaseClass:(id<CommonNetworkingKotlinKClass>)baseClass serializedClassName:(NSString * _Nullable)serializedClassName __attribute__((swift_name("getPolymorphic(baseClass:serializedClassName:)")));
 @end;
 
 __attribute__((swift_name("KotlinAnnotation")))
