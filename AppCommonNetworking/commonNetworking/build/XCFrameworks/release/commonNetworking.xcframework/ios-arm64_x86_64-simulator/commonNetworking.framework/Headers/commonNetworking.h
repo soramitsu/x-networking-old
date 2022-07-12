@@ -318,7 +318,7 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SubQueryClient")))
 @interface CommonNetworkingSubQueryClient<T, R> : CommonNetworkingBase
 - (void)clearAllData __attribute__((swift_name("clearAllData()")));
-- (void)clearDataAddress:(NSString *)address __attribute__((swift_name("clearData(address:)")));
+- (void)clearDataAddress:(NSString *)address networkName:(NSString *)networkName __attribute__((swift_name("clearData(address:networkName:)")));
 
 /**
  @note This method converts instances of SoramitsuNetworkException, CancellationException to errors.
@@ -331,14 +331,14 @@ __attribute__((swift_name("SubQueryClient")))
  Other uncaught Kotlin exceptions are fatal.
 */
 - (void)getSpApyUrl:(NSString *)url completionHandler:(void (^)(NSArray<CommonNetworkingSbApyInfo *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getSpApy(url:completionHandler:)")));
-- (CommonNetworkingSubQueryHistoryInfo *)getTransactionCachedAddress:(NSString *)address txHash:(NSString *)txHash __attribute__((swift_name("getTransactionCached(address:txHash:)")));
-- (CommonNetworkingSubQueryHistoryInfo *)getTransactionHistoryCachedAddress:(NSString *)address __attribute__((swift_name("getTransactionHistoryCached(address:)")));
+- (CommonNetworkingSubQueryHistoryInfo *)getTransactionCachedAddress:(NSString *)address networkName:(NSString *)networkName txHash:(NSString *)txHash __attribute__((swift_name("getTransactionCached(address:networkName:txHash:)")));
+- (CommonNetworkingSubQueryHistoryInfo *)getTransactionHistoryCachedAddress:(NSString *)address networkName:(NSString *)networkName __attribute__((swift_name("getTransactionHistoryCached(address:networkName:)")));
 
 /**
  @note This method converts instances of SoramitsuNetworkException, CancellationException, IllegalArgumentException to errors.
  Other uncaught Kotlin exceptions are fatal.
 */
-- (void)getTransactionHistoryPagedAddress:(NSString *)address page:(int64_t)page url:(NSString * _Nullable)url filter:(CommonNetworkingBoolean *(^ _Nullable)(R _Nullable))filter completionHandler:(void (^)(CommonNetworkingSubQueryHistoryResult<R> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getTransactionHistoryPaged(address:page:url:filter:completionHandler:)")));
+- (void)getTransactionHistoryPagedAddress:(NSString *)address networkName:(NSString *)networkName page:(int64_t)page url:(NSString * _Nullable)url filter:(CommonNetworkingBoolean *(^ _Nullable)(R _Nullable))filter completionHandler:(void (^)(CommonNetworkingSubQueryHistoryResult<R> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getTransactionHistoryPaged(address:networkName:page:url:filter:completionHandler:)")));
 - (NSArray<NSString *> *)getTransactionPeersQuery:(NSString *)query __attribute__((swift_name("getTransactionPeers(query:)")));
 @end;
 
@@ -1016,16 +1016,16 @@ __attribute__((swift_name("FearlessTransferItem.Companion")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Error")))
 @interface CommonNetworkingError : CommonNetworkingBase
-- (instancetype)initWithModuleErrorId:(CommonNetworkingInt * _Nullable)moduleErrorId moduleErrorIndex:(CommonNetworkingInt * _Nullable)moduleErrorIndex nonModuleErrorMessage:(NSString * _Nullable)nonModuleErrorMessage __attribute__((swift_name("init(moduleErrorId:moduleErrorIndex:nonModuleErrorMessage:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithModuleErrorId:(NSString * _Nullable)moduleErrorId moduleErrorIndex:(CommonNetworkingInt * _Nullable)moduleErrorIndex nonModuleErrorMessage:(NSString * _Nullable)nonModuleErrorMessage __attribute__((swift_name("init(moduleErrorId:moduleErrorIndex:nonModuleErrorMessage:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) CommonNetworkingErrorCompanion *companion __attribute__((swift_name("companion")));
-- (CommonNetworkingInt * _Nullable)component1 __attribute__((swift_name("component1()")));
+- (NSString * _Nullable)component1 __attribute__((swift_name("component1()")));
 - (CommonNetworkingInt * _Nullable)component2 __attribute__((swift_name("component2()")));
 - (NSString * _Nullable)component3 __attribute__((swift_name("component3()")));
-- (CommonNetworkingError *)doCopyModuleErrorId:(CommonNetworkingInt * _Nullable)moduleErrorId moduleErrorIndex:(CommonNetworkingInt * _Nullable)moduleErrorIndex nonModuleErrorMessage:(NSString * _Nullable)nonModuleErrorMessage __attribute__((swift_name("doCopy(moduleErrorId:moduleErrorIndex:nonModuleErrorMessage:)")));
+- (CommonNetworkingError *)doCopyModuleErrorId:(NSString * _Nullable)moduleErrorId moduleErrorIndex:(CommonNetworkingInt * _Nullable)moduleErrorIndex nonModuleErrorMessage:(NSString * _Nullable)nonModuleErrorMessage __attribute__((swift_name("doCopy(moduleErrorId:moduleErrorIndex:nonModuleErrorMessage:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) CommonNetworkingInt * _Nullable moduleErrorId __attribute__((swift_name("moduleErrorId")));
+@property (readonly) NSString * _Nullable moduleErrorId __attribute__((swift_name("moduleErrorId")));
 @property (readonly) CommonNetworkingInt * _Nullable moduleErrorIndex __attribute__((swift_name("moduleErrorIndex")));
 @property (readonly) NSString * _Nullable nonModuleErrorMessage __attribute__((swift_name("nonModuleErrorMessage")));
 @end;
@@ -1323,18 +1323,19 @@ __attribute__((swift_name("ExtrinsicParam")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Extrinsics")))
 @interface CommonNetworkingExtrinsics : CommonNetworkingBase
-- (instancetype)initWithTxHash:(NSString *)txHash signAddress:(NSString *)signAddress blockHash:(NSString * _Nullable)blockHash module:(NSString *)module method:(NSString *)method networkFee:(NSString *)networkFee timestamp:(int64_t)timestamp success:(BOOL)success batch:(BOOL)batch parentHash:(NSString * _Nullable)parentHash __attribute__((swift_name("init(txHash:signAddress:blockHash:module:method:networkFee:timestamp:success:batch:parentHash:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithTxHash:(NSString *)txHash signAddress:(NSString *)signAddress networkName:(NSString *)networkName blockHash:(NSString * _Nullable)blockHash module:(NSString *)module method:(NSString *)method networkFee:(NSString *)networkFee timestamp:(int64_t)timestamp success:(BOOL)success batch:(BOOL)batch parentHash:(NSString * _Nullable)parentHash __attribute__((swift_name("init(txHash:signAddress:networkName:blockHash:module:method:networkFee:timestamp:success:batch:parentHash:)"))) __attribute__((objc_designated_initializer));
 - (NSString *)component1 __attribute__((swift_name("component1()")));
-- (NSString * _Nullable)component10 __attribute__((swift_name("component10()")));
+- (BOOL)component10 __attribute__((swift_name("component10()")));
+- (NSString * _Nullable)component11 __attribute__((swift_name("component11()")));
 - (NSString *)component2 __attribute__((swift_name("component2()")));
-- (NSString * _Nullable)component3 __attribute__((swift_name("component3()")));
-- (NSString *)component4 __attribute__((swift_name("component4()")));
+- (NSString *)component3 __attribute__((swift_name("component3()")));
+- (NSString * _Nullable)component4 __attribute__((swift_name("component4()")));
 - (NSString *)component5 __attribute__((swift_name("component5()")));
 - (NSString *)component6 __attribute__((swift_name("component6()")));
-- (int64_t)component7 __attribute__((swift_name("component7()")));
-- (BOOL)component8 __attribute__((swift_name("component8()")));
+- (NSString *)component7 __attribute__((swift_name("component7()")));
+- (int64_t)component8 __attribute__((swift_name("component8()")));
 - (BOOL)component9 __attribute__((swift_name("component9()")));
-- (CommonNetworkingExtrinsics *)doCopyTxHash:(NSString *)txHash signAddress:(NSString *)signAddress blockHash:(NSString * _Nullable)blockHash module:(NSString *)module method:(NSString *)method networkFee:(NSString *)networkFee timestamp:(int64_t)timestamp success:(BOOL)success batch:(BOOL)batch parentHash:(NSString * _Nullable)parentHash __attribute__((swift_name("doCopy(txHash:signAddress:blockHash:module:method:networkFee:timestamp:success:batch:parentHash:)")));
+- (CommonNetworkingExtrinsics *)doCopyTxHash:(NSString *)txHash signAddress:(NSString *)signAddress networkName:(NSString *)networkName blockHash:(NSString * _Nullable)blockHash module:(NSString *)module method:(NSString *)method networkFee:(NSString *)networkFee timestamp:(int64_t)timestamp success:(BOOL)success batch:(BOOL)batch parentHash:(NSString * _Nullable)parentHash __attribute__((swift_name("doCopy(txHash:signAddress:networkName:blockHash:module:method:networkFee:timestamp:success:batch:parentHash:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -1343,6 +1344,7 @@ __attribute__((swift_name("Extrinsics")))
 @property (readonly) NSString *method __attribute__((swift_name("method")));
 @property (readonly) NSString *module __attribute__((swift_name("module")));
 @property (readonly) NSString *networkFee __attribute__((swift_name("networkFee")));
+@property (readonly) NSString *networkName __attribute__((swift_name("networkName")));
 @property (readonly) NSString * _Nullable parentHash __attribute__((swift_name("parentHash")));
 @property (readonly) NSString *signAddress __attribute__((swift_name("signAddress")));
 @property (readonly) BOOL success __attribute__((swift_name("success")));
@@ -1353,17 +1355,19 @@ __attribute__((swift_name("Extrinsics")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SignerInfo")))
 @interface CommonNetworkingSignerInfo : CommonNetworkingBase
-- (instancetype)initWithSignAddress:(NSString *)signAddress topTime:(int64_t)topTime oldTime:(int64_t)oldTime oldCursor:(NSString * _Nullable)oldCursor endReached:(BOOL)endReached __attribute__((swift_name("init(signAddress:topTime:oldTime:oldCursor:endReached:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithSignAddress:(NSString *)signAddress networkName:(NSString *)networkName topTime:(int64_t)topTime oldTime:(int64_t)oldTime oldCursor:(NSString * _Nullable)oldCursor endReached:(BOOL)endReached __attribute__((swift_name("init(signAddress:networkName:topTime:oldTime:oldCursor:endReached:)"))) __attribute__((objc_designated_initializer));
 - (NSString *)component1 __attribute__((swift_name("component1()")));
-- (int64_t)component2 __attribute__((swift_name("component2()")));
+- (NSString *)component2 __attribute__((swift_name("component2()")));
 - (int64_t)component3 __attribute__((swift_name("component3()")));
-- (NSString * _Nullable)component4 __attribute__((swift_name("component4()")));
-- (BOOL)component5 __attribute__((swift_name("component5()")));
-- (CommonNetworkingSignerInfo *)doCopySignAddress:(NSString *)signAddress topTime:(int64_t)topTime oldTime:(int64_t)oldTime oldCursor:(NSString * _Nullable)oldCursor endReached:(BOOL)endReached __attribute__((swift_name("doCopy(signAddress:topTime:oldTime:oldCursor:endReached:)")));
+- (int64_t)component4 __attribute__((swift_name("component4()")));
+- (NSString * _Nullable)component5 __attribute__((swift_name("component5()")));
+- (BOOL)component6 __attribute__((swift_name("component6()")));
+- (CommonNetworkingSignerInfo *)doCopySignAddress:(NSString *)signAddress networkName:(NSString *)networkName topTime:(int64_t)topTime oldTime:(int64_t)oldTime oldCursor:(NSString * _Nullable)oldCursor endReached:(BOOL)endReached __attribute__((swift_name("doCopy(signAddress:networkName:topTime:oldTime:oldCursor:endReached:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) BOOL endReached __attribute__((swift_name("endReached")));
+@property (readonly) NSString *networkName __attribute__((swift_name("networkName")));
 @property (readonly) NSString * _Nullable oldCursor __attribute__((swift_name("oldCursor")));
 @property (readonly) int64_t oldTime __attribute__((swift_name("oldTime")));
 @property (readonly) NSString *signAddress __attribute__((swift_name("signAddress")));
@@ -1397,24 +1401,24 @@ __attribute__((swift_name("SoraHistoryDatabaseCompanion")))
 __attribute__((swift_name("SoraHistoryDatabaseQueries")))
 @protocol CommonNetworkingSoraHistoryDatabaseQueries <CommonNetworkingRuntimeTransacter>
 @required
-- (void)insertExtrinsicTxHash:(NSString *)txHash signAddress:(NSString *)signAddress blockHash:(NSString * _Nullable)blockHash module:(NSString *)module method:(NSString *)method networkFee:(NSString *)networkFee timestamp:(int64_t)timestamp success:(BOOL)success batch:(BOOL)batch parentHash:(NSString * _Nullable)parentHash __attribute__((swift_name("insertExtrinsic(txHash:signAddress:blockHash:module:method:networkFee:timestamp:success:batch:parentHash:)")));
+- (void)insertExtrinsicTxHash:(NSString *)txHash signAddress:(NSString *)signAddress networkName:(NSString *)networkName blockHash:(NSString * _Nullable)blockHash module:(NSString *)module method:(NSString *)method networkFee:(NSString *)networkFee timestamp:(int64_t)timestamp success:(BOOL)success batch:(BOOL)batch parentHash:(NSString * _Nullable)parentHash __attribute__((swift_name("insertExtrinsic(txHash:signAddress:networkName:blockHash:module:method:networkFee:timestamp:success:batch:parentHash:)")));
 - (void)insertExtrinsicParamExtrinsicHash:(NSString *)extrinsicHash paramName:(NSString *)paramName paramValue:(NSString *)paramValue __attribute__((swift_name("insertExtrinsicParam(extrinsicHash:paramName:paramValue:)")));
-- (void)insertSignerInfoSignAddress:(NSString *)signAddress topTime:(int64_t)topTime oldTime:(int64_t)oldTime oldCursor:(NSString * _Nullable)oldCursor endReached:(BOOL)endReached __attribute__((swift_name("insertSignerInfo(signAddress:topTime:oldTime:oldCursor:endReached:)")));
+- (void)insertSignerInfoSignAddress:(NSString *)signAddress networkName:(NSString *)networkName topTime:(int64_t)topTime oldTime:(int64_t)oldTime oldCursor:(NSString * _Nullable)oldCursor endReached:(BOOL)endReached __attribute__((swift_name("insertSignerInfo(signAddress:networkName:topTime:oldTime:oldCursor:endReached:)")));
 - (void)insertSignerInfoFullSignerInfo:(CommonNetworkingSignerInfo *)SignerInfo __attribute__((swift_name("insertSignerInfoFull(SignerInfo:)")));
 - (void)removeAllExtrinsics __attribute__((swift_name("removeAllExtrinsics()")));
 - (void)removeAllSignerInfo __attribute__((swift_name("removeAllSignerInfo()")));
-- (void)removeExtrinsicsSignAddress:(NSString *)signAddress __attribute__((swift_name("removeExtrinsics(signAddress:)")));
-- (void)removeSignerInfoSignAddress:(NSString *)signAddress __attribute__((swift_name("removeSignerInfo(signAddress:)")));
-- (CommonNetworkingRuntimeQuery<CommonNetworkingExtrinsics *> *)selectExtrinsicHash:(NSString *)hash address:(NSString *)address __attribute__((swift_name("selectExtrinsic(hash:address:)")));
-- (CommonNetworkingRuntimeQuery<id> *)selectExtrinsicHash:(NSString *)hash address:(NSString *)address mapper:(id (^)(NSString *, NSString *, NSString * _Nullable, NSString *, NSString *, NSString *, CommonNetworkingLong *, CommonNetworkingBoolean *, CommonNetworkingBoolean *, NSString * _Nullable))mapper __attribute__((swift_name("selectExtrinsic(hash:address:mapper:)")));
+- (void)removeExtrinsicsAddress:(NSString *)address network:(NSString *)network __attribute__((swift_name("removeExtrinsics(address:network:)")));
+- (void)removeSignerInfoAddress:(NSString *)address network:(NSString *)network __attribute__((swift_name("removeSignerInfo(address:network:)")));
+- (CommonNetworkingRuntimeQuery<CommonNetworkingExtrinsics *> *)selectExtrinsicHash:(NSString *)hash address:(NSString *)address network:(NSString *)network __attribute__((swift_name("selectExtrinsic(hash:address:network:)")));
+- (CommonNetworkingRuntimeQuery<id> *)selectExtrinsicHash:(NSString *)hash address:(NSString *)address network:(NSString *)network mapper:(id (^)(NSString *, NSString *, NSString *, NSString * _Nullable, NSString *, NSString *, NSString *, CommonNetworkingLong *, CommonNetworkingBoolean *, CommonNetworkingBoolean *, NSString * _Nullable))mapper __attribute__((swift_name("selectExtrinsic(hash:address:network:mapper:)")));
 - (CommonNetworkingRuntimeQuery<CommonNetworkingExtrinsicParam *> *)selectExtrinsicParamsExtrinsicHash:(NSString *)extrinsicHash __attribute__((swift_name("selectExtrinsicParams(extrinsicHash:)")));
 - (CommonNetworkingRuntimeQuery<id> *)selectExtrinsicParamsExtrinsicHash:(NSString *)extrinsicHash mapper:(id (^)(NSString *, NSString *, NSString *))mapper __attribute__((swift_name("selectExtrinsicParams(extrinsicHash:mapper:)")));
 - (CommonNetworkingRuntimeQuery<CommonNetworkingExtrinsics *> *)selectExtrinsicsNestedParentHash:(NSString * _Nullable)parentHash __attribute__((swift_name("selectExtrinsicsNested(parentHash:)")));
-- (CommonNetworkingRuntimeQuery<id> *)selectExtrinsicsNestedParentHash:(NSString * _Nullable)parentHash mapper:(id (^)(NSString *, NSString *, NSString * _Nullable, NSString *, NSString *, NSString *, CommonNetworkingLong *, CommonNetworkingBoolean *, CommonNetworkingBoolean *, NSString * _Nullable))mapper __attribute__((swift_name("selectExtrinsicsNested(parentHash:mapper:)")));
-- (CommonNetworkingRuntimeQuery<CommonNetworkingExtrinsics *> *)selectExtrinsicsPagedSignAddress:(NSString *)signAddress limit:(int64_t)limit offset:(int64_t)offset __attribute__((swift_name("selectExtrinsicsPaged(signAddress:limit:offset:)")));
-- (CommonNetworkingRuntimeQuery<id> *)selectExtrinsicsPagedSignAddress:(NSString *)signAddress limit:(int64_t)limit offset:(int64_t)offset mapper:(id (^)(NSString *, NSString *, NSString * _Nullable, NSString *, NSString *, NSString *, CommonNetworkingLong *, CommonNetworkingBoolean *, CommonNetworkingBoolean *, NSString * _Nullable))mapper __attribute__((swift_name("selectExtrinsicsPaged(signAddress:limit:offset:mapper:)")));
-- (CommonNetworkingRuntimeQuery<CommonNetworkingSignerInfo *> *)selectSignerInfoSignAddress:(NSString *)signAddress __attribute__((swift_name("selectSignerInfo(signAddress:)")));
-- (CommonNetworkingRuntimeQuery<id> *)selectSignerInfoSignAddress:(NSString *)signAddress mapper:(id (^)(NSString *, CommonNetworkingLong *, CommonNetworkingLong *, NSString * _Nullable, CommonNetworkingBoolean *))mapper __attribute__((swift_name("selectSignerInfo(signAddress:mapper:)")));
+- (CommonNetworkingRuntimeQuery<id> *)selectExtrinsicsNestedParentHash:(NSString * _Nullable)parentHash mapper:(id (^)(NSString *, NSString *, NSString *, NSString * _Nullable, NSString *, NSString *, NSString *, CommonNetworkingLong *, CommonNetworkingBoolean *, CommonNetworkingBoolean *, NSString * _Nullable))mapper __attribute__((swift_name("selectExtrinsicsNested(parentHash:mapper:)")));
+- (CommonNetworkingRuntimeQuery<CommonNetworkingExtrinsics *> *)selectExtrinsicsPagedAddress:(NSString *)address network:(NSString *)network limit:(int64_t)limit offset:(int64_t)offset __attribute__((swift_name("selectExtrinsicsPaged(address:network:limit:offset:)")));
+- (CommonNetworkingRuntimeQuery<id> *)selectExtrinsicsPagedAddress:(NSString *)address network:(NSString *)network limit:(int64_t)limit offset:(int64_t)offset mapper:(id (^)(NSString *, NSString *, NSString *, NSString * _Nullable, NSString *, NSString *, NSString *, CommonNetworkingLong *, CommonNetworkingBoolean *, CommonNetworkingBoolean *, NSString * _Nullable))mapper __attribute__((swift_name("selectExtrinsicsPaged(address:network:limit:offset:mapper:)")));
+- (CommonNetworkingRuntimeQuery<CommonNetworkingSignerInfo *> *)selectSignerInfoAddress:(NSString *)address network:(NSString *)network __attribute__((swift_name("selectSignerInfo(address:network:)")));
+- (CommonNetworkingRuntimeQuery<id> *)selectSignerInfoAddress:(NSString *)address network:(NSString *)network mapper:(id (^)(NSString *, NSString *, CommonNetworkingLong *, CommonNetworkingLong *, NSString * _Nullable, CommonNetworkingBoolean *))mapper __attribute__((swift_name("selectSignerInfo(address:network:mapper:)")));
 - (CommonNetworkingRuntimeQuery<NSString *> *)selectTransfersPeersQuery:(NSString *)query __attribute__((swift_name("selectTransfersPeers(query:)")));
 @end;
 
