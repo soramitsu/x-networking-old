@@ -59,7 +59,7 @@ FROM ExtrinsicParam WHERE (paramName = "to" OR paramName = "from") AND paramValu
 
 selectSignerInfo:
 SELECT SignerInfo.*
-FROM SignerInfo WHERE signAddress = ?;
+FROM SignerInfo WHERE signAddress = :address AND networkName = :network;
 
 insertSignerInfo:
 INSERT OR REPLACE INTO SignerInfo(signAddress, networkName, topTime, oldTime, oldCursor, endReached)
@@ -79,4 +79,4 @@ removeAllSignerInfo:
 DELETE FROM SignerInfo;
 
 removeSignerInfo:
-DELETE FROM SignerInfo WHERE signAddress = ?;
+DELETE FROM SignerInfo WHERE signAddress = :address AND networkName = :network;
