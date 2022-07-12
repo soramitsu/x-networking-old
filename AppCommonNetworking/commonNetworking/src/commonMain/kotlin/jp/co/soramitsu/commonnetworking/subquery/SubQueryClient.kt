@@ -37,8 +37,8 @@ class SubQueryClient<T, R> internal constructor(
         historyDatabase.clearDatabase()
     }
 
-    fun clearData(address: String) {
-        historyDatabase.clearAddressData(address)
+    fun clearData(address: String, networkName: String) {
+        historyDatabase.clearAddressData(address, networkName)
     }
 
     @Throws(SoramitsuNetworkException::class, CancellationException::class)
@@ -86,16 +86,18 @@ class SubQueryClient<T, R> internal constructor(
 
     fun getTransactionHistoryCached(
         address: String,
+        networkName: String,
     ): SubQueryHistoryInfo {
-        val extrinsics = historyDatabase.getExtrinsics(address, 0, pageSize)
+        val extrinsics = historyDatabase.getExtrinsics(address, networkName, 0, pageSize)
         return buildResultHistoryInfo(true, extrinsics)
     }
 
     fun getTransactionCached(
         address: String,
+        networkName: String,
         txHash: String,
     ): SubQueryHistoryInfo {
-        val extrinsic = historyDatabase.getExtrinsic(address, txHash)
+        val extrinsic = historyDatabase.getExtrinsic(address, networkName, txHash)
         return buildResultHistoryInfo(
             true,
             if (extrinsic == null) emptyList() else listOf(extrinsic)
@@ -155,7 +157,7 @@ class SubQueryClient<T, R> internal constructor(
         networkName: String,
     ): SubQueryHistoryInfo {
         var dbOffset = (page - 1) * pageSize
-        val extrinsics = historyDatabase.getExtrinsics(address, dbOffset, pageSize)
+        val extrinsics = historyDatabase.getExtrinsics(address, networkName, dbOffset, pageSize)
         dbOffset += extrinsics.size
         return if (extrinsics.size.toLong() >= pageSize) {
             buildResultHistoryInfo(false, extrinsics)
@@ -166,7 +168,7 @@ class SubQueryClient<T, R> internal constructor(
                 loadInfo(curSignerInfo.oldCursor.orEmpty(), address, networkName)
                 val moreCount = pageSize - extrinsics.size
                 val moreExtrinsics =
-                    historyDatabase.getExtrinsics(address, dbOffset, moreCount)
+                    historyDatabase.getExtrinsics(address, networkName, dbOffset, moreCount)
                 dbOffset += moreExtrinsics.size
                 buildResultHistoryInfo(curSignerInfo.endReached, extrinsics + moreExtrinsics)
             }

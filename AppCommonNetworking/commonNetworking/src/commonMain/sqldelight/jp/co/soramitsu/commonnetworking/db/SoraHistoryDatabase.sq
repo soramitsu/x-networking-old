@@ -38,7 +38,7 @@ VALUES (?, ?, ?);
 
 selectExtrinsicsPaged:
 SELECT Extrinsics.*
-FROM Extrinsics WHERE signAddress = ? AND parentHash ISNULL ORDER BY timestamp DESC LIMIT :limit OFFSET :offset;
+FROM Extrinsics WHERE signAddress = :address AND networkName = :network AND parentHash ISNULL ORDER BY timestamp DESC LIMIT :limit OFFSET :offset;
 
 selectExtrinsicsNested:
 SELECT Extrinsics.*
@@ -46,7 +46,7 @@ FROM Extrinsics WHERE parentHash = ?;
 
 selectExtrinsic:
 SELECT Extrinsics.*
-FROM Extrinsics WHERE txHash = :hash AND signAddress = :address;
+FROM Extrinsics WHERE txHash = :hash AND signAddress = :address AND networkName = :network;
 
 selectExtrinsicParams:
 SELECT ExtrinsicParam.*
@@ -72,7 +72,7 @@ removeAllExtrinsics:
 DELETE FROM Extrinsics;
 
 removeExtrinsics:
-DELETE FROM Extrinsics WHERE signAddress = ?;
+DELETE FROM Extrinsics WHERE signAddress = :address AND networkName = :network;
 
 removeAllSignerInfo:
 DELETE FROM SignerInfo;
