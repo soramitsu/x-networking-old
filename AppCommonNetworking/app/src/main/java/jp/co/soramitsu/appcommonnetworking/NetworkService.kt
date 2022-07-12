@@ -22,9 +22,9 @@ class NetworkService<T, R>(
 
     suspend fun getHistory(page: Long, f: (R) -> Boolean) =
         subQueryClient.getTransactionHistoryPaged(
-            address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
+//            address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
+        address = "5ETrb47YCHE9pYxKfpm4b3bMNvKd7Zusi22yZLLHKadP5oYn",
             networkName = "",
-//        address = "5HpLdCTNBQDjFomqpG2XWadgB4zHTuqQqNHhUyYbett7k1RR",
             page = page,
             filter = f
         )
