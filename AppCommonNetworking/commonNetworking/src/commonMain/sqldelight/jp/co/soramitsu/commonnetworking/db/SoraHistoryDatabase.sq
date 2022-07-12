@@ -1,6 +1,7 @@
 CREATE TABLE Extrinsics (
     txHash TEXT NOT NULL PRIMARY KEY,
     signAddress TEXT NOT NULL,
+    networkName TEXT NOT NULL,
     blockHash TEXT,
     module TEXT NOT NULL,
     method TEXT NOT NULL,
@@ -28,8 +29,8 @@ CREATE TABLE SignerInfo (
 );
 
 insertExtrinsic:
-INSERT OR REPLACE INTO Extrinsics(txHash, signAddress, blockHash, module, method, networkFee, timestamp, success, batch, parentHash)
-VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+INSERT OR REPLACE INTO Extrinsics(txHash, signAddress, networkName, blockHash, module, method, networkFee, timestamp, success, batch, parentHash)
+VALUES(?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?);
 
 insertExtrinsicParam:
 INSERT OR REPLACE INTO ExtrinsicParam(extrinsicHash, paramName, paramValue)
