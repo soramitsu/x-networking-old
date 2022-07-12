@@ -20,7 +20,7 @@ internal class HistoryDatabase(historyDatabaseFactory: DatabaseDriverFactory) {
     internal fun clearAddressData(signAddress: String, networkName: String) {
         dbQuery.transaction {
             dbQuery.removeExtrinsics(signAddress, networkName)
-            dbQuery.removeSignerInfo(signAddress)
+            dbQuery.removeSignerInfo(signAddress, networkName)
         }
     }
 
@@ -28,9 +28,10 @@ internal class HistoryDatabase(historyDatabaseFactory: DatabaseDriverFactory) {
         return dbQuery.selectTransfersPeers(query).executeAsList()
     }
 
-    internal fun getSignerInfo(signAddress: String): SignerInfo =
-        dbQuery.selectSignerInfo(signAddress).executeAsOneOrNull() ?: SignerInfo(
+    internal fun getSignerInfo(signAddress: String, networkName: String): SignerInfo =
+        dbQuery.selectSignerInfo(signAddress, networkName).executeAsOneOrNull() ?: SignerInfo(
             signAddress,
+            networkName,
             0,
             0,
             null,
@@ -114,6 +115,7 @@ internal class HistoryDatabase(historyDatabaseFactory: DatabaseDriverFactory) {
         }
         return SignerInfo(
             signAddress = signAddress,
+            networkName = networkName,
             topTime = response.items.firstOrNull()?.timestamp?.toLong() ?: 0,
             oldTime = response.items.lastOrNull()?.timestamp?.toLong() ?: 0,
             oldCursor = response.endCursor,

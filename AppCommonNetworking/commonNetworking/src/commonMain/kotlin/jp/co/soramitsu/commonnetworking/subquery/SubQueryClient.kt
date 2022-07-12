@@ -120,7 +120,7 @@ class SubQueryClient<T, R> internal constructor(
     ): SubQueryHistoryResult<R> {
         require(page >= 1) { "Page value must >= 1" }
         if (url != null) baseUrl = url
-        curSignerInfo = historyDatabase.getSignerInfo(address)
+        curSignerInfo = historyDatabase.getSignerInfo(address, networkName)
         if (page == 1L) {
             loadInfo(address = address, networkName = networkName)
         }
@@ -196,6 +196,7 @@ class SubQueryClient<T, R> internal constructor(
             historyDatabase.insertExtrinsics(address, networkName, infoDecoded)
         curSignerInfo = SignerInfo(
             signAddress = address,
+            networkName = networkName,
             topTime = max(info.topTime, curSignerInfo.topTime),
             oldTime = if (curSignerInfo.oldTime == 0L) info.oldTime else min(
                 info.oldTime,
