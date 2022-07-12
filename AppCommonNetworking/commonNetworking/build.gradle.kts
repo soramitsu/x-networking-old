@@ -144,7 +144,6 @@ sqldelight {
     database("SoraHistoryDatabase") {
         packageName = "jp.co.soramitsu.commonnetworking.db"
         schemaOutputDirectory = file("src/commonMain/sqldelight/databases")
-        version = 2
     }
 }
 
