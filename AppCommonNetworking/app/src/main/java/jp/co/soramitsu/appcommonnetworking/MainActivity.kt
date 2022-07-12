@@ -27,18 +27,18 @@ class MainActivity : AppCompatActivity() {
             soraNetworkClient,
             "https://raw.githubusercontent.com/arvifox/arvifoxandroid/develop/felete/"
         )
-        val subQueryClient = SubQueryClientForSora.build(
-            applicationContext,
-            soraNetworkClient,
-            "https://api.subquery.network/sq/sora-xor/sora-dev",
-            20
-        )
-//        val subQueryClient = SubQueryClientForFearless.build(
+//        val subQueryClient = SubQueryClientForSora.build(
 //            applicationContext,
 //            soraNetworkClient,
-//            "https://api.subquery.network/sq/soramitsu/fearless-wallet-westend",
+//            "https://api.subquery.network/sq/sora-xor/sora-dev",
 //            20
 //        )
+        val subQueryClient = SubQueryClientForFearless.build(
+            applicationContext,
+            soraNetworkClient,
+            "https://api.subquery.network/sq/soramitsu/fearless-wallet-westend",
+            20
+        )
         val networkService = NetworkService(soraNetworkClient, f, subQueryClient)
 
         btn1.setOnClickListener {
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                 Log.e("foxxx", "button 2")
                 try {
                     val r = networkService.getHistory(1) {
-                        it.module == "referrals"
+                        true
                     }
                     Log.e("foxxx", "r = ${r.endReached} ${r.page} ${r.items.size}")
                 } catch (t: Throwable) {
