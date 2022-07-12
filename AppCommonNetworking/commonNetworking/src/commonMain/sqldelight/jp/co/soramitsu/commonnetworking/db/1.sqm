@@ -1,0 +1,1 @@
+ALTER TABLE Extrinsics ADD COLUMN networkName TEXT NOT NULL DEFAULT "";

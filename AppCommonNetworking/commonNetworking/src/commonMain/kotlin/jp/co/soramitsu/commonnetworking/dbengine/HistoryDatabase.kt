@@ -17,9 +17,9 @@ internal class HistoryDatabase(historyDatabaseFactory: DatabaseDriverFactory) {
         }
     }
 
-    internal fun clearAddressData(signAddress: String) {
+    internal fun clearAddressData(signAddress: String, networkName: String) {
         dbQuery.transaction {
-            dbQuery.removeExtrinsics(signAddress)
+            dbQuery.removeExtrinsics(signAddress, networkName)
             dbQuery.removeSignerInfo(signAddress)
         }
     }
@@ -39,12 +39,12 @@ internal class HistoryDatabase(historyDatabaseFactory: DatabaseDriverFactory) {
 
     internal fun insertSignerInfo(info: SignerInfo) = dbQuery.insertSignerInfoFull(info)
 
-    internal fun getExtrinsics(signAddress: String, offset: Long, count: Int): List<Extrinsics> {
-        return dbQuery.selectExtrinsicsPaged(signAddress, count.toLong(), offset).executeAsList()
+    internal fun getExtrinsics(signAddress: String, networkName: String, offset: Long, count: Int): List<Extrinsics> {
+        return dbQuery.selectExtrinsicsPaged(signAddress, networkName, count.toLong(), offset).executeAsList()
     }
 
-    internal fun getExtrinsic(signAddress: String, txHash: String): Extrinsics? {
-        return dbQuery.selectExtrinsic(txHash, signAddress).executeAsOneOrNull()
+    internal fun getExtrinsic(signAddress: String, networkName: String, txHash: String): Extrinsics? {
+        return dbQuery.selectExtrinsic(txHash, signAddress, networkName).executeAsOneOrNull()
     }
 
     internal fun getExtrinsicParams(extrinsicHash: String): List<ExtrinsicParam> {
@@ -57,7 +57,8 @@ internal class HistoryDatabase(historyDatabaseFactory: DatabaseDriverFactory) {
 
     internal fun insertExtrinsics(
         signAddress: String,
-        response: SubQueryHistoryInfo
+        networkName: String,
+        response: SubQueryHistoryInfo,
     ): SignerInfo {
         dbQuery.transaction {
             response.items.forEach { historyResponseItem ->
@@ -65,6 +66,7 @@ internal class HistoryDatabase(historyDatabaseFactory: DatabaseDriverFactory) {
                 dbQuery.insertExtrinsic(
                     txHash = historyResponseItem.id,
                     signAddress = signAddress,
+                    networkName = networkName,
                     blockHash = historyResponseItem.blockHash,
                     module = historyResponseItem.module,
                     method = historyResponseItem.method,
@@ -89,6 +91,7 @@ internal class HistoryDatabase(historyDatabaseFactory: DatabaseDriverFactory) {
                         dbQuery.insertExtrinsic(
                             txHash = hash,
                             signAddress = signAddress,
+                            networkName = networkName,
                             blockHash = historyResponseItem.blockHash,
                             module = itemNested.module,
                             method = itemNested.method,

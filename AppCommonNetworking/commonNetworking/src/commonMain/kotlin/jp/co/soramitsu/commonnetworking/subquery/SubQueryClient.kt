@@ -37,8 +37,8 @@ class SubQueryClient<T, R> internal constructor(
         historyDatabase.clearDatabase()
     }
 
-    fun clearData(address: String) {
-        historyDatabase.clearAddressData(address)
+    fun clearData(address: String, networkName: String) {
+        historyDatabase.clearAddressData(address, networkName)
     }
 
     @Throws(SoramitsuNetworkException::class, CancellationException::class)
@@ -86,16 +86,18 @@ class SubQueryClient<T, R> internal constructor(
 
     fun getTransactionHistoryCached(
         address: String,
+        networkName: String,
     ): SubQueryHistoryInfo {
-        val extrinsics = historyDatabase.getExtrinsics(address, 0, pageSize)
+        val extrinsics = historyDatabase.getExtrinsics(address, networkName, 0, pageSize)
         return buildResultHistoryInfo(true, extrinsics)
     }
 
     fun getTransactionCached(
         address: String,
+        networkName: String,
         txHash: String,
     ): SubQueryHistoryInfo {
-        val extrinsic = historyDatabase.getExtrinsic(address, txHash)
+        val extrinsic = historyDatabase.getExtrinsic(address, networkName, txHash)
         return buildResultHistoryInfo(
             true,
             if (extrinsic == null) emptyList() else listOf(extrinsic)
@@ -111,6 +113,7 @@ class SubQueryClient<T, R> internal constructor(
     )
     suspend fun getTransactionHistoryPaged(
         address: String,
+        networkName: String,
         page: Long,
         url: String? = null,
         filter: ((R) -> Boolean)? = null
@@ -119,14 +122,14 @@ class SubQueryClient<T, R> internal constructor(
         if (url != null) baseUrl = url
         curSignerInfo = historyDatabase.getSignerInfo(address)
         if (page == 1L) {
-            loadInfo(address = address)
+            loadInfo(address = address, networkName = networkName)
         }
         var curPage = page
         val list = mutableListOf<R>()
         var endCursor: String?
         var endReached: Boolean
         while (true) {
-            val info = getHistoryInfo(curPage, address)
+            val info = getHistoryInfo(curPage, address, networkName)
             endCursor = info.endCursor
             endReached = info.endReached
             val itemsMapped = info.items.map(historyInfoToResult)
@@ -151,9 +154,10 @@ class SubQueryClient<T, R> internal constructor(
     private suspend fun getHistoryInfo(
         page: Long,
         address: String,
+        networkName: String,
     ): SubQueryHistoryInfo {
         var dbOffset = (page - 1) * pageSize
-        val extrinsics = historyDatabase.getExtrinsics(address, dbOffset, pageSize)
+        val extrinsics = historyDatabase.getExtrinsics(address, networkName, dbOffset, pageSize)
         dbOffset += extrinsics.size
         return if (extrinsics.size.toLong() >= pageSize) {
             buildResultHistoryInfo(false, extrinsics)
@@ -161,17 +165,17 @@ class SubQueryClient<T, R> internal constructor(
             if (curSignerInfo.endReached) {
                 buildResultHistoryInfo(true, extrinsics)
             } else {
-                loadInfo(curSignerInfo.oldCursor.orEmpty(), address)
+                loadInfo(curSignerInfo.oldCursor.orEmpty(), address, networkName)
                 val moreCount = pageSize - extrinsics.size
                 val moreExtrinsics =
-                    historyDatabase.getExtrinsics(address, dbOffset, moreCount)
+                    historyDatabase.getExtrinsics(address, networkName, dbOffset, moreCount)
                 dbOffset += moreExtrinsics.size
                 buildResultHistoryInfo(curSignerInfo.endReached, extrinsics + moreExtrinsics)
             }
         }
     }
 
-    private suspend fun loadInfo(cursor: String = "", address: String) {
+    private suspend fun loadInfo(cursor: String = "", address: String, networkName: String) {
         val request = SubQueryRequest(
             query = historyRequest,
             variables = soraHistoryGraphQLVariables(
@@ -189,7 +193,7 @@ class SubQueryClient<T, R> internal constructor(
         val decoded = networkClient.json.decodeFromString(deserializationStrategy, response)
         val infoDecoded = jsonToHistoryInfo.invoke(decoded)
         val info =
-            historyDatabase.insertExtrinsics(address, infoDecoded)
+            historyDatabase.insertExtrinsics(address, networkName, infoDecoded)
         curSignerInfo = SignerInfo(
             signAddress = address,
             topTime = max(info.topTime, curSignerInfo.topTime),

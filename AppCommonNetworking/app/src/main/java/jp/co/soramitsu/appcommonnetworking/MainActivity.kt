@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         btn1.setOnClickListener {
             GlobalScope.launch {
                 try {
-                    val r = networkService.getApy()
+                    val r = networkService.getAssets()
                     Log.e("foxxx", "r = ${r}")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t= ${t.localizedMessage}")
