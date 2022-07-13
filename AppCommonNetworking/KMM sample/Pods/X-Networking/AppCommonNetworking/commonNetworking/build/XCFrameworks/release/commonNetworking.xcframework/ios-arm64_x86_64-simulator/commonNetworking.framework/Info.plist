@@ -5,7 +5,7 @@
 	<key>CFBundleExecutable</key>
 	<string>commonNetworking</string>
 	<key>CFBundleIdentifier</key>
-	<string>jp.co.soramitsu.commonnetworking.commonNetworking</string>
+	<string>jp.co.soramitsu.xnetworking.commonNetworking</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

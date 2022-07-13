@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="jp.co.soramitsu.appcommonnetworking">
+    package="jp.co.soramitsu.appxnetworking">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCommonNetworking">
+        android:theme="@style/Theme.AppXNetworking">
         <activity
             android:name=".MainActivity"
             android:exported="true">
