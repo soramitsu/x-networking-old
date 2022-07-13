@@ -12,7 +12,7 @@ Pod::Spec.new do |spec|
                 
                 
     spec.pod_target_xcconfig = {
-        'KOTLIN_PROJECT_PATH' => ':commonNetworking',
-        'PRODUCT_MODULE_NAME' => 'X-Networking',
+        'KOTLIN_PROJECT_PATH' => 'XNetworking',
+        'PRODUCT_MODULE_NAME' => 'XNetworking',
     }
 end
