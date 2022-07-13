@@ -4,14 +4,14 @@
 *.ap_
 *.aab
 *.xcuserstate
-commonNetworking/build/generated
-commonNetworking/build/bin
-commonNetworking/build/classes
-commonNetworking/build/cocoapods
-commonNetworking/build/commonNetworkingXCFrameworkTemp
-commonNetworking/build/intermediates
-commonNetworking/build/snapshot
-commonNetworking/build/tmp
+XNetworking/build/generated
+XNetworking/build/bin
+XNetworking/build/classes
+XNetworking/build/cocoapods
+XNetworking/build/commonNetworkingXCFrameworkTemp
+XNetworking/build/intermediates
+XNetworking/build/snapshot
+XNetworking/build/tmp
 
 # Files for the ART/Dalvik VM
 *.dex
