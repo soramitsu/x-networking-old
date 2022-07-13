@@ -30,7 +30,7 @@ node(jenkinsAgent) {
                             stage('Deploy library') {
                                 sh '''
                                     cd AppCommonNetworking
-                                    ./gradlew :commonNetworking:publishAndroidReleasePublicationToScnRepoRepository
+                                    ./gradlew :XNetworking:publishAndroidReleasePublicationToScnRepoRepository
                                 '''
                             }
                         }
