@@ -31,20 +31,30 @@ internal class HistoryDatabase(historyDatabaseFactory: DatabaseDriverFactory) {
     internal fun getSignerInfo(signAddress: String, networkName: String): SignerInfo =
         dbQuery.selectSignerInfo(signAddress, networkName).executeAsOneOrNull() ?: SignerInfo(
             signAddress,
-            networkName,
             0,
             0,
             null,
-            false
+            false,
+            networkName,
         )
 
     internal fun insertSignerInfo(info: SignerInfo) = dbQuery.insertSignerInfoFull(info)
 
-    internal fun getExtrinsics(signAddress: String, networkName: String, offset: Long, count: Int): List<Extrinsics> {
-        return dbQuery.selectExtrinsicsPaged(signAddress, networkName, count.toLong(), offset).executeAsList()
+    internal fun getExtrinsics(
+        signAddress: String,
+        networkName: String,
+        offset: Long,
+        count: Int
+    ): List<Extrinsics> {
+        return dbQuery.selectExtrinsicsPaged(signAddress, networkName, count.toLong(), offset)
+            .executeAsList()
     }
 
-    internal fun getExtrinsic(signAddress: String, networkName: String, txHash: String): Extrinsics? {
+    internal fun getExtrinsic(
+        signAddress: String,
+        networkName: String,
+        txHash: String
+    ): Extrinsics? {
         return dbQuery.selectExtrinsic(txHash, signAddress, networkName).executeAsOneOrNull()
     }
 

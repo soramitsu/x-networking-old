@@ -1,7 +1,6 @@
 CREATE TABLE Extrinsics (
     txHash TEXT NOT NULL PRIMARY KEY,
     signAddress TEXT NOT NULL,
-    networkName TEXT NOT NULL,
     blockHash TEXT,
     module TEXT NOT NULL,
     method TEXT NOT NULL,
@@ -9,7 +8,8 @@ CREATE TABLE Extrinsics (
     timestamp INTEGER NOT NULL DEFAULT 0,
     success INTEGER AS Boolean NOT NULL DEFAULT 0,
     batch INTEGER AS Boolean NOT NULL DEFAULT 0,
-    parentHash TEXT
+    parentHash TEXT,
+    networkName TEXT NOT NULL DEFAULT ""
 );
 
 CREATE TABLE ExtrinsicParam (
@@ -22,11 +22,11 @@ CREATE TABLE ExtrinsicParam (
 
 CREATE TABLE SignerInfo (
     signAddress TEXT NOT NULL PRIMARY KEY,
-    networkName TEXT NOT NULL,
     topTime INTEGER NOT NULL DEFAULT 0,
     oldTime INTEGER NOT NULL DEFAULT 0,
     oldCursor TEXT,
-    endReached INTEGER AS Boolean NOT NULL DEFAULT 0
+    endReached INTEGER AS Boolean NOT NULL DEFAULT 0,
+    networkName TEXT NOT NULL DEFAULT ""
 );
 
 insertExtrinsic:
