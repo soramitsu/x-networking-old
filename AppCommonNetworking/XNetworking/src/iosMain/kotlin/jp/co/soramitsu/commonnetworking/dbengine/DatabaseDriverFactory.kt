@@ -1,8 +1,8 @@
-package jp.co.soramitsu.commonnetworking.dbengine
+package jp.co.soramitsu.xnetworking.dbengine
 
 import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
-import jp.co.soramitsu.commonnetworking.db.SoraHistoryDatabase
+import jp.co.soramitsu.xnetworking.db.SoraHistoryDatabase
 
 actual class DatabaseDriverFactory {
     actual fun createDriver(): SqlDriver {

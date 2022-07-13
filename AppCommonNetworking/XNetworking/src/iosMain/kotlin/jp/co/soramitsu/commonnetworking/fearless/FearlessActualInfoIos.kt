@@ -1,4 +1,4 @@
-package jp.co.soramitsu.commonnetworking.fearless
+package jp.co.soramitsu.xnetworking.fearless
 
 import platform.Foundation.NSBundle
 

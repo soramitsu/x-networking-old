@@ -1,17 +1,17 @@
-package jp.co.soramitsu.commonnetworking.subquery.factory
+package jp.co.soramitsu.xnetworking.subquery.factory
 
-import jp.co.soramitsu.commonnetworking.dbengine.DatabaseDriverFactory
-import jp.co.soramitsu.commonnetworking.dbengine.HistoryDatabaseProvider
-import jp.co.soramitsu.commonnetworking.networkclient.SoramitsuNetworkClient
-import jp.co.soramitsu.commonnetworking.subquery.SubQueryClient
-import jp.co.soramitsu.commonnetworking.subquery.graphql.fearlessHistoryGraphQLRequest
-import jp.co.soramitsu.commonnetworking.subquery.graphql.soraHistoryGraphQLRequest
-import jp.co.soramitsu.commonnetworking.subquery.history.SubQueryHistoryInfo
-import jp.co.soramitsu.commonnetworking.subquery.history.SubQueryHistoryItem
-import jp.co.soramitsu.commonnetworking.subquery.history.fearless.FearlessMapper
-import jp.co.soramitsu.commonnetworking.subquery.history.fearless.FearlessSubQueryResponse
-import jp.co.soramitsu.commonnetworking.subquery.history.sora.SoraMapper
-import jp.co.soramitsu.commonnetworking.subquery.history.sora.SoraSubqueryResponse
+import jp.co.soramitsu.xnetworking.dbengine.DatabaseDriverFactory
+import jp.co.soramitsu.xnetworking.dbengine.HistoryDatabaseProvider
+import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
+import jp.co.soramitsu.xnetworking.subquery.SubQueryClient
+import jp.co.soramitsu.xnetworking.subquery.graphql.fearlessHistoryGraphQLRequest
+import jp.co.soramitsu.xnetworking.subquery.graphql.soraHistoryGraphQLRequest
+import jp.co.soramitsu.xnetworking.subquery.history.SubQueryHistoryInfo
+import jp.co.soramitsu.xnetworking.subquery.history.SubQueryHistoryItem
+import jp.co.soramitsu.xnetworking.subquery.history.fearless.FearlessMapper
+import jp.co.soramitsu.xnetworking.subquery.history.fearless.FearlessSubQueryResponse
+import jp.co.soramitsu.xnetworking.subquery.history.sora.SoraMapper
+import jp.co.soramitsu.xnetworking.subquery.history.sora.SoraSubqueryResponse
 import kotlinx.serialization.DeserializationStrategy
 
 actual class SubQueryClientFactory<T, R> {

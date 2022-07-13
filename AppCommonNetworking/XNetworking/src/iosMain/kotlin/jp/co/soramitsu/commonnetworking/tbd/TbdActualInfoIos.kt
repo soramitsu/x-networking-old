@@ -1,4 +1,4 @@
-package jp.co.soramitsu.commonnetworking.tbd
+package jp.co.soramitsu.xnetworking.tbd
 
 import kotlinx.cinterop.addressOf
 import kotlinx.cinterop.alloc

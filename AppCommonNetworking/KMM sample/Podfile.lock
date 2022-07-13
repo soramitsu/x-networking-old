@@ -2,11 +2,11 @@ PODS:
   - X-Networking (0.0.22)
 
 DEPENDENCIES:
-  - X-Networking (from `https://raw.githubusercontent.com/soramitsu/x-networking/master/AppCommonNetworking/commonNetworking/X-Networking.podspec`)
+  - X-Networking (from `https://raw.githubusercontent.com/soramitsu/x-networking/master/AppXNetworking/commonNetworking/X-Networking.podspec`)
 
 EXTERNAL SOURCES:
   X-Networking:
-    :podspec: https://raw.githubusercontent.com/soramitsu/x-networking/master/AppCommonNetworking/commonNetworking/X-Networking.podspec
+    :podspec: https://raw.githubusercontent.com/soramitsu/x-networking/master/AppXNetworking/commonNetworking/X-Networking.podspec
 
 SPEC CHECKSUMS:
   X-Networking: 6056cfdd3d96e6c7e774000b9a0b916daf81bb85

@@ -12,6 +12,6 @@ pluginManagement {
 //        mavenCentral()
 //    }
 //}
-rootProject.name = "AppCommonNetworking"
+rootProject.name = "AppXNetworking"
 include(":app")
 include(":XNetworking")

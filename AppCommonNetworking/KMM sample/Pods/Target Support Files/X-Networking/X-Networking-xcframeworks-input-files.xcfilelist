@@ -1,2 +1,2 @@
 ${PODS_ROOT}/Target Support Files/X-Networking/X-Networking-xcframeworks.sh
-${PODS_ROOT}/X-Networking/AppCommonNetworking/commonNetworking/build/XCFrameworks/release/commonNetworking.xcframework
+${PODS_ROOT}/X-Networking/AppXNetworking/commonNetworking/build/XCFrameworks/release/commonNetworking.xcframework

@@ -117,5 +117,5 @@ install_xcframework() {
   echo "Copied $source to $destination"
 }
 
-install_xcframework "${PODS_ROOT}/X-Networking/AppCommonNetworking/commonNetworking/build/XCFrameworks/release/commonNetworking.xcframework" "X-Networking" "framework" "ios-arm64_x86_64-simulator" "ios-arm64"
+install_xcframework "${PODS_ROOT}/X-Networking/AppXNetworking/commonNetworking/build/XCFrameworks/release/commonNetworking.xcframework" "X-Networking" "framework" "ios-arm64_x86_64-simulator" "ios-arm64"
 

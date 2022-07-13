@@ -17,7 +17,7 @@ publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "jp.co.soramitsu"
-            artifactId = "common-networking"
+            artifactId = "xnetworking"
             version = "0.0.31"
 
             afterEvaluate {
@@ -142,7 +142,7 @@ kotlin {
 
 sqldelight {
     database("SoraHistoryDatabase") {
-        packageName = "jp.co.soramitsu.commonnetworking.db"
+        packageName = "jp.co.soramitsu.xnetworking.db"
         schemaOutputDirectory = file("src/commonMain/sqldelight/databases")
     }
 }
