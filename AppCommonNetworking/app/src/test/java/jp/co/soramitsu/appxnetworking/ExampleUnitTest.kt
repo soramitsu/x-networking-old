@@ -1,4 +1,4 @@
-package jp.co..soramitsu.appxnetworking.
+package jp.co.soramitsu.appxnetworking
 
 import io.ktor.client.*
 import io.ktor.client.engine.mock.*
