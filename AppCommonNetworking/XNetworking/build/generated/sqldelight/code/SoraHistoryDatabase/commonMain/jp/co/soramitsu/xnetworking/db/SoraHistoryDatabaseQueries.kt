@@ -85,7 +85,7 @@ public interface SoraHistoryDatabaseQueries : Transacter {
 
   public fun selectExtrinsicParams(extrinsicHash: String): Query<ExtrinsicParam>
 
-  public fun selectTransfersPeers(query: String): Query<String>
+  public fun selectTransfersPeers(network: String, query: String): Query<String>
 
   public fun <T : Any> selectSignerInfo(
     address: String,
