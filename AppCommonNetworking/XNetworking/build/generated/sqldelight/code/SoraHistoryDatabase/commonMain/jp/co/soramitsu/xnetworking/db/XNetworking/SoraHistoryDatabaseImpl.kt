@@ -281,8 +281,8 @@ private class SoraHistoryDatabaseQueriesImpl(
     )
   }
 
-  public override fun selectTransfersPeers(query: String): Query<String> =
-      SelectTransfersPeersQuery(query) { cursor ->
+  public override fun selectTransfersPeers(network: String, query: String): Query<String> =
+      SelectTransfersPeersQuery(network, query) { cursor ->
     cursor.getString(0)!!
   }
 
@@ -351,6 +351,7 @@ private class SoraHistoryDatabaseQueriesImpl(
       bindString(11, parentHash)
     }
     notifyQueries(-1411428595, {database.soraHistoryDatabaseQueries.selectExtrinsicsPaged +
+        database.soraHistoryDatabaseQueries.selectTransfersPeers +
         database.soraHistoryDatabaseQueries.selectExtrinsic +
         database.soraHistoryDatabaseQueries.selectExtrinsicsNested})
   }
@@ -512,14 +513,18 @@ private class SoraHistoryDatabaseQueriesImpl(
   }
 
   private inner class SelectTransfersPeersQuery<out T : Any>(
+    public val network: String,
     public val query: String,
     mapper: (SqlCursor) -> T
   ) : Query<T>(selectTransfersPeers, mapper) {
     public override fun execute(): SqlCursor = driver.executeQuery(-68791370, """
     |SELECT DISTINCT ExtrinsicParam.paramValue
-    |FROM ExtrinsicParam WHERE (paramName = "to" OR paramName = "from") AND paramValue LIKE '%' || ? || "%"
-    """.trimMargin(), 1) {
-      bindString(1, query)
+    |FROM ExtrinsicParam INNER JOIN Extrinsics ON ExtrinsicParam.extrinsicHash = Extrinsics.txHash
+    |WHERE (paramName = "to" OR paramName = "from") AND Extrinsics.networkName = ?
+    |AND paramValue LIKE '%' || ? || "%"
+    """.trimMargin(), 2) {
+      bindString(1, network)
+      bindString(2, query)
     }
 
     public override fun toString(): String = "SoraHistoryDatabase.sq:selectTransfersPeers"
