@@ -55,7 +55,9 @@ FROM ExtrinsicParam WHERE extrinsicHash = ?;
 
 selectTransfersPeers:
 SELECT DISTINCT ExtrinsicParam.paramValue
-FROM ExtrinsicParam WHERE (paramName = "to" OR paramName = "from") AND paramValue LIKE '%' || :query || "%";
+FROM ExtrinsicParam INNER JOIN Extrinsics ON ExtrinsicParam.extrinsicHash = Extrinsics.txHash
+WHERE (paramName = "to" OR paramName = "from") AND Extrinsics.networkName = :network
+AND paramValue LIKE '%' || :query || "%";
 
 selectSignerInfo:
 SELECT SignerInfo.*

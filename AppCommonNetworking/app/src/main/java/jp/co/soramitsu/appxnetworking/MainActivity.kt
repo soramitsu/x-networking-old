@@ -27,18 +27,18 @@ class MainActivity : AppCompatActivity() {
             soraNetworkClient,
             "https://raw.githubusercontent.com/arvifox/arvifoxandroid/develop/felete/"
         )
-//        val subQueryClient = SubQueryClientForSora.build(
-//            applicationContext,
-//            soraNetworkClient,
-//            "https://api.subquery.network/sq/sora-xor/sora-dev",
-//            20
-//        )
-        val subQueryClient = SubQueryClientForFearless.build(
+        val subQueryClient = SubQueryClientForSora.build(
             applicationContext,
             soraNetworkClient,
-            "https://api.subquery.network/sq/soramitsu/fearless-wallet-westend",
+            "https://api.subquery.network/sq/sora-xor/sora-dev",
             20
         )
+//        val subQueryClient = SubQueryClientForFearless.build(
+//            applicationContext,
+//            soraNetworkClient,
+//            "https://api.subquery.network/sq/soramitsu/fearless-wallet-westend",
+//            20
+//        )
         val networkService = NetworkService(soraNetworkClient, f, subQueryClient)
 
         btn1.setOnClickListener {
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
             GlobalScope.launch {
                 Log.e("foxxx", "button 3")
                 try {
-                    val r = networkService.getPeers("vko")
+                    val r = networkService.getPeers("")
                     Log.e("foxxx", "r = $r")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t = ${t.localizedMessage}")

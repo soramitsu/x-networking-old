@@ -81,8 +81,8 @@ class SubQueryClient<T, R> internal constructor(
         return ReferrerRewardsInfo(list)
     }
 
-    fun getTransactionPeers(query: String): List<String> =
-        historyDatabase.getTransfersAddress(query)
+    fun getTransactionPeers(query: String, networkName: String): List<String> =
+        historyDatabase.getTransfersAddress(query, networkName)
 
     fun getTransactionHistoryCached(
         address: String,

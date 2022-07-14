@@ -22,14 +22,14 @@ class NetworkService<T, R>(
 
     suspend fun getHistory(page: Long, f: (R) -> Boolean) =
         subQueryClient.getTransactionHistoryPaged(
-//            address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
-        address = "5ETrb47YCHE9pYxKfpm4b3bMNvKd7Zusi22yZLLHKadP5oYn",
-            networkName = "",
+            address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
+//            address = "5ETrb47YCHE9pYxKfpm4b3bMNvKd7Zusi22yZLLHKadP5oYn",
+            networkName = "sora",
             page = page,
             filter = f
         )
 
-    suspend fun getPeers(query: String) = subQueryClient.getTransactionPeers(query)
+    suspend fun getPeers(query: String) = subQueryClient.getTransactionPeers(query, "fearless")
 
     suspend fun getRewards() = subQueryClient.getReferrerRewards(
         address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
