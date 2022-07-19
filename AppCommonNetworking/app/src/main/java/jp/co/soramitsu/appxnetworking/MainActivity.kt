@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         val subQueryClient = SubQueryClientForSora.build(
             applicationContext,
             soraNetworkClient,
-            "https://api.subquery.network/sq/sora-xor/sora-dev",
+            "https://api.subquery.network/sq/sora-xor/sora-staging",
             20
         )
 //        val subQueryClient = SubQueryClientForFearless.build(
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
             GlobalScope.launch {
                 Log.e("foxxx", "button 3")
                 try {
-                    val r = networkService.getPeers("")
+                    val r = networkService.getRewards()
                     Log.e("foxxx", "r = $r")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t = ${t.localizedMessage}")

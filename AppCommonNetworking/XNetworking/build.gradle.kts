@@ -11,14 +11,14 @@ plugins {
 
 group = "jp.co.soramitsu"
 
-version = "0.0.33"
+version = "0.0.34"
 
 publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "jp.co.soramitsu"
             artifactId = "xnetworking"
-            version = "0.0.33"
+            version = "0.0.34"
 
             afterEvaluate {
                 from(components["release"])
@@ -93,7 +93,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
 
-                //implementation("com.ionspin.kotlin:bignum:0.3.4")
+                implementation("com.ionspin.kotlin:bignum:0.3.6")
                 implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
             }
         }

@@ -1,5 +1,7 @@
 package jp.co.soramitsu.xnetworking.subquery
 
+import com.ionspin.kotlin.bignum.integer.BigInteger
+import com.ionspin.kotlin.bignum.integer.toBigInteger
 import io.ktor.http.*
 import jp.co.soramitsu.xnetworking.db.Extrinsics
 import jp.co.soramitsu.xnetworking.db.SignerInfo
@@ -59,26 +61,26 @@ class SubQueryClient<T, R> internal constructor(
         url: String = baseUrl,
     ): ReferrerRewardsInfo {
         var cursor = ""
-        val list = mutableListOf<ReferrerReward>()
+        val list = mutableMapOf<String, BigInteger>()
         while (true) {
             val response = networkClient.createJsonRequest<ReferrerRewardsResponse>(
                 url,
                 HttpMethod.Post,
                 SubQueryRequest(referrerRewardsGraphQLRequest(address, cursor))
             )
-            list.addAll(response.data.referrerRewards.nodes.map {
-                ReferrerReward(
-                    referral = it.referral,
-                    amount = it.amount,
-                )
-            })
+            response.data.referrerRewards.nodes.forEach {
+                val cur = list[it.referral] ?: 0L.toBigInteger()
+                list[it.referral] = it.amount.toBigInteger() + cur
+            }
             if (response.data.referrerRewards.pageInfo.hasNextPage && response.data.referrerRewards.pageInfo.endCursor != null) {
                 cursor = response.data.referrerRewards.pageInfo.endCursor
             } else {
                 break
             }
         }
-        return ReferrerRewardsInfo(list)
+        return ReferrerRewardsInfo(list.map {
+            ReferrerReward(it.key, it.value.toString())
+        })
     }
 
     fun getTransactionPeers(query: String, networkName: String): List<String> =
