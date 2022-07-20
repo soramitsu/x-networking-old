@@ -259,7 +259,7 @@ __attribute__((swift_name("SoraHistoryDatabaseQueries")))
 - (XNetworkingRuntimeQuery<id> *)selectExtrinsicsPagedAddress:(NSString *)address network:(NSString *)network limit:(int64_t)limit offset:(int64_t)offset mapper:(id (^)(NSString *, NSString *, NSString * _Nullable, NSString *, NSString *, NSString *, XNetworkingLong *, XNetworkingBoolean *, XNetworkingBoolean *, NSString * _Nullable, NSString *))mapper __attribute__((swift_name("selectExtrinsicsPaged(address:network:limit:offset:mapper:)")));
 - (XNetworkingRuntimeQuery<XNetworkingSignerInfo *> *)selectSignerInfoAddress:(NSString *)address network:(NSString *)network __attribute__((swift_name("selectSignerInfo(address:network:)")));
 - (XNetworkingRuntimeQuery<id> *)selectSignerInfoAddress:(NSString *)address network:(NSString *)network mapper:(id (^)(NSString *, XNetworkingLong *, XNetworkingLong *, NSString * _Nullable, XNetworkingBoolean *, NSString *))mapper __attribute__((swift_name("selectSignerInfo(address:network:mapper:)")));
-- (XNetworkingRuntimeQuery<NSString *> *)selectTransfersPeersQuery:(NSString *)query __attribute__((swift_name("selectTransfersPeers(query:)")));
+- (XNetworkingRuntimeQuery<NSString *> *)selectTransfersPeersNetwork:(NSString *)network query:(NSString *)query __attribute__((swift_name("selectTransfersPeers(network:query:)")));
 @end;
 
 __attribute__((swift_name("KotlinThrowable")))
@@ -457,7 +457,7 @@ __attribute__((swift_name("SubQueryClient")))
  Other uncaught Kotlin exceptions are fatal.
 */
 - (void)getTransactionHistoryPagedAddress:(NSString *)address networkName:(NSString *)networkName page:(int64_t)page url:(NSString * _Nullable)url filter:(XNetworkingBoolean *(^ _Nullable)(R _Nullable))filter completionHandler:(void (^)(XNetworkingSubQueryHistoryResult<R> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getTransactionHistoryPaged(address:networkName:page:url:filter:completionHandler:)")));
-- (NSArray<NSString *> *)getTransactionPeersQuery:(NSString *)query __attribute__((swift_name("getTransactionPeers(query:)")));
+- (NSArray<NSString *> *)getTransactionPeersQuery:(NSString *)query networkName:(NSString *)networkName __attribute__((swift_name("getTransactionPeers(query:networkName:)")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
