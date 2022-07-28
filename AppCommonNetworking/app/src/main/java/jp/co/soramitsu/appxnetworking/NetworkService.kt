@@ -2,12 +2,15 @@ package jp.co.soramitsu.appxnetworking
 
 import jp.co.soramitsu.xnetworking.fearless.FearlessChainsBuilder
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
+import jp.co.soramitsu.xnetworking.sora.SoraEnvBuilder
+import jp.co.soramitsu.xnetworking.sora.model.SoraEnv
 import jp.co.soramitsu.xnetworking.subquery.SubQueryClient
 import kotlinx.serialization.Serializable
 
 class NetworkService<T, R>(
     private val client: SoramitsuNetworkClient,
     private val fearlessChainsBuilder: FearlessChainsBuilder,
+    private val soraEnvBuilder: SoraEnvBuilder,
     private val subQueryClient: SubQueryClient<T, R>,
 ) {
 
@@ -34,6 +37,8 @@ class NetworkService<T, R>(
     suspend fun getRewards() = subQueryClient.getReferrerRewards(
         address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
     )
+
+    suspend fun getSoraEnv(): SoraEnv = soraEnvBuilder.getSoraEnv()
 }
 
 @Serializable
