@@ -6,7 +6,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import jp.co.soramitsu.xnetworking.fearless.FearlessChainsBuilder
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
-import jp.co.soramitsu.xnetworking.subquery.factory.SubQueryClientForFearless
+import jp.co.soramitsu.xnetworking.sora.SoraEnvBuilder
 import jp.co.soramitsu.xnetworking.subquery.factory.SubQueryClientForSora
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -33,13 +33,18 @@ class MainActivity : AppCompatActivity() {
             "https://api.subquery.network/sq/sora-xor/sora-staging",
             20
         )
+
+        val soraEnvBuilder = SoraEnvBuilder(
+            soraNetworkClient,
+            baseUrl = "https://raw.githubusercontent.com/sora-xor/polkaswap-exchange-web/master/env.json"
+        )
 //        val subQueryClient = SubQueryClientForFearless.build(
 //            applicationContext,
 //            soraNetworkClient,
 //            "https://api.subquery.network/sq/soramitsu/fearless-wallet-westend",
 //            20
 //        )
-        val networkService = NetworkService(soraNetworkClient, f, subQueryClient)
+        val networkService = NetworkService(soraNetworkClient, f, soraEnvBuilder, subQueryClient)
 
         btn1.setOnClickListener {
             GlobalScope.launch {
@@ -70,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             GlobalScope.launch {
                 Log.e("foxxx", "button 3")
                 try {
-                    val r = networkService.getRewards()
+                    val r = networkService.getSoraEnv()
                     Log.e("foxxx", "r = $r")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t = ${t.localizedMessage}")

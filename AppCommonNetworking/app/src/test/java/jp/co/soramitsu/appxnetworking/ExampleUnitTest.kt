@@ -13,6 +13,8 @@ import jp.co.soramitsu.xnetworking.fearless.FearlessChainsBuilder
 import jp.co.soramitsu.xnetworking.fearless.ResultChainInfo
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuHttpClientProvider
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
+import jp.co.soramitsu.xnetworking.sora.SoraEnvBuilder
+import jp.co.soramitsu.xnetworking.sora.model.SoraEnv
 import jp.co.soramitsu.xnetworking.subquery.SubQueryClient
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -38,6 +40,9 @@ class ExampleUnitTest {
     lateinit var fearlessChainsBuilder: FearlessChainsBuilder
 
     @MockK
+    lateinit var soraEnvBuilder: SoraEnvBuilder
+
+    @MockK
     lateinit var subQueryClient: SubQueryClient<*, *>
 
     lateinit var networkService: NetworkService<*, *>
@@ -46,7 +51,7 @@ class ExampleUnitTest {
     fun setUp() {
         MockKAnnotations.init(this)
         networkService =
-            NetworkService(soramitsuNetworkClient, fearlessChainsBuilder, subQueryClient)
+            NetworkService(soramitsuNetworkClient, fearlessChainsBuilder, soraEnvBuilder, subQueryClient)
     }
 
     @Test
@@ -64,6 +69,15 @@ class ExampleUnitTest {
         } returns ResultChainInfo(emptyList(), emptyList(), emptyList())
         val chains = networkService.getChains()
         assertEquals(0, chains.newChains.size)
+    }
+
+    @Test
+    fun getSoraEnv() = runTest {
+        coEvery {
+            soraEnvBuilder.getSoraEnv()
+        } returns SoraEnv(emptyList())
+        val soraEnv = networkService.getSoraEnv()
+        assertEquals(0, soraEnv.nodes.size)
     }
 
     @Serializable
