@@ -15,7 +15,7 @@ import jp.co.soramitsu.xnetworking.networkclient.SoramitsuHttpClientProvider
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.sora.SoraEnvBuilder
 import jp.co.soramitsu.xnetworking.sora.model.SoraEnv
-import jp.co.soramitsu.xnetworking.subquery.SubQueryClient
+import jp.co.soramitsu.xnetworking.txhistory.client.SubQueryClient
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.Serializable

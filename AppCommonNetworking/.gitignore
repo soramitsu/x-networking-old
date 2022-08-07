@@ -5,12 +5,16 @@
 *.aab
 *.xcuserstate
 XNetworking/build/generated
+XNetworking/build/kotlin
+XNetworking/build/.transforms
 XNetworking/build/bin
 XNetworking/build/classes
 XNetworking/build/cocoapods
 XNetworking/build/commonNetworkingXCFrameworkTemp
 XNetworking/build/intermediates
 XNetworking/build/snapshot
+XNetworking/build/reports
+XNetworking/build/test-results
 XNetworking/build/tmp
 
 # Files for the ART/Dalvik VM

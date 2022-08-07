@@ -57,7 +57,7 @@ class FearlessChainsBuilderTest {
                 }
             }
         )
-        builder = FearlessChainsBuilder(client, "https://www.sora.org/")
+        builder = FearlessChainsBuilder(client, "https://www.sora.org/", "index_android.json")
     }
 
     @Test
@@ -88,21 +88,21 @@ class FearlessChainsBuilderTest {
 
     @Test
     fun test_1_updated_1_new() = runTest {
-        val res = builder.getChains("2.4.1", listOf("123" to "qwe", "456" to "another"))
+        val res = builder.getChains("2.4.1", listOf("123" to "qwe", "234" to "another"))
         assertEquals(1, res.newChains.size)
-        assertEquals("789", res.newChains.first().chainId)
+        assertEquals("345", res.newChains.first().chainId)
         assertEquals(1, res.updatedChains.size)
-        assertEquals("456", res.updatedChains.first().chainId)
+        assertEquals("234", res.updatedChains.first().chainId)
     }
 
     @Test
     fun test_1_updated_1_new_1_removed() = runTest {
         val res =
-            builder.getChains("2.4.1", listOf("123" to "qwe", "456" to "another", "rem" to "remh"))
+            builder.getChains("2.4.1", listOf("123" to "qwe", "234" to "another", "rem" to "remh"))
         assertEquals(1, res.newChains.size)
-        assertEquals("789", res.newChains.first().chainId)
+        assertEquals("345", res.newChains.first().chainId)
         assertEquals(1, res.updatedChains.size)
-        assertEquals("456", res.updatedChains.first().chainId)
+        assertEquals("234", res.updatedChains.first().chainId)
         assertEquals(1, res.removedChains.size)
         assertEquals("rem", res.removedChains.first())
     }

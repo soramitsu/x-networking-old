@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import jp.co.soramitsu.xnetworking.fearless.FearlessChainsBuilder
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.sora.SoraEnvBuilder
-import jp.co.soramitsu.xnetworking.subquery.factory.SubQueryClientForSora
+import jp.co.soramitsu.xnetworking.txhistory.client.SubQueryClientForSora
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -25,7 +25,8 @@ class MainActivity : AppCompatActivity() {
         val soraNetworkClient = SoramitsuNetworkClient(logging = true)
         val f = FearlessChainsBuilder(
             soraNetworkClient,
-            "https://raw.githubusercontent.com/arvifox/arvifoxandroid/develop/felete/"
+            "https://raw.githubusercontent.com/arvifox/arvifoxandroid/develop/felete/",
+            "chains/index_android.json"
         )
         val subQueryClient = SubQueryClientForSora.build(
             applicationContext,
@@ -49,8 +50,9 @@ class MainActivity : AppCompatActivity() {
         btn1.setOnClickListener {
             GlobalScope.launch {
                 try {
-                    val r = networkService.getAssets()
-                    Log.e("foxxx", "r = ${r}")
+                    Log.e("foxxx", "r start")
+                    val r = networkService.getChains()
+                    Log.e("foxxx", "r = ${r.newChains.size}")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t= ${t.localizedMessage}")
                 }

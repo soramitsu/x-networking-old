@@ -2,9 +2,9 @@ package jp.co.soramitsu.appxnetworking
 
 import jp.co.soramitsu.xnetworking.fearless.FearlessChainsBuilder
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
-import jp.co.soramitsu.xnetworking.sora.SoraEnvBuilder
-import jp.co.soramitsu.xnetworking.sora.model.SoraEnv
-import jp.co.soramitsu.xnetworking.subquery.SubQueryClient
+import jp.co.soramitsu.xnetworking.sorawallet.SoraEnv
+import jp.co.soramitsu.xnetworking.sorawallet.SoraEnvBuilder
+import jp.co.soramitsu.xnetworking.txhistory.client.SubQueryClient
 import kotlinx.serialization.Serializable
 
 class NetworkService<T, R>(
@@ -19,9 +19,12 @@ class NetworkService<T, R>(
 
     suspend fun getRequest() = client.createJsonRequest<List<Int>>("https://www.github.com")
 
-    suspend fun getChains() = fearlessChainsBuilder.getChains("2.0.8", emptyList())
+    suspend fun getChains() = fearlessChainsBuilder.getChains(
+        "2.0.18",
+        emptyList()
+    )
 
-    suspend fun getApy() = subQueryClient.getSpApy()
+    //suspend fun getApy() = subQueryClient.getSpApy()
 
     suspend fun getHistory(page: Long, f: (R) -> Boolean) =
         subQueryClient.getTransactionHistoryPaged(
@@ -34,9 +37,9 @@ class NetworkService<T, R>(
 
     suspend fun getPeers(query: String) = subQueryClient.getTransactionPeers(query, "fearless")
 
-    suspend fun getRewards() = subQueryClient.getReferrerRewards(
-        address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
-    )
+//    suspend fun getRewards() = subQueryClient.getReferrerRewards(
+//        address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
+//    )
 
     suspend fun getSoraEnv(): SoraEnv = soraEnvBuilder.getSoraEnv()
 }
