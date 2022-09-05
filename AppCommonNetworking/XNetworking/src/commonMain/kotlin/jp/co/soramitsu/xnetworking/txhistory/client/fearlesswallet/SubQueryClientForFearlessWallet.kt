@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.txhistory.client.sorawallet
+package jp.co.soramitsu.xnetworking.txhistory.client.fearlesswallet
 
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkException
@@ -7,27 +7,27 @@ import jp.co.soramitsu.xnetworking.txhistory.TxHistoryInfo
 import jp.co.soramitsu.xnetworking.txhistory.TxHistoryItem
 import jp.co.soramitsu.xnetworking.txhistory.TxHistoryResult
 import jp.co.soramitsu.xnetworking.txhistory.client.SubQueryClient
-import jp.co.soramitsu.xnetworking.txhistory.subquery.graphqlrequest.soraHistoryGraphQLRequest
-import jp.co.soramitsu.xnetworking.txhistory.subquery.response.sora.SoraSubQueryResponse
-import jp.co.soramitsu.xnetworking.txhistory.subquery.response.sora.SoraWalletSubQueryHistoryMapper
+import jp.co.soramitsu.xnetworking.txhistory.subquery.graphqlrequest.fearlessHistoryGraphQLRequest
+import jp.co.soramitsu.xnetworking.txhistory.subquery.response.fearless.FearlessSubQueryResponse
+import jp.co.soramitsu.xnetworking.txhistory.subquery.response.fearless.FearlessWalletSubQueryHistoryMapper
 import kotlin.coroutines.cancellation.CancellationException
 
-class SubQueryClientForSoraWallet(
+class SubQueryClientForFearlessWallet(
     networkClient: SoramitsuNetworkClient,
     baseUrl: String,
     pageSize: Int,
     historyDatabaseProvider: HistoryDatabaseProvider,
 ) {
 
-    private val client: SubQueryClient<SoraSubQueryResponse, TxHistoryItem> =
+    private val client: SubQueryClient<FearlessSubQueryResponse, TxHistoryItem> =
         SubQueryClient(
             networkClient = networkClient,
             baseUrl = baseUrl,
             pageSize = pageSize,
-            deserializationStrategy = SoraSubQueryResponse.serializer(),
-            jsonToHistoryInfo = { response -> SoraWalletSubQueryHistoryMapper.map(response) },
+            deserializationStrategy = FearlessSubQueryResponse.serializer(),
+            jsonToHistoryInfo = { response -> FearlessWalletSubQueryHistoryMapper.map(response) },
             historyInfoToResult = { it },
-            historyRequest = soraHistoryGraphQLRequest(),
+            historyRequest = fearlessHistoryGraphQLRequest(),
             historyDatabaseProvider = historyDatabaseProvider,
         )
 

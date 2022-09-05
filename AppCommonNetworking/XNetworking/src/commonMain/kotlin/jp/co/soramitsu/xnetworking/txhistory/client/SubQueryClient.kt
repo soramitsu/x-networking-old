@@ -6,7 +6,7 @@ import jp.co.soramitsu.xnetworking.db.SignerInfo
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkException
 import jp.co.soramitsu.xnetworking.txhistory.subquery.graphqlrequest.SubQueryRequest
-import jp.co.soramitsu.xnetworking.txhistory.subquery.graphqlrequest.soraHistoryGraphQLVariables
+import jp.co.soramitsu.xnetworking.txhistory.subquery.graphqlrequest.txHistoryGraphQLVariables
 import jp.co.soramitsu.xnetworking.txhistory.HistoryMapper
 import jp.co.soramitsu.xnetworking.txhistory.TxHistoryInfo
 import jp.co.soramitsu.xnetworking.txhistory.TxHistoryItem
@@ -134,7 +134,7 @@ class SubQueryClient<T, R> internal constructor(
     private suspend fun loadInfo(cursor: String = "", address: String, networkName: String) {
         val request = SubQueryRequest(
             query = historyRequest,
-            variables = soraHistoryGraphQLVariables(
+            variables = txHistoryGraphQLVariables(
                 countRemote = pageSize,
                 myAddress = address,
                 cursor = cursor,

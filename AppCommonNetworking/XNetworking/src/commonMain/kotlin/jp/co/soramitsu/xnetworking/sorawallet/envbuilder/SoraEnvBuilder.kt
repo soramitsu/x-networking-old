@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.sorawallet
+package jp.co.soramitsu.xnetworking.sorawallet.envbuilder
 
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import kotlinx.serialization.Serializable

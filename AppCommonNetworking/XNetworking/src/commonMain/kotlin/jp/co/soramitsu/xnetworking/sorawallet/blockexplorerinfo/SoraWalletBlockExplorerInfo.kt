@@ -1,14 +1,22 @@
-package jp.co.soramitsu.xnetworking.sorawallet
+package jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo
 
 import com.ionspin.kotlin.bignum.integer.BigInteger
 import com.ionspin.kotlin.bignum.integer.toBigInteger
-import io.ktor.http.*
+import io.ktor.http.HttpMethod
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkException
+import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.referral.ReferrerReward
+import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.referral.ReferrerRewardsInfo
+import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.referral.ReferrerRewardsResponse
+import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.referral.referrerRewardsGraphQLRequest
+import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.sbapy.SbApyInfo
+import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.sbapy.SubQueryMapper
+import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.sbapy.SubQuerySbApyResponse
+import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.sbapy.sbApyGraphQLRequest
 import jp.co.soramitsu.xnetworking.txhistory.subquery.graphqlrequest.SubQueryRequest
 import kotlin.coroutines.cancellation.CancellationException
 
-class SoraBlockExplorerInfo(
+class SoraWalletBlockExplorerInfo(
     private val networkClient: SoramitsuNetworkClient,
     private var baseUrl: String,
 ) {

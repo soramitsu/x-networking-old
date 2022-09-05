@@ -12,7 +12,7 @@ internal const val varCountRemote = "\$countRemote"
 internal const val varAfterCursor = "\$afterCursor"
 internal const val varMyAddress = "\$myAddress"
 
-internal fun soraHistoryGraphQLVariables(
+internal fun txHistoryGraphQLVariables(
     countRemote: Int,
     myAddress: String,
     cursor: String,

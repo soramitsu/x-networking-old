@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.sorawallet
+package jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.sbapy
 
 internal fun sbApyGraphQLRequest() = """ query {
                 poolXYKEntities (

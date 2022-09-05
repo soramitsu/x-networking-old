@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.sorawallet
+package jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.referral
 
 internal fun referrerRewardsGraphQLRequest(
     address: String,

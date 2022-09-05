@@ -54,22 +54,3 @@ object SubQueryClientForFearless {
         )
     }
 }
-
-object SubQueryClientForSora {
-    fun build(
-        soramitsuNetworkClient: SoramitsuNetworkClient,
-        baseUrl: String,
-        pageSize: Int,
-    ): SubQueryClient<SoraSubQueryResponse, TxHistoryItem> {
-        return SubQueryClientFactory<SoraSubQueryResponse, TxHistoryItem>()
-            .create(
-            soramitsuNetworkClient = soramitsuNetworkClient,
-            baseUrl = baseUrl,
-            pageSize = pageSize,
-            deserializationStrategy = SoraSubQueryResponse.serializer(),
-            jsonToHistoryInfo = { response -> SoraWalletSubQueryHistoryMapper.map(response) },
-            historyIntoToResult = { it },
-            historyRequest = soraHistoryGraphQLRequest(),
-        )
-    }
-}
