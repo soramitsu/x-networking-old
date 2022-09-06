@@ -2,16 +2,21 @@ package jp.co.soramitsu.appxnetworking
 
 import jp.co.soramitsu.xnetworking.fearless.FearlessChainsBuilder
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
-import jp.co.soramitsu.xnetworking.sora.SoraEnvBuilder
-import jp.co.soramitsu.xnetworking.sora.model.SoraEnv
-import jp.co.soramitsu.xnetworking.subquery.SubQueryClient
+import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.SoraWalletBlockExplorerInfo
+import jp.co.soramitsu.xnetworking.sorawallet.envbuilder.SoraEnv
+import jp.co.soramitsu.xnetworking.sorawallet.envbuilder.SoraEnvBuilder
+import jp.co.soramitsu.xnetworking.txhistory.TxHistoryItem
+import jp.co.soramitsu.xnetworking.txhistory.client.fearlesswallet.SubQueryClientForFearlessWallet
+import jp.co.soramitsu.xnetworking.txhistory.client.sorawallet.SubQueryClientForSoraWallet
 import kotlinx.serialization.Serializable
 
-class NetworkService<T, R>(
+class NetworkService(
     private val client: SoramitsuNetworkClient,
     private val fearlessChainsBuilder: FearlessChainsBuilder,
     private val soraEnvBuilder: SoraEnvBuilder,
-    private val subQueryClient: SubQueryClient<T, R>,
+    private val subQueryClientForFearlessWallet: SubQueryClientForFearlessWallet,
+    private val subQueryClientForSoraWallet: SubQueryClientForSoraWallet,
+    private val soraWalletBlockExplorerInfo: SoraWalletBlockExplorerInfo,
 ) {
 
     suspend fun getAssets() =
@@ -19,23 +24,35 @@ class NetworkService<T, R>(
 
     suspend fun getRequest() = client.createJsonRequest<List<Int>>("https://www.github.com")
 
-    suspend fun getChains() = fearlessChainsBuilder.getChains("2.0.8", emptyList())
+    suspend fun getChains() = fearlessChainsBuilder.getChains(
+        "2.0.18",
+        emptyList()
+    )
 
-    suspend fun getApy() = subQueryClient.getSpApy()
+    suspend fun getApy() = soraWalletBlockExplorerInfo.getSpApy(caseName = "1")
 
-    suspend fun getHistory(page: Long, f: (R) -> Boolean) =
-        subQueryClient.getTransactionHistoryPaged(
+    suspend fun getHistorySora(page: Long, f: (TxHistoryItem) -> Boolean) =
+        subQueryClientForSoraWallet.getTransactionHistoryPaged(
             address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
-//            address = "5ETrb47YCHE9pYxKfpm4b3bMNvKd7Zusi22yZLLHKadP5oYn",
             networkName = "sora",
             page = page,
             filter = f
         )
 
-    suspend fun getPeers(query: String) = subQueryClient.getTransactionPeers(query, "fearless")
+    suspend fun getHistoryFearless(page: Long, f: (TxHistoryItem) -> Boolean) =
+        subQueryClientForFearlessWallet.getTransactionHistoryPaged(
+            address = "5ETrb47YCHE9pYxKfpm4b3bMNvKd7Zusi22yZLLHKadP5oYn",
+            networkName = "fearless",
+            page = page,
+            filter = f
+        )
 
-    suspend fun getRewards() = subQueryClient.getReferrerRewards(
-        address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
+    suspend fun getPeers(query: String) =
+        subQueryClientForSoraWallet.getTransactionPeers(query, "sora")
+
+    suspend fun getRewards() = soraWalletBlockExplorerInfo.getReferrerRewards(
+        address = "cnUVLAjzRsrXrzEiqjxMpBwvb6YgdBy8DKibonvZgtcQY5ZKe",
+        caseName = "1",
     )
 
     suspend fun getSoraEnv(): SoraEnv = soraEnvBuilder.getSoraEnv()

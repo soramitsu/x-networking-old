@@ -1,11 +1,15 @@
 package jp.co.soramitsu.appxnetworking
 
-import io.ktor.client.*
-import io.ktor.client.engine.mock.*
-import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.http.*
-import io.ktor.serialization.kotlinx.json.*
-import io.ktor.utils.io.*
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.mock.MockEngine
+import io.ktor.client.engine.mock.respond
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.http.ContentType
+import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.headersOf
+import io.ktor.serialization.kotlinx.json.json
+import io.ktor.utils.io.ByteReadChannel
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -13,9 +17,11 @@ import jp.co.soramitsu.xnetworking.fearless.FearlessChainsBuilder
 import jp.co.soramitsu.xnetworking.fearless.ResultChainInfo
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuHttpClientProvider
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
-import jp.co.soramitsu.xnetworking.sora.SoraEnvBuilder
-import jp.co.soramitsu.xnetworking.sora.model.SoraEnv
-import jp.co.soramitsu.xnetworking.subquery.SubQueryClient
+import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.SoraWalletBlockExplorerInfo
+import jp.co.soramitsu.xnetworking.sorawallet.envbuilder.SoraEnv
+import jp.co.soramitsu.xnetworking.sorawallet.envbuilder.SoraEnvBuilder
+import jp.co.soramitsu.xnetworking.txhistory.client.fearlesswallet.SubQueryClientForFearlessWallet
+import jp.co.soramitsu.xnetworking.txhistory.client.sorawallet.SubQueryClientForSoraWallet
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.Serializable
@@ -43,15 +49,21 @@ class ExampleUnitTest {
     lateinit var soraEnvBuilder: SoraEnvBuilder
 
     @MockK
-    lateinit var subQueryClient: SubQueryClient<*, *>
+    lateinit var soraWalletBlockExplorerInfo: SoraWalletBlockExplorerInfo
 
-    lateinit var networkService: NetworkService<*, *>
+    @MockK
+    lateinit var subQuerySora: SubQueryClientForSoraWallet
+
+    @MockK
+    lateinit var subQueryFearless: SubQueryClientForFearlessWallet
+
+    lateinit var networkService: NetworkService
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
         networkService =
-            NetworkService(soramitsuNetworkClient, fearlessChainsBuilder, soraEnvBuilder, subQueryClient)
+            NetworkService(soramitsuNetworkClient, fearlessChainsBuilder, soraEnvBuilder, subQueryFearless, subQuerySora, soraWalletBlockExplorerInfo)
     }
 
     @Test
