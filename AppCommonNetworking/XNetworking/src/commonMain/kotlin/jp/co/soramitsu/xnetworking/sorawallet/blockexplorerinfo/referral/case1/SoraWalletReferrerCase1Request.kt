@@ -1,6 +1,6 @@
-package jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.referral
+package jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.referral.case1
 
-internal fun referrerRewardsGraphQLRequest(
+internal fun graphQLRequestSoraWalletReferrerCase1(
     address: String,
     cursor: String,
 ) = """

@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'XNetworking'
-    spec.version                  = '0.0.36'
+    spec.version                  = '0.0.37'
     spec.homepage                 = 'Link to the Shared Module homepage'
     spec.source                   = { :http=> ''}
     spec.authors                  = ''

@@ -29,7 +29,7 @@ class NetworkService(
         emptyList()
     )
 
-    suspend fun getApy() = soraWalletBlockExplorerInfo.getSpApy()
+    suspend fun getApy() = soraWalletBlockExplorerInfo.getSpApy(caseName = "1")
 
     suspend fun getHistorySora(page: Long, f: (TxHistoryItem) -> Boolean) =
         subQueryClientForSoraWallet.getTransactionHistoryPaged(
@@ -51,7 +51,8 @@ class NetworkService(
         subQueryClientForSoraWallet.getTransactionPeers(query, "sora")
 
     suspend fun getRewards() = soraWalletBlockExplorerInfo.getReferrerRewards(
-        address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
+        address = "cnUVLAjzRsrXrzEiqjxMpBwvb6YgdBy8DKibonvZgtcQY5ZKe",
+        caseName = "1",
     )
 
     suspend fun getSoraEnv(): SoraEnv = soraEnvBuilder.getSoraEnv()

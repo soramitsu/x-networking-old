@@ -46,21 +46,23 @@ class MainActivity : AppCompatActivity() {
             soraNetworkClient,
             baseUrl = "https://raw.githubusercontent.com/sora-xor/polkaswap-exchange-web/master/env.json"
         )
+
+        val blockExplorerInfoUrl = "https://api.subquery.network/sq/sora-xor/sora-dev"
         val networkService = NetworkService(
             soraNetworkClient,
             fearlessChainsBuilder,
             soraEnvBuilder,
             subQueryClientForFearlessWallet,
             subQueryClientForSoraWallet,
-            SoraWalletBlockExplorerInfo(soraNetworkClient, "")
+            SoraWalletBlockExplorerInfo(soraNetworkClient, blockExplorerInfoUrl)
         )
 
         btn1.setOnClickListener {
             GlobalScope.launch {
                 try {
                     Log.e("foxxx", "r start")
-                    val r = networkService.getChains()
-                    Log.e("foxxx", "r = ${r.newChains.size}")
+                    val r = networkService.getRewards()
+                    Log.e("foxxx", "r = ${r}")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t= ${t.localizedMessage}")
                 }
@@ -85,7 +87,7 @@ class MainActivity : AppCompatActivity() {
             GlobalScope.launch {
                 Log.e("foxxx", "button 3")
                 try {
-                    val r = networkService.getSoraEnv()
+                    val r = networkService.getApy()
                     Log.e("foxxx", "r = $r")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t = ${t.localizedMessage}")
