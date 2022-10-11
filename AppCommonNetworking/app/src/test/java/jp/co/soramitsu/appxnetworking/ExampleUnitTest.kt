@@ -20,6 +20,7 @@ import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.SoraWalletBlockExplorerInfo
 import jp.co.soramitsu.xnetworking.sorawallet.envbuilder.SoraEnv
 import jp.co.soramitsu.xnetworking.sorawallet.envbuilder.SoraEnvBuilder
+import jp.co.soramitsu.xnetworking.sorawallet.tokenwhitelist.SoraTokensWhitelistManager
 import jp.co.soramitsu.xnetworking.txhistory.client.fearlesswallet.SubQueryClientForFearlessWallet
 import jp.co.soramitsu.xnetworking.txhistory.client.sorawallet.SubQueryClientForSoraWallet
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -57,13 +58,24 @@ class ExampleUnitTest {
     @MockK
     lateinit var subQueryFearless: SubQueryClientForFearlessWallet
 
+    @MockK
+    lateinit var whitelistManager: SoraTokensWhitelistManager
+
     lateinit var networkService: NetworkService
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
         networkService =
-            NetworkService(soramitsuNetworkClient, fearlessChainsBuilder, soraEnvBuilder, subQueryFearless, subQuerySora, soraWalletBlockExplorerInfo)
+            NetworkService(
+                soramitsuNetworkClient,
+                fearlessChainsBuilder,
+                soraEnvBuilder,
+                subQueryFearless,
+                subQuerySora,
+                soraWalletBlockExplorerInfo,
+                whitelistManager,
+            )
     }
 
     @Test

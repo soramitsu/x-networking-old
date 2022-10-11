@@ -5,6 +5,8 @@ import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.SoraWalletBlockExplorerInfo
 import jp.co.soramitsu.xnetworking.sorawallet.envbuilder.SoraEnv
 import jp.co.soramitsu.xnetworking.sorawallet.envbuilder.SoraEnvBuilder
+import jp.co.soramitsu.xnetworking.sorawallet.tokenwhitelist.SoraTokenWhitelistDto
+import jp.co.soramitsu.xnetworking.sorawallet.tokenwhitelist.SoraTokensWhitelistManager
 import jp.co.soramitsu.xnetworking.txhistory.TxHistoryItem
 import jp.co.soramitsu.xnetworking.txhistory.client.fearlesswallet.SubQueryClientForFearlessWallet
 import jp.co.soramitsu.xnetworking.txhistory.client.sorawallet.SubQueryClientForSoraWallet
@@ -17,7 +19,12 @@ class NetworkService(
     private val subQueryClientForFearlessWallet: SubQueryClientForFearlessWallet,
     private val subQueryClientForSoraWallet: SubQueryClientForSoraWallet,
     private val soraWalletBlockExplorerInfo: SoraWalletBlockExplorerInfo,
+    private val whitelistManager: SoraTokensWhitelistManager,
 ) {
+
+    suspend fun getSoraWhitelist(): List<SoraTokenWhitelistDto> {
+        return whitelistManager.getTokens()
+    }
 
     suspend fun getAssets() =
         client.createJsonRequest<List<AssetRemote>>("https://raw.githubusercontent.com/soramitsu/fearless-utils/android/v2/chains/assets.json")
