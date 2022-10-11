@@ -8,6 +8,7 @@ import jp.co.soramitsu.xnetworking.fearless.FearlessChainsBuilder
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.SoraWalletBlockExplorerInfo
 import jp.co.soramitsu.xnetworking.sorawallet.envbuilder.SoraEnvBuilder
+import jp.co.soramitsu.xnetworking.sorawallet.tokenwhitelist.SoraTokensWhitelistManager
 import jp.co.soramitsu.xnetworking.txhistory.client.fearlesswallet.SubQueryClientForFearlessWalletFactory
 import jp.co.soramitsu.xnetworking.txhistory.client.sorawallet.SubQueryClientForSoraWalletFactory
 import kotlinx.coroutines.GlobalScope
@@ -54,14 +55,15 @@ class MainActivity : AppCompatActivity() {
             soraEnvBuilder,
             subQueryClientForFearlessWallet,
             subQueryClientForSoraWallet,
-            SoraWalletBlockExplorerInfo(soraNetworkClient, blockExplorerInfoUrl)
+            SoraWalletBlockExplorerInfo(soraNetworkClient, blockExplorerInfoUrl),
+            SoraTokensWhitelistManager(soraNetworkClient),
         )
 
         btn1.setOnClickListener {
             GlobalScope.launch {
                 try {
                     Log.e("foxxx", "r start")
-                    val r = networkService.getRewards()
+                    val r = networkService.getSoraWhitelist()
                     Log.e("foxxx", "r = ${r}")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t= ${t.localizedMessage}")
@@ -87,7 +89,7 @@ class MainActivity : AppCompatActivity() {
             GlobalScope.launch {
                 Log.e("foxxx", "button 3")
                 try {
-                    val r = networkService.getApy()
+                    val r = networkService.getAssets()
                     Log.e("foxxx", "r = $r")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t = ${t.localizedMessage}")
