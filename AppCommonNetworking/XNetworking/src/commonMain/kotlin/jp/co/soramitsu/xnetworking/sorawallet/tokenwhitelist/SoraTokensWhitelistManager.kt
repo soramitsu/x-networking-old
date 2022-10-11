@@ -32,7 +32,7 @@ class SoraTokensWhitelistManager(
         val response = networkClient.createJsonRequest<JsonArray>(url)
         return response.mapNotNull {
             val json = it as JsonObject
-            val address = json["address"].toString()
+            val address = json["address"]?.jsonPrimitive?.content.orEmpty()
             val rawIconField = json["icon"]?.jsonPrimitive?.content.orEmpty()
             val rawIcon = rawIconField.substringAfter(",", "")
             when {
