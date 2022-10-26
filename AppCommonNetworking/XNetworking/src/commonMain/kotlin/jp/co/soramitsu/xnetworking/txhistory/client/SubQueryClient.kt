@@ -57,7 +57,7 @@ class SubQueryClient<T, R> internal constructor(
                 filter.invoke(it)
             } else mapped
             result.addAll(itemsFiltered)
-        } while (result.size >= count || extrinsics.isEmpty())
+        } while (result.size < count && extrinsics.isNotEmpty())
         return result
     }
 
