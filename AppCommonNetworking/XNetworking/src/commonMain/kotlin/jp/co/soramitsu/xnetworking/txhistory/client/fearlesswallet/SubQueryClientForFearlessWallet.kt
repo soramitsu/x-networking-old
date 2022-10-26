@@ -42,7 +42,9 @@ class SubQueryClientForFearlessWallet(
     fun getTransactionHistoryCached(
         address: String,
         networkName: String,
-    ): TxHistoryInfo = client.getTransactionHistoryCached(address, networkName)
+        count: Int,
+        filter: ((TxHistoryItem) -> Boolean)? = null,
+    ): List<TxHistoryItem> = client.getTransactionHistoryCached(address, networkName, count, filter)
 
     fun getTransactionCached(
         address: String,

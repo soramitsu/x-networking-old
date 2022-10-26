@@ -11,14 +11,14 @@ plugins {
 
 group = "jp.co.soramitsu"
 
-version = "0.0.39"
+version = "0.0.40"
 
 publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "jp.co.soramitsu"
             artifactId = "xnetworking"
-            version = "0.0.39"
+            version = "0.0.40"
 
             afterEvaluate {
                 from(components["release"])
@@ -83,7 +83,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
+                api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
 
                 implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion")
 

@@ -43,9 +43,22 @@ class SubQueryClient<T, R> internal constructor(
     fun getTransactionHistoryCached(
         address: String,
         networkName: String,
-    ): TxHistoryInfo {
-        val extrinsics = historyDatabase.getExtrinsics(address, networkName, 0, pageSize)
-        return buildResultHistoryInfo(true, extrinsics)
+        count: Int,
+        filter: ((R) -> Boolean)? = null,
+    ): List<R> {
+        var offset: Long = 0
+        val result = mutableListOf<R>()
+        do {
+            val extrinsics = historyDatabase.getExtrinsics(address, networkName, offset, count)
+            offset += extrinsics.size
+            val info = buildResultHistoryInfo(true, extrinsics)
+            val mapped = info.items.map(historyInfoToResult)
+            val itemsFiltered = if (filter != null) mapped.filter {
+                filter.invoke(it)
+            } else mapped
+            result.addAll(itemsFiltered)
+        } while (result.size < count && extrinsics.isNotEmpty())
+        return result
     }
 
     fun getTransactionCached(
