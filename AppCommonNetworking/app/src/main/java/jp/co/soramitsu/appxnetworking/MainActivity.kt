@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
             GlobalScope.launch {
                 try {
                     Log.e("foxxx", "r start")
-                    val r = networkService.getSoraWhitelist()
+                    val r = networkService.getApy()
                     Log.e("foxxx", "r = ${r}")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t= ${t.localizedMessage}")
