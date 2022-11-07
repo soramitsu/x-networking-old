@@ -11,14 +11,14 @@ plugins {
 
 group = "jp.co.soramitsu"
 
-version = "0.0.40"
+version = "0.0.41"
 
 publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "jp.co.soramitsu"
             artifactId = "xnetworking"
-            version = "0.0.40"
+            version = "0.0.41"
 
             afterEvaluate {
                 from(components["release"])
