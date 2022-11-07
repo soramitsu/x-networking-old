@@ -6,8 +6,8 @@ internal fun mapSoraWalletSbApyCase1(subQuerySbApyResponse: SoraWalletSbApyCase1
     return subQuerySbApyResponse.data.poolXYKs.nodes.map {
         SbApyInfo(
             tokenId = it.id,
-            priceUsd = it.priceUSD?.toDouble(),
-            sbApy = it.strategicBonusApy?.toDouble(),
+            priceUsd = it.priceUSD?.toDoubleOrNull(),
+            sbApy = it.strategicBonusApy?.toDoubleOrNull(),
         )
     }
 }
