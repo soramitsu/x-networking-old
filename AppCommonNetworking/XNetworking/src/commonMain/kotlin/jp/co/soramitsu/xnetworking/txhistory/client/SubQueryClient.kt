@@ -94,9 +94,11 @@ class SubQueryClient<T, R> internal constructor(
             try {
                 loadInfo(address = address, networkName = networkName)
                 false
-            } catch {
+            } catch (e: SoramitsuNetworkException) {
                 true
             }
+        } else {
+            false
         }
         var curPage = page
         val list = mutableListOf<R>()
