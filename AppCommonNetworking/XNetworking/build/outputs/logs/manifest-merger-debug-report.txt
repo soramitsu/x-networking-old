@@ -1,0 +1,25 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/mrzizik/project/x-networking/AppCommonNetworking/XNetworking/src/androidMain/AndroidManifest.xml:2:1-51
+INJECTED from /home/mrzizik/project/x-networking/AppCommonNetworking/XNetworking/src/androidMain/AndroidManifest.xml:2:1-51
+INJECTED from /home/mrzizik/project/x-networking/AppCommonNetworking/XNetworking/src/androidMain/AndroidManifest.xml:2:1-51
+	package
+		ADDED from /home/mrzizik/project/x-networking/AppCommonNetworking/XNetworking/src/androidMain/AndroidManifest.xml:2:11-48
+		INJECTED from /home/mrzizik/project/x-networking/AppCommonNetworking/XNetworking/src/androidMain/AndroidManifest.xml
+		INJECTED from /home/mrzizik/project/x-networking/AppCommonNetworking/XNetworking/src/androidMain/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/mrzizik/project/x-networking/AppCommonNetworking/XNetworking/src/androidMain/AndroidManifest.xml:2:1-51
+uses-sdk
+INJECTED from /home/mrzizik/project/x-networking/AppCommonNetworking/XNetworking/src/androidMain/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/mrzizik/project/x-networking/AppCommonNetworking/XNetworking/src/androidMain/AndroidManifest.xml
+INJECTED from /home/mrzizik/project/x-networking/AppCommonNetworking/XNetworking/src/androidMain/AndroidManifest.xml
+INJECTED from /home/mrzizik/project/x-networking/AppCommonNetworking/XNetworking/src/androidMain/AndroidManifest.xml
+INJECTED from /home/mrzizik/project/x-networking/AppCommonNetworking/XNetworking/src/androidMain/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/mrzizik/project/x-networking/AppCommonNetworking/XNetworking/src/androidMain/AndroidManifest.xml
+		ADDED from /home/mrzizik/project/x-networking/AppCommonNetworking/XNetworking/src/androidMain/AndroidManifest.xml
+		INJECTED from /home/mrzizik/project/x-networking/AppCommonNetworking/XNetworking/src/androidMain/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/mrzizik/project/x-networking/AppCommonNetworking/XNetworking/src/androidMain/AndroidManifest.xml
+		ADDED from /home/mrzizik/project/x-networking/AppCommonNetworking/XNetworking/src/androidMain/AndroidManifest.xml
+		INJECTED from /home/mrzizik/project/x-networking/AppCommonNetworking/XNetworking/src/androidMain/AndroidManifest.xml

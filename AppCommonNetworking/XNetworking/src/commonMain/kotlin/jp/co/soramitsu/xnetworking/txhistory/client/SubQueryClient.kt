@@ -90,13 +90,10 @@ class SubQueryClient<T, R> internal constructor(
         require(page >= 1) { "Page value must >= 1" }
         if (url != null) baseUrl = url
         curSignerInfo = historyDatabase.getSignerInfo(address, networkName)
-        val hasErrorOnLoading = if (page == 1L) {
-            try {
+        val hasError = if (page == 1L) {
+            runCatching {
                 loadInfo(address = address, networkName = networkName)
-                false
-            } catch (e: SoramitsuNetworkException) {
-                true
-            }
+            }.isFailure
         } else {
             false
         }
@@ -124,7 +121,7 @@ class SubQueryClient<T, R> internal constructor(
             endReached = endReached,
             page = curPage,
             items = list,
-            hasErrorOnLoading = hasErrorOnLoading
+            hasError = hasError
         )
     }
 
