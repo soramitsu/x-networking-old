@@ -90,8 +90,13 @@ class SubQueryClient<T, R> internal constructor(
         require(page >= 1) { "Page value must >= 1" }
         if (url != null) baseUrl = url
         curSignerInfo = historyDatabase.getSignerInfo(address, networkName)
-        if (page == 1L) {
-            loadInfo(address = address, networkName = networkName)
+        val hasErrorOnLoading = if (page == 1L) {
+            try {
+                loadInfo(address = address, networkName = networkName)
+                false
+            } catch {
+                true
+            }
         }
         var curPage = page
         val list = mutableListOf<R>()
@@ -116,7 +121,8 @@ class SubQueryClient<T, R> internal constructor(
             endCursor = endCursor,
             endReached = endReached,
             page = curPage,
-            items = list
+            items = list,
+            hasErrorOnLoading = hasErrorOnLoading
         )
     }
 
