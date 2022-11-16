@@ -18,7 +18,7 @@ publishing {
         register<MavenPublication>("release") {
             groupId = "jp.co.soramitsu"
             artifactId = "xnetworking"
-            version = "0.0.42"
+            version = "0.0.43"
 
             afterEvaluate {
                 from(components["release"])

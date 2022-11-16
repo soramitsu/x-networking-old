@@ -5,5 +5,5 @@ class TxHistoryResult<R>(
     val endReached: Boolean,
     val page: Long,
     val items: List<R>,
-    val hasError: Boolean
+    val errorMessage: String?,
 )

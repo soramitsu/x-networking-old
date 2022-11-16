@@ -3,15 +3,16 @@ package jp.co.soramitsu.xnetworking.txhistory.client
 import io.ktor.http.*
 import jp.co.soramitsu.xnetworking.db.Extrinsics
 import jp.co.soramitsu.xnetworking.db.SignerInfo
+import jp.co.soramitsu.xnetworking.networkclient.CodeNetworkException
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkException
-import jp.co.soramitsu.xnetworking.txhistory.subquery.graphqlrequest.SubQueryRequest
-import jp.co.soramitsu.xnetworking.txhistory.subquery.graphqlrequest.txHistoryGraphQLVariables
+import jp.co.soramitsu.xnetworking.txhistory.HistoryDatabaseProvider
 import jp.co.soramitsu.xnetworking.txhistory.HistoryMapper
 import jp.co.soramitsu.xnetworking.txhistory.TxHistoryInfo
 import jp.co.soramitsu.xnetworking.txhistory.TxHistoryItem
 import jp.co.soramitsu.xnetworking.txhistory.TxHistoryResult
-import jp.co.soramitsu.xnetworking.txhistory.HistoryDatabaseProvider
+import jp.co.soramitsu.xnetworking.txhistory.subquery.graphqlrequest.SubQueryRequest
+import jp.co.soramitsu.xnetworking.txhistory.subquery.graphqlrequest.txHistoryGraphQLVariables
 import kotlinx.serialization.DeserializationStrategy
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.math.max
@@ -76,7 +77,6 @@ class SubQueryClient<T, R> internal constructor(
     private lateinit var curSignerInfo: SignerInfo
 
     @Throws(
-        SoramitsuNetworkException::class,
         CancellationException::class,
         IllegalArgumentException::class
     )
@@ -90,19 +90,27 @@ class SubQueryClient<T, R> internal constructor(
         require(page >= 1) { "Page value must >= 1" }
         if (url != null) baseUrl = url
         curSignerInfo = historyDatabase.getSignerInfo(address, networkName)
-        val hasError = if (page == 1L) {
-            runCatching {
+        var error = if (page == 1L) {
+            try {
                 loadInfo(address = address, networkName = networkName)
-            }.isFailure
+                null
+            } catch (t: SoramitsuNetworkException) {
+                (t as? CodeNetworkException)?.code?.toString() ?: t.m
+            }
         } else {
-            false
+            null
         }
         var curPage = page
         val list = mutableListOf<R>()
-        var endCursor: String?
-        var endReached: Boolean
+        var endCursor: String? = null
+        var endReached = false
         while (true) {
-            val info = getHistoryInfo(curPage, address, networkName)
+            val info = try {
+                getHistoryInfo(curPage, address, networkName)
+            } catch (t: SoramitsuNetworkException) {
+                error = (t as? CodeNetworkException)?.code?.toString() ?: t.m
+                null
+            } ?: break
             endCursor = info.endCursor
             endReached = info.endReached
             val itemsMapped = info.items.map(historyInfoToResult)
@@ -121,10 +129,11 @@ class SubQueryClient<T, R> internal constructor(
             endReached = endReached,
             page = curPage,
             items = list,
-            hasError = hasError
+            errorMessage = error,
         )
     }
 
+    @Throws(SoramitsuNetworkException::class, CancellationException::class)
     private suspend fun getHistoryInfo(
         page: Long,
         address: String,
@@ -149,6 +158,7 @@ class SubQueryClient<T, R> internal constructor(
         }
     }
 
+    @Throws(SoramitsuNetworkException::class, CancellationException::class)
     private suspend fun loadInfo(cursor: String = "", address: String, networkName: String) {
         val request = SubQueryRequest(
             query = historyRequest,
