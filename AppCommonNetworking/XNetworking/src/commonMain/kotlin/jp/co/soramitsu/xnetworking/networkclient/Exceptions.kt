@@ -1,6 +1,6 @@
 package jp.co.soramitsu.xnetworking.networkclient
 
-open class SoramitsuNetworkException(m: String, c: Throwable?) : Throwable(m, c)
+open class SoramitsuNetworkException(val m: String, c: Throwable?) : Throwable(m, c)
 
 class CodeNetworkException(val code: Int, m: String, c: Throwable?) : SoramitsuNetworkException(m, c)
 

@@ -32,15 +32,15 @@ class MainActivity : AppCompatActivity() {
         val subQueryClientForSoraWallet =
             SubQueryClientForSoraWalletFactory(applicationContext).create(
                 soraNetworkClient,
-                "https://api.subquery.network/sq/sora-xor/sora-staging",
-                20,
+                "https://api.subquery.network/sq/sora-xor/sora-dev",
+                30,
             )
 
         val subQueryClientForFearlessWallet =
             SubQueryClientForFearlessWalletFactory(applicationContext).create(
                 soraNetworkClient,
                 "https://api.subquery.network/sq/soramitsu/fearless-wallet-westend",
-                20,
+                30,
             )
 
         val soraEnvBuilder = SoraEnvBuilder(
@@ -71,14 +71,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        var page = 0L
         btn2.setOnClickListener {
+            page++
             GlobalScope.launch {
                 Log.e("foxxx", "button 2")
                 try {
-                    val r = networkService.getHistorySora(1) {
+                    val r = networkService.getHistorySora(page) {
                         true
                     }
-                    Log.e("foxxx", "r = ${r.endReached} ${r.page} ${r.items.size}")
+                    Log.e("foxxx", "r = ${r.endReached} ${r.page} ${r.items.size} ${r.errorMessage}")
                 } catch (t: Throwable) {
                     Log.e("foxxx", "t= ${t.localizedMessage}")
                 }
