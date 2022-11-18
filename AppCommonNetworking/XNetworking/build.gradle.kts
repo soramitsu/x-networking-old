@@ -85,6 +85,7 @@ kotlin {
             dependencies {
                 api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
 
+                implementation("com.ionspin.kotlin:bignum:0.3.7")
                 implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion")
 
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
@@ -107,8 +108,14 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 api("io.ktor:ktor-client-okhttp:$ktorVersion")
+                implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion")
                 implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
+                implementation("net.i2p.crypto:eddsa:0.3.0")
+                implementation("com.madgag.spongycastle:bcpkix-jdk15on:1.58.0.0")
+                implementation("com.madgag.spongycastle:bcpg-jdk15on:1.58.0.0")
+                implementation("org.web3j:crypto:4.6.0-android")
+                implementation("org.lz4:lz4-java:1.7.1")
             }
         }
         val androidTest by getting
