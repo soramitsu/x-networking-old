@@ -1,7 +1,6 @@
 package jp.co.soramitsu.xnetworking.txhistory.client.fearlesswallet
 
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
-import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkException
 import jp.co.soramitsu.xnetworking.txhistory.HistoryDatabaseProvider
 import jp.co.soramitsu.xnetworking.txhistory.TxHistoryInfo
 import jp.co.soramitsu.xnetworking.txhistory.TxHistoryItem
@@ -53,7 +52,6 @@ class SubQueryClientForFearlessWallet(
     ): TxHistoryInfo = client.getTransactionCached(address, networkName, txHash)
 
     @Throws(
-        SoramitsuNetworkException::class,
         CancellationException::class,
         IllegalArgumentException::class
     )

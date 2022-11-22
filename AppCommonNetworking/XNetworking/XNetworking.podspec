@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'XNetworking'
-    spec.version                  = '0.0.42'
+    spec.version                  = '0.0.43'
     spec.homepage                 = 'Link to the Shared Module homepage'
     spec.source                   = { :http=> ''}
     spec.authors                  = ''
@@ -9,13 +9,12 @@ Pod::Spec.new do |spec|
     spec.vendored_frameworks      = 'build/cocoapods/framework/XNetworking.framework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target = '14.1'
-                
-                
+
     spec.pod_target_xcconfig = {
         'KOTLIN_PROJECT_PATH' => ':XNetworking',
         'PRODUCT_MODULE_NAME' => 'XNetworking',
     }
-                
+
     spec.script_phases = [
         {
             :name => 'Build XNetworking',
@@ -35,5 +34,5 @@ Pod::Spec.new do |spec|
             SCRIPT
         }
     ]
-                
+
 end
