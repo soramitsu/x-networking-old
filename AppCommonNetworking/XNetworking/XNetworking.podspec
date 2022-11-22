@@ -9,20 +9,21 @@ Pod::Spec.new do |spec|
     spec.vendored_frameworks      = 'build/cocoapods/framework/XNetworking.framework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target = '14.1'
-
+                
+                
     spec.pod_target_xcconfig = {
         'KOTLIN_PROJECT_PATH' => ':XNetworking',
         'PRODUCT_MODULE_NAME' => 'XNetworking',
     }
-
+                
     spec.script_phases = [
         {
             :name => 'Build XNetworking',
             :execution_position => :before_compile,
             :shell_path => '/bin/sh',
             :script => <<-SCRIPT
-                if [ "YES" = "$COCOAPODS_SKIP_KOTLIN_BUILD" ]; then
-                  echo "Skipping Gradle build task invocation due to COCOAPODS_SKIP_KOTLIN_BUILD environment variable set to \"YES\""
+                if [ "YES" = "$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED" ]; then
+                  echo "Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \"YES\""
                   exit 0
                 fi
                 set -ev
@@ -34,5 +35,5 @@ Pod::Spec.new do |spec|
             SCRIPT
         }
     ]
-
+                
 end

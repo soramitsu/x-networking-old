@@ -1,16 +1,16 @@
 PODS:
-  - X-Networking (0.0.22)
+  - XNetworking (0.0.43)
 
 DEPENDENCIES:
-  - X-Networking (from `https://raw.githubusercontent.com/soramitsu/x-networking/master/AppXNetworking/commonNetworking/X-Networking.podspec`)
+  - XNetworking (from `../XNetworking`)
 
 EXTERNAL SOURCES:
-  X-Networking:
-    :podspec: https://raw.githubusercontent.com/soramitsu/x-networking/master/AppXNetworking/commonNetworking/X-Networking.podspec
+  XNetworking:
+    :path: "../XNetworking"
 
 SPEC CHECKSUMS:
-  X-Networking: 6056cfdd3d96e6c7e774000b9a0b916daf81bb85
+  XNetworking: ab270fb3db3d1b70fd64c45903ee44e6e1413b01
 
-PODFILE CHECKSUM: b5725e15fadc12464a2a230baf10b73b2d0f4e03
+PODFILE CHECKSUM: f84c7b4e6b61ef5aa22aa935ee3a2858eb98b27a
 
 COCOAPODS: 1.11.3

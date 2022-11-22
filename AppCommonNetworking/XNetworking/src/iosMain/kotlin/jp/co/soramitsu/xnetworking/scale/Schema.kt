@@ -6,7 +6,6 @@ actual abstract class Schema<S : Schema<S>> : BaseSchema<S>() {
         TODO()
     }
 
-
     actual  override fun toByteArray(struct: EncodableStruct<S>): ByteArray {
         TODO()
     }

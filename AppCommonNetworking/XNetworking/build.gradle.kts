@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     id("com.android.library")
@@ -10,7 +11,6 @@ plugins {
 }
 
 group = "jp.co.soramitsu"
-
 version = "0.0.43"
 
 publishing {
@@ -41,33 +41,21 @@ publishing {
     }
 }
 
-val coroutineVersion = "1.6.1"
-val ktorVersion = "2.0.0"
+val iosFrameworkName = "XNetworking"
+val xcFramework = XCFramework()
+val iosConfigure: KotlinNativeTarget.() -> Unit = {
+    binaries.framework {
+        baseName = iosFrameworkName
+        xcFramework.add(this)
+    }
+}
 
 kotlin {
-    val iosFrameworkName = "XNetworking"
-    val xcf = XCFramework()
-
     android()
-    iosX64 {
-        binaries.framework {
-            baseName = iosFrameworkName
-            xcf.add(this)
-        }
-    }
-    iosArm64 {
-        binaries.framework {
-            baseName = iosFrameworkName
-            xcf.add(this)
-        }
-    }
 
-    iosSimulatorArm64 {
-        binaries.framework {
-            baseName = iosFrameworkName
-            xcf.add(this)
-        }
-    }
+    iosX64(iosConfigure)
+    iosArm64(iosConfigure)
+    iosSimulatorArm64(iosConfigure)
 
     cocoapods {
         summary = "Some description for the Shared Module"
@@ -77,59 +65,49 @@ kotlin {
             baseName = iosFrameworkName
         }
     }
-
-    val sqlDelightVersion: String by project
     
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+                api(libs.serialization.json)
 
-                implementation("com.ionspin.kotlin:bignum:0.3.7")
-                implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion")
-
-                implementation("io.ktor:ktor-client-core:$ktorVersion")
-                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
-                //implementation("io.ktor:ktor-client-json:$ktorVersion")
-                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
-                implementation("io.ktor:ktor-client-logging:$ktorVersion")
-
-                //implementation("com.ionspin.kotlin:bignum:0.3.6")
-                implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
-                implementation("com.ditchoom:buffer:1.0.95")
-                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
-                implementation("com.soywiz.korlibs.krypto:krypto:2.2.0")
+                implementation(libs.coroutines.core)
+                implementation(libs.sqldelight.runtime)
+                implementation(libs.bundles.ktor)
+                implementation(libs.bignum)
+                implementation(libs.bytebuffer)
+                implementation(libs.datetime)
+                implementation(libs.krypto)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation("io.ktor:ktor-client-mock:$ktorVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutineVersion")
+                implementation(libs.ktor.mock)
+                implementation(libs.coroutines.test)
             }
         }
         val androidMain by getting {
             dependencies {
-                api("io.ktor:ktor-client-okhttp:$ktorVersion")
+                api(libs.ktor.okhttp)
+
                 implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion")
-                implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
-                implementation("net.i2p.crypto:eddsa:0.3.0")
-                implementation("com.madgag.spongycastle:bcpkix-jdk15on:1.58.0.0")
-                implementation("com.madgag.spongycastle:bcpg-jdk15on:1.58.0.0")
-                implementation("org.web3j:crypto:4.6.0-android")
-                implementation("org.lz4:lz4-java:1.7.1")
+                implementation(libs.coroutines.android)
+                implementation(libs.sqldelight.android)
+                implementation(libs.bundles.crypto.android)
+                implementation(libs.lz4)
             }
         }
         val androidTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
+
         val iosMain by creating {
             dependsOn(commonMain)
             dependencies {
-                implementation("io.ktor:ktor-client-darwin:$ktorVersion")
-                implementation("com.squareup.sqldelight:native-driver:$sqlDelightVersion")
+                implementation(libs.ktor.darwin)
+                implementation(libs.sqldelight.native)
             }
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
@@ -154,6 +132,7 @@ sqldelight {
     database("SoraHistoryDatabase") {
         packageName = "jp.co.soramitsu.xnetworking.db"
         schemaOutputDirectory = file("src/commonMain/sqldelight/databases")
+        verifyMigrations = true
     }
 }
 

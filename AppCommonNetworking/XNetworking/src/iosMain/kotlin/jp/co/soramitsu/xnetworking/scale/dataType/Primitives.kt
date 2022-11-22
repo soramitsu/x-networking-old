@@ -9,7 +9,7 @@ actual class StringScaleType: ScaleTransformer<String> {
         TODO()
     }
 
-    override fun conformsType(value: Any?): Boolean {
+    actual override fun conformsType(value: Any?): Boolean {
         TODO()
     }
 }

@@ -4,18 +4,6 @@
 *.ap_
 *.aab
 *.xcuserstate
-XNetworking/build/generated
-XNetworking/build/kotlin
-XNetworking/build/.transforms
-XNetworking/build/bin
-XNetworking/build/classes
-XNetworking/build/cocoapods
-XNetworking/build/commonNetworkingXCFrameworkTemp
-XNetworking/build/intermediates
-XNetworking/build/snapshot
-XNetworking/build/reports
-XNetworking/build/test-results
-XNetworking/build/tmp
 
 # Files for the ART/Dalvik VM
 *.dex
@@ -48,31 +36,51 @@ proguard/
 # Android Studio captures folder
 captures/
 
-# IntelliJ
+# User-specific configurations
 *.iml
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/gradle.xml
-.idea/assetWizardSettings.xml
-.idea/dictionaries
-.idea/libraries
-# Android Studio 3 in .gitignore file.
-.idea/caches
-.idea/modules.xml
-# Comment next line if keeping position of elements in Navigation Editor is relevant for you
-.idea/navEditor.xml
+*.iws
+.idea/
+.idea/x-networking.iml
+/out/
 
-# Keystore files
-# Uncomment the following lines if you do not want to check your keystore files in.
-#*.jks
-#*.keystore
+# MacOS
+.DS_Store
+
+## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)
+*.xcscmblueprint
+*.xccheckout
+
+## compatibility with Xcode 3 and earlier (ignoring not required starting Xcode 4)
+xcuserdata/
+build/
+*/build/
+.build/
+DerivedData/
+*.moved-aside
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+
+## Obj-C/Swift specific
+*.hmap
+
+## App packaging
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
 
 # External native build folder generated in Android Studio 2.2 and later
-.externalNativeBuild
+.externalNativeBuild/
 .cxx/
-
-# Google Services (e.g. APIs or Firebase)
-# google-services.json
 
 # Freeline
 freeline.py
@@ -94,4 +102,4 @@ lint/intermediates/
 lint/generated/
 lint/outputs/
 lint/tmp/
-# lint/reports/
+lint/reports/

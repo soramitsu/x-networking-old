@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import commonNetworking
+import XNetworking
 
 struct ContentView: View {
     var body: some View {
@@ -27,22 +27,8 @@ struct ContentView: View {
     }
     
     func load() {
-            let provider = SoraHttpClientProviderImpl()
-            var soraNetworkClient = SoraNetworkClient(timeout: 60000, logging: true, provider: provider)
-
-            var fearlessChainsBuilder = FearlessChainsBuilder(networkClient: soraNetworkClient,
-                                                              baseUrl: "https://raw.githubusercontent.com/arvifox/arvifoxandroid/develop/felete/")
-            
-            var hi = SubQueryClientFactory().create(soraNetworkClient: soraNetworkClient,
-                                                    baseUrl: "https://api.subquery.network/sq/sora-xor/sora-dev", pageSize: 30)
-            
-            hi.getReferrerRewards(address: "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm") { result, error in
-                print(result?.rewards)
-            }
-        }
-    
-            
-            
+        // Loading data
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
