@@ -28,7 +28,7 @@ object Hasher {
     fun keccak256(bytes: ByteArray): ByteArray {
         val digest = Keccak.Digest256()
 
-        return digest.digest(this)
+        return digest.digest(bytes)
     }
 
     fun ByteArray.blake2b128Concat() = withBlake2bLock { blake2b128.hashConcat(this) }
