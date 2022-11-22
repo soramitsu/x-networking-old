@@ -2,28 +2,25 @@
 
 package jp.co.soramitsu.xnetworking.scale
 
-/*
-import jp.co.soramitsu.xnetworking.scale.EncodableStruct
-import jp.co.soramitsu.fearless_utils.scale.Schema
-import jp.co.soramitsu.xnetworking.scale.NonNullFieldDelegate
-import jp.co.soramitsu.xnetworking.scale.dataType.DataType
-import jp.co.soramitsu.xnetworking.scale.dataType.EnumType
-import jp.co.soramitsu.xnetworking.scale.dataType.boolean
-import jp.co.soramitsu.xnetworking.scale.dataType.byte
-import jp.co.soramitsu.xnetworking.scale.dataType.byteArraySized
-import jp.co.soramitsu.xnetworking.scale.dataType.compactInt
-import jp.co.soramitsu.xnetworking.scale.dataType.list
-import jp.co.soramitsu.xnetworking.scale.dataType.long
-import jp.co.soramitsu.xnetworking.scale.dataType.scalable
-import jp.co.soramitsu.xnetworking.scale.dataType.string
-import jp.co.soramitsu.xnetworking.scale.dataType.tuple
-import jp.co.soramitsu.xnetworking.scale.dataType.uint128
-import jp.co.soramitsu.xnetworking.scale.dataType.uint16
-import jp.co.soramitsu.xnetworking.scale.dataType.uint32
-import jp.co.soramitsu.xnetworking.scale.dataType.uint64
-import jp.co.soramitsu.xnetworking.scale.dataType.uint8
-import jp.co.soramitsu.xnetworking.scale.dataType.union
-import java.math.BigInteger
+import com.ionspin.kotlin.bignum.integer.BigInteger
+import jp.co.soramitsu.xnetworking.scale.dataType.EnumScaleType
+import jp.co.soramitsu.xnetworking.scale.dataType.ScaleTransformer
+import jp.co.soramitsu.xnetworking.scale.dataType.booleanScale
+import jp.co.soramitsu.xnetworking.scale.dataType.byteArrayScale
+import jp.co.soramitsu.xnetworking.scale.dataType.byteArraySizedScale
+import jp.co.soramitsu.xnetworking.scale.dataType.byteScale
+import jp.co.soramitsu.xnetworking.scale.dataType.compactIntScale
+import jp.co.soramitsu.xnetworking.scale.dataType.listScale
+import jp.co.soramitsu.xnetworking.scale.dataType.longScale
+import jp.co.soramitsu.xnetworking.scale.dataType.scalableScale
+import jp.co.soramitsu.xnetworking.scale.dataType.stringScale
+import jp.co.soramitsu.xnetworking.scale.dataType.tupleScale
+import jp.co.soramitsu.xnetworking.scale.dataType.uInt128Scale
+import jp.co.soramitsu.xnetworking.scale.dataType.uInt16Scale
+import jp.co.soramitsu.xnetworking.scale.dataType.uInt32Scale
+import jp.co.soramitsu.xnetworking.scale.dataType.uInt64Scale
+import jp.co.soramitsu.xnetworking.scale.dataType.uInt8Scale
+import jp.co.soramitsu.xnetworking.scale.dataType.unionScale
 import kotlin.reflect.KClass
 
 typealias StructBuilder<SCHEMA> = (EncodableStruct<SCHEMA>) -> Unit
@@ -36,62 +33,61 @@ operator fun <S : Schema<S>> S.invoke(block: StructBuilder<S>? = null): Encodabl
     return struct
 }
 
-fun <S : Schema<S>> S.string(default: String? = null) = NonNullFieldDelegate(string, this, default)
+fun <S : Schema<S>> S.string(default: String? = null) = NonNullFieldDelegate(stringScale, this, default)
 
-fun <S : Schema<S>> S.uint8(default: UByte? = null) = NonNullFieldDelegate(uint8, this, default)
+fun <S : Schema<S>> S.uint8(default: UByte? = null) = NonNullFieldDelegate(uInt8Scale, this, default)
 
-fun <S : Schema<S>> S.uint32(default: UInt? = null) = NonNullFieldDelegate(uint32, this, default)
+fun <S : Schema<S>> S.uint32(default: UInt? = null) = NonNullFieldDelegate(uInt32Scale, this, default)
 
-fun <S : Schema<S>> S.uint16(default: Int? = null) = NonNullFieldDelegate(uint16, this, default)
+fun <S : Schema<S>> S.uint16(default: Int? = null) = NonNullFieldDelegate(uInt16Scale, this, default)
 
-fun <S : Schema<S>> S.uint128(default: BigInteger? = null) = NonNullFieldDelegate(uint128, this, default)
+fun <S : Schema<S>> S.uint128(default: BigInteger? = null) = NonNullFieldDelegate(uInt128Scale, this, default)
 
-fun <S : Schema<S>> S.bool(default: Boolean? = null) = NonNullFieldDelegate(boolean, this, default)
+fun <S : Schema<S>> S.bool(default: Boolean? = null) = NonNullFieldDelegate(booleanScale, this, default)
 
-fun <S : Schema<S>> S.uint64(default: BigInteger? = null) = NonNullFieldDelegate(uint64, this, default)
+fun <S : Schema<S>> S.uint64(default: BigInteger? = null) = NonNullFieldDelegate(uInt64Scale, this, default)
 
 fun <S : Schema<S>, T : Schema<T>> S.schema(schema: T, default: EncodableStruct<T>? = null) =
-    NonNullFieldDelegate(scalable(schema), this, default)
+    NonNullFieldDelegate(scalableScale(schema), this, default)
 
-fun <S : Schema<S>, T, D : DataType<T>> S.vector(
+fun <S : Schema<S>, T, D : ScaleTransformer<T>> S.vector(
     type: D,
     default: List<T>? = null
-) = NonNullFieldDelegate(list(type), this, default)
+) = NonNullFieldDelegate(listScale(type), this, default)
 
 fun <S : Schema<S>, T : Schema<T>> S.vector(
     schema: T,
     default: List<EncodableStruct<T>>? = null
-) = NonNullFieldDelegate(list(scalable(schema)), this, default)
+) = NonNullFieldDelegate(listScale(scalableScale(schema)), this, default)
 
-fun <S : Schema<S>> S.byte(default: Byte? = null) = NonNullFieldDelegate(byte, this, default)
+fun <S : Schema<S>> S.byte(default: Byte? = null) = NonNullFieldDelegate(byteScale, this, default)
 
-fun <S : Schema<S>> S.compactInt(default: BigInteger? = null) = NonNullFieldDelegate(compactInt, this, default)
+fun <S : Schema<S>> S.compactInt(default: BigInteger? = null) = NonNullFieldDelegate(compactIntScale, this, default)
 
 fun <S : Schema<S>> S.sizedByteArray(length: Int, default: ByteArray? = null): NonNullFieldDelegate<S, ByteArray> {
     if (default != null) {
         require(length == default.size)
     }
 
-    return NonNullFieldDelegate(byteArraySized(length), this, default)
+    return NonNullFieldDelegate(byteArraySizedScale(length), this, default)
 }
 
 fun <S : Schema<S>, A, B> S.pair(
-    first: DataType<A>,
-    second: DataType<B>,
+    first: ScaleTransformer<A>,
+    second: ScaleTransformer<B>,
     default: Pair<A, B>? = null
-) = NonNullFieldDelegate(tuple(first, second), this, default)
+) = NonNullFieldDelegate(tupleScale(first, second), this, default)
 
 fun <S : Schema<S>> S.byteArray(default: ByteArray? = null): NonNullFieldDelegate<S, ByteArray> {
-    return NonNullFieldDelegate(byteArray, this, default)
+    return NonNullFieldDelegate(byteArrayScale, this, default)
 }
 
-fun <S : Schema<S>> S.long(default: Long? = null) = NonNullFieldDelegate(long, this, default)
+fun <S : Schema<S>> S.long(default: Long? = null) = NonNullFieldDelegate(longScale, this, default)
 
-fun <S : Schema<S>> S.enum(vararg types: DataType<*>, default: Any? = null) = NonNullFieldDelegate(
-    union(types), this, default)
+fun <S : Schema<S>> S.enum(vararg types: ScaleTransformer<*>, default: Any? = null) = NonNullFieldDelegate(
+    unionScale(types), this, default)
 
 fun <S : Schema<S>, E : Enum<E>> S.enum(enumClass: KClass<E>, default: E? = null) = NonNullFieldDelegate(
-    EnumType(enumClass.java), this, default)
+    EnumScaleType(enumClass), this, default)
 
-fun <S : Schema<S>, T> S.custom(type: DataType<T>, default: T? = null) = NonNullFieldDelegate(type, this, default)
-*/
+fun <S : Schema<S>, T> S.custom(type: ScaleTransformer<T>, default: T? = null) = NonNullFieldDelegate(type, this, default)

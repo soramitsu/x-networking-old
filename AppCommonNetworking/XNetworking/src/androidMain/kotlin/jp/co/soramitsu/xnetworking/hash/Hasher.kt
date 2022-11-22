@@ -25,7 +25,7 @@ object Hasher {
     fun blake2b256(bytes: ByteArray) = withBlake2bLock { blake2b256.digest(bytes) }
     fun blake2b512(bytes: ByteArray) = withBlake2bLock { blake2b512.digest(bytes) }
 
-    fun ByteArray.keccak256(): ByteArray {
+    fun keccak256(bytes: ByteArray): ByteArray {
         val digest = Keccak.Digest256()
 
         return digest.digest(this)
@@ -46,4 +46,8 @@ actual fun ByteArray.blake2b256(): ByteArray {
 
 actual fun ByteArray.blake2b512(): ByteArray {
     return Hasher.blake2b512(this)
+}
+
+actual fun ByteArray.keccak256(): ByteArray {
+    return Hasher.keccak256(this)
 }

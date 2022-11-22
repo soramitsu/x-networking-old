@@ -1,11 +1,9 @@
 package jp.co.soramitsu.xnetworking.scale
 
-/*
-import jp.co.soramitsu.fearless_utils.scale.Schema
-import jp.co.soramitsu.xnetworking.scale.dataType.DataType
-import jp.co.soramitsu.xnetworking.scale.dataType.optional
+import jp.co.soramitsu.xnetworking.scale.dataType.OptionalScaleType
+import jp.co.soramitsu.xnetworking.scale.dataType.ScaleTransformer
 
-class Field<T>(val dataType: DataType<T>, val defaultValue: T? = null)
+class Field<T>(val dataType: ScaleTransformer<T>, val defaultValue: T? = null)
 
 @Suppress("UNCHECKED_CAST", "unused")
 class EncodableStruct<S : Schema<S>>(val schema: S) {
@@ -25,7 +23,7 @@ class EncodableStruct<S : Schema<S>>(val schema: S) {
         val value = fieldsWithValues[field]
 
         return if (value == null) {
-            if (field.dataType is optional<*>) {
+            if (field.dataType is OptionalScaleType<*>) {
                 null as T
             } else {
                 throw IllegalArgumentException("Non nullable value is not set")
@@ -44,4 +42,3 @@ class EncodableStruct<S : Schema<S>>(val schema: S) {
 fun <S : Schema<S>> EncodableStruct<S>.toHexString() = schema.toHexString(this)
 
 fun <S : Schema<S>> EncodableStruct<S>.toByteArray() = schema.toByteArray(this)
-*/

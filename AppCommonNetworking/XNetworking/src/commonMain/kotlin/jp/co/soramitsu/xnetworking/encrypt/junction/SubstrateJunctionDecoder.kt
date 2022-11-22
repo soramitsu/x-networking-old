@@ -1,12 +1,11 @@
 package jp.co.soramitsu.xnetworking.encrypt.junction
 
-/*
+import com.ditchoom.buffer.ByteOrder
+import com.ditchoom.buffer.PlatformBuffer
+import com.ditchoom.buffer.wrap
 import jp.co.soramitsu.xnetworking.extensions.fromHex
-import jp.co.soramitsu.xnetworking.hash.Hasher.blake2b128
-import jp.co.soramitsu.xnetworking.scale.dataType.string
-import jp.co.soramitsu.xnetworking.scale.dataType.toByteArray
-import java.nio.ByteBuffer
-import java.nio.ByteOrder
+import jp.co.soramitsu.xnetworking.hash.blake2b128
+import jp.co.soramitsu.xnetworking.scale.dataType.stringScale
 
 private const val CHAINCODE_LENGTH = 32
 
@@ -21,15 +20,14 @@ object SubstrateJunctionDecoder : JunctionDecoder() {
     private fun serialize(rawJunction: String): ByteArray {
         rawJunction.toLongOrNull()?.let {
             val bytes = ByteArray(8)
-            ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN).putLong(it)
-
+            PlatformBuffer.wrap(bytes, byteOrder = ByteOrder.LITTLE_ENDIAN).write(it)
             return bytes
         }
 
         return runCatching {
             rawJunction.fromHex()
         }.getOrElse {
-            string.toByteArray(rawJunction)
+            stringScale.encode(rawJunction)
         }
     }
 
@@ -41,4 +39,3 @@ object SubstrateJunctionDecoder : JunctionDecoder() {
         else -> bytes
     }
 }
-*/

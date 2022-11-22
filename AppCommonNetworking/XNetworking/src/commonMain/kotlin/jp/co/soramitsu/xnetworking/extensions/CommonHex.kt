@@ -1,6 +1,9 @@
 package jp.co.soramitsu.xnetworking.extensions
 
-const val HEX_PREFIX = "0x"
+import com.soywiz.krypto.encoding.hex
+import com.soywiz.krypto.encoding.unhex
+
+private const val HEX_PREFIX = "0x"
 
 fun String.requirePrefix(prefix: String): String {
     return if (startsWith(prefix)) this else prefix + this
@@ -14,6 +17,14 @@ fun Byte.toHex(withPrefix: Boolean): String {
     return byteArrayOf(this).toHexString(withPrefix)
 }
 
-expect fun ByteArray.toHexString(withPrefix: Boolean = false): String
+fun ByteArray.toHexString(withPrefix: Boolean = false): String {
+    return if (withPrefix) {
+        HEX_PREFIX + hex
+    } else {
+        hex
+    }
+}
 
-expect fun String.fromHex(): ByteArray
+fun String.fromHex(): ByteArray {
+    return removePrefix(HEX_PREFIX).unhex
+}

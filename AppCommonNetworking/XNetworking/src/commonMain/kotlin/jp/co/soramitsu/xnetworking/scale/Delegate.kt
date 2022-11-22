@@ -1,15 +1,13 @@
 package jp.co.soramitsu.xnetworking.scale
 
-/*
-import jp.co.soramitsu.xnetworking.scale.Field
-import jp.co.soramitsu.fearless_utils.scale.Schema
-import jp.co.soramitsu.xnetworking.scale.dataType.DataType
-import jp.co.soramitsu.xnetworking.scale.dataType.optional
+import jp.co.soramitsu.xnetworking.scale.dataType.OptionalScaleType
+import jp.co.soramitsu.xnetworking.scale.dataType.ScaleTransformer
+import jp.co.soramitsu.xnetworking.scale.dataType.optionalScale
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
 class NonNullFieldDelegate<S : Schema<S>, T>(
-    private val dataType: DataType<T>,
+    private val dataType: ScaleTransformer<T>,
     private val schema: S,
     default: T? = null
 ) : ReadOnlyProperty<Schema<S>, Field<T>> {
@@ -21,12 +19,12 @@ class NonNullFieldDelegate<S : Schema<S>, T>(
     fun optional(): NullableFieldDelegate<S, T> {
         schema.fields.remove(field)
 
-        return NullableFieldDelegate(optional(dataType), schema, field.defaultValue)
+        return NullableFieldDelegate(optionalScale(dataType), schema, field.defaultValue)
     }
 }
 
 class NullableFieldDelegate<S : Schema<S>, T>(
-    dataType: optional<T>,
+    dataType: OptionalScaleType<T>,
     schema: S,
     default: T? = null
 ) :
@@ -36,4 +34,3 @@ class NullableFieldDelegate<S : Schema<S>, T>(
 
     override fun getValue(thisRef: Schema<S>, property: KProperty<*>) = field
 }
-*/

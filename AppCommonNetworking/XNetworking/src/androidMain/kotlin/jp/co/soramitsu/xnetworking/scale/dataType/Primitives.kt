@@ -2,14 +2,16 @@ package jp.co.soramitsu.xnetworking.scale.dataType
 
 import io.emeraldpay.polkaj.scale.ScaleCodecReader
 import io.emeraldpay.polkaj.scale.ScaleCodecWriter
+import io.emeraldpay.polkaj.scale.ScaleReader
+import io.emeraldpay.polkaj.scale.ScaleWriter
+import io.emeraldpay.polkaj.scale.writer.BoolWriter
 import io.emeraldpay.polkaj.scale.writer.StringWriter
 import java.io.ByteArrayOutputStream
 
-abstract class BaseStringScaleTransformer<T>: StringScaleTransformer<T> {
-
-    abstract fun read(reader: ScaleCodecReader): T
-
-    abstract fun write(writer: ScaleCodecWriter, value: T)
+abstract class BaseAndroidScaleTransformer<T>:
+    ScaleTransformer<T>,
+    ScaleWriter<T>,
+    ScaleReader<T> {
 
     override fun encode(value: T): ByteArray {
         val stream = ByteArrayOutputStream()
@@ -23,7 +25,7 @@ abstract class BaseStringScaleTransformer<T>: StringScaleTransformer<T> {
     }
 }
 
-actual class StringScaleType: BaseStringScaleTransformer<String>(), StringScaleTransformer<String> {
+actual class StringScaleType: BaseAndroidScaleTransformer<String>(), ScaleTransformer<String> {
 
     actual override fun conformsType(value: Any?): Boolean {
         return value is String
@@ -38,38 +40,49 @@ actual class StringScaleType: BaseStringScaleTransformer<String>(), StringScaleT
     }
 }
 
-/*
-object boolean : DataType<Boolean>() {
+actual class BooleanScaleType: BaseAndroidScaleTransformer<Boolean>(), ScaleTransformer<Boolean> {
+
+    actual override fun conformsType(value: Any?): Boolean {
+        return value is Boolean
+    }
+
     override fun read(reader: ScaleCodecReader): Boolean {
         return reader.readBoolean()
     }
 
-    override fun write(writer: ScaleCodecWriter, value: Boolean) = writer.write(BoolWriter(), value)
-
-    override fun conformsType(value: Any?) = value is Boolean
+    override fun write(writer: ScaleCodecWriter, value: Boolean) {
+        return writer.write(BoolWriter(), value)
+    }
 }
 
-object byteArray : DataType<ByteArray>() {
+actual class ByteArrayScaleType: BaseAndroidScaleTransformer<ByteArray>(), ScaleTransformer<ByteArray> {
+
+    actual override fun conformsType(value: Any?): Boolean {
+        return value is ByteArray
+    }
+
     override fun read(reader: ScaleCodecReader): ByteArray {
-        val readByteArray = reader.readByteArray()
-        return readByteArray
+        return reader.readByteArray()
     }
 
     override fun write(writer: ScaleCodecWriter, value: ByteArray) {
-        writer.writeByteArray(value)
+        return writer.writeByteArray(value)
     }
-
-    override fun conformsType(value: Any?) = value is ByteArray
 }
 
-class byteArraySized(private val length: Int) : DataType<ByteArray>() {
+actual class ByteArraySizedScaleType actual constructor(
+    private val length: Int
+): BaseAndroidScaleTransformer<ByteArray>(), ScaleTransformer<ByteArray> {
+
+    actual override fun conformsType(value: Any?): Boolean {
+        return value is ByteArray
+    }
+
     override fun read(reader: ScaleCodecReader): ByteArray {
-        val readByteArray = reader.readByteArray(length)
-        return readByteArray
+        return reader.readByteArray(length)
     }
 
-    override fun write(writer: ScaleCodecWriter, value: ByteArray) = writer.directWrite(value, 0, length)
-
-    override fun conformsType(value: Any?) = value is ByteArray
+    override fun write(writer: ScaleCodecWriter, value: ByteArray) {
+        return writer.directWrite(value, 0, length)
+    }
 }
-*/

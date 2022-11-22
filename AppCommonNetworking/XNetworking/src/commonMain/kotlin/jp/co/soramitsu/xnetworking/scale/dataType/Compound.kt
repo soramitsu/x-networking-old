@@ -2,173 +2,113 @@
 
 package jp.co.soramitsu.xnetworking.scale.dataType
 
-/*
-import io.emeraldpay.polkaj.scale.ScaleCodecReader
-import io.emeraldpay.polkaj.scale.ScaleCodecWriter
-import io.emeraldpay.polkaj.scale.writer.BoolWriter
 import jp.co.soramitsu.xnetworking.scale.EncodableStruct
-import jp.co.soramitsu.fearless_utils.scale.Schema
+import jp.co.soramitsu.xnetworking.scale.Schema
+import kotlin.reflect.KClass
 
-class tuple<A, B>(
-    private val a: DataType<A>,
-    private val b: DataType<B>
-) : DataType<Pair<A, B>>() {
-    override fun read(reader: ScaleCodecReader): Pair<A, B> {
-        val a = a.read(reader)
-        val b = b.read(reader)
+fun <A, B> tupleScale(
+    a: ScaleTransformer<A>,
+    b: ScaleTransformer<B>
+) = TupleScaleType(a, b)
 
-        return a to b
-    }
+fun <T> optionalScale(
+    dataType: ScaleTransformer<T>,
+) = OptionalScaleType(dataType)
 
-    override fun write(writer: ScaleCodecWriter, value: Pair<A, B>) {
-        a.write(writer, value.first)
-        b.write(writer, value.second)
-    }
+fun <T> listScale(
+    dataType: ScaleTransformer<T>,
+) = ListScaleType(dataType)
 
-    override fun conformsType(value: Any?) =
-        value is Pair<*, *> && a.conformsType(value.first) && b.conformsType(value.second)
+fun <S: Schema<S>> scalableScale(
+    schema: Schema<S>
+) = ScalableScaleType(schema)
+
+fun <E: Enum<E>> enumScale(
+    enumClass: KClass<E>
+) = EnumScaleType(enumClass)
+
+fun collectionEnumScale(
+    values: List<String>
+) = CollectionEnumScaleType(values)
+
+fun unionScale(
+    dataTypes: Array<out ScaleTransformer<*>>
+) = UnionScaleType(dataTypes)
+
+expect class TupleScaleType<A, B>(
+    a: ScaleTransformer<A>,
+    b: ScaleTransformer<B>
+): ScaleTransformer<Pair<A, B>> {
+
+    override fun encode(value: Pair<A, B>): ByteArray
+
+    override fun decode(bytes: ByteArray): Pair<A, B>
+
+    override fun conformsType(value: Any?): Boolean
 }
 
-@Suppress("UNCHECKED_CAST")
-class optional<T>(private val dataType: DataType<T>) : DataType<T?>() {
-    override fun read(reader: ScaleCodecReader): T? {
-        if (dataType is boolean) {
-            return when (reader.readByte().toInt()) {
-                0 -> null
-                1 -> false as T?
-                2 -> true as T?
-                else -> throw IllegalArgumentException("Not a optional boolean")
-            }
-        }
+expect class OptionalScaleType<T>(
+    dataType: ScaleTransformer<T>
+): ScaleTransformer<T?> {
 
-        val some: Boolean = reader.readBoolean()
+    override fun encode(value: T?): ByteArray
 
-        return if (some) dataType.read(reader) else null
-    }
+    override fun decode(bytes: ByteArray): T?
 
-    override fun write(writer: ScaleCodecWriter, value: T?) {
-        if (dataType is boolean) {
-            writer.writeOptional(BoolWriter(), value as Boolean)
-        } else {
-            writer.writeOptional(dataType, value)
-        }
-    }
-
-    override fun conformsType(value: Any?) = value == null || dataType.conformsType(value)
+    override fun conformsType(value: Any?): Boolean
 }
 
-class list<T>(private val dataType: DataType<T>) : DataType<List<T>>() {
-    override fun read(reader: ScaleCodecReader): List<T> {
-        val size = compactInt.read(reader)
-        val result = mutableListOf<T>()
+expect class ListScaleType<T>(
+    dataType: ScaleTransformer<T>
+): ScaleTransformer<List<T>> {
 
-        repeat(size.toInt()) {
-            val element = dataType.read(reader)
-            result.add(element)
-        }
+    override fun encode(value: List<T>): ByteArray
 
-        return result
-    }
+    override fun decode(bytes: ByteArray): List<T>
 
-    override fun write(writer: ScaleCodecWriter, value: List<T>) {
-        val size = value.size.toBigInteger()
-        compactInt.write(writer, size)
-
-        value.forEach {
-            dataType.write(writer, it)
-        }
-    }
-
-    override fun conformsType(value: Any?): Boolean {
-        return value is List<*> && value.all(dataType::conformsType)
-    }
+    override fun conformsType(value: Any?): Boolean
 }
 
-@Suppress("UNCHECKED_CAST")
-class scalable<S : Schema<S>>(private val schema: Schema<S>) : DataType<EncodableStruct<S>>() {
-    override fun read(reader: ScaleCodecReader): EncodableStruct<S> {
-        return schema.read(reader)
-    }
+expect class ScalableScaleType<S : Schema<S>>(
+    schema: Schema<S>
+): ScaleTransformer<EncodableStruct<S>> {
 
-    override fun write(writer: ScaleCodecWriter, struct: EncodableStruct<S>) {
-        schema.write(writer, struct)
-    }
+    override fun encode(value: EncodableStruct<S>): ByteArray
 
-    override fun conformsType(value: Any?): Boolean {
-        return value is EncodableStruct<*> && value.schema == schema
-    }
+    override fun decode(bytes: ByteArray): EncodableStruct<S>
+
+    override fun conformsType(value: Any?): Boolean
 }
 
-class EnumType<E : Enum<E>>(private val enumClass: Class<E>) : DataType<E>() {
-    override fun conformsType(value: Any?): Boolean {
-        return value?.javaClass == enumClass
-    }
+expect class EnumScaleType<E : Enum<E>>(
+    enumClass: KClass<E>
+): ScaleTransformer<E> {
 
-    override fun read(reader: ScaleCodecReader): E {
-        val index = reader.readByte()
+    override fun encode(value: E): ByteArray
 
-        return enumClass.enumConstants[index.toInt()]
-    }
+    override fun decode(bytes: ByteArray): E
 
-    override fun write(writer: ScaleCodecWriter, value: E) {
-        writer.writeByte(value.ordinal)
-    }
+    override fun conformsType(value: Any?): Boolean
 }
 
-class CollectionEnumType(
-    val values: List<String>
-) : DataType<String>() {
+expect class CollectionEnumScaleType(
+    values: List<String>
+): ScaleTransformer<String> {
 
-    override fun conformsType(value: Any?): Boolean {
-        return value is String
-    }
+    override fun encode(value: String): ByteArray
 
-    override fun read(reader: ScaleCodecReader): String {
-        val index = reader.readByte()
+    override fun decode(bytes: ByteArray): String
 
-        return values[index.toInt()]
-    }
-
-    override fun write(writer: ScaleCodecWriter, value: String) {
-        val index = values.indexOf(value)
-
-        if (index == -1) {
-            throw java.lang.IllegalArgumentException("No $value in $values")
-        }
-
-        writer.writeByte(index)
-    }
+    override fun conformsType(value: Any?): Boolean
 }
 
-class union(val dataTypes: Array<out DataType<*>>) : DataType<Any?>() {
-    override fun read(reader: ScaleCodecReader): Any? {
-        val typeIndex = reader.readByte()
-        val type = dataTypes[typeIndex.toInt()]
+expect class UnionScaleType(
+    dataTypes: Array<out ScaleTransformer<*>>
+): ScaleTransformer<Any?> {
 
-        return type.read(reader)
-    }
+    override fun encode(value: Any?): ByteArray
 
-    override fun write(writer: ScaleCodecWriter, value: Any?) {
-        val typeIndex = dataTypes.indexOfFirst { it.conformsType(value) }
+    override fun decode(bytes: ByteArray): Any?
 
-        if (typeIndex == -1) {
-            throw java.lang.IllegalArgumentException(
-                "Unknown type ${value?.javaClass} for this enum. Supported: ${
-                dataTypes.joinToString(
-                    ", "
-                )
-                }"
-            )
-        }
-
-        val type = dataTypes[typeIndex] as DataType<Any?>
-
-        writer.write(uint8, typeIndex.toUByte())
-        writer.write(type, value)
-    }
-
-    override fun conformsType(value: Any?): Boolean {
-        return dataTypes.any { it.conformsType(value) }
-    }
+    override fun conformsType(value: Any?): Boolean
 }
-*/

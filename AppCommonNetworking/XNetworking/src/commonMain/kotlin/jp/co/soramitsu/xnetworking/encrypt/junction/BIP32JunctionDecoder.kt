@@ -3,7 +3,7 @@
 package jp.co.soramitsu.xnetworking.encrypt.junction
 
 import jp.co.soramitsu.xnetworking.extensions.requireOrException
-import jp.co.soramitsu.fearless_utils.extensions.toUnsignedBytes
+import jp.co.soramitsu.xnetworking.extensions.toUnsignedBytes
 
 private const val HARD_KEY_FLAG = 0x80000000u
 

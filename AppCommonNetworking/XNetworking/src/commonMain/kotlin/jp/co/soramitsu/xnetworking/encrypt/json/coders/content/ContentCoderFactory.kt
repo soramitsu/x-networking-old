@@ -1,5 +1,11 @@
 package jp.co.soramitsu.xnetworking.encrypt.json.coders.content
 
+import jp.co.soramitsu.xnetworking.encrypt.json.coders.content.checksumCoder.Pkcs8ChecksumCoder
+import jp.co.soramitsu.xnetworking.encrypt.json.coders.content.secretCoder.EcdsaJsonSecretCoder
+import jp.co.soramitsu.xnetworking.encrypt.json.coders.content.secretCoder.Ed25519JsonSecretCoder
+import jp.co.soramitsu.xnetworking.encrypt.json.coders.content.secretCoder.EthereumJsonSecretCoder
+import jp.co.soramitsu.xnetworking.encrypt.json.coders.content.secretCoder.Sr25519JsonSecretCoder
+
 private class JsonContentDecoderImpl(
     override val checksumDecoder: JsonContentDecoder.ChecksumDecoder,
     override val secretDecoder: JsonContentDecoder.SecretDecoder
@@ -10,7 +16,7 @@ private class JsonContentEncoderImpl(
     override val checksumEncoder: JsonContentEncoder.ChecksumEncoder
 ) : JsonContentEncoder
 
-/*
+
 object ContentCoderFactory {
 
     private val secretCoders: Map<String, JsonSecretCoder> = mapOf(
@@ -24,12 +30,9 @@ object ContentCoderFactory {
         "pkcs8" to Pkcs8ChecksumCoder
     )
 
-
-    */
-/**
+    /**
      * @return null if cannot construct decoder
-     *//*
-
+     */
     fun getDecoder(configuration: List<String>): JsonContentDecoder? {
         return retrieveConfiguration(configuration)?.let { (checksumCoder, secretCoder) ->
             JsonContentDecoderImpl(
@@ -39,11 +42,10 @@ object ContentCoderFactory {
         }
     }
 
-    */
-/**
-     * @return null if cannot construct encoder
-     *//*
 
+    /**
+     * @return null if cannot construct encoder
+     */
     fun getEncoder(configuration: List<String>): JsonContentEncoder? {
         return retrieveConfiguration(configuration)?.let { (checksumCoder, secretCoder) ->
             JsonContentEncoderImpl(
@@ -66,4 +68,3 @@ object ContentCoderFactory {
         return checksumCoder to secretCoder
     }
 }
-*/

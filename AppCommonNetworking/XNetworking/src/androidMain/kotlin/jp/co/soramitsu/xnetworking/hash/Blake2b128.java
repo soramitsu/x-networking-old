@@ -3,9 +3,8 @@ package jp.co.soramitsu.xnetworking.hash;
 import org.bouncycastle.crypto.digests.Blake2bDigest;
 import org.bouncycastle.jcajce.provider.digest.BCMessageDigest;
 
-public class Blake2b128
-        extends BCMessageDigest
-        implements Cloneable {
+public class Blake2b128 extends BCMessageDigest implements Cloneable {
+
     public Blake2b128() {
         super(new Blake2bDigest(128));
     }

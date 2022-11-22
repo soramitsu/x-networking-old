@@ -2,37 +2,43 @@
 
 package jp.co.soramitsu.xnetworking.scale.dataType
 
-/*
+import com.ionspin.kotlin.bignum.integer.BigInteger
 import io.emeraldpay.polkaj.scale.ScaleCodecReader
 import io.emeraldpay.polkaj.scale.ScaleCodecWriter
 import io.emeraldpay.polkaj.scale.writer.BoolWriter
 import jp.co.soramitsu.xnetworking.scale.EncodableStruct
-import jp.co.soramitsu.fearless_utils.scale.Schema
+import jp.co.soramitsu.xnetworking.scale.Schema
+import kotlin.reflect.KClass
 
-class tuple<A, B>(
-    private val a: DataType<A>,
-    private val b: DataType<B>
-) : DataType<Pair<A, B>>() {
+actual class TupleScaleType<A, B> actual constructor(
+    private val a: ScaleTransformer<A>,
+    private val b: ScaleTransformer<B>
+): BaseAndroidScaleTransformer<Pair<A, B>>(), ScaleTransformer<Pair<A, B>> {
+
     override fun read(reader: ScaleCodecReader): Pair<A, B> {
-        val a = a.read(reader)
-        val b = b.read(reader)
-
+        val a = (a as BaseAndroidScaleTransformer<A>).read(reader)
+        val b = (b as BaseAndroidScaleTransformer<B>).read(reader)
         return a to b
     }
 
     override fun write(writer: ScaleCodecWriter, value: Pair<A, B>) {
-        a.write(writer, value.first)
-        b.write(writer, value.second)
+        (a as BaseAndroidScaleTransformer<A>).write(writer, value.first)
+        (b as BaseAndroidScaleTransformer<B>).write(writer, value.second)
     }
 
-    override fun conformsType(value: Any?) =
-        value is Pair<*, *> && a.conformsType(value.first) && b.conformsType(value.second)
+    actual override fun conformsType(value: Any?): Boolean {
+        return  value is Pair<*, *> &&
+                a.conformsType(value.first) &&
+                b.conformsType(value.second)
+    }
 }
 
-@Suppress("UNCHECKED_CAST")
-class optional<T>(private val dataType: DataType<T>) : DataType<T?>() {
+actual class OptionalScaleType<T> actual constructor(
+    private val dataType: ScaleTransformer<T>
+): BaseAndroidScaleTransformer<T?>(), ScaleTransformer<T?> {
+
     override fun read(reader: ScaleCodecReader): T? {
-        if (dataType is boolean) {
+        if (dataType is BooleanScaleType) {
             return when (reader.readByte().toInt()) {
                 0 -> null
                 1 -> false as T?
@@ -43,27 +49,37 @@ class optional<T>(private val dataType: DataType<T>) : DataType<T?>() {
 
         val some: Boolean = reader.readBoolean()
 
-        return if (some) dataType.read(reader) else null
-    }
-
-    override fun write(writer: ScaleCodecWriter, value: T?) {
-        if (dataType is boolean) {
-            writer.writeOptional(BoolWriter(), value as Boolean)
+        return if (some) {
+            (dataType as BaseAndroidScaleTransformer<T>).read(reader)
         } else {
-            writer.writeOptional(dataType, value)
+            null
         }
     }
 
-    override fun conformsType(value: Any?) = value == null || dataType.conformsType(value)
+    override fun write(writer: ScaleCodecWriter, value: T?) {
+        if (dataType is BooleanScaleType) {
+            writer.writeOptional(BoolWriter(), value as Boolean)
+        } else {
+            writer.writeOptional(dataType as BaseAndroidScaleTransformer<T?>, value)
+        }
+    }
+
+    actual override fun conformsType(value: Any?): Boolean {
+        return value == null ||
+                dataType.conformsType(value)
+    }
 }
 
-class list<T>(private val dataType: DataType<T>) : DataType<List<T>>() {
+actual class ListScaleType<T> actual constructor(
+    private val dataType: ScaleTransformer<T>
+): BaseAndroidScaleTransformer<List<T>>(), ScaleTransformer<List<T>> {
+
     override fun read(reader: ScaleCodecReader): List<T> {
-        val size = compactInt.read(reader)
+        val size = compactIntScale.read(reader)
         val result = mutableListOf<T>()
 
-        repeat(size.toInt()) {
-            val element = dataType.read(reader)
+        repeat(size.intValue(exactRequired = false)) {
+            val element = (dataType as BaseAndroidScaleTransformer<T>).read(reader)
             result.add(element)
         }
 
@@ -71,21 +87,24 @@ class list<T>(private val dataType: DataType<T>) : DataType<List<T>>() {
     }
 
     override fun write(writer: ScaleCodecWriter, value: List<T>) {
-        val size = value.size.toBigInteger()
-        compactInt.write(writer, size)
+        val size = BigInteger.fromInt(value.size)
+        compactIntScale.write(writer, size)
 
+        val androidDataType = dataType as BaseAndroidScaleTransformer<T>
         value.forEach {
-            dataType.write(writer, it)
+            androidDataType.write(writer, it)
         }
     }
 
-    override fun conformsType(value: Any?): Boolean {
+    actual override fun conformsType(value: Any?): Boolean {
         return value is List<*> && value.all(dataType::conformsType)
     }
 }
 
-@Suppress("UNCHECKED_CAST")
-class scalable<S : Schema<S>>(private val schema: Schema<S>) : DataType<EncodableStruct<S>>() {
+actual class ScalableScaleType<S : Schema<S>> actual constructor(
+    private val schema: Schema<S>
+): BaseAndroidScaleTransformer<EncodableStruct<S>>(), ScaleTransformer<EncodableStruct<S>> {
+
     override fun read(reader: ScaleCodecReader): EncodableStruct<S> {
         return schema.read(reader)
     }
@@ -94,38 +113,39 @@ class scalable<S : Schema<S>>(private val schema: Schema<S>) : DataType<Encodabl
         schema.write(writer, struct)
     }
 
-    override fun conformsType(value: Any?): Boolean {
-        return value is EncodableStruct<*> && value.schema == schema
+    actual override fun conformsType(value: Any?): Boolean {
+        return value is EncodableStruct<*> &&
+                value.schema == schema
     }
 }
 
-class EnumType<E : Enum<E>>(private val enumClass: Class<E>) : DataType<E>() {
-    override fun conformsType(value: Any?): Boolean {
-        return value?.javaClass == enumClass
-    }
+actual class EnumScaleType<E : Enum<E>> actual constructor(
+    private val enumClass: KClass<E>
+): BaseAndroidScaleTransformer<E>(), ScaleTransformer<E> {
 
     override fun read(reader: ScaleCodecReader): E {
         val index = reader.readByte()
 
-        return enumClass.enumConstants[index.toInt()]
+        return enumClass.java.enumConstants[index.toInt()]
     }
 
     override fun write(writer: ScaleCodecWriter, value: E) {
         writer.writeByte(value.ordinal)
     }
+
+    actual override fun conformsType(value: Any?): Boolean {
+        if (value == null) return false
+
+        return value::class == enumClass
+    }
 }
 
-class CollectionEnumType(
-    val values: List<String>
-) : DataType<String>() {
-
-    override fun conformsType(value: Any?): Boolean {
-        return value is String
-    }
+actual class CollectionEnumScaleType actual constructor(
+    private val values: List<String>
+): BaseAndroidScaleTransformer<String>(), ScaleTransformer<String> {
 
     override fun read(reader: ScaleCodecReader): String {
         val index = reader.readByte()
-
         return values[index.toInt()]
     }
 
@@ -138,14 +158,21 @@ class CollectionEnumType(
 
         writer.writeByte(index)
     }
+
+    actual override fun conformsType(value: Any?): Boolean {
+        return value is String
+    }
 }
 
-class union(val dataTypes: Array<out DataType<*>>) : DataType<Any?>() {
+actual class UnionScaleType actual constructor(
+    private val dataTypes: Array<out ScaleTransformer<*>>
+): BaseAndroidScaleTransformer<Any?>(), ScaleTransformer<Any?> {
+
     override fun read(reader: ScaleCodecReader): Any? {
         val typeIndex = reader.readByte()
         val type = dataTypes[typeIndex.toInt()]
 
-        return type.read(reader)
+        return (type as BaseAndroidScaleTransformer<Any?>).read(reader)
     }
 
     override fun write(writer: ScaleCodecWriter, value: Any?) {
@@ -154,21 +181,20 @@ class union(val dataTypes: Array<out DataType<*>>) : DataType<Any?>() {
         if (typeIndex == -1) {
             throw java.lang.IllegalArgumentException(
                 "Unknown type ${value?.javaClass} for this enum. Supported: ${
-                dataTypes.joinToString(
-                    ", "
-                )
+                    dataTypes.joinToString(
+                        ", "
+                    )
                 }"
             )
         }
 
-        val type = dataTypes[typeIndex] as DataType<Any?>
+        val type = dataTypes[typeIndex] as BaseAndroidScaleTransformer<Any?>
 
-        writer.write(uint8, typeIndex.toUByte())
+        writer.write(uInt8Scale, typeIndex.toUByte())
         writer.write(type, value)
     }
 
-    override fun conformsType(value: Any?): Boolean {
+    actual override fun conformsType(value: Any?): Boolean {
         return dataTypes.any { it.conformsType(value) }
     }
 }
-*/

@@ -1,27 +1,17 @@
 package jp.co.soramitsu.xnetworking.scale
 
-/*
-import io.emeraldpay.polkaj.scale.ScaleCodecReader
-import io.emeraldpay.polkaj.scale.ScaleCodecWriter
-import io.emeraldpay.polkaj.scale.ScaleReader
-import io.emeraldpay.polkaj.scale.ScaleWriter
-import jp.co.soramitsu.fearless_utils.extensions.fromHex
-import jp.co.soramitsu.fearless_utils.extensions.toHexString
-import jp.co.soramitsu.xnetworking.scale.EncodableStruct
-import jp.co.soramitsu.xnetworking.scale.Field
-import jp.co.soramitsu.xnetworking.scale.dataType.DataType
-import jp.co.soramitsu.xnetworking.scale.dataType.optional
-import java.io.ByteArrayOutputStream
+import jp.co.soramitsu.xnetworking.extensions.fromHex
+import jp.co.soramitsu.xnetworking.extensions.toHexString
+import jp.co.soramitsu.xnetworking.scale.dataType.OptionalScaleType
+import jp.co.soramitsu.xnetworking.scale.dataType.ScaleTransformer
 
-@Suppress("UNCHECKED_CAST")
-abstract class Schema<S : Schema<S>> :
-    ScaleReader<EncodableStruct<S>>,
-    ScaleWriter<EncodableStruct<S>> {
+abstract class BaseSchema<S : Schema<S>> {
+
     companion object;
 
     internal val fields: MutableList<Field<*>> = mutableListOf()
 
-    fun <T> field(dataType: DataType<T>, default: T?): Field<T> {
+    fun <T> field(dataType: ScaleTransformer<T>, default: T?): Field<T> {
         val field = Field(dataType, default)
 
         fields += field
@@ -29,7 +19,7 @@ abstract class Schema<S : Schema<S>> :
         return field
     }
 
-    fun <T> nullableField(dataType: optional<T>, default: T?): Field<T?> {
+    fun <T> nullableField(dataType: OptionalScaleType<T>, default: T?): Field<T?> {
         val field = Field(dataType, default)
 
         fields += field
@@ -49,44 +39,18 @@ abstract class Schema<S : Schema<S>> :
         return read(scale.fromHex())
     }
 
-    fun read(bytes: ByteArray): EncodableStruct<S> {
-        val reader = ScaleCodecReader(bytes)
+    abstract fun read(bytes: ByteArray): EncodableStruct<S>
 
-        return read(reader)
-    }
-
-    override fun read(reader: ScaleCodecReader): EncodableStruct<S> {
-        val struct = EncodableStruct(this as S)
-
-        for (field in fields) {
-            val value = field.dataType.read(reader)
-            struct[field as Field<Any?>] = value
-        }
-
-        return struct
-    }
-
-    fun toByteArray(struct: EncodableStruct<S>): ByteArray {
-        val outputStream = ByteArrayOutputStream()
-
-        val writer = ScaleCodecWriter(outputStream)
-
-        write(writer, struct)
-
-        return outputStream.toByteArray()
-    }
+    abstract fun toByteArray(struct: EncodableStruct<S>): ByteArray
 
     fun toHexString(struct: EncodableStruct<S>): String =
         toByteArray(struct).toHexString(withPrefix = true)
-
-    override fun write(writer: ScaleCodecWriter, struct: EncodableStruct<S>) {
-        for (field in fields) {
-            val value = struct.fieldsWithValues[field]
-
-            val type = field.dataType as DataType<Any?>
-
-            type.write(writer, value)
-        }
-    }
 }
-*/
+
+@Suppress("UNCHECKED_CAST")
+expect abstract class Schema<S : Schema<S>>() : BaseSchema<S> {
+
+    override fun read(bytes: ByteArray): EncodableStruct<S>
+
+    override fun toByteArray(struct: EncodableStruct<S>): ByteArray
+}

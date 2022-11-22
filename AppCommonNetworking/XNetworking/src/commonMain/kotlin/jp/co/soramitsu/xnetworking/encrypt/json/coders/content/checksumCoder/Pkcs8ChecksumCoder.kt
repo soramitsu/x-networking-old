@@ -1,7 +1,7 @@
 package jp.co.soramitsu.xnetworking.encrypt.json.coders.content.checksumCoder
 
 import jp.co.soramitsu.xnetworking.encrypt.json.coders.content.JsonChecksumCoder
-import jp.co.soramitsu.fearless_utils.extensions.split
+import jp.co.soramitsu.xnetworking.extensions.split
 
 private val PKCS8_HEADER = intArrayOf(48, 83, 2, 1, 1, 48, 5, 6, 3, 43, 101, 112, 4, 34, 4, 32)
     .map(Int::toByte)

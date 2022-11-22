@@ -83,7 +83,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
+                api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
 
                 implementation("com.ionspin.kotlin:bignum:0.3.7")
                 implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion")
@@ -96,6 +96,9 @@ kotlin {
 
                 //implementation("com.ionspin.kotlin:bignum:0.3.6")
                 implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
+                implementation("com.ditchoom:buffer:1.0.95")
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+                implementation("com.soywiz.korlibs.krypto:krypto:2.2.0")
             }
         }
         val commonTest by getting {

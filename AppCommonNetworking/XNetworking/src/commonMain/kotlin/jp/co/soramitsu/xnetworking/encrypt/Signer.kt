@@ -1,16 +1,17 @@
 package jp.co.soramitsu.xnetworking.encrypt
 
-object Signer {
+import jp.co.soramitsu.xnetworking.encrypt.keypair.Keypair
+import jp.co.soramitsu.xnetworking.encrypt.keypair.substrate.Sr25519Keypair
+import jp.co.soramitsu.xnetworking.hash.blake2b256
+import jp.co.soramitsu.xnetworking.hash.keccak256
 
-    /*private enum class MessageHashing(val hasher: (ByteArray) -> ByteArray) {
+private val signer by lazy { Signer() }
 
+abstract class BaseSigner {
+
+    private enum class MessageHashing(val hasher: (ByteArray) -> ByteArray) {
         SUBSTRATE(hasher = { it.blake2b256() }),
         ETHEREUM(hasher = { it.keccak256() })
-    }
-
-    init {
-        SecurityProviders.requireEdDSA
-        SecurityProviders.requireBouncyCastle
     }
 
     fun sign(
@@ -45,64 +46,56 @@ object Signer {
         }
     }
 
-    private fun signSr25519(message: ByteArray, keypair: Sr25519Keypair): SignatureWrapper {
-        val sign = Sr25519.sign(keypair.publicKey, keypair.privateKey + keypair.nonce, message)
+    protected abstract fun signSr25519(
+        message: ByteArray,
+        keypair: Sr25519Keypair
+    ): SignatureWrapper
 
-        return SignatureWrapper.Sr25519(signature = sign)
-    }
-
-    fun verifySr25519(
+    abstract fun verifySr25519(
         message: ByteArray,
         signature: ByteArray,
         publicKeyBytes: ByteArray
-    ): Boolean {
-        return Sr25519.verify(signature, message, publicKeyBytes)
-    }
+    ): Boolean
 
-    private fun signEd25519(message: ByteArray, keypair: Keypair): SignatureWrapper {
-        val spec: EdDSAParameterSpec = EdDSANamedCurveTable.getByName(EdDSANamedCurveTable.ED_25519)
-        val sgr: Signature = Signature.getInstance(
-            EdDSAEngine.SIGNATURE_ALGORITHM,
-            EdDSASecurityProvider.PROVIDER_NAME
-        )
-        val privKeySpec = EdDSAPrivateKeySpec(keypair.privateKey, spec)
-        val privateKey = EdDSAPrivateKey(privKeySpec)
-        sgr.initSign(privateKey)
-        sgr.update(message)
-        return SignatureWrapper.Ed25519(signature = sgr.sign())
-    }
+    protected abstract fun signEd25519(
+        message: ByteArray,
+        keypair: Keypair
+    ): SignatureWrapper
 
-    fun verifyEd25519(
+    abstract fun verifyEd25519(
         message: ByteArray,
         signature: ByteArray,
         publicKeyBytes: ByteArray
-    ): Boolean {
-        val spec: EdDSAParameterSpec = EdDSANamedCurveTable.getByName(EdDSANamedCurveTable.ED_25519)
-        val sgr: Signature = Signature.getInstance(
-            EdDSAEngine.SIGNATURE_ALGORITHM,
-            EdDSASecurityProvider.PROVIDER_NAME
-        )
+    ): Boolean
 
-        val privKeySpec = EdDSAPublicKeySpec(publicKeyBytes, spec)
-        val publicKey = EdDSAPublicKey(privKeySpec)
-        sgr.initVerify(publicKey)
-        sgr.update(message)
-
-        return sgr.verify(signature)
-    }
-
-    private fun signEcdsa(
+    protected abstract fun signEcdsa(
         message: ByteArray,
         keypair: Keypair,
         hasher: (ByteArray) -> ByteArray
-    ): SignatureWrapper {
-        val privateKey = BigInteger(Hex.toHexString(keypair.privateKey), 16)
-        val publicKey = Sign.publicKeyFromPrivate(privateKey)
+    ): SignatureWrapper
+}
 
-        val messageHash = hasher(message)
+expect class Signer(): BaseSigner {
 
-        val sign = Sign.signMessage(messageHash, ECKeyPair(privateKey, publicKey), false)
+    override fun signSr25519(message: ByteArray, keypair: Sr25519Keypair): SignatureWrapper
 
-        return SignatureWrapper.Ecdsa(v = sign.v, r = sign.r, s = sign.s)
-    }*/
+    override fun verifySr25519(
+        message: ByteArray,
+        signature: ByteArray,
+        publicKeyBytes: ByteArray
+    ): Boolean
+
+    override fun signEd25519(message: ByteArray, keypair: Keypair): SignatureWrapper
+
+    override fun verifyEd25519(
+        message: ByteArray,
+        signature: ByteArray,
+        publicKeyBytes: ByteArray
+    ): Boolean
+
+    override fun signEcdsa(
+        message: ByteArray,
+        keypair: Keypair,
+        hasher: (ByteArray) -> ByteArray
+    ): SignatureWrapper
 }

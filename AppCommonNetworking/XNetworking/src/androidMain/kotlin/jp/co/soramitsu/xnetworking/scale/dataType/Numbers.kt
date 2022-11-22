@@ -1,107 +1,126 @@
-@file:Suppress("EXPERIMENTAL_API_USAGE")
-
 package jp.co.soramitsu.xnetworking.scale.dataType
 
-/*
+import com.ditchoom.buffer.ByteOrder
+import com.ionspin.kotlin.bignum.integer.BigInteger
 import io.emeraldpay.polkaj.scale.ScaleCodecReader
 import io.emeraldpay.polkaj.scale.ScaleCodecWriter
 import io.emeraldpay.polkaj.scale.reader.CompactBigIntReader
-import jp.co.soramitsu.fearless_utils.extensions.fromUnsignedBytes
-import jp.co.soramitsu.xnetworking.scale.utils.CompactBigIntWriter
-import java.math.BigInteger
-import java.nio.ByteOrder
+import jp.co.soramitsu.xnetworking.common.toJavaBigInteger
+import jp.co.soramitsu.xnetworking.common.toSharedBigInteger
+import jp.co.soramitsu.xnetworking.extensions.fromUnsignedBytes
+import jp.co.soramitsu.xnetworking.scale.dataType.utiles.CompactBigIntWriter
 
-object byte : DataType<Byte>() {
+actual class ByteScaleType: BaseAndroidScaleTransformer<Byte>(), ScaleTransformer<Byte> {
+
     override fun read(reader: ScaleCodecReader): Byte {
-        val readByte = reader.readByte()
-        return readByte
+        return reader.readByte()
     }
 
-    override fun write(writer: ScaleCodecWriter, value: Byte) = writer.writeByte(value)
+    override fun write(writer: ScaleCodecWriter, value: Byte) {
+        writer.writeByte(value)
+    }
 
-    override fun conformsType(value: Any?) = value is Byte
+    actual override fun conformsType(value: Any?): Boolean {
+        return value is Byte
+    }
 }
 
-object uint8 : DataType<UByte>() {
+actual class UInt8ScaleType: BaseAndroidScaleTransformer<UByte>(), ScaleTransformer<UByte> {
+
     override fun read(reader: ScaleCodecReader): UByte {
-        val toUByte = reader.readUByte().toUByte()
-        return toUByte
+        return reader.readUByte().toUByte()
     }
 
-    override fun write(writer: ScaleCodecWriter, value: UByte) = writer.writeByte(value.toInt())
+    override fun write(writer: ScaleCodecWriter, value: UByte) {
+        writer.writeByte(value.toInt())
+    }
 
-    override fun conformsType(value: Any?) = value is UByte
+    actual override fun conformsType(value: Any?): Boolean {
+        return value is UByte
+    }
 }
 
-object uint16 : DataType<Int>() {
+actual class UInt16ScaleType: BaseAndroidScaleTransformer<Int>(), ScaleTransformer<Int> {
+
     override fun read(reader: ScaleCodecReader): Int {
         return reader.readUint16()
     }
 
-    override fun write(writer: ScaleCodecWriter, value: Int) = writer.writeUint16(value)
+    override fun write(writer: ScaleCodecWriter, value: Int) {
+        writer.writeUint16(value)
+    }
 
-    override fun conformsType(value: Any?) = value is Int
+    actual override fun conformsType(value: Any?): Boolean {
+        return value is Int
+    }
 }
 
-object uint32 : DataType<UInt>() {
+actual class UInt32ScaleType: BaseAndroidScaleTransformer<UInt>(), ScaleTransformer<UInt> {
+
     override fun read(reader: ScaleCodecReader): UInt {
         return reader.readUint32().toUInt()
     }
 
-    override fun write(writer: ScaleCodecWriter, value: UInt) = writer.writeUint32(value.toLong())
+    override fun write(writer: ScaleCodecWriter, value: UInt) {
+        writer.writeUint32(value.toLong())
+    }
 
-    override fun conformsType(value: Any?) = value is UInt
+    actual override fun conformsType(value: Any?): Boolean {
+        return value is UInt
+    }
 }
 
-object long : DataType<Long>() {
-    override fun read(reader: ScaleCodecReader) = reader.readLong()
+actual class LongScaleType: BaseAndroidScaleTransformer<Long>(), ScaleTransformer<Long> {
+
+    override fun read(reader: ScaleCodecReader): Long {
+        return reader.readLong()
+    }
 
     override fun write(writer: ScaleCodecWriter, value: Long) {
         writer.writeLong(value)
     }
 
-    override fun conformsType(value: Any?) = value is Long
+    actual override fun conformsType(value: Any?): Boolean {
+        return value is Long
+    }
 }
 
-open class uint(val size: Int) : DataType<BigInteger>() {
+actual open class UIntScaleType actual constructor(
+    private val size: Int
+): BaseAndroidScaleTransformer<BigInteger>(), ScaleTransformer<BigInteger> {
 
     override fun read(reader: ScaleCodecReader): BigInteger {
         val bytes = reader.readByteArray(size)
-
         return bytes.fromUnsignedBytes(ByteOrder.LITTLE_ENDIAN)
     }
 
     override fun write(writer: ScaleCodecWriter, value: BigInteger) {
         val array = value.toByteArray()
         val padded = ByteArray(size)
-
         val startAt = padded.size - array.size
-
         array.copyInto(padded, startAt)
-
         writer.directWrite(padded.reversedArray(), 0, size)
     }
 
-    override fun conformsType(value: Any?) = value is BigInteger
+    actual override fun conformsType(value: Any?): Boolean {
+        return value is BigInteger
+    }
 }
 
-object uint128 : uint(16)
+actual class CompactIntScaleType : BaseAndroidScaleTransformer<BigInteger>(), ScaleTransformer<BigInteger> {
 
-object uint64 : uint(8)
+    private val compactIntReader = CompactBigIntReader()
+    private val compactIntWriter = CompactBigIntWriter()
 
-private val compactIntReader = CompactBigIntReader()
-private val compactIntWriter = CompactBigIntWriter()
-
-object compactInt : DataType<BigInteger>() {
     override fun read(reader: ScaleCodecReader): BigInteger {
-        val read = compactIntReader.read(reader)
-        return read
+        return compactIntReader.read(reader).toSharedBigInteger()
     }
 
     override fun write(writer: ScaleCodecWriter, value: BigInteger) {
-        compactIntWriter.write(writer, value)
+        compactIntWriter.write(writer, value.toJavaBigInteger())
     }
 
-    override fun conformsType(value: Any?) = value is BigInteger
+    actual override fun conformsType(value: Any?): Boolean {
+        return value is BigInteger
+    }
 }
-*/

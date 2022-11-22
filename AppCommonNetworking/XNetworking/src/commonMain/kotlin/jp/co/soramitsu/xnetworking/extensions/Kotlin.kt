@@ -1,8 +1,10 @@
-package jp.co.soramitsu.fearless_utils.extensions
+package jp.co.soramitsu.xnetworking.extensions
 
-import java.math.BigInteger
-import java.nio.ByteBuffer
-import java.nio.ByteOrder
+import com.ditchoom.buffer.ByteOrder
+import com.ditchoom.buffer.PlatformBuffer
+import com.ditchoom.buffer.allocate
+import com.ionspin.kotlin.bignum.integer.BigInteger
+import com.ionspin.kotlin.bignum.integer.Sign
 
 inline fun <T, R> Iterable<T>.tryFindNonNull(transform: (T) -> R?): R? {
     for (item in this) {
@@ -19,16 +21,13 @@ private const val UNSIGNED_SIGNUM = 1
 fun ByteArray.fromUnsignedBytes(byteOrder: ByteOrder = ByteOrder.BIG_ENDIAN): BigInteger {
     // Big Integer accepts big endian numbers
     val ordered = if (byteOrder == ByteOrder.LITTLE_ENDIAN) reversedArray() else this
-
-    return BigInteger(UNSIGNED_SIGNUM, ordered)
+    return BigInteger.fromByteArray(ordered, Sign.POSITIVE)
 }
 
-@ExperimentalUnsignedTypes
 fun UInt.toUnsignedBytes(order: ByteOrder = ByteOrder.BIG_ENDIAN): ByteArray {
-    return ByteBuffer.allocate(Int.SIZE_BYTES).also {
-        it.order(order)
-        it.putInt(this.toInt())
-    }.array()
+    return PlatformBuffer.allocate(Int.SIZE_BYTES, byteOrder = order).also {
+        it.write(this.toInt())
+    }.readByteArray(Int.SIZE_BYTES)
 }
 
 fun ByteArray.split(divider: ByteArray): List<ByteArray> {
