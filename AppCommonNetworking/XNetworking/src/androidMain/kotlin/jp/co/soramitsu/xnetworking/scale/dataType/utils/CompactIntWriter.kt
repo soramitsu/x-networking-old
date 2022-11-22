@@ -1,30 +1,21 @@
-package jp.co.soramitsu.xnetworking.scale.dataType.utiles
+package jp.co.soramitsu.xnetworking.scale.dataType.utils
 
 import java.math.BigInteger
 import io.emeraldpay.polkaj.scale.CompactMode
 import io.emeraldpay.polkaj.scale.ScaleCodecWriter
 import io.emeraldpay.polkaj.scale.ScaleWriter
 import io.emeraldpay.polkaj.scale.writer.CompactULongWriter
+import jp.co.soramitsu.xnetworking.common.toSharedBigInteger
 import java.io.IOException
 
 private val LONG_WRITER = CompactULongWriter()
-
-private fun BigInteger.toUnsignedBytes(): ByteArray {
-    var bytes = toByteArray()
-
-    if (bytes.first() == 0.toByte() && bytes.size > 1) {
-        bytes = bytes.drop(1).toByteArray()
-    }
-
-    return bytes
-}
 
 internal class CompactBigIntWriter : ScaleWriter<BigInteger> {
 
     @Throws(IOException::class)
     override fun write(wrt: ScaleCodecWriter, value: BigInteger) {
         val mode = CompactMode.forNumber(value)
-        val data = value.toUnsignedBytes()
+        val data = value.toSharedBigInteger().toUnsignedBytes()
         var pos = data.size - 1
         if (mode != CompactMode.BIGINT) {
             LONG_WRITER.write(wrt, value.toLong())

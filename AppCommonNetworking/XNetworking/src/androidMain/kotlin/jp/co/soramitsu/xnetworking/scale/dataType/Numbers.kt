@@ -8,7 +8,7 @@ import io.emeraldpay.polkaj.scale.reader.CompactBigIntReader
 import jp.co.soramitsu.xnetworking.common.toJavaBigInteger
 import jp.co.soramitsu.xnetworking.common.toSharedBigInteger
 import jp.co.soramitsu.xnetworking.extensions.fromUnsignedBytes
-import jp.co.soramitsu.xnetworking.scale.dataType.utiles.CompactBigIntWriter
+import jp.co.soramitsu.xnetworking.scale.dataType.utils.CompactBigIntWriter
 
 actual class ByteScaleType: BaseAndroidScaleTransformer<Byte>(), ScaleTransformer<Byte> {
 

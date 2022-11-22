@@ -9,7 +9,7 @@ import jp.co.soramitsu.xnetworking.encrypt.keypair.KeypairFactory
 import jp.co.soramitsu.xnetworking.encrypt.keypair.derivePublicKeyEcdsa
 import jp.co.soramitsu.xnetworking.extensions.fromUnsignedBytes
 import jp.co.soramitsu.xnetworking.extensions.requireOrException
-import jp.co.soramitsu.xnetworking.scale.utils.toUnsignedBytes
+import jp.co.soramitsu.xnetworking.scale.dataType.utils.toUnsignedBytes
 
 object Bip32KeypairFactory : KeypairFactory<Bip32ExtendedKeyPair> {
 
