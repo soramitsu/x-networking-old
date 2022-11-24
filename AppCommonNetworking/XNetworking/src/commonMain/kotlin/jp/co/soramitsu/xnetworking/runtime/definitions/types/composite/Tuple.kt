@@ -31,7 +31,7 @@ class Tuple(name: String, val typeReferences: List<TypeReference>) : Type<List<*
 
     operator fun get(index: Int): Type<*>? = typeReferences[index].skipAliasesOrNull()?.value
 
-    inline operator fun <reified R> get(index: Int): R? = get(index) as? R
+    // inline operator fun <reified R> get(index: Int): R? = get(index) as? R // TODO: Duplicate error in iOS
 
     override val isFullyResolved: Boolean
         get() = typeReferences.all { it.isResolved() }
