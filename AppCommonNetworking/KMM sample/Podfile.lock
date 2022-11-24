@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../XNetworking"
 
 SPEC CHECKSUMS:
-  XNetworking: ab270fb3db3d1b70fd64c45903ee44e6e1413b01
+  XNetworking: 21f7ff092527f83bb5edab4bc8e42b0d36fc1c0b
 
 PODFILE CHECKSUM: f84c7b4e6b61ef5aa22aa935ee3a2858eb98b27a
 
