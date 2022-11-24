@@ -5,7 +5,7 @@ import jp.co.soramitsu.xnetworking.encrypt.keypair.substrate.Sr25519Keypair
 import jp.co.soramitsu.xnetworking.hash.blake2b256
 import jp.co.soramitsu.xnetworking.hash.keccak256
 
-private val signer by lazy { Signer() }
+val signer by lazy { Signer() }
 
 abstract class BaseSigner {
 

@@ -13,7 +13,7 @@ fun String.requireHexPrefix(): String {
     return requirePrefix(HEX_PREFIX)
 }
 
-fun Byte.toHex(withPrefix: Boolean): String {
+fun Byte.toHex(withPrefix: Boolean = false): String {
     return byteArrayOf(this).toHexString(withPrefix)
 }
 

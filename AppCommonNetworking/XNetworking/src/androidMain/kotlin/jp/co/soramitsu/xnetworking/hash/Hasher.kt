@@ -5,11 +5,12 @@ import org.bouncycastle.jcajce.provider.digest.Blake2b
 import org.bouncycastle.jcajce.provider.digest.Keccak
 
 object Hasher {
-    private val blake2bLock = Any()
+
+    val blake2bLock = Any()
 
     private val blake2b256 = Blake2b.Blake2b256()
 
-    private val blake2b128 = Blake2b128()
+    val blake2b128 = Blake2b128()
 
     private val blake2b512 = Blake2b.Blake2b512()
 
@@ -17,9 +18,11 @@ object Hasher {
     val xxHash128 = XXHash(128, xxHash64)
     val xxHash256 = XXHash(256, xxHash64)
 
-    fun ByteArray.xxHash64() = xxHash64.hash(this)
-    fun ByteArray.xxHash128() = xxHash128.hash(this)
-    fun ByteArray.xxHash256() = xxHash256.hash(this)
+    fun xxHash64(bytes: ByteArray) = xxHash64.hash(bytes)
+    fun xxHash128(bytes: ByteArray) = xxHash128.hash(bytes)
+    fun xxHash256(bytes: ByteArray) = xxHash256.hash(bytes)
+
+    fun xxHash64Concat(bytes: ByteArray) = xxHash64.hashConcat(bytes)
 
     fun blake2b128(bytes: ByteArray) = withBlake2bLock { blake2b128.digest(bytes) }
     fun blake2b256(bytes: ByteArray) = withBlake2bLock { blake2b256.digest(bytes) }
@@ -33,7 +36,7 @@ object Hasher {
 
     fun ByteArray.blake2b128Concat() = withBlake2bLock { blake2b128.hashConcat(this) }
 
-    private inline fun <T> withBlake2bLock(action: () -> T) = synchronized(blake2bLock, action)
+    inline fun <T> withBlake2bLock(action: () -> T) = synchronized(blake2bLock, action)
 }
 
 actual fun ByteArray.blake2b128(): ByteArray {
@@ -50,4 +53,22 @@ actual fun ByteArray.blake2b512(): ByteArray {
 
 actual fun ByteArray.keccak256(): ByteArray {
     return Hasher.keccak256(this)
+}
+
+actual fun ByteArray.xxHash64(): Long {
+    return Hasher.xxHash64(this)
+}
+actual fun ByteArray.xxHash128(): ByteArray {
+    return Hasher.xxHash128(this)
+}
+actual fun ByteArray.xxHash256(): ByteArray {
+    return Hasher.xxHash256(this)
+}
+
+actual fun ByteArray.xxHash64Concat(): ByteArray {
+    return Hasher.xxHash64Concat(this)
+}
+
+actual fun ByteArray.blake2b128Concat(): ByteArray {
+    return Hasher.withBlake2bLock { Hasher.blake2b128.hashConcat(this) }
 }

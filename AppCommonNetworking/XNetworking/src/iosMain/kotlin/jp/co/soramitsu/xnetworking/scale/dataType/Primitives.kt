@@ -1,25 +1,15 @@
 package jp.co.soramitsu.xnetworking.scale.dataType
 
-actual class StringScaleType: ScaleTransformer<String> {
-    actual override fun encode(value: String): ByteArray {
+import jp.co.soramitsu.xnetworking.scale.ScaleCodecReader
+import jp.co.soramitsu.xnetworking.scale.ScaleCodecWriter
+
+actual class StringScaleType: ScaleTransformer<String>() {
+
+    actual override fun read(reader: ScaleCodecReader): String {
         TODO()
     }
 
-    actual override fun decode(bytes: ByteArray): String {
-        TODO()
-    }
-
-    actual override fun conformsType(value: Any?): Boolean {
-        TODO()
-    }
-}
-
-actual class BooleanScaleType: ScaleTransformer<Boolean> {
-    actual override fun encode(value: Boolean): ByteArray {
-        TODO()
-    }
-
-    actual override fun decode(bytes: ByteArray): Boolean {
+    actual override fun write(scaleWriter: ScaleCodecWriter, value: String) {
         TODO()
     }
 
@@ -28,12 +18,28 @@ actual class BooleanScaleType: ScaleTransformer<Boolean> {
     }
 }
 
-actual class ByteArrayScaleType: ScaleTransformer<ByteArray> {
-    actual override fun encode(value: ByteArray): ByteArray {
+actual class BooleanScaleType: ScaleTransformer<Boolean>() {
+
+    actual override fun read(reader: ScaleCodecReader): Boolean {
         TODO()
     }
 
-    actual override fun decode(bytes: ByteArray): ByteArray {
+    actual override fun write(scaleWriter: ScaleCodecWriter, value: Boolean) {
+        TODO()
+    }
+
+    actual override fun conformsType(value: Any?): Boolean {
+        TODO()
+    }
+}
+
+actual class ByteArrayScaleType: ScaleTransformer<ByteArray>() {
+
+    actual override fun read(reader: ScaleCodecReader): ByteArray {
+        TODO()
+    }
+
+    actual override fun write(scaleWriter: ScaleCodecWriter, value: ByteArray) {
         TODO()
     }
 
@@ -44,12 +50,13 @@ actual class ByteArrayScaleType: ScaleTransformer<ByteArray> {
 
 actual class ByteArraySizedScaleType actual constructor(
     private val length: Int
-): ScaleTransformer<ByteArray> {
-    actual override fun encode(value: ByteArray): ByteArray {
+): ScaleTransformer<ByteArray>() {
+
+    actual override fun read(reader: ScaleCodecReader): ByteArray {
         TODO()
     }
 
-    actual override fun decode(bytes: ByteArray): ByteArray {
+    actual override fun write(scaleWriter: ScaleCodecWriter, value: ByteArray) {
         TODO()
     }
 

@@ -50,6 +50,10 @@ val iosConfigure: KotlinNativeTarget.() -> Unit = {
     }
 }
 
+val coroutineVersion = "1.6.4"
+val ktorVersion = "2.0.0"
+val sqlDelightVersion = project.properties["sqldelight_version"].toString()
+
 kotlin {
     android()
 
@@ -106,8 +110,8 @@ kotlin {
         val iosMain by creating {
             dependsOn(commonMain)
             dependencies {
-                implementation(libs.ktor.darwin)
-                implementation(libs.sqldelight.native)
+                implementation("io.ktor:ktor-client-darwin:$ktorVersion")
+                implementation("com.squareup.sqldelight:native-driver:$sqlDelightVersion")
             }
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)

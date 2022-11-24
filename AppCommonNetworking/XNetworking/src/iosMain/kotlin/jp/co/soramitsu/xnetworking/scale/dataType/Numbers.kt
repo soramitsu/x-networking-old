@@ -1,29 +1,16 @@
 package jp.co.soramitsu.xnetworking.scale.dataType
 
 import com.ionspin.kotlin.bignum.integer.BigInteger
+import jp.co.soramitsu.xnetworking.scale.ScaleCodecReader
+import jp.co.soramitsu.xnetworking.scale.ScaleCodecWriter
 
-actual class ByteScaleType: ScaleTransformer<Byte> {
+actual class ByteScaleType: ScaleTransformer<Byte>() {
 
-    actual override fun encode(value: Byte): ByteArray {
+    actual override fun read(reader: ScaleCodecReader): Byte {
         TODO()
     }
 
-    actual override fun decode(bytes: ByteArray): Byte {
-        TODO()
-    }
-
-    actual override fun conformsType(value: Any?): Boolean {
-        TODO()
-    }
-}
-
-actual class UInt8ScaleType: ScaleTransformer<UByte> {
-
-    actual override fun encode(value: UByte): ByteArray {
-        TODO()
-    }
-
-    actual override fun decode(bytes: ByteArray): UByte {
+    actual override fun write(scaleWriter: ScaleCodecWriter, value: Byte) {
         TODO()
     }
 
@@ -32,28 +19,13 @@ actual class UInt8ScaleType: ScaleTransformer<UByte> {
     }
 }
 
-actual class UInt16ScaleType: ScaleTransformer<Int> {
+actual class UInt8ScaleType: ScaleTransformer<UByte>() {
 
-    actual override fun encode(value: Int): ByteArray {
+    actual override fun read(reader: ScaleCodecReader): UByte {
         TODO()
     }
 
-    actual override fun decode(bytes: ByteArray): Int {
-        TODO()
-    }
-
-    actual override fun conformsType(value: Any?): Boolean {
-        TODO()
-    }
-}
-
-actual class UInt32ScaleType: ScaleTransformer<UInt> {
-
-    actual override fun encode(value: UInt): ByteArray {
-        TODO()
-    }
-
-    actual override fun decode(bytes: ByteArray): UInt {
+    actual override fun write(scaleWriter: ScaleCodecWriter, value: UByte) {
         TODO()
     }
 
@@ -62,13 +34,43 @@ actual class UInt32ScaleType: ScaleTransformer<UInt> {
     }
 }
 
-actual class LongScaleType: ScaleTransformer<Long> {
+actual class UInt16ScaleType: ScaleTransformer<Int>() {
 
-    actual override fun encode(value: Long): ByteArray {
+    actual override fun read(reader: ScaleCodecReader): Int {
         TODO()
     }
 
-    actual override fun decode(bytes: ByteArray): Long {
+    actual override fun write(scaleWriter: ScaleCodecWriter, value: Int) {
+        TODO()
+    }
+
+    actual override fun conformsType(value: Any?): Boolean {
+        TODO()
+    }
+}
+
+actual class UInt32ScaleType: ScaleTransformer<UInt>() {
+
+    actual override fun read(reader: ScaleCodecReader): UInt {
+        TODO()
+    }
+
+    actual override fun write(scaleWriter: ScaleCodecWriter, value: UInt) {
+        TODO()
+    }
+
+    actual override fun conformsType(value: Any?): Boolean {
+        TODO()
+    }
+}
+
+actual class LongScaleType: ScaleTransformer<Long>() {
+
+    actual override fun read(reader: ScaleCodecReader): Long {
+        TODO()
+    }
+
+    actual override fun write(scaleWriter: ScaleCodecWriter, value: Long) {
         TODO()
     }
 
@@ -79,13 +81,13 @@ actual class LongScaleType: ScaleTransformer<Long> {
 
 actual open class UIntScaleType actual constructor(
     private val size: Int
-): ScaleTransformer<BigInteger> {
+): ScaleTransformer<BigInteger>() {
 
-    actual override fun encode(value: BigInteger): ByteArray {
+    actual override fun read(reader: ScaleCodecReader): BigInteger {
         TODO()
     }
 
-    actual override fun decode(bytes: ByteArray): BigInteger {
+    actual override fun write(scaleWriter: ScaleCodecWriter, value: BigInteger) {
         TODO()
     }
 
@@ -94,13 +96,13 @@ actual open class UIntScaleType actual constructor(
     }
 }
 
-actual class CompactIntScaleType : ScaleTransformer<BigInteger> {
+actual class CompactIntScaleType : ScaleTransformer<BigInteger>() {
 
-    actual override fun encode(value: BigInteger): ByteArray {
+    actual override fun read(reader: ScaleCodecReader): BigInteger {
         TODO()
     }
 
-    actual override fun decode(bytes: ByteArray): BigInteger {
+    actual override fun write(scaleWriter: ScaleCodecWriter, value: BigInteger) {
         TODO()
     }
 

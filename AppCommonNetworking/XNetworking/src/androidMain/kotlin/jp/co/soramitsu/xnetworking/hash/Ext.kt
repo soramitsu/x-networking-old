@@ -19,5 +19,3 @@ fun XXHash64.hashConcat(bytes: ByteArray): ByteArray {
 
     return hashBytes.array()
 }
-
-fun BigInteger.isPositive() = signum() == 1

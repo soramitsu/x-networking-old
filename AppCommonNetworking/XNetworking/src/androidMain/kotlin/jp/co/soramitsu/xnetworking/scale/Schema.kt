@@ -3,8 +3,7 @@ package jp.co.soramitsu.xnetworking.scale
 import io.emeraldpay.polkaj.scale.ScaleCodecReader
 import io.emeraldpay.polkaj.scale.ScaleCodecWriter
 import io.emeraldpay.polkaj.scale.ScaleReader
-import io.emeraldpay.polkaj.scale.ScaleWriter
-import jp.co.soramitsu.xnetworking.scale.dataType.BaseAndroidScaleTransformer
+import jp.co.soramitsu.xnetworking.scale.dataType.ScaleTransformer
 import java.io.ByteArrayOutputStream
 
 @Suppress("UNCHECKED_CAST")
@@ -22,7 +21,7 @@ actual abstract class Schema<S : Schema<S>> :
         val struct = EncodableStruct(this as S)
 
         for (field in fields) {
-            val value = (field.dataType as BaseAndroidScaleTransformer<*>).read(reader)
+            val value = field.dataType.read(reader)
             struct[field as Field<Any?>] = value
         }
 
@@ -43,7 +42,7 @@ actual abstract class Schema<S : Schema<S>> :
         for (field in fields) {
             val value = struct.fieldsWithValues[field]
 
-            val type = field.dataType as BaseAndroidScaleTransformer<Any?>
+            val type = field.dataType as ScaleTransformer<Any?>
 
             type.write(writer, value)
         }

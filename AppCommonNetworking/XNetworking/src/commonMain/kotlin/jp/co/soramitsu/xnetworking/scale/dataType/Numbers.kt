@@ -1,6 +1,8 @@
 package jp.co.soramitsu.xnetworking.scale.dataType
 
 import com.ionspin.kotlin.bignum.integer.BigInteger
+import jp.co.soramitsu.xnetworking.scale.ScaleCodecReader
+import jp.co.soramitsu.xnetworking.scale.ScaleCodecWriter
 
 val byteScale by lazy { ByteScaleType() }
 val uInt8Scale by lazy { UInt8ScaleType() }
@@ -15,54 +17,54 @@ fun uIntScale(size: Int) = UIntScaleType(size)
 
 expect class ByteScaleType(): ScaleTransformer<Byte> {
 
-    override fun encode(value: Byte): ByteArray
+    override fun write(scaleWriter: ScaleCodecWriter, value: Byte)
 
-    override fun decode(bytes: ByteArray): Byte
+    override fun read(reader: ScaleCodecReader): Byte
 
     override fun conformsType(value: Any?): Boolean
 }
 
 expect class UInt8ScaleType(): ScaleTransformer<UByte> {
 
-    override fun encode(value: UByte): ByteArray
+    override fun write(scaleWriter: ScaleCodecWriter, value: UByte)
 
-    override fun decode(bytes: ByteArray): UByte
+    override fun read(reader: ScaleCodecReader): UByte
 
     override fun conformsType(value: Any?): Boolean
 }
 
 expect class UInt16ScaleType(): ScaleTransformer<Int> {
 
-    override fun encode(value: Int): ByteArray
+    override fun write(scaleWriter: ScaleCodecWriter, value: Int)
 
-    override fun decode(bytes: ByteArray): Int
+    override fun read(reader: ScaleCodecReader): Int
 
     override fun conformsType(value: Any?): Boolean
 }
 
 expect class UInt32ScaleType(): ScaleTransformer<UInt> {
 
-    override fun encode(value: UInt): ByteArray
+    override fun write(scaleWriter: ScaleCodecWriter, value: UInt)
 
-    override fun decode(bytes: ByteArray): UInt
+    override fun read(reader: ScaleCodecReader): UInt
 
     override fun conformsType(value: Any?): Boolean
 }
 
 expect class LongScaleType(): ScaleTransformer<Long> {
 
-    override fun encode(value: Long): ByteArray
+    override fun write(scaleWriter: ScaleCodecWriter, value: Long)
 
-    override fun decode(bytes: ByteArray): Long
+    override fun read(reader: ScaleCodecReader): Long
 
     override fun conformsType(value: Any?): Boolean
 }
 
 expect open class UIntScaleType(size: Int): ScaleTransformer<BigInteger> {
 
-    override fun encode(value: BigInteger): ByteArray
+    override fun write(scaleWriter: ScaleCodecWriter, value: BigInteger)
 
-    override fun decode(bytes: ByteArray): BigInteger
+    override fun read(reader: ScaleCodecReader): BigInteger
 
     override fun conformsType(value: Any?): Boolean
 }
@@ -73,9 +75,9 @@ class UInt128ScaleType: UIntScaleType(16)
 
 expect class CompactIntScaleType() : ScaleTransformer<BigInteger> {
 
-    override fun encode(value: BigInteger): ByteArray
+    override fun write(scaleWriter: ScaleCodecWriter, value: BigInteger)
 
-    override fun decode(bytes: ByteArray): BigInteger
+    override fun read(reader: ScaleCodecReader): BigInteger
 
     override fun conformsType(value: Any?): Boolean
 }

@@ -1,7 +1,9 @@
-@file:Suppress("ClassName", "UNCHECKED_CAST")
+@file:Suppress("ClassName")
 
 package jp.co.soramitsu.xnetworking.scale.dataType
 
+import jp.co.soramitsu.xnetworking.scale.ScaleCodecReader
+import jp.co.soramitsu.xnetworking.scale.ScaleCodecWriter
 import jp.co.soramitsu.xnetworking.scale.EncodableStruct
 import jp.co.soramitsu.xnetworking.scale.Schema
 import kotlin.reflect.KClass
@@ -9,13 +11,13 @@ import kotlin.reflect.KClass
 actual class TupleScaleType<A, B> actual constructor(
     private val a: ScaleTransformer<A>,
     private val b: ScaleTransformer<B>
-): ScaleTransformer<Pair<A, B>> {
+): ScaleTransformer<Pair<A, B>>() {
 
-    actual override fun encode(value: Pair<A, B>): ByteArray {
+    actual override fun read(reader: ScaleCodecReader): Pair<A, B> {
         TODO()
     }
 
-    actual override fun decode(bytes: ByteArray): Pair<A, B> {
+    actual override fun write(scaleWriter: ScaleCodecWriter, value: Pair<A, B>) {
         TODO()
     }
 
@@ -26,13 +28,13 @@ actual class TupleScaleType<A, B> actual constructor(
 
 actual class OptionalScaleType<T> actual constructor(
     private val dataType: ScaleTransformer<T>
-): ScaleTransformer<T?> {
+): ScaleTransformer<T?>() {
 
-    actual override fun encode(value: T?): ByteArray {
+    actual override fun read(reader: ScaleCodecReader): T? {
         TODO()
     }
 
-    actual override fun decode(bytes: ByteArray): T? {
+    actual override fun write(scaleWriter: ScaleCodecWriter, value: T?) {
         TODO()
     }
 
@@ -43,13 +45,13 @@ actual class OptionalScaleType<T> actual constructor(
 
 actual class ListScaleType<T> actual constructor(
     private val dataType: ScaleTransformer<T>
-): ScaleTransformer<List<T>> {
+): ScaleTransformer<List<T>>() {
 
-    actual override fun encode(value: List<T>): ByteArray {
+    actual override fun read(reader: ScaleCodecReader): List<T> {
         TODO()
     }
 
-    actual override fun decode(bytes: ByteArray): List<T> {
+    actual override fun write(scaleWriter: ScaleCodecWriter, value: List<T>) {
         TODO()
     }
 
@@ -60,13 +62,13 @@ actual class ListScaleType<T> actual constructor(
 
 actual class ScalableScaleType<S : Schema<S>> actual constructor(
     private val schema: Schema<S>
-): ScaleTransformer<EncodableStruct<S>> {
+): ScaleTransformer<EncodableStruct<S>>() {
 
-    actual override fun encode(value: EncodableStruct<S>): ByteArray {
-        return ByteArray(0)
+    actual override fun read(reader: ScaleCodecReader): EncodableStruct<S> {
+        TODO()
     }
 
-    actual override fun decode(bytes: ByteArray): EncodableStruct<S> {
+    actual override fun write(scaleWriter: ScaleCodecWriter, value: EncodableStruct<S>) {
         TODO()
     }
 
@@ -77,13 +79,13 @@ actual class ScalableScaleType<S : Schema<S>> actual constructor(
 
 actual class EnumScaleType<E : Enum<E>> actual constructor(
     private val enumClass: KClass<E>
-): ScaleTransformer<E> {
+): ScaleTransformer<E>() {
 
-    actual override fun encode(value: E): ByteArray {
+    actual override fun read(reader: ScaleCodecReader): E {
         TODO()
     }
 
-    actual override fun decode(bytes: ByteArray): E {
+    actual override fun write(scaleWriter: ScaleCodecWriter, value: E) {
         TODO()
     }
 
@@ -94,13 +96,13 @@ actual class EnumScaleType<E : Enum<E>> actual constructor(
 
 actual class CollectionEnumScaleType actual constructor(
     private val values: List<String>
-): ScaleTransformer<String> {
+): ScaleTransformer<String>() {
 
-    actual override fun encode(value: String): ByteArray {
+    actual override fun read(reader: ScaleCodecReader): String {
         TODO()
     }
 
-    actual override fun decode(bytes: ByteArray): String {
+    actual override fun write(scaleWriter: ScaleCodecWriter, value: String) {
         TODO()
     }
 
@@ -111,13 +113,13 @@ actual class CollectionEnumScaleType actual constructor(
 
 actual class UnionScaleType actual constructor(
     private val dataTypes: Array<out ScaleTransformer<*>>
-): ScaleTransformer<Any?> {
+): ScaleTransformer<Any?>() {
 
-    actual override fun encode(value: Any?): ByteArray {
+    actual override fun read(reader: ScaleCodecReader): Any? {
         TODO()
     }
 
-    actual override fun decode(bytes: ByteArray): Any? {
+    actual override fun write(scaleWriter: ScaleCodecWriter, value: Any?) {
         TODO()
     }
 

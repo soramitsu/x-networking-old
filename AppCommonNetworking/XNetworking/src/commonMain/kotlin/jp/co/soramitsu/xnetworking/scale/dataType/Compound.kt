@@ -1,7 +1,9 @@
-@file:Suppress("ClassName", "UNCHECKED_CAST")
+@file:Suppress("ClassName")
 
 package jp.co.soramitsu.xnetworking.scale.dataType
 
+import jp.co.soramitsu.xnetworking.scale.ScaleCodecReader
+import jp.co.soramitsu.xnetworking.scale.ScaleCodecWriter
 import jp.co.soramitsu.xnetworking.scale.EncodableStruct
 import jp.co.soramitsu.xnetworking.scale.Schema
 import kotlin.reflect.KClass
@@ -40,9 +42,9 @@ expect class TupleScaleType<A, B>(
     b: ScaleTransformer<B>
 ): ScaleTransformer<Pair<A, B>> {
 
-    override fun encode(value: Pair<A, B>): ByteArray
+    override fun write(scaleWriter: ScaleCodecWriter, value: Pair<A, B>)
 
-    override fun decode(bytes: ByteArray): Pair<A, B>
+    override fun read(reader: ScaleCodecReader): Pair<A, B>
 
     override fun conformsType(value: Any?): Boolean
 }
@@ -51,9 +53,9 @@ expect class OptionalScaleType<T>(
     dataType: ScaleTransformer<T>
 ): ScaleTransformer<T?> {
 
-    override fun encode(value: T?): ByteArray
+    override fun write(scaleWriter: ScaleCodecWriter, value: T?)
 
-    override fun decode(bytes: ByteArray): T?
+    override fun read(reader: ScaleCodecReader): T?
 
     override fun conformsType(value: Any?): Boolean
 }
@@ -62,9 +64,9 @@ expect class ListScaleType<T>(
     dataType: ScaleTransformer<T>
 ): ScaleTransformer<List<T>> {
 
-    override fun encode(value: List<T>): ByteArray
+    override fun write(scaleWriter: ScaleCodecWriter, value: List<T>)
 
-    override fun decode(bytes: ByteArray): List<T>
+    override fun read(reader: ScaleCodecReader): List<T>
 
     override fun conformsType(value: Any?): Boolean
 }
@@ -73,9 +75,9 @@ expect class ScalableScaleType<S : Schema<S>>(
     schema: Schema<S>
 ): ScaleTransformer<EncodableStruct<S>> {
 
-    override fun encode(value: EncodableStruct<S>): ByteArray
+    override fun write(scaleWriter: ScaleCodecWriter, value: EncodableStruct<S>)
 
-    override fun decode(bytes: ByteArray): EncodableStruct<S>
+    override fun read(reader: ScaleCodecReader): EncodableStruct<S>
 
     override fun conformsType(value: Any?): Boolean
 }
@@ -84,9 +86,9 @@ expect class EnumScaleType<E : Enum<E>>(
     enumClass: KClass<E>
 ): ScaleTransformer<E> {
 
-    override fun encode(value: E): ByteArray
+    override fun write(scaleWriter: ScaleCodecWriter, value: E)
 
-    override fun decode(bytes: ByteArray): E
+    override fun read(reader: ScaleCodecReader): E
 
     override fun conformsType(value: Any?): Boolean
 }
@@ -95,9 +97,9 @@ expect class CollectionEnumScaleType(
     values: List<String>
 ): ScaleTransformer<String> {
 
-    override fun encode(value: String): ByteArray
+    override fun write(scaleWriter: ScaleCodecWriter, value: String)
 
-    override fun decode(bytes: ByteArray): String
+    override fun read(reader: ScaleCodecReader): String
 
     override fun conformsType(value: Any?): Boolean
 }
@@ -106,9 +108,9 @@ expect class UnionScaleType(
     dataTypes: Array<out ScaleTransformer<*>>
 ): ScaleTransformer<Any?> {
 
-    override fun encode(value: Any?): ByteArray
+    override fun write(scaleWriter: ScaleCodecWriter, value: Any?)
 
-    override fun decode(bytes: ByteArray): Any?
+    override fun read(reader: ScaleCodecReader): Any?
 
     override fun conformsType(value: Any?): Boolean
 }
