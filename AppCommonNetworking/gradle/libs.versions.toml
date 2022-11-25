@@ -11,6 +11,8 @@ spongycastle = "1.58.0.0"
 crypto-eddsa = "0.3.0"
 crypto-web3j = "4.6.0-android"
 lz4 = "1.7.1"
+okio = "3.2.0"
+cryptohash = "0.10.1"
 
 [libraries]
 krypto = { module = "com.soywiz.korlibs.krypto:krypto", version.ref = "krypto" }
@@ -42,6 +44,10 @@ crypto-eddsa = { module = "net.i2p.crypto:eddsa", version.ref = "crypto-eddsa" }
 crypto-web3j = { module = "org.web3j:crypto", version.ref = "crypto-web3j" }
 
 lz4 = { module = "org.lz4:lz4-java", version.ref = "lz4" }
+
+okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
+
+cryptohash = { module = "com.appmattus.crypto:cryptohash", version.ref = "cryptohash" }
 
 [bundles]
 ktor = ["ktor-core", "ktor-json", "ktor-negotiation", "ktor-logging"]

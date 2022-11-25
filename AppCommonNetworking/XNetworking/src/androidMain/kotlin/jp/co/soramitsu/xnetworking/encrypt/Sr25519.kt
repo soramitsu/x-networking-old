@@ -1,30 +1,30 @@
-package jp.co.soramitsu.xnetworking.encrypt;
+package jp.co.soramitsu.xnetworking.encrypt
 
-public final class Sr25519 {
-
+object Sr25519 {
     /// Size of input SEED for derivation, bytes
-    public static final int SEED_SIZE = 32;
+    const val SEED_SIZE = 32
 
     /// Size of CHAINCODE, bytes
-    public static final int CHAINCODE_SIZE = 32;
+    const val CHAINCODE_SIZE = 32
 
     /// Size of SR25519 PUBLIC KEY, bytes
-    public static final int PUBLIC_SIZE = 32;
+    const val PUBLIC_SIZE = 32
 
     /// Size of SR25519 PRIVATE (SECRET) KEY, which consists of [32 bytes key | 32 bytes nonce]
-    public static final int SECRET_SIZE = 64;
+    const val SECRET_SIZE = 64
 
     /// Size of SR25519 SIGNATURE, bytes
-    public static final int SIGNATURE_SIZE = 64;
+    const val SIGNATURE_SIZE = 64
 
     /// Size of SR25519 KEYPAIR. [32 bytes key | 32 bytes nonce | 32 bytes public]
-    public static final int KEYPAIR_SIZE = 96;
+    const val KEYPAIR_SIZE = 96
 
-    static {
-        System.loadLibrary("sr25519java");
+    init {
+        System.loadLibrary("sr25519java")
     }
 
-    public static native String test(String hello_what);
+    @JvmStatic
+    external fun test(hello_what: String?): String?
 
     /**
      * Verify a message and its corresponding against a public key;
@@ -34,7 +34,8 @@ public final class Sr25519 {
      * @param public_key: verify with this public key
      * @return true if signature is valid, false otherwise
      */
-    public static native boolean verify(byte[] signature, byte[] message, byte[] public_key);
+    @JvmStatic
+    external fun verify(signature: ByteArray, message: ByteArray, public_key: ByteArray): Boolean
 
     /**
      * Sign a message
@@ -46,7 +47,8 @@ public final class Sr25519 {
      * @param message:    Arbitrary message
      * @return the signature
      */
-    public static native byte[] sign(byte[] public_key, byte[] secret, byte[] message);
+    @JvmStatic
+    external fun sign(public_key: ByteArray, secret: ByteArray, message: ByteArray): ByteArray
 
     /**
      * Perform a derivation on a secret
@@ -55,8 +57,8 @@ public final class Sr25519 {
      * @param cc:   chaincode - input buffer of   CHAINCODE_SIZE bytes
      * @return pre-allocated output buffer of   KEYPAIR_SIZE bytes
      */
-    public static native byte[] deriveKeypairHard(byte[] pair, byte[] cc);
-
+    @JvmStatic
+    external fun deriveKeypairHard(pair: ByteArray, cc: ByteArray): ByteArray
 
     /**
      * Perform a derivation on a secret
@@ -65,7 +67,8 @@ public final class Sr25519 {
      * @param cc:   chaincode - input buffer of   CHAINCODE_SIZE bytes
      * @return keypair: pre-allocated output buffer of   KEYPAIR_SIZE bytes
      */
-    public static native byte[] deriveKeypairSoft(byte[] pair, byte[] cc);
+    @JvmStatic
+    external fun deriveKeypairSoft(pair: ByteArray, cc: ByteArray): ByteArray
 
     /**
      * Perform a derivation on a publicKey
@@ -74,8 +77,8 @@ public final class Sr25519 {
      * @param cc:         chaincode - input buffer of   CHAINCODE_SIZE bytes
      * @return pre-allocated output buffer of   PUBLIC_SIZE bytes
      */
-    public static native byte[] derivePublicSoft(byte[] public_key, byte[] cc);
-
+    @JvmStatic
+    external fun derivePublicSoft(public_key: ByteArray, cc: ByteArray): ByteArray
 
     /**
      * Generate a key pair.
@@ -83,7 +86,8 @@ public final class Sr25519 {
      * @param seed: generation seed - input buffer of   SEED_SIZE bytes
      * @return keypair [32b key | 32b nonce | 32b public], pre-allocated output buffer of   KEYPAIR_SIZE bytes
      */
-    public static native byte[] keypairFromSeed(byte[] seed);
+    @JvmStatic
+    external fun keypairFromSeed(seed: ByteArray): ByteArray
 
     /**
      * Converts a secret key, provided as an array of 64 bytes,
@@ -91,12 +95,14 @@ public final class Sr25519 {
      * @return an array of 64 bytes, with the first 32 bytes being the secret scalar shifted ed25519 style,
      * and the last 32 bytes being the seed for nonces
      */
-    public static native byte[] toEd25519Bytes(byte[] secret);
+    @JvmStatic
+    external fun toEd25519Bytes(secret: ByteArray): ByteArray
 
     /**
      * Converts an ed25519 expanded secret key to a corresponding sr25519 secret key.
      * @return an array of 64 bytes, with the first 32 bytes being the secret scalar
      * represented canonically, and the last 32 bytes being the seed for nonces
      */
-    public static native byte[] fromEd25519Bytes(byte[] ed_expanded_secret);
+    @JvmStatic
+    external fun fromEd25519Bytes(ed_expanded_secret: ByteArray): ByteArray
 }

@@ -8,6 +8,7 @@ plugins {
     kotlin("native.cocoapods")
     id("maven-publish")
     id("com.squareup.sqldelight")
+    id("org.mozilla.rust-android-gradle.rust-android")
 }
 
 group = "jp.co.soramitsu"
@@ -82,6 +83,8 @@ kotlin {
                 implementation(libs.bytebuffer)
                 implementation(libs.datetime)
                 implementation(libs.krypto)
+                implementation(libs.okio)
+                implementation(libs.cryptohash)
             }
         }
         val commonTest by getting {
@@ -101,6 +104,12 @@ kotlin {
                 implementation(libs.bundles.crypto.android)
                 implementation(libs.lz4)
             }
+
+            cargo {
+                module = "src/androidMain/sr25519-java"
+                libname = "sr25519java"
+                targets = listOf("arm", "arm64", "x86", "x86_64")
+            }
         }
         val androidTest by getting
         val iosX64Main by getting
@@ -110,8 +119,8 @@ kotlin {
         val iosMain by creating {
             dependsOn(commonMain)
             dependencies {
-                implementation("io.ktor:ktor-client-darwin:$ktorVersion")
-                implementation("com.squareup.sqldelight:native-driver:$sqlDelightVersion")
+                implementation(libs.ktor.darwin)
+                implementation(libs.sqldelight.native)
             }
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
@@ -147,6 +156,7 @@ android {
         minSdk = 24
         targetSdk = 33
     }
+    ndkVersion = "21.3.6528147"
 }
 
 tasks.register<Copy>("copyiOSTestResources") {
