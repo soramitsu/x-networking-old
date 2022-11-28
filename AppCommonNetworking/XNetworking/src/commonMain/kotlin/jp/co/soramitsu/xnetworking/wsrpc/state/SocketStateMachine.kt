@@ -1,8 +1,8 @@
 package jp.co.soramitsu.xnetworking.wsrpc.state
 
-import jp.co.soramitsu.xnetworking.wsrpc.subscription.response.SubscriptionChange
 import jp.co.soramitsu.xnetworking.wsrpc.request.DeliveryType
 import jp.co.soramitsu.xnetworking.wsrpc.response.RpcResponse
+import jp.co.soramitsu.xnetworking.wsrpc.subscription.response.SubscriptionChange
 
 typealias Transition = Pair<SocketStateMachine.State, List<SocketStateMachine.SideEffect>>
 

@@ -107,7 +107,7 @@ kotlin {
 
             cargo {
                 module = "src/androidMain/sr25519-java"
-                libname = "sr25519java"
+                libname = "sr25519java_xnetworking"
                 targets = listOf("arm", "arm64", "x86", "x86_64")
             }
         }

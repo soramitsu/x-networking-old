@@ -7,16 +7,29 @@ import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.logging.SIMPLE
+import io.ktor.client.plugins.websocket.WebSockets
 import io.ktor.http.ContentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
-interface SoramitsuHttpClientProvider {
-    fun provide(logging: Boolean, timeout: Long, json: Json): HttpClient
+interface SoramitsuNetworkClientProvider {
+    fun provide(
+        logging: Boolean,
+        requestTimeoutMillis: Long,
+        connectTimeoutMillis: Long,
+        socketTimeoutMillis: Long,
+        json: Json
+    ): HttpClient
 }
 
-class SoramitsuHttpClientProviderImpl : SoramitsuHttpClientProvider {
-    override fun provide(logging: Boolean, timeout: Long, json: Json): HttpClient {
+class SoramitsuNetworkClientProviderImpl : SoramitsuNetworkClientProvider {
+    override fun provide(
+        logging: Boolean,
+        requestTimeoutMillis: Long,
+        connectTimeoutMillis: Long,
+        socketTimeoutMillis: Long,
+        json: Json
+    ): HttpClient {
         return HttpClient(HttpEngineFactory().createEngine()) {
             if (logging) {
                 install(Logging) {
@@ -31,10 +44,16 @@ class SoramitsuHttpClientProviderImpl : SoramitsuHttpClientProvider {
                     contentType = ContentType.Any
                 )
             }
+            engine {
+                configure()
+            }
             install(HttpTimeout) {
-                requestTimeoutMillis = timeout
-                connectTimeoutMillis = timeout
-                socketTimeoutMillis = timeout
+                this.requestTimeoutMillis = requestTimeoutMillis
+                this.connectTimeoutMillis = connectTimeoutMillis
+                this.socketTimeoutMillis = socketTimeoutMillis
+            }
+            install(WebSockets) {
+                pingInterval = SoramitsuNetworkClient.WEB_SOCKET_PING_INTERVAL
             }
         }
     }

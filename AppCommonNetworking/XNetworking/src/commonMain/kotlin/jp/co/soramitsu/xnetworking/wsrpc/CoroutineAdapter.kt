@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.resume
@@ -39,8 +40,8 @@ suspend fun <R> SocketService.executeAsync(
 suspend fun SocketService.executeAsync(
     request: RuntimeRequest,
     deliveryType: DeliveryType = DeliveryType.AT_LEAST_ONCE
-) = suspendCancellableCoroutine<RpcResponse> { cont ->
-    val cancellable =
+) = suspendCancellableCoroutine { cont ->
+    val cancellable = runBlocking {
         executeRequest(
             request, deliveryType,
             object : SocketService.ResponseListener<RpcResponse> {
@@ -53,6 +54,7 @@ suspend fun SocketService.executeAsync(
                 }
             }
         )
+    }
 
     cont.invokeOnCancellation {
         cancellable.cancel()

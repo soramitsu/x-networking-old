@@ -20,7 +20,7 @@ object Sr25519 {
     const val KEYPAIR_SIZE = 96
 
     init {
-        System.loadLibrary("sr25519java")
+        System.loadLibrary("sr25519java_xnetworking")
     }
 
     @JvmStatic

@@ -41,4 +41,5 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.5.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation(projects.xNetworking)
+    implementation(libs.bignum)
 }

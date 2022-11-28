@@ -48,7 +48,7 @@ class StorageSubscriptionMultiplexer(
     }
 }
 
-fun SocketService.subscribeUsing(multiplexer: StorageSubscriptionMultiplexer): SocketService.Cancellable {
+suspend fun SocketService.subscribeUsing(multiplexer: StorageSubscriptionMultiplexer): SocketService.Cancellable {
     val request = multiplexer.createRequest()
 
     return subscribe(request, multiplexer, UnsubscribeMethodResolver.resolve(request.method))

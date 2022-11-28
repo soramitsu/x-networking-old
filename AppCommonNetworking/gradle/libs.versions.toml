@@ -21,6 +21,7 @@ datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "d
 bytebuffer = { module = "com.ditchoom:buffer", version.ref = "bytebuffer" }
 
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-websockets = { module = "io.ktor:ktor-client-websockets", version.ref = "ktor" }
 ktor-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
@@ -50,5 +51,5 @@ okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 cryptohash = { module = "com.appmattus.crypto:cryptohash", version.ref = "cryptohash" }
 
 [bundles]
-ktor = ["ktor-core", "ktor-json", "ktor-negotiation", "ktor-logging"]
+ktor = ["ktor-core", "ktor-json", "ktor-negotiation", "ktor-logging", "ktor-websockets"]
 crypto-android = ["spongycastle-bcpkix", "spongycastle-bcpg", "crypto-eddsa", "crypto-web3j"]

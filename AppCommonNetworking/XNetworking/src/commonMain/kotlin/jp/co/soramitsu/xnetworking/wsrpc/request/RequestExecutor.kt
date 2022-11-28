@@ -1,39 +1,29 @@
 package jp.co.soramitsu.xnetworking.wsrpc.request
 
-typealias SendAction = () -> Unit
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.async
 
-/*
-class RequestExecutor(private val executor: ExecutorService = Executors.newSingleThreadExecutor()) {
-    private val futures = mutableListOf<Future<*>>()
+class RequestExecutor {
 
-    fun execute(action: SendAction) {
-        var future: Future<*>? = null
+    private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+    private val futures = mutableListOf<Deferred<*>>()
 
-        future = executor.submit {
-            action()
+    fun execute(action: suspend () -> Unit) {
+        var future: Deferred<*>? = null
 
+        future = coroutineScope.async {
+            action.invoke()
             futures.remove(future)
         }
-
         futures += future
     }
 
     fun reset() {
-        futures.iterator().forEach { it.cancel(true) }
+        futures.iterator().forEach { it.cancel() }
 
         futures.clear()
-    }
-}
-*/
-
-// TODO: Replace to non-mock RequestExecutor
-class RequestExecutor {
-
-    fun execute(action: SendAction) {
-
-    }
-
-    fun reset() {
-
     }
 }

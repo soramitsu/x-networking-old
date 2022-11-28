@@ -1,5 +1,5 @@
 [package]
-name = "sr25519java"
+name = "sr25519java_xnetworking"
 version = "0.1.0"
 authors = ["Harrm <abrehchs@gmail.com>"]
 edition = "2018"
@@ -16,5 +16,5 @@ schnorrkel = { version="<=0.9.1" }
 lto = true
 
 [lib]
-name = "sr25519java"
+name = "sr25519java_xnetworking"
 crate-type = ["cdylib"]

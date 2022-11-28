@@ -332,7 +332,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "sr25519java"
+name = "sr25519java_xnetworking"
 version = "0.1.0"
 dependencies = [
  "jni",

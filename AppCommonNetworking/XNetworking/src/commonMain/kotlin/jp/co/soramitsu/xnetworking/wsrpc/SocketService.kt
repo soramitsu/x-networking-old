@@ -12,32 +12,38 @@ import jp.co.soramitsu.xnetworking.wsrpc.request.runtime.RuntimeRequest
 import jp.co.soramitsu.xnetworking.wsrpc.response.RpcResponse
 import jp.co.soramitsu.xnetworking.wsrpc.socket.RpcSocket
 import jp.co.soramitsu.xnetworking.wsrpc.socket.RpcSocketListener
-import jp.co.soramitsu.xnetworking.wsrpc.socket.WebSocketFactory
-import jp.co.soramitsu.xnetworking.wsrpc.socket.WebSocketState
 import jp.co.soramitsu.xnetworking.wsrpc.state.SocketStateMachine
 import jp.co.soramitsu.xnetworking.wsrpc.state.SocketStateMachine.Event
 import jp.co.soramitsu.xnetworking.wsrpc.state.SocketStateMachine.SideEffect
 import jp.co.soramitsu.xnetworking.wsrpc.state.SocketStateMachine.State
 import jp.co.soramitsu.xnetworking.wsrpc.subscription.RespondableSubscription
 import jp.co.soramitsu.xnetworking.wsrpc.subscription.response.SubscriptionChange
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.serialization.json.Json
 import kotlin.jvm.Synchronized
 
 class SocketService(
     val jsonMapper: Json,
     private val logger: Logger,
-    private val webSocketFactory: WebSocketFactory,
-    private val reconnector: Reconnector,
-    private val requestExecutor: RequestExecutor
+    private val reconnector: Reconnector
 ) : RpcSocketListener {
 
+    private val requestExecutor = RequestExecutor()
+
+    private val socketConnectionCoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     private var socket: RpcSocket? = null
 
     private val stateFlow = MutableStateFlow<State>(State.Disconnected)
+    private val mutex = Mutex()
 
     fun started() = stateFlow.value !is State.Disconnected
 
@@ -94,8 +100,7 @@ class SocketService(
         return stateFlow.asStateFlow()
     }
 
-    @Synchronized
-    fun subscribe(
+    suspend fun subscribe(
         request: RuntimeRequest,
         callback: ResponseListener<SubscriptionChange>,
         unsubscribeMethod: String
@@ -107,8 +112,7 @@ class SocketService(
         )
     }
 
-    @Synchronized
-    fun executeRequest(
+    suspend fun executeRequest(
         runtimeRequest: RuntimeRequest,
         deliveryType: DeliveryType = DeliveryType.AT_LEAST_ONCE,
         callback: ResponseListener<RpcResponse>
@@ -120,12 +124,11 @@ class SocketService(
         return RequestCancellable(sendable)
     }
 
-    @Synchronized
-    override fun onResponse(rpcResponse: RpcResponse) {
+    override suspend fun onResponse(rpcResponse: RpcResponse) {
         updateState(Event.SendableResponse(rpcResponse))
     }
 
-    override fun onResponse(subscriptionChange: SubscriptionChange) {
+    override suspend fun onResponse(subscriptionChange: SubscriptionChange) {
         updateState(Event.SubscriptionResponse(subscriptionChange))
     }
 
@@ -134,22 +137,22 @@ class SocketService(
         updateState(Event.Connected)
     }
 
-    @Synchronized
-    override fun onStateChanged(newState: WebSocketState) {
-        if (newState == WebSocketState.CLOSED) {
-            updateState(Event.ConnectionError(ConnectionClosedException()))
-        }
+    override fun onSocketClosed() {
+        updateState(Event.ConnectionError(ConnectionClosedException()))
     }
 
-    @Synchronized
     private fun updateState(event: Event) {
-        val state = stateFlow.value
-        val (newState, sideEffects) = SocketStateMachine.transition(state, event)
-        stateFlow.update { newState }
+        socketConnectionCoroutineScope.launch {
+            mutex.withLock {
+                val state = stateFlow.value
+                val (newState, sideEffects) = SocketStateMachine.transition(state, event)
+                stateFlow.update { newState }
 
-        logger.log("[STATE MACHINE][TRANSITION] $event : $state -> $newState")
+                logger.log("[STATE MACHINE][TRANSITION] $event : $state -> $newState")
 
-        sideEffects.forEach(::consumeSideEffect)
+                sideEffects.forEach(::consumeSideEffect)
+            }
+        }
     }
 
     private fun consumeSideEffect(sideEffect: SideEffect) {
@@ -220,19 +223,27 @@ class SocketService(
     }
 
     private fun connectToSocket(url: String) {
-        reconnector.reset()
-
-        socket = createSocket(url)
-        socket!!.connectAsync()
+        socketConnectionCoroutineScope.launch {
+            mutex.withLock {
+                reconnector.reset()
+                socket = createSocket(url)
+            }
+            socket!!.connectAsync()
+        }
     }
 
     private fun createSocket(url: String) =
-        RpcSocket(url, this, logger, webSocketFactory, jsonMapper)
+        RpcSocket(url, this, logger, jsonMapper)
 
     private fun disconnect() {
-        socket!!.clearListeners()
-        socket!!.disconnect()
-        socket = null
+        val closeableSocket = socket ?: return
+
+        socketConnectionCoroutineScope.launch {
+            closeableSocket.disconnect()
+            if (socket == closeableSocket) {
+                socket = null
+            }
+        }
 
         requestExecutor.reset()
         reconnector.reset()
@@ -244,11 +255,13 @@ class SocketService(
         val unsubscribeRequest =
             RuntimeRequest(subscription.unsubscribeMethod, listOf(subscription.id))
 
-        executeRequest(
-            unsubscribeRequest,
-            deliveryType = DeliveryType.AT_MOST_ONCE,
-            FireAndForgetCallback()
-        )
+        socketConnectionCoroutineScope.launch {
+            executeRequest(
+                unsubscribeRequest,
+                deliveryType = DeliveryType.AT_MOST_ONCE,
+                FireAndForgetCallback()
+            )
+        }
     }
 
     interface ResponseListener<R> {

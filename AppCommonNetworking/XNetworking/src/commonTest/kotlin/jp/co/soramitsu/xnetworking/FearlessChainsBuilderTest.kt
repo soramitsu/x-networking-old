@@ -12,7 +12,7 @@ import io.ktor.http.headersOf
 import io.ktor.serialization.kotlinx.json.json
 import jp.co.soramitsu.xnetworking.fearless.FearlessChainsBuilder
 import jp.co.soramitsu.xnetworking.fearless.VersionNotFoundException
-import jp.co.soramitsu.xnetworking.networkclient.SoramitsuHttpClientProvider
+import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClientProvider
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -40,8 +40,14 @@ class FearlessChainsBuilderTest {
     @BeforeTest
     fun setUp() {
         client = SoramitsuNetworkClient(
-            provider = object : SoramitsuHttpClientProvider {
-                override fun provide(logging: Boolean, timeout: Long, json: Json): HttpClient {
+            provider = object : SoramitsuNetworkClientProvider {
+                override fun provide(
+                    logging: Boolean,
+                    requestTimeoutMillis: Long,
+                    connectTimeoutMillis: Long,
+                    socketTimeoutMillis: Long,
+                    json: Json
+                ): HttpClient {
                     return HttpClient(mockEngine) {
                         install(ContentNegotiation) {
                             json(

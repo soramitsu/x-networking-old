@@ -23,7 +23,7 @@ import kotlin.coroutines.cancellation.CancellationException
 class SoramitsuNetworkClient(
     timeout: Long = 10000,
     logging: Boolean = false,
-    provider: SoramitsuHttpClientProvider = SoramitsuHttpClientProviderImpl()
+    provider: SoramitsuNetworkClientProvider = SoramitsuNetworkClientProviderImpl()
 ) {
     val json = Json {
         prettyPrint = true
@@ -31,7 +31,13 @@ class SoramitsuNetworkClient(
         ignoreUnknownKeys = true
     }
 
-    val httpClient: HttpClient = provider.provide(logging, timeout, json)
+    val httpClient: HttpClient = provider.provide(
+        logging = logging,
+        requestTimeoutMillis = timeout,
+        connectTimeoutMillis = timeout,
+        socketTimeoutMillis = timeout,
+        json = json
+    )
 
     suspend fun get(url: String): String {
         return wrapInExceptionHandler {
@@ -91,6 +97,10 @@ class SoramitsuNetworkClient(
         } catch (e: Throwable) {
             throw GeneralNetworkException(e.message.orEmpty(), e.cause)
         }
+    }
+
+    companion object {
+        val WEB_SOCKET_PING_INTERVAL = 30_000L
     }
 }
 

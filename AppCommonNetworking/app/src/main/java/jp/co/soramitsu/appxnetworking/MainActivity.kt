@@ -16,16 +16,44 @@ import jp.co.soramitsu.xnetworking.sorawallet.envbuilder.SoraEnvBuilder
 import jp.co.soramitsu.xnetworking.sorawallet.tokenwhitelist.SoraTokensWhitelistManager
 import jp.co.soramitsu.xnetworking.txhistory.client.fearlesswallet.SubQueryClientForFearlessWalletFactory
 import jp.co.soramitsu.xnetworking.txhistory.client.sorawallet.SubQueryClientForSoraWalletFactory
+import jp.co.soramitsu.xnetworking.wsrpc.SocketService
+import jp.co.soramitsu.xnetworking.wsrpc.executeAsync
+import jp.co.soramitsu.xnetworking.wsrpc.logging.Logger
+import jp.co.soramitsu.xnetworking.wsrpc.recovery.Reconnector
+import jp.co.soramitsu.xnetworking.wsrpc.request.DeliveryType
+import jp.co.soramitsu.xnetworking.wsrpc.request.runtime.AnyAsRequestParamsSerializer
+import jp.co.soramitsu.xnetworking.wsrpc.request.runtime.RuntimeRequest
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.modules.SerializersModule
 
 class MainActivity : AppCompatActivity() {
 
     private var toast: Toast? = null
     private val lifecycleScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+    private val socketService = SocketService(
+        jsonMapper = Json {
+            prettyPrint = false
+            encodeDefaults = true
+            isLenient = true
+            ignoreUnknownKeys = true
+            serializersModule = SerializersModule {
+                contextual(Any::class, AnyAsRequestParamsSerializer)
+            }
+        },
+        logger = object : Logger {
+            override fun log(message: String?) {
+            }
+
+            override fun log(throwable: Throwable?) {
+            }
+        },
+        reconnector = Reconnector()
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +63,7 @@ class MainActivity : AppCompatActivity() {
         val btn2 = findViewById<Button>(R.id.btn2)
         val btn3 = findViewById<Button>(R.id.btn3)
         val btn4 = findViewById<Button>(R.id.btn4)
+        val btn5 = findViewById<Button>(R.id.btn5)
 
         val soraNetworkClient = SoramitsuNetworkClient(logging = true)
         val fearlessChainsBuilder = FearlessChainsBuilder(
@@ -126,6 +155,20 @@ class MainActivity : AppCompatActivity() {
                         listOf(result.publicKey.toHexString(), result.privateKey.toHexString())
 
             showToast("is correct keypair: $isCorrectKeypair")
+        }
+
+        btn5.setOnClickListener {
+            lifecycleScope.launch {
+                socketService.start("wss://ws.parachain-collator-1.c1.sora2.soramitsu.co.jp")
+                val result = socketService.executeAsync(
+                    request = RuntimeRequest(
+                        method = "chain_getRuntimeVersion",
+                        params = listOf()
+                    ),
+                    deliveryType = DeliveryType.AT_LEAST_ONCE,
+                )
+                Log.d("mLog", "RESULT: ${result.error?.message} - ${result.result}")
+            }
         }
     }
 
