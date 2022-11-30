@@ -19,14 +19,15 @@ import jp.co.soramitsu.xnetworking.txhistory.client.sorawallet.SubQueryClientFor
 import jp.co.soramitsu.xnetworking.wsrpc.SocketService
 import jp.co.soramitsu.xnetworking.wsrpc.executeAsync
 import jp.co.soramitsu.xnetworking.wsrpc.logging.Logger
+import jp.co.soramitsu.xnetworking.wsrpc.mappers.pojo
 import jp.co.soramitsu.xnetworking.wsrpc.recovery.Reconnector
 import jp.co.soramitsu.xnetworking.wsrpc.request.DeliveryType
 import jp.co.soramitsu.xnetworking.wsrpc.request.runtime.AnyAsRequestParamsSerializer
 import jp.co.soramitsu.xnetworking.wsrpc.request.runtime.RuntimeRequest
+import jp.co.soramitsu.xnetworking.wsrpc.request.runtime.chain.RuntimeVersion
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
@@ -165,9 +166,10 @@ class MainActivity : AppCompatActivity() {
                         method = "chain_getRuntimeVersion",
                         params = listOf()
                     ),
+                    mapper = pojo<RuntimeVersion>(),
                     deliveryType = DeliveryType.AT_LEAST_ONCE,
                 )
-                Log.d("mLog", "RESULT: ${result.error?.message} - ${result.result}")
+                Log.d("mLog", "RESULT: ${result?.result?.specVersion}")
             }
         }
     }

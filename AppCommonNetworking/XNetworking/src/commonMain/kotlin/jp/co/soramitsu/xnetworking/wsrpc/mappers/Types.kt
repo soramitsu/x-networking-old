@@ -1,19 +1,16 @@
 package jp.co.soramitsu.xnetworking.wsrpc.mappers
 
-import jp.co.soramitsu.xnetworking.wsrpc.exception.RpcException
-import jp.co.soramitsu.xnetworking.wsrpc.response.RpcResponse
 import jp.co.soramitsu.xnetworking.extensions.fromHex
 import jp.co.soramitsu.xnetworking.scale.EncodableStruct
 import jp.co.soramitsu.xnetworking.scale.Schema
+import jp.co.soramitsu.xnetworking.wsrpc.exception.RpcException
+import jp.co.soramitsu.xnetworking.wsrpc.response.RpcResponse
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.Json.Default.serializersModule
-import kotlinx.serialization.json.decodeFromJsonElement
-import kotlinx.serialization.json.encodeToJsonElement
-import kotlinx.serialization.json.internal.decodeStringToJsonTree
+import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.serializer
 import kotlin.reflect.KClass
-import kotlin.reflect.typeOf
 
 /**
  *  Mark that the result is always non-null and null result means that error happened
@@ -33,13 +30,13 @@ fun string() = StringMapper
 
 object StringMapper : NullableMapper<String>() {
     override fun mapNullable(rpcResponse: RpcResponse, jsonMapper: Json): String? {
-        return rpcResponse.result?.toString()
+        return rpcResponse.result?.jsonPrimitive?.toString()
     }
 }
 
 class ScaleMapper<S : Schema<S>>(val schema: S) : NullableMapper<EncodableStruct<S>>() {
     override fun mapNullable(rpcResponse: RpcResponse, jsonMapper: Json): EncodableStruct<S>? {
-        val raw = rpcResponse.result as? String ?: return null
+        val raw = rpcResponse.result?.jsonPrimitive?.toString() ?: return null
 
         return schema.read(raw.fromHex())
     }
@@ -52,9 +49,9 @@ class ScaleCollectionMapper<S : Schema<S>>(val schema: S) :
         rpcResponse: RpcResponse,
         jsonMapper: Json
     ): List<EncodableStruct<S>>? {
-        val raw = rpcResponse.result as? List<String> ?: return null
-
-        return raw.map(schema::read)
+        val raw = rpcResponse.result?.jsonArray ?: return null
+        val list = raw.map { it.jsonPrimitive.toString() }
+        return list.map(schema::read)
     }
 }
 
@@ -62,10 +59,9 @@ class POJOCollectionMapper<T: Any>(val classRef: KClass<T>) : NullableMapper<Lis
 
     @OptIn(InternalSerializationApi::class)
     override fun mapNullable(rpcResponse: RpcResponse, jsonMapper: Json): List<T>? {
-        val raw = rpcResponse.result as? List<*> ?: return null
+        val raw = rpcResponse.result?.jsonArray ?: return null
         return raw.map {
-            val t = jsonMapper.encodeToJsonElement(it)
-            jsonMapper.decodeFromJsonElement(classRef.serializer(), t) // TODO: Test .serializer() on iOS!
+            jsonMapper.decodeFromJsonElement(classRef.serializer(), it) // TODO: Test .serializer() on iOS!
         }
     }
 }
@@ -74,12 +70,7 @@ class POJOMapper<T: Any>(val classRef: KClass<T>) : NullableMapper<T>() {
 
     @OptIn(InternalSerializationApi::class)
     override fun mapNullable(rpcResponse: RpcResponse, jsonMapper: Json): T? {
-        return when (rpcResponse.result) {
-            is Map<*, *> -> {
-                val tree = jsonMapper.encodeToJsonElement(rpcResponse.result)
-                jsonMapper.decodeFromJsonElement(classRef.serializer(), tree) // TODO: Test .serializer() on iOS!
-            }
-            else -> rpcResponse.result as? T ?: null
-        }
+        val result = rpcResponse.result ?: return null
+        return jsonMapper.decodeFromJsonElement(classRef.serializer(), result) // TODO: Test .serializer() on iOS!
     }
 }
