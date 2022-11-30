@@ -98,7 +98,7 @@ kotlin {
             dependencies {
                 api(libs.ktor.okhttp)
 
-                implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+                implementation(libs.polkajscale)
                 implementation(libs.coroutines.android)
                 implementation(libs.sqldelight.android)
                 implementation(libs.bundles.crypto.android)

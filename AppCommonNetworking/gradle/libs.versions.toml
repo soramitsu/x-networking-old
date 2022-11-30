@@ -50,6 +50,8 @@ okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 
 cryptohash = { module = "com.appmattus.crypto:cryptohash", version.ref = "cryptohash" }
 
+polkajscale = "jp.co.soramitsu:polkaj-scale:0.2.3"
+
 [bundles]
 ktor = ["ktor-core", "ktor-json", "ktor-negotiation", "ktor-logging", "ktor-websockets"]
 crypto-android = ["spongycastle-bcpkix", "spongycastle-bcpg", "crypto-eddsa", "crypto-web3j"]

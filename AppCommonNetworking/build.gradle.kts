@@ -4,6 +4,7 @@ buildscript {
         google()
         mavenCentral()
         maven(url = "https://plugins.gradle.org/m2/")
+        maven(url = "https://nexus.iroha.tech/repository/maven-soramitsu/")
     }
 
     val kotlinVersion = project.properties["kotlin_version"].toString()
@@ -23,6 +24,7 @@ buildscript {
 allprojects {
     repositories {
         google()
+        maven(url = "https://nexus.iroha.tech/repository/maven-soramitsu/")
         mavenCentral()
     }
 }
