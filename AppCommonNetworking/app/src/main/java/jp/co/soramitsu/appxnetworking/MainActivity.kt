@@ -2,101 +2,102 @@ package jp.co.soramitsu.appxnetworking
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
-import jp.co.soramitsu.xnetworking.fearless.FearlessChainsBuilder
-import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
-import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.SoraWalletBlockExplorerInfo
-import jp.co.soramitsu.xnetworking.sorawallet.envbuilder.SoraEnvBuilder
-import jp.co.soramitsu.xnetworking.sorawallet.tokenwhitelist.SoraTokensWhitelistManager
-import jp.co.soramitsu.xnetworking.txhistory.client.fearlesswallet.SubQueryClientForFearlessWalletFactory
-import jp.co.soramitsu.xnetworking.txhistory.client.sorawallet.SubQueryClientForSoraWalletFactory
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        val btn1 = findViewById<Button>(R.id.btn1)
-        val btn2 = findViewById<Button>(R.id.btn2)
-        val btn3 = findViewById<Button>(R.id.btn3)
-
-        val soraNetworkClient = SoramitsuNetworkClient(logging = true)
-        val fearlessChainsBuilder = FearlessChainsBuilder(
-            soraNetworkClient,
-            "https://raw.githubusercontent.com/arvifox/arvifoxandroid/develop/felete/",
-            "chains/index_android.json"
-        )
-        val subQueryClientForSoraWallet =
-            SubQueryClientForSoraWalletFactory(applicationContext).create(
-                soraNetworkClient,
-                "https://api.subquery.network/sq/sora-xor/sora-dev",
-                30,
-            )
-
-        val subQueryClientForFearlessWallet =
-            SubQueryClientForFearlessWalletFactory(applicationContext).create(
-                soraNetworkClient,
-                "https://api.subquery.network/sq/soramitsu/fearless-wallet-westend",
-                30,
-            )
-
-        val soraEnvBuilder = SoraEnvBuilder(
-            soraNetworkClient,
-            baseUrl = "https://raw.githubusercontent.com/sora-xor/polkaswap-exchange-web/master/env.json"
-        )
-
-        val blockExplorerInfoUrl = "https://api.subquery.network/sq/sora-xor/sora-dev"
-        val networkService = NetworkService(
-            soraNetworkClient,
-            fearlessChainsBuilder,
-            soraEnvBuilder,
-            subQueryClientForFearlessWallet,
-            subQueryClientForSoraWallet,
-            SoraWalletBlockExplorerInfo(soraNetworkClient, blockExplorerInfoUrl),
-            SoraTokensWhitelistManager(soraNetworkClient),
-        )
-
-        btn1.setOnClickListener {
-            GlobalScope.launch {
-                try {
-                    Log.e("foxxx", "r start")
-                    val r = networkService.getApy()
-                    Log.e("foxxx", "r = ${r}")
-                } catch (t: Throwable) {
-                    Log.e("foxxx", "t= ${t.localizedMessage}")
+        DepBuilder.build(applicationContext)
+        setContent {
+            XNetworkingComposeTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
+                ) {
+                    MainScreen()
                 }
             }
         }
+    }
+}
 
-        var page = 0L
-        btn2.setOnClickListener {
-            page++
-            GlobalScope.launch {
-                Log.e("foxxx", "button 2")
-                try {
-                    val r = networkService.getHistorySora(page) {
-                        true
+@Composable
+private fun MainScreen() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+    ) {
+        Button(
+            onClick = {
+                GlobalScope.launch {
+                    try {
+                        Log.e("foxxx", "r start")
+                        val r = DepBuilder.networkService.getApy()
+                        Log.e("foxxx", "r = ${r}")
+                    } catch (t: Throwable) {
+                        Log.e("foxxx", "t= ${t.localizedMessage}")
                     }
-                    Log.e("foxxx", "r = ${r.endReached} ${r.page} ${r.items.size} ${r.errorMessage}")
-                } catch (t: Throwable) {
-                    Log.e("foxxx", "t= ${t.localizedMessage}")
                 }
-            }
-        }
-
-        btn3.setOnClickListener {
-            GlobalScope.launch {
-                Log.e("foxxx", "button 3")
-                try {
-                    val r = networkService.getAssets()
-                    Log.e("foxxx", "r = $r")
-                } catch (t: Throwable) {
-                    Log.e("foxxx", "t = ${t.localizedMessage}")
+            },
+            content = {
+                Text(text = "btn1")
+            },
+        )
+        Spacer(modifier = Modifier.size(8.dp))
+        Button(
+            onClick = {
+                GlobalScope.launch {
+                    Log.e("foxxx", "button 2")
+                    try {
+                        val r = DepBuilder.networkService.getHistorySora(1) {
+                            true
+                        }
+                        Log.e(
+                            "foxxx",
+                            "r = ${r.endReached} ${r.page} ${r.items.size} ${r.errorMessage}"
+                        )
+                    } catch (t: Throwable) {
+                        Log.e("foxxx", "t= ${t.localizedMessage}")
+                    }
                 }
-            }
-        }
+            },
+            content = {
+                Text(text = "btn2")
+            },
+        )
+        Spacer(modifier = Modifier.size(8.dp))
+        Button(
+            onClick = {
+                GlobalScope.launch {
+                    Log.e("foxxx", "button 3")
+                    try {
+                        val r = DepBuilder.networkService.getAssets()
+                        Log.e("foxxx", "r = $r")
+                    } catch (t: Throwable) {
+                        Log.e("foxxx", "t = ${t.localizedMessage}")
+                    }
+                }
+            },
+            content = {
+                Text(text = "btn3")
+            },
+        )
     }
 }
