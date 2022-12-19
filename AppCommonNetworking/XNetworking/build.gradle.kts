@@ -11,7 +11,7 @@ plugins {
 
 group = "jp.co.soramitsu"
 
-version = "0.0.43"
+version = "0.0.44"
 
 publishing {
     publications {
@@ -41,8 +41,8 @@ publishing {
     }
 }
 
-val coroutineVersion = "1.6.1"
-val ktorVersion = "2.0.0"
+val coroutineVersion = "1.6.4"
+val ktorVersion = "2.2.1"
 
 kotlin {
     val iosFrameworkName = "XNetworking"
@@ -83,7 +83,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
+                api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
 
                 implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion")
 
