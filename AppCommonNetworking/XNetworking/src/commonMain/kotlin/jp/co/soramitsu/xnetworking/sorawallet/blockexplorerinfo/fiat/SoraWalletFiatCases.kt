@@ -1,37 +1,48 @@
 package jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.fiat
 
+import io.ktor.http.HttpMethod
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.BasicCases
+import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.fiat.case2.SoraWalletFiatCase2Response
+import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.fiat.case2.graphQLRequestSoraWalletFiatCase2
+import jp.co.soramitsu.xnetworking.txhistory.subquery.graphqlrequest.SubQueryRequest
 
 internal interface SoraWalletFiatCase {
 
     suspend fun getFiat(url: String, networkClient: SoramitsuNetworkClient): List<FiatData>
 }
 
-internal object Sfwf : BasicCases<SoraWalletFiatCase>() {
+internal object SoraWalletFiatCases : BasicCases<SoraWalletFiatCase>() {
     override fun provideInstance(caseName: String): SoraWalletFiatCase {
         return when (caseName) {
-            "0" -> SoraWalletFiatCase0()
+            "2" -> SoraWalletFiatCase2()
             else -> throw IllegalArgumentException("SoraWalletFiatCases [$caseName] not found")
         }
     }
 }
 
-internal object SoraWalletFiatCases {
-
-    fun getFiatCase(caseName: String): SoraWalletFiatCase {
-        return when (caseName) {
-            "0" -> SoraWalletFiatCase0()
-            else -> throw IllegalArgumentException("SoraWalletFiatCases [$caseName] not found")
-        }
-    }
-}
-
-private class SoraWalletFiatCase0 : SoraWalletFiatCase {
+private class SoraWalletFiatCase2 : SoraWalletFiatCase {
     override suspend fun getFiat(
         url: String,
         networkClient: SoramitsuNetworkClient
     ): List<FiatData> {
-        return emptyList()
+        var cursor = ""
+        val list = mutableListOf<FiatData>()
+        while (true) {
+            val response = networkClient.createJsonRequest<SoraWalletFiatCase2Response>(
+                url,
+                HttpMethod.Post,
+                SubQueryRequest(graphQLRequestSoraWalletFiatCase2(cursor)),
+            )
+            response.data.entities.nodes.forEach { node ->
+                list.add(FiatData(node.id, node.priceUSD.toDoubleOrNull()))
+            }
+            if (response.data.entities.pageInfo.hasNextPage && response.data.entities.pageInfo.endCursor != null) {
+                cursor = response.data.entities.pageInfo.endCursor
+            } else {
+                break
+            }
+        }
+        return list
     }
 }

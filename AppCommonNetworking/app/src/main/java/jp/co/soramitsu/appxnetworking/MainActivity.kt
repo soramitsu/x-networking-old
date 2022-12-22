@@ -88,8 +88,8 @@ private fun MainScreen() {
                 GlobalScope.launch {
                     Log.e("foxxx", "button 3")
                     try {
-                        val r = DepBuilder.networkService.getAssets()
-                        Log.e("foxxx", "r = $r")
+                        val r = DepBuilder.networkService.getFiat()
+                        Log.e("foxxx", "r = ${r.size}")
                     } catch (t: Throwable) {
                         Log.e("foxxx", "t = ${t.localizedMessage}")
                     }
