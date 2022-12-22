@@ -2,6 +2,8 @@ package jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo
 
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkException
+import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.fiat.FiatData
+import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.fiat.SoraWalletFiatCases
 import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.referral.ReferrerRewardsInfo
 import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.referral.SoraWalletReferralCases
 import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.sbapy.SbApyInfo
@@ -10,7 +12,7 @@ import kotlin.coroutines.cancellation.CancellationException
 
 class SoraWalletBlockExplorerInfo(
     private val networkClient: SoramitsuNetworkClient,
-    private var baseUrl: String,
+    private val baseUrl: String,
 ) {
 
     @Throws(
@@ -18,12 +20,19 @@ class SoraWalletBlockExplorerInfo(
         CancellationException::class,
         IllegalArgumentException::class
     )
-    suspend fun getSpApy(
-        url: String = baseUrl,
-        caseName: String,
-    ): List<SbApyInfo> {
-        val case = SoraWalletSbApyCases.getSbApyCase(caseName)
-        return case.getSbApy(url, networkClient)
+    suspend fun getFiat(caseName: String): List<FiatData> {
+        val case = SoraWalletFiatCases.getCase(caseName)
+        return case.getFiat(baseUrl, networkClient)
+    }
+
+    @Throws(
+        SoramitsuNetworkException::class,
+        CancellationException::class,
+        IllegalArgumentException::class
+    )
+    suspend fun getSpApy(caseName: String): List<SbApyInfo> {
+        val case = SoraWalletSbApyCases.getCase(caseName)
+        return case.getSbApy(baseUrl, networkClient)
     }
 
     @Throws(
@@ -34,9 +43,8 @@ class SoraWalletBlockExplorerInfo(
     suspend fun getReferrerRewards(
         address: String,
         caseName: String,
-        url: String = baseUrl,
     ): ReferrerRewardsInfo {
-        val case = SoraWalletReferralCases.getReferralCase(caseName)
-        return case.getReferrerInfo(url, address, networkClient)
+        val case = SoraWalletReferralCases.getCase(caseName)
+        return case.getReferrerInfo(baseUrl, address, networkClient)
     }
 }

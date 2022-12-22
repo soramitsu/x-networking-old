@@ -26,6 +26,8 @@ class NetworkService(
         return whitelistManager.getTokens()
     }
 
+    suspend fun getFiat() = soraWalletBlockExplorerInfo.getFiat("2")
+
     suspend fun getAssets() =
         client.createJsonRequest<List<AssetRemote>>("https://raw.githubusercontent.com/soramitsu/fearless-utils/android/v2/chains/assets.json")
 
@@ -36,7 +38,7 @@ class NetworkService(
         emptyList()
     )
 
-    suspend fun getApy() = soraWalletBlockExplorerInfo.getSpApy(caseName = "1")
+    suspend fun getApy() = soraWalletBlockExplorerInfo.getSpApy(caseName = "2")
 
     suspend fun getHistorySora(page: Long, f: (TxHistoryItem) -> Boolean) =
         subQueryClientForSoraWallet.getTransactionHistoryPaged(
