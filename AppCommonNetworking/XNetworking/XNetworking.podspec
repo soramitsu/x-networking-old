@@ -1,8 +1,8 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'XNetworking'
-    spec.version                  = '0.0.43'
+    spec.version                  = '0.0.44'
     spec.homepage                 = 'Link to the Shared Module homepage'
-    spec.source                   = { :git => 'https://github.com/soramitsu/x-networking.git', :tag => '0.0.43' }
+    spec.source                   = { :git => 'https://github.com/soramitsu/x-networking.git', :tag => '0.0.44' }
     spec.authors                  = ''
     spec.license                  = ''
     spec.summary                  = 'Some description for the Shared Module'
