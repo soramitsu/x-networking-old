@@ -11,14 +11,14 @@ plugins {
 
 group = "jp.co.soramitsu"
 
-version = "0.0.45"
+version = "0.0.46"
 
 publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "jp.co.soramitsu"
             artifactId = "xnetworking"
-            version = "0.0.45"
+            version = "0.0.46"
 
             afterEvaluate {
                 from(components["release"])
@@ -154,6 +154,7 @@ android {
         minSdk = 24
         targetSdk = 33
     }
+    namespace = "jp.co.soramitsu.xnetworking"
 }
 
 tasks.register<Copy>("copyiOSTestResources") {

@@ -48,8 +48,8 @@ private fun MainScreen() {
             onClick = {
                 GlobalScope.launch {
                     try {
-                        Log.e("foxxx", "r start")
-                        val r = DepBuilder.networkService.getApy()
+                        Log.e("foxxx", "r start btn 1")
+                        val r = DepBuilder.networkService.getRewards()
                         Log.e("foxxx", "r = ${r}")
                     } catch (t: Throwable) {
                         Log.e("foxxx", "t= ${t.localizedMessage}")
@@ -64,7 +64,7 @@ private fun MainScreen() {
         Button(
             onClick = {
                 GlobalScope.launch {
-                    Log.e("foxxx", "button 2")
+                    Log.e("foxxx", "r start btn 2")
                     try {
                         val r = DepBuilder.networkService.getHistorySora(1) {
                             true
@@ -86,10 +86,10 @@ private fun MainScreen() {
         Button(
             onClick = {
                 GlobalScope.launch {
-                    Log.e("foxxx", "button 3")
+                    Log.e("foxxx", "r start btn 3")
                     try {
                         val r = DepBuilder.networkService.getFiat()
-                        Log.e("foxxx", "r = ${r.size}")
+                        Log.e("foxxx", "r = $r")
                     } catch (t: Throwable) {
                         Log.e("foxxx", "t = ${t.localizedMessage}")
                     }
