@@ -24,11 +24,14 @@ object DepBuilder {
     lateinit var subQueryClientForFearlessWallet: SubQueryClientForFearlessWallet
     lateinit var networkService: NetworkService
 
+    private val soraUrl = "https://api.subquery.network/sq/sora-xor/sora-staging"
+//    private val soraUrl = "https://api.subquery.network/sq/sora-xor/sora-dev"
+
     fun build(ctx: Context) {
         subQueryClientForSoraWallet =
             SubQueryClientForSoraWalletFactory(ctx).create(
                 soraNetworkClient,
-                "https://api.subquery.network/sq/sora-xor/sora-dev",
+                soraUrl,
                 30,
             )
         subQueryClientForFearlessWallet =
@@ -45,7 +48,7 @@ object DepBuilder {
             subQueryClientForSoraWallet,
             SoraWalletBlockExplorerInfo(
                 soraNetworkClient,
-                "https://api.subquery.network/sq/sora-xor/sora-dev"
+                soraUrl,
             ),
             SoraTokensWhitelistManager(soraNetworkClient),
         )

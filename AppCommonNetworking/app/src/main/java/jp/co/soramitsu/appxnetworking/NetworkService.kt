@@ -60,7 +60,7 @@ class NetworkService(
         subQueryClientForSoraWallet.getTransactionPeers(query, "sora")
 
     suspend fun getRewards() = soraWalletBlockExplorerInfo.getReferrerRewards(
-        address = "cnUVLAjzRsrXrzEiqjxMpBwvb6YgdBy8DKibonvZgtcQY5ZKe",
+        address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
         caseName = "1",
     )
 
