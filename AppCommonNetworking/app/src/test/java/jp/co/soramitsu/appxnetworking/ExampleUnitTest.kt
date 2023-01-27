@@ -15,6 +15,7 @@ import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import jp.co.soramitsu.xnetworking.fearless.FearlessChainsBuilder
 import jp.co.soramitsu.xnetworking.fearless.ResultChainInfo
+import jp.co.soramitsu.xnetworking.networkclient.NetworkClientConfig
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuHttpClientProvider
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.SoraWalletBlockExplorerInfo
@@ -120,7 +121,7 @@ class ExampleUnitTest {
         }
         val client = SoramitsuNetworkClient(
             provider = object : SoramitsuHttpClientProvider {
-                override fun provide(logging: Boolean, timeout: Long, json: Json): HttpClient {
+                override fun provide(config: NetworkClientConfig): HttpClient {
                     return HttpClient(mockEngine) {
                         install(ContentNegotiation) {
                             json(

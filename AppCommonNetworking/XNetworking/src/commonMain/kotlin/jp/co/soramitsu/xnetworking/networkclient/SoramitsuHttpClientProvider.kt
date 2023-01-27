@@ -9,16 +9,15 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.logging.SIMPLE
 import io.ktor.http.ContentType
 import io.ktor.serialization.kotlinx.json.json
-import kotlinx.serialization.json.Json
 
 interface SoramitsuHttpClientProvider {
-    fun provide(logging: Boolean, timeout: Long, json: Json): HttpClient
+    fun provide(config: NetworkClientConfig): HttpClient
 }
 
 class SoramitsuHttpClientProviderImpl : SoramitsuHttpClientProvider {
-    override fun provide(logging: Boolean, timeout: Long, json: Json): HttpClient {
+    override fun provide(config: NetworkClientConfig): HttpClient {
         return HttpClient(HttpEngineFactory().createEngine()) {
-            if (logging) {
+            if (config.logging) {
                 install(Logging) {
                     level = LogLevel.ALL
                     logger = Logger.SIMPLE
@@ -27,14 +26,14 @@ class SoramitsuHttpClientProviderImpl : SoramitsuHttpClientProvider {
             expectSuccess = true
             install(ContentNegotiation) {
                 json(
-                    json,
+                    config.json,
                     contentType = ContentType.Any
                 )
             }
             install(HttpTimeout) {
-                requestTimeoutMillis = timeout
-                connectTimeoutMillis = timeout
-                socketTimeoutMillis = timeout
+                this.requestTimeoutMillis = config.requestTimeoutMillis
+                this.connectTimeoutMillis = config.connectTimeoutMillis
+                this.socketTimeoutMillis = config.socketTimeoutMillis
             }
         }
     }
