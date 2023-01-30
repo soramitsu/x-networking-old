@@ -31,7 +31,15 @@ class SoramitsuNetworkClient(
         ignoreUnknownKeys = true
     }
 
-    val httpClient: HttpClient = provider.provide(logging, timeout, json)
+    val httpClient: HttpClient = provider.provide(
+        NetworkClientConfig(
+            logging = logging,
+            requestTimeoutMillis = timeout,
+            connectTimeoutMillis = timeout,
+            socketTimeoutMillis = timeout,
+            json = json
+        )
+    )
 
     suspend fun get(url: String): String {
         return wrapInExceptionHandler {
