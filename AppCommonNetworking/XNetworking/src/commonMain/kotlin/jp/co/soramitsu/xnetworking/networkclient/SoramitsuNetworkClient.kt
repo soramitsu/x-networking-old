@@ -37,7 +37,8 @@ class SoramitsuNetworkClient(
             requestTimeoutMillis = timeout,
             connectTimeoutMillis = timeout,
             socketTimeoutMillis = timeout,
-            json = json
+            json = json,
+            webSocketClientConfig = null
         )
     )
 

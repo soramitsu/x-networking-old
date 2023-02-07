@@ -7,5 +7,11 @@ data class NetworkClientConfig(
     val requestTimeoutMillis: Long,
     val connectTimeoutMillis: Long,
     val socketTimeoutMillis: Long,
-    val json: Json
+    val json: Json,
+    val webSocketClientConfig: WebSocketClientConfig?
+)
+
+data class WebSocketClientConfig(
+    val pingInterval: Long,
+    val maxFrameSize: Long
 )
