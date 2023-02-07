@@ -1,6 +1,7 @@
 package jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.fiat
 
 import io.ktor.http.HttpMethod
+import jp.co.soramitsu.xnetworking.common.Utils.toDoubleNan
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.BasicCases
 import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.fiat.case2.SoraWalletFiatCase2Response
@@ -35,7 +36,7 @@ private class SoraWalletFiatCase2 : SoraWalletFiatCase {
                 SubQueryRequest(graphQLRequestSoraWalletFiatCase2(cursor)),
             )
             response.data.entities.nodes.forEach { node ->
-                list.add(FiatData(node.id, node.priceUSD.toDoubleOrNull()))
+                list.add(FiatData(node.id, node.priceUSD.toDoubleNan()))
             }
             if (response.data.entities.pageInfo.hasNextPage && response.data.entities.pageInfo.endCursor != null) {
                 cursor = response.data.entities.pageInfo.endCursor
