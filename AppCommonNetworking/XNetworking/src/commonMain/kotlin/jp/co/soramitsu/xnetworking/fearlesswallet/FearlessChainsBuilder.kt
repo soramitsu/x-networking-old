@@ -1,5 +1,8 @@
 package jp.co.soramitsu.xnetworking.fearless
 
+import jp.co.soramitsu.xnetworking.fearlesswallet.ChainModel
+import jp.co.soramitsu.xnetworking.fearlesswallet.ChainResponse
+import jp.co.soramitsu.xnetworking.fearlesswallet.ResultChainInfo
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkException
 import kotlinx.serialization.builtins.ListSerializer

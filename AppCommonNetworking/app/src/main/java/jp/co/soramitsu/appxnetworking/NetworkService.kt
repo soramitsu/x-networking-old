@@ -10,6 +10,7 @@ import jp.co.soramitsu.xnetworking.sorawallet.tokenwhitelist.SoraTokensWhitelist
 import jp.co.soramitsu.xnetworking.txhistory.TxHistoryItem
 import jp.co.soramitsu.xnetworking.txhistory.client.fearlesswallet.SubQueryClientForFearlessWallet
 import jp.co.soramitsu.xnetworking.txhistory.client.sorawallet.SubQueryClientForSoraWallet
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 class NetworkService(
@@ -69,9 +70,14 @@ class NetworkService(
 
 @Serializable
 data class AssetRemote(
+    @SerialName("id")
     val id: String?,
+    @SerialName("chainId")
     val chainId: String?,
+    @SerialName("precision")
     val precision: Int?,
+    @SerialName("priceId")
     val priceId: String? = null,
-    val icon: String?
+    @SerialName("icon")
+    val icon: String?,
 )

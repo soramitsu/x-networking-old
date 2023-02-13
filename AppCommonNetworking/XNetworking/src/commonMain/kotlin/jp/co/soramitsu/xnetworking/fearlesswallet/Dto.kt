@@ -1,11 +1,15 @@
-package jp.co.soramitsu.xnetworking.fearless
+package jp.co.soramitsu.xnetworking.fearlesswallet
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class ChainModel(
+    @SerialName("chainId")
     val chainId: String,
+    @SerialName("hash")
     val hash: String,
+    @SerialName("content")
     val content: String,
 )
 
@@ -17,7 +21,10 @@ data class ResultChainInfo(
 
 @Serializable
 data class ChainResponse(
+    @SerialName("chain")
     val chain: String,
+    @SerialName("hash")
     val hash: String,
+    @SerialName("id")
     val id: String,
 )

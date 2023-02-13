@@ -1,11 +1,14 @@
 package jp.co.soramitsu.xnetworking.txhistory.subquery.graphqlrequest
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class SubQueryRequest(
+    @SerialName("query")
     val query: String,
-    val variables: String? = null
+    @SerialName("variables")
+    val variables: String? = null,
 )
 
 internal const val varCountRemote = "\$countRemote"
