@@ -12,8 +12,11 @@ data class SoraEnv(
 
 @Serializable
 data class NodeInfo(
+    @SerialName("chain")
     val chain: String,
+    @SerialName("name")
     val name: String,
+    @SerialName("address")
     val address: String,
 )
 

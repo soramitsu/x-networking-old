@@ -14,7 +14,7 @@ import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import jp.co.soramitsu.xnetworking.fearless.FearlessChainsBuilder
-import jp.co.soramitsu.xnetworking.fearless.ResultChainInfo
+import jp.co.soramitsu.xnetworking.fearlesswallet.ResultChainInfo
 import jp.co.soramitsu.xnetworking.networkclient.NetworkClientConfig
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuHttpClientProvider
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
