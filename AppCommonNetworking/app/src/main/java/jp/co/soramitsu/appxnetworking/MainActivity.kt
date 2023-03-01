@@ -88,7 +88,7 @@ private fun MainScreen() {
                 GlobalScope.launch {
                     Log.e("foxxx", "r start btn 3")
                     try {
-                        val r = DepBuilder.networkService.getFiat()
+                        val r = DepBuilder.networkService.getSoraConfig()
                         Log.e("foxxx", "r = $r")
                     } catch (t: Throwable) {
                         Log.e("foxxx", "t = ${t.localizedMessage}")
