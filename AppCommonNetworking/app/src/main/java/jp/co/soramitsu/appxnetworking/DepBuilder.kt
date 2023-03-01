@@ -4,7 +4,7 @@ import android.content.Context
 import jp.co.soramitsu.xnetworking.fearless.FearlessChainsBuilder
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.SoraWalletBlockExplorerInfo
-import jp.co.soramitsu.xnetworking.sorawallet.envbuilder.SoraEnvBuilder
+import jp.co.soramitsu.xnetworking.sorawallet.mainconfig.SoraRemoteConfigBuilder
 import jp.co.soramitsu.xnetworking.sorawallet.tokenwhitelist.SoraTokensWhitelistManager
 import jp.co.soramitsu.xnetworking.txhistory.client.fearlesswallet.SubQueryClientForFearlessWallet
 import jp.co.soramitsu.xnetworking.txhistory.client.fearlesswallet.SubQueryClientForFearlessWalletFactory
@@ -43,7 +43,11 @@ object DepBuilder {
         networkService = NetworkService(
             soraNetworkClient,
             fearlessChainsBuilder,
-            soraEnvBuilder,
+            SoraRemoteConfigBuilder(
+                soraNetworkClient,
+                "https://raw.githubusercontent.com/soramitsu/sora2-config/master/dev/common.json",
+                "https://raw.githubusercontent.com/soramitsu/sora2-config/master/dev/mobile.json",
+            ),
             subQueryClientForFearlessWallet,
             subQueryClientForSoraWallet,
             SoraWalletBlockExplorerInfo(
@@ -53,9 +57,4 @@ object DepBuilder {
             SoraTokensWhitelistManager(soraNetworkClient),
         )
     }
-
-    val soraEnvBuilder = SoraEnvBuilder(
-        soraNetworkClient,
-        baseUrl = "https://raw.githubusercontent.com/sora-xor/polkaswap-exchange-web/master/env.json"
-    )
 }
