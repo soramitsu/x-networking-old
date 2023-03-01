@@ -19,8 +19,8 @@ import jp.co.soramitsu.xnetworking.networkclient.NetworkClientConfig
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuHttpClientProvider
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.SoraWalletBlockExplorerInfo
-import jp.co.soramitsu.xnetworking.sorawallet.envbuilder.SoraEnv
-import jp.co.soramitsu.xnetworking.sorawallet.envbuilder.SoraEnvBuilder
+import jp.co.soramitsu.xnetworking.sorawallet.mainconfig.SoraConfig
+import jp.co.soramitsu.xnetworking.sorawallet.mainconfig.SoraRemoteConfigBuilder
 import jp.co.soramitsu.xnetworking.sorawallet.tokenwhitelist.SoraTokensWhitelistManager
 import jp.co.soramitsu.xnetworking.txhistory.client.fearlesswallet.SubQueryClientForFearlessWallet
 import jp.co.soramitsu.xnetworking.txhistory.client.sorawallet.SubQueryClientForSoraWallet
@@ -48,7 +48,7 @@ class ExampleUnitTest {
     lateinit var fearlessChainsBuilder: FearlessChainsBuilder
 
     @MockK
-    lateinit var soraEnvBuilder: SoraEnvBuilder
+    lateinit var soraRemoteConfigBuilder: SoraRemoteConfigBuilder
 
     @MockK
     lateinit var soraWalletBlockExplorerInfo: SoraWalletBlockExplorerInfo
@@ -71,7 +71,7 @@ class ExampleUnitTest {
             NetworkService(
                 soramitsuNetworkClient,
                 fearlessChainsBuilder,
-                soraEnvBuilder,
+                soraRemoteConfigBuilder,
                 subQueryFearless,
                 subQuerySora,
                 soraWalletBlockExplorerInfo,
@@ -97,11 +97,11 @@ class ExampleUnitTest {
     }
 
     @Test
-    fun getSoraEnv() = runTest {
+    fun getSoraConfig() = runTest {
         coEvery {
-            soraEnvBuilder.getSoraEnv()
-        } returns SoraEnv(emptyList())
-        val soraEnv = networkService.getSoraEnv()
+            soraRemoteConfigBuilder.getConfig()
+        } returns SoraConfig("", "", emptyList(), "", "", "", emptyList())
+        val soraEnv = networkService.getSoraConfig()
         assertEquals(0, soraEnv.nodes.size)
     }
 
