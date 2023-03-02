@@ -6,7 +6,6 @@ expect class SubQueryClientForFearlessWalletFactory {
 
     fun create(
         soramitsuNetworkClient: SoramitsuNetworkClient,
-        baseUrl: String,
         pageSize: Int,
     ): SubQueryClientForFearlessWallet
 }

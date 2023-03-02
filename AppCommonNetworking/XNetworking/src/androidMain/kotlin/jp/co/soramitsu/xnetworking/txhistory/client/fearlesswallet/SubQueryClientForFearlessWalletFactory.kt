@@ -10,12 +10,10 @@ actual class SubQueryClientForFearlessWalletFactory(
 ) {
     actual fun create(
         soramitsuNetworkClient: SoramitsuNetworkClient,
-        baseUrl: String,
         pageSize: Int,
     ): SubQueryClientForFearlessWallet {
         return SubQueryClientForFearlessWallet(
             networkClient = soramitsuNetworkClient,
-            baseUrl = baseUrl,
             pageSize = pageSize,
             historyDatabaseProvider = HistoryDatabaseProvider(DatabaseDriverFactory(context)),
         )

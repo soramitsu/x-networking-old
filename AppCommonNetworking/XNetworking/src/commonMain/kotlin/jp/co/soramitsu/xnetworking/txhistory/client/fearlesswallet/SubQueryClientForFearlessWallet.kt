@@ -13,7 +13,6 @@ import kotlin.coroutines.cancellation.CancellationException
 
 class SubQueryClientForFearlessWallet(
     networkClient: SoramitsuNetworkClient,
-    baseUrl: String,
     pageSize: Int,
     historyDatabaseProvider: HistoryDatabaseProvider,
 ) {
@@ -21,7 +20,6 @@ class SubQueryClientForFearlessWallet(
     private val client: SubQueryClient<FearlessSubQueryResponse, TxHistoryItem> =
         SubQueryClient(
             networkClient = networkClient,
-            baseUrl = baseUrl,
             pageSize = pageSize,
             deserializationStrategy = FearlessSubQueryResponse.serializer(),
             jsonToHistoryInfo = { response -> FearlessWalletSubQueryHistoryMapper.map(response) },
@@ -59,7 +57,7 @@ class SubQueryClientForFearlessWallet(
         address: String,
         networkName: String,
         page: Long,
-        url: String? = null,
+        url: String,
         filter: ((TxHistoryItem) -> Boolean)? = null
     ): TxHistoryResult<TxHistoryItem> = client.getTransactionHistoryPaged(
         address, networkName, page, url, filter

@@ -27,7 +27,7 @@ class NetworkService(
         return whitelistManager.getTokens()
     }
 
-    suspend fun getFiat() = soraWalletBlockExplorerInfo.getFiat("2")
+    suspend fun getFiat() = soraWalletBlockExplorerInfo.getFiat()
 
     suspend fun getAssets() =
         client.createJsonRequest<List<AssetRemote>>("https://raw.githubusercontent.com/soramitsu/fearless-utils/android/v2/chains/assets.json")
@@ -39,12 +39,11 @@ class NetworkService(
         emptyList()
     )
 
-    suspend fun getApy() = soraWalletBlockExplorerInfo.getSpApy(caseName = "2")
+    suspend fun getApy() = soraWalletBlockExplorerInfo.getSpApy()
 
     suspend fun getHistorySora(page: Long, f: (TxHistoryItem) -> Boolean) =
         subQueryClientForSoraWallet.getTransactionHistoryPaged(
             address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
-            networkName = "sora",
             page = page,
             filter = f
         )
@@ -54,15 +53,15 @@ class NetworkService(
             address = "5ETrb47YCHE9pYxKfpm4b3bMNvKd7Zusi22yZLLHKadP5oYn",
             networkName = "fearless",
             page = page,
-            filter = f
+            url = "https://api.subquery.network/sq/soramitsu/fearless-wallet-westend",
+            filter = f,
         )
 
     suspend fun getPeers(query: String) =
-        subQueryClientForSoraWallet.getTransactionPeers(query, "sora")
+        subQueryClientForSoraWallet.getTransactionPeers(query)
 
     suspend fun getRewards() = soraWalletBlockExplorerInfo.getReferrerRewards(
         address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
-        caseName = "1",
     )
 
     suspend fun getSoraConfig(): SoraConfig = soraConfigBuilder.getConfig()

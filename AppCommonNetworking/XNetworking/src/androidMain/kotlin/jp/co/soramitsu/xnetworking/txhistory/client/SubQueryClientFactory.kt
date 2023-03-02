@@ -20,7 +20,6 @@ actual class SubQueryClientFactory<T, R>(private val context: Context) {
     ): SubQueryClient<T, R> {
         return SubQueryClient(
             soramitsuNetworkClient,
-            baseUrl,
             pageSize,
             deserializationStrategy,
             jsonToHistoryInfo,
