@@ -20,7 +20,6 @@ import kotlin.math.min
 
 class SubQueryClient<T, R> internal constructor(
     private val networkClient: SoramitsuNetworkClient,
-    private var baseUrl: String,
     private val pageSize: Int,
     private val deserializationStrategy: DeserializationStrategy<T>,
     private val jsonToHistoryInfo: (T) -> TxHistoryInfo,
@@ -84,15 +83,14 @@ class SubQueryClient<T, R> internal constructor(
         address: String,
         networkName: String,
         page: Long,
-        url: String? = null,
+        url: String,
         filter: ((R) -> Boolean)? = null
     ): TxHistoryResult<R> {
         require(page >= 1) { "Page value must >= 1" }
-        if (url != null) baseUrl = url
         curSignerInfo = historyDatabase.getSignerInfo(address, networkName)
         var error = if (page == 1L) {
             try {
-                loadInfo(address = address, networkName = networkName)
+                loadInfo(address = address, networkName = networkName, url = url)
                 null
             } catch (t: SoramitsuNetworkException) {
                 (t as? CodeNetworkException)?.code?.toString() ?: t.m
@@ -106,7 +104,7 @@ class SubQueryClient<T, R> internal constructor(
         var endReached = false
         while (true) {
             val info = try {
-                getHistoryInfo(curPage, address, networkName)
+                getHistoryInfo(curPage, address, networkName, url)
             } catch (t: SoramitsuNetworkException) {
                 error = (t as? CodeNetworkException)?.code?.toString() ?: t.m
                 null
@@ -138,6 +136,7 @@ class SubQueryClient<T, R> internal constructor(
         page: Long,
         address: String,
         networkName: String,
+        url: String,
     ): TxHistoryInfo {
         var dbOffset = (page - 1) * pageSize
         val extrinsics = historyDatabase.getExtrinsics(address, networkName, dbOffset, pageSize)
@@ -148,7 +147,7 @@ class SubQueryClient<T, R> internal constructor(
             if (curSignerInfo.endReached) {
                 buildResultHistoryInfo(true, extrinsics)
             } else {
-                loadInfo(curSignerInfo.oldCursor.orEmpty(), address, networkName)
+                loadInfo(curSignerInfo.oldCursor.orEmpty(), address, networkName, url)
                 val moreCount = pageSize - extrinsics.size
                 val moreExtrinsics =
                     historyDatabase.getExtrinsics(address, networkName, dbOffset, moreCount)
@@ -159,7 +158,7 @@ class SubQueryClient<T, R> internal constructor(
     }
 
     @Throws(SoramitsuNetworkException::class, CancellationException::class)
-    private suspend fun loadInfo(cursor: String = "", address: String, networkName: String) {
+    private suspend fun loadInfo(cursor: String = "", address: String, networkName: String, url: String) {
         val request = SubQueryRequest(
             query = historyRequest,
             variables = txHistoryGraphQLVariables(
@@ -169,7 +168,7 @@ class SubQueryClient<T, R> internal constructor(
             )
         )
         val response = networkClient.createRequest<String>(
-            baseUrl,
+            url,
             HttpMethod.Post,
             request,
             ContentType.Application.Json

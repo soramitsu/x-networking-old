@@ -13,46 +13,44 @@ import jp.co.soramitsu.xnetworking.txhistory.client.sorawallet.SubQueryClientFor
 
 object DepBuilder {
 
-    val soraNetworkClient = SoramitsuNetworkClient(logging = true)
-    val fearlessChainsBuilder = FearlessChainsBuilder(
+    private val soraNetworkClient = SoramitsuNetworkClient(logging = true)
+    private val fearlessChainsBuilder = FearlessChainsBuilder(
         soraNetworkClient,
         "https://raw.githubusercontent.com/arvifox/arvifoxandroid/develop/felete/",
         "chains/index_android.json"
+    )
+
+    private val soraRemoteConfigBuilder = SoraRemoteConfigBuilder(
+        soraNetworkClient,
+        "https://raw.githubusercontent.com/soramitsu/sora2-config/dev/common.json",
+        "https://raw.githubusercontent.com/soramitsu/sora2-config/dev/mobile.json",
     )
 
     lateinit var subQueryClientForSoraWallet: SubQueryClientForSoraWallet
     lateinit var subQueryClientForFearlessWallet: SubQueryClientForFearlessWallet
     lateinit var networkService: NetworkService
 
-    private val soraUrl = "https://api.subquery.network/sq/sora-xor/sora-staging"
-//    private val soraUrl = "https://api.subquery.network/sq/sora-xor/sora-dev"
-
     fun build(ctx: Context) {
         subQueryClientForSoraWallet =
             SubQueryClientForSoraWalletFactory(ctx).create(
                 soraNetworkClient,
-                soraUrl,
                 30,
+                soraRemoteConfigBuilder,
             )
         subQueryClientForFearlessWallet =
             SubQueryClientForFearlessWalletFactory(ctx).create(
                 soraNetworkClient,
-                "https://api.subquery.network/sq/soramitsu/fearless-wallet-westend",
                 30,
             )
         networkService = NetworkService(
             soraNetworkClient,
             fearlessChainsBuilder,
-            SoraRemoteConfigBuilder(
-                soraNetworkClient,
-                "https://raw.githubusercontent.com/soramitsu/sora2-config/master/dev/common.json",
-                "https://raw.githubusercontent.com/soramitsu/sora2-config/master/dev/mobile.json",
-            ),
+            soraRemoteConfigBuilder,
             subQueryClientForFearlessWallet,
             subQueryClientForSoraWallet,
             SoraWalletBlockExplorerInfo(
                 soraNetworkClient,
-                soraUrl,
+                soraRemoteConfigBuilder,
             ),
             SoraTokensWhitelistManager(soraNetworkClient),
         )

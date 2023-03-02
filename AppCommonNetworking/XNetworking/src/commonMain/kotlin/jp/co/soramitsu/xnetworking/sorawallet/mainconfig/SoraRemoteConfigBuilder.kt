@@ -3,6 +3,8 @@ package jp.co.soramitsu.xnetworking.sorawallet.mainconfig
 import jp.co.soramitsu.xnetworking.common.platform
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkException
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.coroutines.cancellation.CancellationException
@@ -12,14 +14,27 @@ class SoraRemoteConfigBuilder(
     private val commonUrl: String,
     private val mobileUrl: String,
 ) {
+    private var m = Mutex()
+    private var config: SoraConfig? = null
 
     @Throws(SoramitsuNetworkException::class, CancellationException::class)
-    suspend fun getConfig(): SoraConfig {
+    suspend fun getConfig(): SoraConfig = config ?: m.withLock {
+            config ?: buildConfig().also {
+                config = it
+            }
+        }
+
+    @Throws(SoramitsuNetworkException::class, CancellationException::class)
+    private suspend fun buildConfig(): SoraConfig {
         val commonDto: ConfigDto = client.createJsonRequest(commonUrl)
         val mobile: MobileDto = client.createJsonRequest(mobileUrl)
         return SoraConfig(
             blockExplorerUrl = commonDto.subquery,
-            blockExplorerType = mobile.explorerType,
+            blockExplorerType = ConfigExplorerType(
+                fiat = mobile.explorerTypeFiat,
+                reward = mobile.explorerTypeReward,
+                sbapy = mobile.explorerTypeSbapy,
+            ),
             nodes = commonDto.nodes.map {
                 SoraConfigNode(
                     chain = it.chain,
@@ -63,8 +78,12 @@ private data class NodeInfo(
 
 @Serializable
 private data class MobileDto(
-    @SerialName("explorer_type")
-    val explorerType: String,
+    @SerialName("explorer_type_fiat")
+    val explorerTypeFiat: String,
+    @SerialName("explorer_type_sbapy")
+    val explorerTypeSbapy: String,
+    @SerialName("explorer_type_reward")
+    val explorerTypeReward: String,
     @SerialName("join_link")
     val joinLink: String,
     @SerialName("substrate_types_android")

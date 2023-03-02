@@ -2,7 +2,7 @@ package jp.co.soramitsu.xnetworking.sorawallet.mainconfig
 
 data class SoraConfig(
     val blockExplorerUrl: String,
-    val blockExplorerType: String,
+    val blockExplorerType: ConfigExplorerType,
     val nodes: List<SoraConfigNode>,
     val genesis: String,
     val joinUrl: String,
@@ -20,4 +20,10 @@ data class SoraCurrency(
     val code: String,
     val name: String,
     val sign: String,
+)
+
+data class ConfigExplorerType(
+    val fiat: String,
+    val reward: String,
+    val sbapy: String,
 )

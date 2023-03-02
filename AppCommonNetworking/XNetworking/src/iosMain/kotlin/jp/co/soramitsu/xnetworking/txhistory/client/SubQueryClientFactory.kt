@@ -25,7 +25,6 @@ actual class SubQueryClientFactory<T, R> {
     ): SubQueryClient<T, R> {
         return SubQueryClient(
             soramitsuNetworkClient,
-            baseUrl,
             pageSize,
             deserializationStrategy,
             jsonToHistoryInfo,
