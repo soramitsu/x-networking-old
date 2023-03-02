@@ -19,6 +19,7 @@ import jp.co.soramitsu.xnetworking.networkclient.NetworkClientConfig
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuHttpClientProvider
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.SoraWalletBlockExplorerInfo
+import jp.co.soramitsu.xnetworking.sorawallet.mainconfig.ConfigExplorerType
 import jp.co.soramitsu.xnetworking.sorawallet.mainconfig.SoraConfig
 import jp.co.soramitsu.xnetworking.sorawallet.mainconfig.SoraRemoteConfigBuilder
 import jp.co.soramitsu.xnetworking.sorawallet.tokenwhitelist.SoraTokensWhitelistManager
@@ -100,7 +101,7 @@ class ExampleUnitTest {
     fun getSoraConfig() = runTest {
         coEvery {
             soraRemoteConfigBuilder.getConfig()
-        } returns SoraConfig("", "", emptyList(), "", "", "", emptyList())
+        } returns SoraConfig("", ConfigExplorerType("", "", ""), emptyList(), "", "", "", emptyList())
         val soraEnv = networkService.getSoraConfig()
         assertEquals(0, soraEnv.nodes.size)
     }
