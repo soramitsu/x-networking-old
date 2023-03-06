@@ -3,7 +3,6 @@ package jp.co.soramitsu.xnetworking.txhistory.client
 import io.ktor.http.*
 import jp.co.soramitsu.xnetworking.db.Extrinsics
 import jp.co.soramitsu.xnetworking.db.SignerInfo
-import jp.co.soramitsu.xnetworking.networkclient.CodeNetworkException
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkException
 import jp.co.soramitsu.xnetworking.txhistory.HistoryDatabaseProvider
@@ -93,7 +92,7 @@ class SubQueryClient<T, R> internal constructor(
                 loadInfo(address = address, networkName = networkName, url = url)
                 null
             } catch (t: SoramitsuNetworkException) {
-                (t as? CodeNetworkException)?.code?.toString() ?: t.m
+                t.m
             }
         } else {
             null
@@ -106,7 +105,7 @@ class SubQueryClient<T, R> internal constructor(
             val info = try {
                 getHistoryInfo(curPage, address, networkName, url)
             } catch (t: SoramitsuNetworkException) {
-                error = (t as? CodeNetworkException)?.code?.toString() ?: t.m
+                error = t.m
                 null
             } ?: break
             endCursor = info.endCursor

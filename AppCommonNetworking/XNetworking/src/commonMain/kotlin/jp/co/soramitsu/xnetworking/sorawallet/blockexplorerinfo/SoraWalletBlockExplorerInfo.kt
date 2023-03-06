@@ -22,7 +22,7 @@ class SoraWalletBlockExplorerInfo(
         IllegalArgumentException::class
     )
     suspend fun getFiat(): List<FiatData> {
-        val config = soraRemoteConfigBuilder.getConfig()
+        val config = soraRemoteConfigBuilder.getConfig() ?: return emptyList()
         val case = SoraWalletFiatCases.getCase(config.blockExplorerType.fiat)
         return case.getFiat(config.blockExplorerUrl, networkClient)
     }
@@ -33,7 +33,7 @@ class SoraWalletBlockExplorerInfo(
         IllegalArgumentException::class
     )
     suspend fun getSpApy(): List<SbApyInfo> {
-        val config = soraRemoteConfigBuilder.getConfig()
+        val config = soraRemoteConfigBuilder.getConfig() ?: return emptyList()
         val case = SoraWalletSbApyCases.getCase(config.blockExplorerType.sbapy)
         return case.getSbApy(config.blockExplorerUrl, networkClient)
     }
@@ -46,7 +46,7 @@ class SoraWalletBlockExplorerInfo(
     suspend fun getReferrerRewards(
         address: String,
     ): ReferrerRewardsInfo {
-        val config = soraRemoteConfigBuilder.getConfig()
+        val config = soraRemoteConfigBuilder.getConfig() ?: return ReferrerRewardsInfo(emptyList())
         val case = SoraWalletReferralCases.getCase(config.blockExplorerType.reward)
         return case.getReferrerInfo(config.blockExplorerUrl, address, networkClient)
     }
