@@ -1,9 +1,11 @@
 package jp.co.soramitsu.xnetworking.networkclient
 
-open class SoramitsuNetworkException(val m: String, c: Throwable?) : Throwable(m, c)
+class SoramitsuNetworkException(val m: String, c: Throwable?, val reason: SoramitsuNetworkExceptionsReason) : Throwable(m, c)
 
-class CodeNetworkException(val code: Int, m: String, c: Throwable?) : SoramitsuNetworkException(m, c)
+interface SoramitsuNetworkExceptionsReason
 
-class SerializationNetworkException(m: String, c: Throwable?) : SoramitsuNetworkException(m, c)
+class CodeNetworkException(val code: Int) : SoramitsuNetworkExceptionsReason
 
-class GeneralNetworkException(m: String, c: Throwable?) : SoramitsuNetworkException(m, c)
+class SerializationNetworkException : SoramitsuNetworkExceptionsReason
+
+class GeneralNetworkException : SoramitsuNetworkExceptionsReason

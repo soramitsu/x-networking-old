@@ -94,11 +94,11 @@ class SoramitsuNetworkClient(
                 is ServerResponseException -> 5
                 else -> 0
             }
-            throw CodeNetworkException(code, e.message.orEmpty(), e.cause)
+            throw SoramitsuNetworkException(e.message.orEmpty(), e.cause, CodeNetworkException(code))
         } catch (e: SerializationException) {
-            throw SerializationNetworkException(e.message.orEmpty(), e.cause)
+            throw SoramitsuNetworkException(e.message.orEmpty(), e.cause, SerializationNetworkException())
         } catch (e: Throwable) {
-            throw GeneralNetworkException(e.message.orEmpty(), e.cause)
+            throw SoramitsuNetworkException(e.message.orEmpty(), e.cause, GeneralNetworkException())
         }
     }
 }

@@ -59,8 +59,8 @@ class SubQueryClientForSoraWallet(
         address: String,
         page: Long,
         filter: ((TxHistoryItem) -> Boolean)? = null
-    ): TxHistoryResult<TxHistoryItem> {
-        val explorerUrl = soraRemoteConfigBuilder.getConfig().blockExplorerUrl
+    ): TxHistoryResult<TxHistoryItem>? {
+        val explorerUrl = soraRemoteConfigBuilder.getConfig()?.blockExplorerUrl ?: return null
         return client.getTransactionHistoryPaged(
             address, networkName, page, explorerUrl, filter
         )

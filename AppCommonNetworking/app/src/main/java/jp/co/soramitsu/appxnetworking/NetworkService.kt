@@ -64,7 +64,7 @@ class NetworkService(
         address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
     )
 
-    suspend fun getSoraConfig(): SoraConfig = soraConfigBuilder.getConfig()
+    suspend fun getSoraConfig(): SoraConfig? = soraConfigBuilder.getConfig()
 }
 
 @Serializable

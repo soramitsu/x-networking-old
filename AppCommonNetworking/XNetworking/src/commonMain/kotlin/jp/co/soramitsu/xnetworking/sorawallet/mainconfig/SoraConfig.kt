@@ -1,6 +1,7 @@
 package jp.co.soramitsu.xnetworking.sorawallet.mainconfig
 
 data class SoraConfig(
+    val remote: Boolean,
     val blockExplorerUrl: String,
     val blockExplorerType: ConfigExplorerType,
     val nodes: List<SoraConfigNode>,

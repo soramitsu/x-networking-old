@@ -23,7 +23,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.1"
+        kotlinCompilerExtensionVersion = "1.4.3"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -58,6 +58,6 @@ dependencies {
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.test:rules:1.5.0")
     androidTestImplementation("androidx.work:work-testing:2.8.0")
-    androidTestImplementation("androidx.arch.core:core-testing:2.1.0")
+    androidTestImplementation("androidx.arch.core:core-testing:2.2.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }

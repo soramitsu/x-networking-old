@@ -68,7 +68,7 @@ private fun MainScreen() {
                     try {
                         val r = DepBuilder.networkService.getHistorySora(1) {
                             true
-                        }
+                        }!!
                         Log.e(
                             "foxxx",
                             "r = ${r.endReached} ${r.page} ${r.items.size} ${r.errorMessage}"
