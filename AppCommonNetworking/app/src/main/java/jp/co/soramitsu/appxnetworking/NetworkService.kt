@@ -43,7 +43,7 @@ class NetworkService(
 
     suspend fun getHistorySora(page: Long, f: (TxHistoryItem) -> Boolean) =
         subQueryClientForSoraWallet.getTransactionHistoryPaged(
-            address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
+            address = "cnWbtu2u7c51SPpYFr3SYDwTZkq1vF2bbaqAkCZvtCxsE19i3",
             page = page,
             filter = f
         )
@@ -61,7 +61,7 @@ class NetworkService(
         subQueryClientForSoraWallet.getTransactionPeers(query)
 
     suspend fun getRewards() = soraWalletBlockExplorerInfo.getReferrerRewards(
-        address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
+        address = "cnWbtu2u7c51SPpYFr3SYDwTZkq1vF2bbaqAkCZvtCxsE19i3",
     )
 
     suspend fun getSoraConfig(): SoraConfig? = soraConfigBuilder.getConfig()

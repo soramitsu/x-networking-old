@@ -50,7 +50,7 @@ private fun MainScreen() {
                     try {
                         Log.e("foxxx", "r start btn 1")
                         val r = DepBuilder.networkService.getRewards()
-                        Log.e("foxxx", "r = ${r}")
+                        Log.e("foxxx", "r = ${r.rewards.size} ${r}")
                     } catch (t: Throwable) {
                         Log.e("foxxx", "t= ${t.localizedMessage}")
                     }
@@ -88,7 +88,7 @@ private fun MainScreen() {
                 GlobalScope.launch {
                     Log.e("foxxx", "r start btn 3")
                     try {
-                        val r = DepBuilder.networkService.getSoraConfig()
+                        val r = DepBuilder.networkService.getApy()
                         Log.e("foxxx", "r = $r")
                     } catch (t: Throwable) {
                         Log.e("foxxx", "t = ${t.localizedMessage}")

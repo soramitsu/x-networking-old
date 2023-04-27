@@ -49,25 +49,28 @@ kotlin {
     val xcf = XCFramework()
 
     android()
-    iosX64 {
-        binaries.framework {
-            baseName = iosFrameworkName
-            xcf.add(this)
-        }
-    }
-    iosArm64 {
-        binaries.framework {
-            baseName = iosFrameworkName
-            xcf.add(this)
-        }
-    }
+//    iosX64 {
+//        binaries.framework {
+//            baseName = iosFrameworkName
+//            xcf.add(this)
+//        }
+//    }
+    iosX64()
+//    iosArm64 {
+//        binaries.framework {
+//            baseName = iosFrameworkName
+//            xcf.add(this)
+//        }
+//    }
+    iosArm64()
 
-    iosSimulatorArm64 {
-        binaries.framework {
-            baseName = iosFrameworkName
-            xcf.add(this)
-        }
-    }
+//    iosSimulatorArm64 {
+//        binaries.framework {
+//            baseName = iosFrameworkName
+//            xcf.add(this)
+//        }
+//    }
+    iosSimulatorArm64()
 
     cocoapods {
         summary = "Some description for the Shared Module"
@@ -114,7 +117,7 @@ kotlin {
                 implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
             }
         }
-        val androidTest by getting
+        val androidUnitTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -156,8 +159,28 @@ android {
     defaultConfig {
         minSdk = 24
         targetSdk = 33
+        consumerProguardFiles("consumer-rules.pro")
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    buildTypes {
+        release {
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
     }
     namespace = "jp.co.soramitsu.xnetworking"
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 tasks.register<Copy>("copyiOSTestResources") {
