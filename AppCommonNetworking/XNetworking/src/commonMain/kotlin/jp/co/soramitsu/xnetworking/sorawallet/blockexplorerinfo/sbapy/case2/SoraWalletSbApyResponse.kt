@@ -11,14 +11,16 @@ data class SoraWalletSbApyCase2Response(
 
 @Serializable
 data class SoraWalletSbApyCase2ResponseData(
-    @SerialName("poolXYKs")
-    val poolXYKs: SoraWalletSbApyCase2ResponseDataEntities,
+    @SerialName("entities")
+    val entities: SoraWalletSbApyCase2ResponseDataEntities,
 )
 
 @Serializable
 data class SoraWalletSbApyCase2ResponseDataEntities(
     @SerialName("nodes")
     val nodes: List<SoraWalletSbApyCase2ResponseDataEntitiesNode>,
+    @SerialName("pageInfo")
+    val pageInfo: SoraWalletSbApyCase2ResponseDataEntitiesPageInfo,
 )
 
 @Serializable
@@ -27,4 +29,12 @@ data class SoraWalletSbApyCase2ResponseDataEntitiesNode(
     val id: String,
     @SerialName("strategicBonusApy")
     val strategicBonusApy: String? = null,
+)
+
+@Serializable
+data class SoraWalletSbApyCase2ResponseDataEntitiesPageInfo(
+    @SerialName("hasNextPage")
+    val hasNextPage: Boolean,
+    @SerialName("endCursor")
+    val endCursor: String?,
 )
