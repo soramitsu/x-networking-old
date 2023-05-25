@@ -6,7 +6,7 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class XNetworkingDatabaseDriverFactory, XNetworkingHistoryMapper, XNetworkingTxHistoryItemNested, XNetworkingExtrinsics, XNetworkingExtrinsicParam, XNetworkingTxHistoryItem, XNetworkingTxHistoryInfo, XNetworkingTxHistoryItemParam, XNetworkingTxHistoryResult<R>, XNetworkingSubQueryClient<T, R>, XNetworkingSoramitsuNetworkClient, XNetworkingSubQueryClientForFearless, XNetworkingFearlessSubQueryResponse, XNetworkingHistoryDatabaseProvider, XNetworkingSubQueryClientForFearlessWallet, XNetworkingSoraRemoteConfigBuilder, XNetworkingSubQueryClientForSoraWallet, XNetworkingSubQueryRequestCompanion, XNetworkingSubQueryRequest, XNetworkingFearlessExtrinsicItemCompanion, XNetworkingFearlessExtrinsicItem, XNetworkingFearlessHistoryResponseItem, XNetworkingFearlessHistoryResponsePageInfo, XNetworkingFearlessHistoryResponseDataElementsCompanion, XNetworkingFearlessHistoryResponseDataElements, XNetworkingFearlessRewardItem, XNetworkingFearlessTransferItem, XNetworkingFearlessHistoryResponseItemCompanion, XNetworkingFearlessHistoryResponsePageInfoCompanion, XNetworkingFearlessRewardItemCompanion, XNetworkingFearlessSubQueryResponseData, XNetworkingFearlessSubQueryResponseCompanion, XNetworkingFearlessSubQueryResponseDataCompanion, XNetworkingFearlessTransferItemCompanion, XNetworkingErrorCompanion, XNetworkingError, XNetworkingExecutionResultCompanion, XNetworkingExecutionResult, XNetworkingHistoryResponseItem, XNetworkingHistoryResponsePageInfo, XNetworkingHistoryResponseDataElementsCompanion, XNetworkingHistoryResponseDataElements, XNetworkingKotlinx_serialization_jsonJsonElement, XNetworkingHistoryResponseItemCompanion, XNetworkingHistoryResponsePageInfoCompanion, XNetworkingSoraSubQueryResponseData, XNetworkingSoraSubQueryResponseCompanion, XNetworkingSoraSubQueryResponse, XNetworkingSoraSubQueryResponseDataCompanion, XNetworkingSignerInfo, XNetworkingSoraHistoryDatabaseCompanion, XNetworkingRuntimeQuery<__covariant RowType>, XNetworkingKotlinThrowable, XNetworkingKotlinArray<T>, XNetworkingKotlinPair<__covariant A, __covariant B>, XNetworkingResultChainInfo, XNetworkingChainBuilderException, XNetworkingKotlinx_serialization_jsonJson, XNetworkingWebSocketClientConfig, XNetworkingNetworkClientConfig, XNetworkingKtor_client_coreHttpClient, XNetworkingKtor_httpHttpMethod, XNetworkingKtor_httpContentType, XNetworkingChainModelCompanion, XNetworkingChainModel, XNetworkingChainResponseCompanion, XNetworkingChainResponse, XNetworkingUtils, XNetworkingSoraTokenWhitelistDto, XNetworkingSoraTokensWhitelistManagerCompanion, XNetworkingConfigExplorerType, XNetworkingSoraConfigNode, XNetworkingSoraCurrency, XNetworkingSoraConfig, XNetworkingFiatData, XNetworkingReferrerRewardsInfo, XNetworkingSbApyInfo, XNetworkingSoraWalletFiatCase2ResponseData, XNetworkingSoraWalletFiatCase2ResponseCompanion, XNetworkingSoraWalletFiatCase2Response, XNetworkingSoraWalletFiatCase2ResponseDataEntities, XNetworkingSoraWalletFiatCase2ResponseDataCompanion, XNetworkingSoraWalletFiatCase2ResponseDataEntitiesNode, XNetworkingSoraWalletFiatCase2ResponseDataEntitiesPageInfo, XNetworkingSoraWalletFiatCase2ResponseDataEntitiesCompanion, XNetworkingSoraWalletFiatCase2ResponseDataEntitiesNodeCompanion, XNetworkingSoraWalletFiatCase2ResponseDataEntitiesPageInfoCompanion, XNetworkingReferrerReward, XNetworkingSoraWalletReferrerCase0ResponseData, XNetworkingSoraWalletReferrerCase0ResponseCompanion, XNetworkingSoraWalletReferrerCase0Response, XNetworkingSoraWalletReferrerCase0ResponseDataRewards, XNetworkingSoraWalletReferrerCase0ResponseDataCompanion, XNetworkingSoraWalletReferrerCase0ResponseDataRewardsGroup, XNetworkingSoraWalletReferrerCase0ResponseDataRewardsCompanion, XNetworkingSoraWalletReferrerCase0ResponseDataRewardsGroupSum, XNetworkingSoraWalletReferrerCase0ResponseDataRewardsGroupCompanion, XNetworkingSoraWalletReferrerCase0ResponseDataRewardsGroupSumCompanion, XNetworkingSoraWalletReferrerCase1ResponseData, XNetworkingSoraWalletReferrerCase1ResponseCompanion, XNetworkingSoraWalletReferrerCase1Response, XNetworkingSoraWalletReferrerCase1ResponseDataRewards, XNetworkingSoraWalletReferrerCase1ResponseDataCompanion, XNetworkingSoraWalletReferrerCase1ResponseDataRewardsPageInfo, XNetworkingSoraWalletReferrerCase1ResponseDataRewardsNode, XNetworkingSoraWalletReferrerCase1ResponseDataRewardsCompanion, XNetworkingSoraWalletReferrerCase1ResponseDataRewardsNodeCompanion, XNetworkingSoraWalletReferrerCase1ResponseDataRewardsPageInfoCompanion, XNetworkingSoraWalletSbApyCase0ResponseData, XNetworkingSoraWalletSbApyCase0ResponseCompanion, XNetworkingSoraWalletSbApyCase0Response, XNetworkingSoraWalletSbApyCase0ResponseDataEntities, XNetworkingSoraWalletSbApyCase0ResponseDataCompanion, XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNode, XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesCompanion, XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPools, XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodeCompanion, XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdge, XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsCompanion, XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdgeNode, XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdgeCompanion, XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdgeNodeCompanion, XNetworkingSoraWalletSbApyCase1ResponseData, XNetworkingSoraWalletSbApyCase1ResponseCompanion, XNetworkingSoraWalletSbApyCase1Response, XNetworkingSoraWalletSbApyCase1ResponseDataEntities, XNetworkingSoraWalletSbApyCase1ResponseDataCompanion, XNetworkingSoraWalletSbApyCase1ResponseDataEntitiesNode, XNetworkingSoraWalletSbApyCase1ResponseDataEntitiesCompanion, XNetworkingSoraWalletSbApyCase1ResponseDataEntitiesNodeCompanion, XNetworkingSoraWalletSbApyCase2ResponseData, XNetworkingSoraWalletSbApyCase2ResponseCompanion, XNetworkingSoraWalletSbApyCase2Response, XNetworkingSoraWalletSbApyCase2ResponseDataEntities, XNetworkingSoraWalletSbApyCase2ResponseDataCompanion, XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesNode, XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesCompanion, XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesNodeCompanion, XNetworkingKotlinByteArray, XNetworkingKotlinException, XNetworkingKotlinRuntimeException, XNetworkingKotlinIllegalStateException, XNetworkingKotlinx_serialization_jsonJsonElementCompanion, XNetworkingRuntimeTransacterTransaction, XNetworkingKtor_client_coreHttpClientEngineConfig, XNetworkingKotlinx_serialization_coreSerializersModule, XNetworkingKotlinx_serialization_jsonJsonDefault, XNetworkingKotlinx_serialization_jsonJsonConfiguration, XNetworkingKtor_client_coreHttpClientConfig<T>, XNetworkingKtor_eventsEvents, XNetworkingKtor_client_coreHttpReceivePipeline, XNetworkingKtor_client_coreHttpRequestPipeline, XNetworkingKtor_client_coreHttpResponsePipeline, XNetworkingKtor_client_coreHttpSendPipeline, XNetworkingKtor_httpHttpMethodCompanion, XNetworkingKtor_httpHeaderValueParam, XNetworkingKtor_httpHeaderValueWithParametersCompanion, XNetworkingKtor_httpHeaderValueWithParameters, XNetworkingKtor_httpContentTypeCompanion, XNetworkingKotlinByteIterator, XNetworkingKotlinNothing, XNetworkingKotlinx_serialization_coreSerialKind, XNetworkingKtor_client_coreHttpRequestData, XNetworkingKtor_client_coreHttpResponseData, XNetworkingKotlinx_coroutines_coreCoroutineDispatcher, XNetworkingKtor_client_coreProxyConfig, XNetworkingKtor_utilsAttributeKey<T>, XNetworkingKtor_eventsEventDefinition<T>, XNetworkingKtor_utilsPipelinePhase, XNetworkingKtor_utilsPipeline<TSubject, TContext>, XNetworkingKtor_client_coreHttpReceivePipelinePhases, XNetworkingKtor_client_coreHttpResponse, XNetworkingKotlinUnit, XNetworkingKtor_client_coreHttpRequestPipelinePhases, XNetworkingKtor_client_coreHttpRequestBuilder, XNetworkingKtor_client_coreHttpResponsePipelinePhases, XNetworkingKtor_client_coreHttpResponseContainer, XNetworkingKtor_client_coreHttpClientCall, XNetworkingKtor_client_coreHttpSendPipelinePhases, XNetworkingKtor_httpUrl, XNetworkingKtor_httpOutgoingContent, XNetworkingKtor_httpHttpStatusCode, XNetworkingKtor_utilsGMTDate, XNetworkingKtor_httpHttpProtocolVersion, XNetworkingKotlinAbstractCoroutineContextElement, XNetworkingKotlinx_coroutines_coreCoroutineDispatcherKey, XNetworkingKtor_httpHeadersBuilder, XNetworkingKtor_client_coreHttpRequestBuilderCompanion, XNetworkingKtor_httpURLBuilder, XNetworkingKtor_utilsTypeInfo, XNetworkingKtor_client_coreHttpClientCallCompanion, XNetworkingKtor_httpUrlCompanion, XNetworkingKtor_httpURLProtocol, XNetworkingKotlinCancellationException, XNetworkingKtor_httpHttpStatusCodeCompanion, XNetworkingKtor_utilsGMTDateCompanion, XNetworkingKtor_utilsWeekDay, XNetworkingKtor_utilsMonth, XNetworkingKtor_httpHttpProtocolVersionCompanion, XNetworkingKotlinAbstractCoroutineContextKey<B, E>, XNetworkingKtor_ioMemory, XNetworkingKtor_ioChunkBuffer, XNetworkingKtor_ioBuffer, XNetworkingKtor_ioByteReadPacket, XNetworkingKtor_utilsStringValuesBuilderImpl, XNetworkingKtor_httpURLBuilderCompanion, XNetworkingKtor_httpURLProtocolCompanion, XNetworkingKotlinEnumCompanion, XNetworkingKotlinEnum<E>, XNetworkingKtor_utilsWeekDayCompanion, XNetworkingKtor_utilsMonthCompanion, XNetworkingKtor_ioMemoryCompanion, XNetworkingKtor_ioBufferCompanion, XNetworkingKtor_ioChunkBufferCompanion, XNetworkingKtor_ioInputCompanion, XNetworkingKtor_ioInput, XNetworkingKtor_ioByteReadPacketCompanion, XNetworkingKotlinKTypeProjection, XNetworkingKotlinx_coroutines_coreAtomicDesc, XNetworkingKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp, XNetworkingKotlinKVariance, XNetworkingKotlinKTypeProjectionCompanion, XNetworkingKotlinx_coroutines_coreAtomicOp<__contravariant T>, XNetworkingKotlinx_coroutines_coreOpDescriptor, XNetworkingKotlinx_coroutines_coreLockFreeLinkedListNode, XNetworkingKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc, XNetworkingKotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc<T>, XNetworkingKotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc<T>;
+@class XNetworkingDatabaseDriverFactory, XNetworkingHistoryMapper, XNetworkingTxHistoryItemNested, XNetworkingExtrinsics, XNetworkingExtrinsicParam, XNetworkingTxHistoryItem, XNetworkingTxHistoryInfo, XNetworkingTxHistoryItemParam, XNetworkingTxHistoryResult<R>, XNetworkingSubQueryClient<T, R>, XNetworkingSoramitsuNetworkClient, XNetworkingSubQueryClientForFearless, XNetworkingFearlessSubQueryResponse, XNetworkingHistoryDatabaseProvider, XNetworkingSubQueryClientForFearlessWallet, XNetworkingSoraRemoteConfigBuilder, XNetworkingSubQueryClientForSoraWallet, XNetworkingSubQueryRequestCompanion, XNetworkingSubQueryRequest, XNetworkingFearlessExtrinsicItemCompanion, XNetworkingFearlessExtrinsicItem, XNetworkingFearlessHistoryResponseItem, XNetworkingFearlessHistoryResponsePageInfo, XNetworkingFearlessHistoryResponseDataElementsCompanion, XNetworkingFearlessHistoryResponseDataElements, XNetworkingFearlessRewardItem, XNetworkingFearlessTransferItem, XNetworkingFearlessHistoryResponseItemCompanion, XNetworkingFearlessHistoryResponsePageInfoCompanion, XNetworkingFearlessRewardItemCompanion, XNetworkingFearlessSubQueryResponseData, XNetworkingFearlessSubQueryResponseCompanion, XNetworkingFearlessSubQueryResponseDataCompanion, XNetworkingFearlessTransferItemCompanion, XNetworkingErrorCompanion, XNetworkingError, XNetworkingExecutionResultCompanion, XNetworkingExecutionResult, XNetworkingHistoryResponseItem, XNetworkingHistoryResponsePageInfo, XNetworkingHistoryResponseDataElementsCompanion, XNetworkingHistoryResponseDataElements, XNetworkingKotlinx_serialization_jsonJsonElement, XNetworkingHistoryResponseItemCompanion, XNetworkingHistoryResponsePageInfoCompanion, XNetworkingSoraSubQueryResponseData, XNetworkingSoraSubQueryResponseCompanion, XNetworkingSoraSubQueryResponse, XNetworkingSoraSubQueryResponseDataCompanion, XNetworkingSignerInfo, XNetworkingSoraHistoryDatabaseCompanion, XNetworkingRuntimeQuery<__covariant RowType>, XNetworkingKotlinThrowable, XNetworkingKotlinArray<T>, XNetworkingKotlinPair<__covariant A, __covariant B>, XNetworkingResultChainInfo, XNetworkingChainBuilderException, XNetworkingKotlinx_serialization_jsonJson, XNetworkingWebSocketClientConfig, XNetworkingNetworkClientConfig, XNetworkingKtor_client_coreHttpClient, XNetworkingKtor_httpHttpMethod, XNetworkingKtor_httpContentType, XNetworkingChainModelCompanion, XNetworkingChainModel, XNetworkingChainResponseCompanion, XNetworkingChainResponse, XNetworkingUtils, XNetworkingSoraTokenWhitelistDto, XNetworkingSoraTokensWhitelistManagerCompanion, XNetworkingConfigExplorerType, XNetworkingSoraConfigNode, XNetworkingSoraCurrency, XNetworkingSoraConfig, XNetworkingFiatData, XNetworkingReferrerRewardsInfo, XNetworkingSbApyInfo, XNetworkingSoraWalletFiatCase2ResponseData, XNetworkingSoraWalletFiatCase2ResponseCompanion, XNetworkingSoraWalletFiatCase2Response, XNetworkingSoraWalletFiatCase2ResponseDataEntities, XNetworkingSoraWalletFiatCase2ResponseDataCompanion, XNetworkingSoraWalletFiatCase2ResponseDataEntitiesNode, XNetworkingSoraWalletFiatCase2ResponseDataEntitiesPageInfo, XNetworkingSoraWalletFiatCase2ResponseDataEntitiesCompanion, XNetworkingSoraWalletFiatCase2ResponseDataEntitiesNodeCompanion, XNetworkingSoraWalletFiatCase2ResponseDataEntitiesPageInfoCompanion, XNetworkingReferrerReward, XNetworkingSoraWalletReferrerCase1ResponseData, XNetworkingSoraWalletReferrerCase1ResponseCompanion, XNetworkingSoraWalletReferrerCase1Response, XNetworkingSoraWalletReferrerCase1ResponseDataRewards, XNetworkingSoraWalletReferrerCase1ResponseDataCompanion, XNetworkingSoraWalletReferrerCase1ResponseDataRewardsPageInfo, XNetworkingSoraWalletReferrerCase1ResponseDataRewardsNode, XNetworkingSoraWalletReferrerCase1ResponseDataRewardsCompanion, XNetworkingSoraWalletReferrerCase1ResponseDataRewardsNodeCompanion, XNetworkingSoraWalletReferrerCase1ResponseDataRewardsPageInfoCompanion, XNetworkingSoraWalletSbApyCase2ResponseData, XNetworkingSoraWalletSbApyCase2ResponseCompanion, XNetworkingSoraWalletSbApyCase2Response, XNetworkingSoraWalletSbApyCase2ResponseDataEntities, XNetworkingSoraWalletSbApyCase2ResponseDataCompanion, XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesNode, XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesPageInfo, XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesCompanion, XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesNodeCompanion, XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesPageInfoCompanion, XNetworkingKotlinByteArray, XNetworkingKotlinException, XNetworkingKotlinRuntimeException, XNetworkingKotlinIllegalStateException, XNetworkingKotlinx_serialization_jsonJsonElementCompanion, XNetworkingRuntimeTransacterTransaction, XNetworkingKtor_client_coreHttpClientEngineConfig, XNetworkingKotlinx_serialization_coreSerializersModule, XNetworkingKotlinx_serialization_jsonJsonDefault, XNetworkingKotlinx_serialization_jsonJsonConfiguration, XNetworkingKtor_client_coreHttpClientConfig<T>, XNetworkingKtor_eventsEvents, XNetworkingKtor_client_coreHttpReceivePipeline, XNetworkingKtor_client_coreHttpRequestPipeline, XNetworkingKtor_client_coreHttpResponsePipeline, XNetworkingKtor_client_coreHttpSendPipeline, XNetworkingKtor_httpHttpMethodCompanion, XNetworkingKtor_httpHeaderValueParam, XNetworkingKtor_httpHeaderValueWithParametersCompanion, XNetworkingKtor_httpHeaderValueWithParameters, XNetworkingKtor_httpContentTypeCompanion, XNetworkingKotlinByteIterator, XNetworkingKotlinNothing, XNetworkingKotlinx_serialization_coreSerialKind, XNetworkingKtor_client_coreHttpRequestData, XNetworkingKtor_client_coreHttpResponseData, XNetworkingKotlinx_coroutines_coreCoroutineDispatcher, XNetworkingKtor_client_coreProxyConfig, XNetworkingKtor_utilsAttributeKey<T>, XNetworkingKtor_eventsEventDefinition<T>, XNetworkingKtor_utilsPipelinePhase, XNetworkingKtor_utilsPipeline<TSubject, TContext>, XNetworkingKtor_client_coreHttpReceivePipelinePhases, XNetworkingKtor_client_coreHttpResponse, XNetworkingKotlinUnit, XNetworkingKtor_client_coreHttpRequestPipelinePhases, XNetworkingKtor_client_coreHttpRequestBuilder, XNetworkingKtor_client_coreHttpResponsePipelinePhases, XNetworkingKtor_client_coreHttpResponseContainer, XNetworkingKtor_client_coreHttpClientCall, XNetworkingKtor_client_coreHttpSendPipelinePhases, XNetworkingKtor_httpUrl, XNetworkingKtor_httpOutgoingContent, XNetworkingKtor_httpHttpStatusCode, XNetworkingKtor_utilsGMTDate, XNetworkingKtor_httpHttpProtocolVersion, XNetworkingKotlinAbstractCoroutineContextElement, XNetworkingKotlinx_coroutines_coreCoroutineDispatcherKey, XNetworkingKtor_httpHeadersBuilder, XNetworkingKtor_client_coreHttpRequestBuilderCompanion, XNetworkingKtor_httpURLBuilder, XNetworkingKtor_utilsTypeInfo, XNetworkingKtor_client_coreHttpClientCallCompanion, XNetworkingKtor_httpUrlCompanion, XNetworkingKtor_httpURLProtocol, XNetworkingKotlinCancellationException, XNetworkingKtor_httpHttpStatusCodeCompanion, XNetworkingKtor_utilsGMTDateCompanion, XNetworkingKtor_utilsWeekDay, XNetworkingKtor_utilsMonth, XNetworkingKtor_httpHttpProtocolVersionCompanion, XNetworkingKotlinAbstractCoroutineContextKey<B, E>, XNetworkingKtor_ioMemory, XNetworkingKtor_ioChunkBuffer, XNetworkingKtor_ioBuffer, XNetworkingKtor_ioByteReadPacket, XNetworkingKtor_utilsStringValuesBuilderImpl, XNetworkingKtor_httpURLBuilderCompanion, XNetworkingKtor_httpURLProtocolCompanion, XNetworkingKotlinEnumCompanion, XNetworkingKotlinEnum<E>, XNetworkingKtor_utilsWeekDayCompanion, XNetworkingKtor_utilsMonthCompanion, XNetworkingKtor_ioMemoryCompanion, XNetworkingKtor_ioBufferCompanion, XNetworkingKtor_ioChunkBufferCompanion, XNetworkingKtor_ioInputCompanion, XNetworkingKtor_ioInput, XNetworkingKtor_ioByteReadPacketCompanion, XNetworkingKotlinKTypeProjection, XNetworkingKotlinx_coroutines_coreAtomicDesc, XNetworkingKotlinx_coroutines_coreLockFreeLinkedListNodePrepareOp, XNetworkingKotlinKVariance, XNetworkingKotlinKTypeProjectionCompanion, XNetworkingKotlinx_coroutines_coreAtomicOp<__contravariant T>, XNetworkingKotlinx_coroutines_coreOpDescriptor, XNetworkingKotlinx_coroutines_coreLockFreeLinkedListNode, XNetworkingKotlinx_coroutines_coreLockFreeLinkedListNodeAbstractAtomicDesc, XNetworkingKotlinx_coroutines_coreLockFreeLinkedListNodeAddLastDesc<T>, XNetworkingKotlinx_coroutines_coreLockFreeLinkedListNodeRemoveFirstDesc<T>;
 
 @protocol XNetworkingKotlinx_serialization_coreDeserializationStrategy, XNetworkingKotlinx_serialization_coreKSerializer, XNetworkingSoraHistoryDatabaseQueries, XNetworkingRuntimeTransactionWithoutReturn, XNetworkingRuntimeTransactionWithReturn, XNetworkingRuntimeTransacter, XNetworkingSoraHistoryDatabase, XNetworkingRuntimeSqlDriver, XNetworkingRuntimeSqlDriverSchema, XNetworkingSoramitsuNetworkExceptionsReason, XNetworkingKtor_client_coreHttpClientEngineFactory, XNetworkingSoramitsuHttpClientProvider, XNetworkingKotlinx_coroutines_coreFlow, XNetworkingMultiplatform_settingsSettings, XNetworkingKtor_httpHeaders, XNetworkingKotlinx_serialization_coreDecoder, XNetworkingKotlinx_serialization_coreSerialDescriptor, XNetworkingKotlinx_serialization_coreEncoder, XNetworkingKotlinx_serialization_coreSerializationStrategy, XNetworkingRuntimeTransactionCallbacks, XNetworkingRuntimeSqlPreparedStatement, XNetworkingRuntimeSqlCursor, XNetworkingRuntimeCloseable, XNetworkingRuntimeQueryListener, XNetworkingKotlinIterator, XNetworkingKtor_client_coreHttpClientEngine, XNetworkingKotlinx_serialization_coreSerialFormat, XNetworkingKotlinx_serialization_coreStringFormat, XNetworkingKotlinCoroutineContext, XNetworkingKotlinx_coroutines_coreCoroutineScope, XNetworkingKtor_ioCloseable, XNetworkingKtor_client_coreHttpClientEngineCapability, XNetworkingKtor_utilsAttributes, XNetworkingKotlinx_coroutines_coreFlowCollector, XNetworkingKotlinMapEntry, XNetworkingKtor_utilsStringValues, XNetworkingKotlinx_serialization_coreCompositeDecoder, XNetworkingKotlinAnnotation, XNetworkingKotlinx_serialization_coreCompositeEncoder, XNetworkingKotlinx_serialization_coreSerializersModuleCollector, XNetworkingKotlinKClass, XNetworkingKotlinx_serialization_jsonJsonNamingStrategy, XNetworkingKotlinCoroutineContextElement, XNetworkingKotlinCoroutineContextKey, XNetworkingKtor_client_coreHttpClientPlugin, XNetworkingKotlinx_coroutines_coreDisposableHandle, XNetworkingKotlinSuspendFunction2, XNetworkingKotlinx_coroutines_coreJob, XNetworkingKotlinContinuation, XNetworkingKotlinContinuationInterceptor, XNetworkingKotlinx_coroutines_coreRunnable, XNetworkingKotlinKDeclarationContainer, XNetworkingKotlinKAnnotatedElement, XNetworkingKotlinKClassifier, XNetworkingKotlinFunction, XNetworkingKtor_httpHttpMessage, XNetworkingKtor_ioByteReadChannel, XNetworkingKtor_httpHttpMessageBuilder, XNetworkingKtor_client_coreHttpRequest, XNetworkingKtor_httpParameters, XNetworkingKotlinx_coroutines_coreChildHandle, XNetworkingKotlinx_coroutines_coreChildJob, XNetworkingKotlinSequence, XNetworkingKotlinx_coroutines_coreSelectClause0, XNetworkingKotlinComparable, XNetworkingKtor_ioReadSession, XNetworkingKotlinSuspendFunction1, XNetworkingKotlinAppendable, XNetworkingKtor_utilsStringValuesBuilder, XNetworkingKtor_httpParametersBuilder, XNetworkingKotlinKType, XNetworkingKotlinx_coroutines_coreParentJob, XNetworkingKotlinx_coroutines_coreSelectInstance, XNetworkingKotlinSuspendFunction0, XNetworkingKtor_ioObjectPool;
 
@@ -1464,142 +1464,6 @@ __attribute__((swift_name("ReferrerRewardsInfo")))
  *   kotlinx.serialization.Serializable
 */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletReferrerCase0Response")))
-@interface XNetworkingSoraWalletReferrerCase0Response : XNetworkingBase
-- (instancetype)initWithData:(XNetworkingSoraWalletReferrerCase0ResponseData *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) XNetworkingSoraWalletReferrerCase0ResponseCompanion *companion __attribute__((swift_name("companion")));
-- (XNetworkingSoraWalletReferrerCase0Response *)doCopyData:(XNetworkingSoraWalletReferrerCase0ResponseData *)data __attribute__((swift_name("doCopy(data:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) XNetworkingSoraWalletReferrerCase0ResponseData *data __attribute__((swift_name("data")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletReferrerCase0Response.Companion")))
-@interface XNetworkingSoraWalletReferrerCase0ResponseCompanion : XNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) XNetworkingSoraWalletReferrerCase0ResponseCompanion *shared __attribute__((swift_name("shared")));
-- (id<XNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletReferrerCase0ResponseData")))
-@interface XNetworkingSoraWalletReferrerCase0ResponseData : XNetworkingBase
-- (instancetype)initWithReferrerRewards:(XNetworkingSoraWalletReferrerCase0ResponseDataRewards *)referrerRewards __attribute__((swift_name("init(referrerRewards:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) XNetworkingSoraWalletReferrerCase0ResponseDataCompanion *companion __attribute__((swift_name("companion")));
-- (XNetworkingSoraWalletReferrerCase0ResponseData *)doCopyReferrerRewards:(XNetworkingSoraWalletReferrerCase0ResponseDataRewards *)referrerRewards __attribute__((swift_name("doCopy(referrerRewards:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) XNetworkingSoraWalletReferrerCase0ResponseDataRewards *referrerRewards __attribute__((swift_name("referrerRewards")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletReferrerCase0ResponseData.Companion")))
-@interface XNetworkingSoraWalletReferrerCase0ResponseDataCompanion : XNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) XNetworkingSoraWalletReferrerCase0ResponseDataCompanion *shared __attribute__((swift_name("shared")));
-- (id<XNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletReferrerCase0ResponseDataRewards")))
-@interface XNetworkingSoraWalletReferrerCase0ResponseDataRewards : XNetworkingBase
-- (instancetype)initWithGroupedAggregates:(NSArray<XNetworkingSoraWalletReferrerCase0ResponseDataRewardsGroup *> *)groupedAggregates __attribute__((swift_name("init(groupedAggregates:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) XNetworkingSoraWalletReferrerCase0ResponseDataRewardsCompanion *companion __attribute__((swift_name("companion")));
-- (XNetworkingSoraWalletReferrerCase0ResponseDataRewards *)doCopyGroupedAggregates:(NSArray<XNetworkingSoraWalletReferrerCase0ResponseDataRewardsGroup *> *)groupedAggregates __attribute__((swift_name("doCopy(groupedAggregates:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<XNetworkingSoraWalletReferrerCase0ResponseDataRewardsGroup *> *groupedAggregates __attribute__((swift_name("groupedAggregates")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletReferrerCase0ResponseDataRewards.Companion")))
-@interface XNetworkingSoraWalletReferrerCase0ResponseDataRewardsCompanion : XNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) XNetworkingSoraWalletReferrerCase0ResponseDataRewardsCompanion *shared __attribute__((swift_name("shared")));
-- (id<XNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletReferrerCase0ResponseDataRewardsGroup")))
-@interface XNetworkingSoraWalletReferrerCase0ResponseDataRewardsGroup : XNetworkingBase
-- (instancetype)initWithKeys:(NSArray<NSString *> *)keys sum:(XNetworkingSoraWalletReferrerCase0ResponseDataRewardsGroupSum *)sum __attribute__((swift_name("init(keys:sum:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) XNetworkingSoraWalletReferrerCase0ResponseDataRewardsGroupCompanion *companion __attribute__((swift_name("companion")));
-- (XNetworkingSoraWalletReferrerCase0ResponseDataRewardsGroup *)doCopyKeys:(NSArray<NSString *> *)keys sum:(XNetworkingSoraWalletReferrerCase0ResponseDataRewardsGroupSum *)sum __attribute__((swift_name("doCopy(keys:sum:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<NSString *> *keys __attribute__((swift_name("keys")));
-@property (readonly) XNetworkingSoraWalletReferrerCase0ResponseDataRewardsGroupSum *sum __attribute__((swift_name("sum")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletReferrerCase0ResponseDataRewardsGroup.Companion")))
-@interface XNetworkingSoraWalletReferrerCase0ResponseDataRewardsGroupCompanion : XNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) XNetworkingSoraWalletReferrerCase0ResponseDataRewardsGroupCompanion *shared __attribute__((swift_name("shared")));
-- (id<XNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletReferrerCase0ResponseDataRewardsGroupSum")))
-@interface XNetworkingSoraWalletReferrerCase0ResponseDataRewardsGroupSum : XNetworkingBase
-- (instancetype)initWithAmount:(NSString *)amount __attribute__((swift_name("init(amount:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) XNetworkingSoraWalletReferrerCase0ResponseDataRewardsGroupSumCompanion *companion __attribute__((swift_name("companion")));
-- (XNetworkingSoraWalletReferrerCase0ResponseDataRewardsGroupSum *)doCopyAmount:(NSString *)amount __attribute__((swift_name("doCopy(amount:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString *amount __attribute__((swift_name("amount")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletReferrerCase0ResponseDataRewardsGroupSum.Companion")))
-@interface XNetworkingSoraWalletReferrerCase0ResponseDataRewardsGroupSumCompanion : XNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) XNetworkingSoraWalletReferrerCase0ResponseDataRewardsGroupSumCompanion *shared __attribute__((swift_name("shared")));
-- (id<XNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SoraWalletReferrerCase1Response")))
 @interface XNetworkingSoraWalletReferrerCase1Response : XNetworkingBase
 - (instancetype)initWithData:(XNetworkingSoraWalletReferrerCase1ResponseData *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
@@ -1751,307 +1615,6 @@ __attribute__((swift_name("SbApyInfo")))
  *   kotlinx.serialization.Serializable
 */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase0Response")))
-@interface XNetworkingSoraWalletSbApyCase0Response : XNetworkingBase
-- (instancetype)initWithData:(XNetworkingSoraWalletSbApyCase0ResponseData *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) XNetworkingSoraWalletSbApyCase0ResponseCompanion *companion __attribute__((swift_name("companion")));
-- (XNetworkingSoraWalletSbApyCase0Response *)doCopyData:(XNetworkingSoraWalletSbApyCase0ResponseData *)data __attribute__((swift_name("doCopy(data:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) XNetworkingSoraWalletSbApyCase0ResponseData *data __attribute__((swift_name("data")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase0Response.Companion")))
-@interface XNetworkingSoraWalletSbApyCase0ResponseCompanion : XNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) XNetworkingSoraWalletSbApyCase0ResponseCompanion *shared __attribute__((swift_name("shared")));
-- (id<XNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase0ResponseData")))
-@interface XNetworkingSoraWalletSbApyCase0ResponseData : XNetworkingBase
-- (instancetype)initWithPoolXYKEntities:(XNetworkingSoraWalletSbApyCase0ResponseDataEntities *)poolXYKEntities __attribute__((swift_name("init(poolXYKEntities:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) XNetworkingSoraWalletSbApyCase0ResponseDataCompanion *companion __attribute__((swift_name("companion")));
-- (XNetworkingSoraWalletSbApyCase0ResponseData *)doCopyPoolXYKEntities:(XNetworkingSoraWalletSbApyCase0ResponseDataEntities *)poolXYKEntities __attribute__((swift_name("doCopy(poolXYKEntities:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) XNetworkingSoraWalletSbApyCase0ResponseDataEntities *poolXYKEntities __attribute__((swift_name("poolXYKEntities")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase0ResponseData.Companion")))
-@interface XNetworkingSoraWalletSbApyCase0ResponseDataCompanion : XNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) XNetworkingSoraWalletSbApyCase0ResponseDataCompanion *shared __attribute__((swift_name("shared")));
-- (id<XNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase0ResponseDataEntities")))
-@interface XNetworkingSoraWalletSbApyCase0ResponseDataEntities : XNetworkingBase
-- (instancetype)initWithNodes:(NSArray<XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNode *> *)nodes __attribute__((swift_name("init(nodes:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesCompanion *companion __attribute__((swift_name("companion")));
-- (XNetworkingSoraWalletSbApyCase0ResponseDataEntities *)doCopyNodes:(NSArray<XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNode *> *)nodes __attribute__((swift_name("doCopy(nodes:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNode *> *nodes __attribute__((swift_name("nodes")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase0ResponseDataEntities.Companion")))
-@interface XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesCompanion : XNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesCompanion *shared __attribute__((swift_name("shared")));
-- (id<XNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase0ResponseDataEntitiesNode")))
-@interface XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNode : XNetworkingBase
-- (instancetype)initWithPools:(XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPools *)pools __attribute__((swift_name("init(pools:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodeCompanion *companion __attribute__((swift_name("companion")));
-- (XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNode *)doCopyPools:(XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPools *)pools __attribute__((swift_name("doCopy(pools:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPools *pools __attribute__((swift_name("pools")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase0ResponseDataEntitiesNode.Companion")))
-@interface XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodeCompanion : XNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodeCompanion *shared __attribute__((swift_name("shared")));
-- (id<XNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase0ResponseDataEntitiesNodesPools")))
-@interface XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPools : XNetworkingBase
-- (instancetype)initWithEdges:(NSArray<XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdge *> *)edges __attribute__((swift_name("init(edges:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsCompanion *companion __attribute__((swift_name("companion")));
-- (XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPools *)doCopyEdges:(NSArray<XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdge *> *)edges __attribute__((swift_name("doCopy(edges:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdge *> *edges __attribute__((swift_name("edges")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase0ResponseDataEntitiesNodesPools.Companion")))
-@interface XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsCompanion : XNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsCompanion *shared __attribute__((swift_name("shared")));
-- (id<XNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdge")))
-@interface XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdge : XNetworkingBase
-- (instancetype)initWithNode:(XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdgeNode *)node __attribute__((swift_name("init(node:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdgeCompanion *companion __attribute__((swift_name("companion")));
-- (XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdge *)doCopyNode:(XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdgeNode *)node __attribute__((swift_name("doCopy(node:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdgeNode *node __attribute__((swift_name("node")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdge.Companion")))
-@interface XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdgeCompanion : XNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdgeCompanion *shared __attribute__((swift_name("shared")));
-- (id<XNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdgeNode")))
-@interface XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdgeNode : XNetworkingBase
-- (instancetype)initWithTargetAssetId:(NSString *)targetAssetId priceUSD:(NSString * _Nullable)priceUSD strategicBonusApy:(NSString * _Nullable)strategicBonusApy __attribute__((swift_name("init(targetAssetId:priceUSD:strategicBonusApy:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdgeNodeCompanion *companion __attribute__((swift_name("companion")));
-- (XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdgeNode *)doCopyTargetAssetId:(NSString *)targetAssetId priceUSD:(NSString * _Nullable)priceUSD strategicBonusApy:(NSString * _Nullable)strategicBonusApy __attribute__((swift_name("doCopy(targetAssetId:priceUSD:strategicBonusApy:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString * _Nullable priceUSD __attribute__((swift_name("priceUSD")));
-@property (readonly) NSString * _Nullable strategicBonusApy __attribute__((swift_name("strategicBonusApy")));
-@property (readonly) NSString *targetAssetId __attribute__((swift_name("targetAssetId")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdgeNode.Companion")))
-@interface XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdgeNodeCompanion : XNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) XNetworkingSoraWalletSbApyCase0ResponseDataEntitiesNodesPoolsEdgeNodeCompanion *shared __attribute__((swift_name("shared")));
-- (id<XNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase1Response")))
-@interface XNetworkingSoraWalletSbApyCase1Response : XNetworkingBase
-- (instancetype)initWithData:(XNetworkingSoraWalletSbApyCase1ResponseData *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) XNetworkingSoraWalletSbApyCase1ResponseCompanion *companion __attribute__((swift_name("companion")));
-- (XNetworkingSoraWalletSbApyCase1Response *)doCopyData:(XNetworkingSoraWalletSbApyCase1ResponseData *)data __attribute__((swift_name("doCopy(data:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) XNetworkingSoraWalletSbApyCase1ResponseData *data __attribute__((swift_name("data")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase1Response.Companion")))
-@interface XNetworkingSoraWalletSbApyCase1ResponseCompanion : XNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) XNetworkingSoraWalletSbApyCase1ResponseCompanion *shared __attribute__((swift_name("shared")));
-- (id<XNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase1ResponseData")))
-@interface XNetworkingSoraWalletSbApyCase1ResponseData : XNetworkingBase
-- (instancetype)initWithPoolXYKs:(XNetworkingSoraWalletSbApyCase1ResponseDataEntities *)poolXYKs __attribute__((swift_name("init(poolXYKs:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) XNetworkingSoraWalletSbApyCase1ResponseDataCompanion *companion __attribute__((swift_name("companion")));
-- (XNetworkingSoraWalletSbApyCase1ResponseData *)doCopyPoolXYKs:(XNetworkingSoraWalletSbApyCase1ResponseDataEntities *)poolXYKs __attribute__((swift_name("doCopy(poolXYKs:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) XNetworkingSoraWalletSbApyCase1ResponseDataEntities *poolXYKs __attribute__((swift_name("poolXYKs")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase1ResponseData.Companion")))
-@interface XNetworkingSoraWalletSbApyCase1ResponseDataCompanion : XNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) XNetworkingSoraWalletSbApyCase1ResponseDataCompanion *shared __attribute__((swift_name("shared")));
-- (id<XNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase1ResponseDataEntities")))
-@interface XNetworkingSoraWalletSbApyCase1ResponseDataEntities : XNetworkingBase
-- (instancetype)initWithNodes:(NSArray<XNetworkingSoraWalletSbApyCase1ResponseDataEntitiesNode *> *)nodes __attribute__((swift_name("init(nodes:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) XNetworkingSoraWalletSbApyCase1ResponseDataEntitiesCompanion *companion __attribute__((swift_name("companion")));
-- (XNetworkingSoraWalletSbApyCase1ResponseDataEntities *)doCopyNodes:(NSArray<XNetworkingSoraWalletSbApyCase1ResponseDataEntitiesNode *> *)nodes __attribute__((swift_name("doCopy(nodes:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<XNetworkingSoraWalletSbApyCase1ResponseDataEntitiesNode *> *nodes __attribute__((swift_name("nodes")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase1ResponseDataEntities.Companion")))
-@interface XNetworkingSoraWalletSbApyCase1ResponseDataEntitiesCompanion : XNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) XNetworkingSoraWalletSbApyCase1ResponseDataEntitiesCompanion *shared __attribute__((swift_name("shared")));
-- (id<XNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase1ResponseDataEntitiesNode")))
-@interface XNetworkingSoraWalletSbApyCase1ResponseDataEntitiesNode : XNetworkingBase
-- (instancetype)initWithId:(NSString *)id priceUSD:(NSString * _Nullable)priceUSD strategicBonusApy:(NSString * _Nullable)strategicBonusApy __attribute__((swift_name("init(id:priceUSD:strategicBonusApy:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) XNetworkingSoraWalletSbApyCase1ResponseDataEntitiesNodeCompanion *companion __attribute__((swift_name("companion")));
-- (XNetworkingSoraWalletSbApyCase1ResponseDataEntitiesNode *)doCopyId:(NSString *)id priceUSD:(NSString * _Nullable)priceUSD strategicBonusApy:(NSString * _Nullable)strategicBonusApy __attribute__((swift_name("doCopy(id:priceUSD:strategicBonusApy:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString *id __attribute__((swift_name("id")));
-@property (readonly) NSString * _Nullable priceUSD __attribute__((swift_name("priceUSD")));
-@property (readonly) NSString * _Nullable strategicBonusApy __attribute__((swift_name("strategicBonusApy")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase1ResponseDataEntitiesNode.Companion")))
-@interface XNetworkingSoraWalletSbApyCase1ResponseDataEntitiesNodeCompanion : XNetworkingBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) XNetworkingSoraWalletSbApyCase1ResponseDataEntitiesNodeCompanion *shared __attribute__((swift_name("shared")));
-- (id<XNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SoraWalletSbApyCase2Response")))
 @interface XNetworkingSoraWalletSbApyCase2Response : XNetworkingBase
 - (instancetype)initWithData:(XNetworkingSoraWalletSbApyCase2ResponseData *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
@@ -2081,13 +1644,13 @@ __attribute__((swift_name("SoraWalletSbApyCase2Response.Companion")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SoraWalletSbApyCase2ResponseData")))
 @interface XNetworkingSoraWalletSbApyCase2ResponseData : XNetworkingBase
-- (instancetype)initWithPoolXYKs:(XNetworkingSoraWalletSbApyCase2ResponseDataEntities *)poolXYKs __attribute__((swift_name("init(poolXYKs:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithEntities:(XNetworkingSoraWalletSbApyCase2ResponseDataEntities *)entities __attribute__((swift_name("init(entities:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) XNetworkingSoraWalletSbApyCase2ResponseDataCompanion *companion __attribute__((swift_name("companion")));
-- (XNetworkingSoraWalletSbApyCase2ResponseData *)doCopyPoolXYKs:(XNetworkingSoraWalletSbApyCase2ResponseDataEntities *)poolXYKs __attribute__((swift_name("doCopy(poolXYKs:)")));
+- (XNetworkingSoraWalletSbApyCase2ResponseData *)doCopyEntities:(XNetworkingSoraWalletSbApyCase2ResponseDataEntities *)entities __attribute__((swift_name("doCopy(entities:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) XNetworkingSoraWalletSbApyCase2ResponseDataEntities *poolXYKs __attribute__((swift_name("poolXYKs")));
+@property (readonly) XNetworkingSoraWalletSbApyCase2ResponseDataEntities *entities __attribute__((swift_name("entities")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -2108,13 +1671,14 @@ __attribute__((swift_name("SoraWalletSbApyCase2ResponseData.Companion")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SoraWalletSbApyCase2ResponseDataEntities")))
 @interface XNetworkingSoraWalletSbApyCase2ResponseDataEntities : XNetworkingBase
-- (instancetype)initWithNodes:(NSArray<XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesNode *> *)nodes __attribute__((swift_name("init(nodes:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithNodes:(NSArray<XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesNode *> *)nodes pageInfo:(XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesPageInfo *)pageInfo __attribute__((swift_name("init(nodes:pageInfo:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesCompanion *companion __attribute__((swift_name("companion")));
-- (XNetworkingSoraWalletSbApyCase2ResponseDataEntities *)doCopyNodes:(NSArray<XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesNode *> *)nodes __attribute__((swift_name("doCopy(nodes:)")));
+- (XNetworkingSoraWalletSbApyCase2ResponseDataEntities *)doCopyNodes:(NSArray<XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesNode *> *)nodes pageInfo:(XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesPageInfo *)pageInfo __attribute__((swift_name("doCopy(nodes:pageInfo:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSArray<XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesNode *> *nodes __attribute__((swift_name("nodes")));
+@property (readonly) XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesPageInfo *pageInfo __attribute__((swift_name("pageInfo")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -2152,6 +1716,34 @@ __attribute__((swift_name("SoraWalletSbApyCase2ResponseDataEntitiesNode.Companio
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesNodeCompanion *shared __attribute__((swift_name("shared")));
+- (id<XNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletSbApyCase2ResponseDataEntitiesPageInfo")))
+@interface XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesPageInfo : XNetworkingBase
+- (instancetype)initWithHasNextPage:(BOOL)hasNextPage endCursor:(NSString * _Nullable)endCursor __attribute__((swift_name("init(hasNextPage:endCursor:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesPageInfoCompanion *companion __attribute__((swift_name("companion")));
+- (XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesPageInfo *)doCopyHasNextPage:(BOOL)hasNextPage endCursor:(NSString * _Nullable)endCursor __attribute__((swift_name("doCopy(hasNextPage:endCursor:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString * _Nullable endCursor __attribute__((swift_name("endCursor")));
+@property (readonly) BOOL hasNextPage __attribute__((swift_name("hasNextPage")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletSbApyCase2ResponseDataEntitiesPageInfo.Companion")))
+@interface XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesPageInfoCompanion : XNetworkingBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) XNetworkingSoraWalletSbApyCase2ResponseDataEntitiesPageInfoCompanion *shared __attribute__((swift_name("shared")));
 - (id<XNetworkingKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
