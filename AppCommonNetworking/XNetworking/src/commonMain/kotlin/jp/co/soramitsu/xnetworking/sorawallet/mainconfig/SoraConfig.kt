@@ -8,6 +8,7 @@ data class SoraConfig(
     val genesis: String,
     val joinUrl: String,
     val substrateTypesUrl: String,
+    val soracard: Boolean,
     val currencies: List<SoraCurrency>,
 )
 
