@@ -101,7 +101,17 @@ class ExampleUnitTest {
     fun getSoraConfig() = runTest {
         coEvery {
             soraRemoteConfigBuilder.getConfig()
-        } returns SoraConfig(true, "", ConfigExplorerType("", "", ""), emptyList(), "", "", "", emptyList())
+        } returns SoraConfig(
+            true,
+            "",
+            ConfigExplorerType("", "", ""),
+            emptyList(),
+            "",
+            "",
+            "",
+            true,
+            emptyList()
+        )
         val soraEnv = networkService.getSoraConfig()
         assertEquals(0, soraEnv?.nodes?.size)
     }
