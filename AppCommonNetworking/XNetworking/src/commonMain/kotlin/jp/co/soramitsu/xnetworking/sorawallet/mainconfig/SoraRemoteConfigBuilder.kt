@@ -75,6 +75,7 @@ class SoraRemoteConfigBuilder(
                 genesis = configDto.genesis,
                 joinUrl = mobileDto.joinLink,
                 substrateTypesUrl = if (platform() == platform_android) mobileDto.substrateTypesAndroid else mobileDto.substrateTypesIos,
+                soracard = mobileDto.soracard,
                 currencies = mobileDto.currencies.map {
                     SoraCurrency(
                         code = it.code,
@@ -121,6 +122,8 @@ private data class MobileDto(
     val substrateTypesAndroid: String,
     @SerialName("substrate_types_ios")
     val substrateTypesIos: String,
+    @SerialName("soracard")
+    val soracard: Boolean = false,
     @SerialName("currencies")
     val currencies: List<CurrencyDto>,
 )
