@@ -1189,8 +1189,8 @@ __attribute__((swift_name("ConfigExplorerType")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SoraConfig")))
 @interface XNetworkingSoraConfig : XNetworkingBase
-- (instancetype)initWithRemote:(BOOL)remote blockExplorerUrl:(NSString *)blockExplorerUrl blockExplorerType:(XNetworkingConfigExplorerType *)blockExplorerType nodes:(NSArray<XNetworkingSoraConfigNode *> *)nodes genesis:(NSString *)genesis joinUrl:(NSString *)joinUrl substrateTypesUrl:(NSString *)substrateTypesUrl currencies:(NSArray<XNetworkingSoraCurrency *> *)currencies __attribute__((swift_name("init(remote:blockExplorerUrl:blockExplorerType:nodes:genesis:joinUrl:substrateTypesUrl:currencies:)"))) __attribute__((objc_designated_initializer));
-- (XNetworkingSoraConfig *)doCopyRemote:(BOOL)remote blockExplorerUrl:(NSString *)blockExplorerUrl blockExplorerType:(XNetworkingConfigExplorerType *)blockExplorerType nodes:(NSArray<XNetworkingSoraConfigNode *> *)nodes genesis:(NSString *)genesis joinUrl:(NSString *)joinUrl substrateTypesUrl:(NSString *)substrateTypesUrl currencies:(NSArray<XNetworkingSoraCurrency *> *)currencies __attribute__((swift_name("doCopy(remote:blockExplorerUrl:blockExplorerType:nodes:genesis:joinUrl:substrateTypesUrl:currencies:)")));
+- (instancetype)initWithRemote:(BOOL)remote blockExplorerUrl:(NSString *)blockExplorerUrl blockExplorerType:(XNetworkingConfigExplorerType *)blockExplorerType nodes:(NSArray<XNetworkingSoraConfigNode *> *)nodes genesis:(NSString *)genesis joinUrl:(NSString *)joinUrl substrateTypesUrl:(NSString *)substrateTypesUrl soracard:(BOOL)soracard currencies:(NSArray<XNetworkingSoraCurrency *> *)currencies __attribute__((swift_name("init(remote:blockExplorerUrl:blockExplorerType:nodes:genesis:joinUrl:substrateTypesUrl:soracard:currencies:)"))) __attribute__((objc_designated_initializer));
+- (XNetworkingSoraConfig *)doCopyRemote:(BOOL)remote blockExplorerUrl:(NSString *)blockExplorerUrl blockExplorerType:(XNetworkingConfigExplorerType *)blockExplorerType nodes:(NSArray<XNetworkingSoraConfigNode *> *)nodes genesis:(NSString *)genesis joinUrl:(NSString *)joinUrl substrateTypesUrl:(NSString *)substrateTypesUrl soracard:(BOOL)soracard currencies:(NSArray<XNetworkingSoraCurrency *> *)currencies __attribute__((swift_name("doCopy(remote:blockExplorerUrl:blockExplorerType:nodes:genesis:joinUrl:substrateTypesUrl:soracard:currencies:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -1201,6 +1201,7 @@ __attribute__((swift_name("SoraConfig")))
 @property (readonly) NSString *joinUrl __attribute__((swift_name("joinUrl")));
 @property (readonly) NSArray<XNetworkingSoraConfigNode *> *nodes __attribute__((swift_name("nodes")));
 @property (readonly) BOOL remote __attribute__((swift_name("remote")));
+@property (readonly) BOOL soracard __attribute__((swift_name("soracard")));
 @property (readonly) NSString *substrateTypesUrl __attribute__((swift_name("substrateTypesUrl")));
 @end
 
