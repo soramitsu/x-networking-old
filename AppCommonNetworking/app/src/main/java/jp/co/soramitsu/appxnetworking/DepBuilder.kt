@@ -28,8 +28,8 @@ object DepBuilder {
         val soraRemoteConfigBuilder = SoraRemoteConfigProvider(
             ctx,
             soraNetworkClient,
-            "https://config.polkaswap2.io/stage/common.json",
-            "https://config.polkaswap2.io/stage/mobile.json",
+            "https://config.polkaswap2.io/dev/common.json",
+            "https://config.polkaswap2.io/dev/mobile.json",
         ).provide()
         subQueryClientForSoraWallet =
             SubQueryClientForSoraWalletFactory(ctx).create(
