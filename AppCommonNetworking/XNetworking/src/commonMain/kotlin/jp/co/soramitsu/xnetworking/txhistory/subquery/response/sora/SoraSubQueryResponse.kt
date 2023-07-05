@@ -49,7 +49,7 @@ data class HistoryResponseItem(
     @SerialName("execution")
     val execution: ExecutionResult,
     @SerialName("data")
-    val data: JsonElement
+    val data: JsonElement,
 )
 
 @Serializable

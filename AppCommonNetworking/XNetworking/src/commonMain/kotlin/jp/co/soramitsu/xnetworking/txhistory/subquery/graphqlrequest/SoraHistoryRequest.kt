@@ -19,6 +19,7 @@ internal fun soraHistoryGraphQLRequest(
                                 { module: { equalTo: "poolXYK" } method: { equalTo: "withdrawLiquidity" }} 
                                 { data: { contains: [{ method: "withdrawLiquidity" }] }} 
                                 { module: { equalTo: "referrals" } }
+                                { module: { equalTo: "ethBridge" } method: { equalTo: "transferToSidechain" }} 
                               ] 
                             } 
                             { 
