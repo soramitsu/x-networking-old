@@ -28,4 +28,5 @@ data class ConfigExplorerType(
     val fiat: String,
     val reward: String,
     val sbapy: String,
+    val assets: String,
 )

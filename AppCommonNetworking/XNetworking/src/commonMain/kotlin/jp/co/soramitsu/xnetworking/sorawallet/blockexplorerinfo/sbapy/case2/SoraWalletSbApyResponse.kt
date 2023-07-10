@@ -1,5 +1,6 @@
 package jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.sbapy.case2
 
+import jp.co.soramitsu.xnetworking.common.ResponsePageInfo
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -20,7 +21,7 @@ data class SoraWalletSbApyCase2ResponseDataEntities(
     @SerialName("nodes")
     val nodes: List<SoraWalletSbApyCase2ResponseDataEntitiesNode>,
     @SerialName("pageInfo")
-    val pageInfo: SoraWalletSbApyCase2ResponseDataEntitiesPageInfo,
+    val pageInfo: ResponsePageInfo,
 )
 
 @Serializable
@@ -29,12 +30,4 @@ data class SoraWalletSbApyCase2ResponseDataEntitiesNode(
     val id: String,
     @SerialName("strategicBonusApy")
     val strategicBonusApy: String? = null,
-)
-
-@Serializable
-data class SoraWalletSbApyCase2ResponseDataEntitiesPageInfo(
-    @SerialName("hasNextPage")
-    val hasNextPage: Boolean,
-    @SerialName("endCursor")
-    val endCursor: String?,
 )

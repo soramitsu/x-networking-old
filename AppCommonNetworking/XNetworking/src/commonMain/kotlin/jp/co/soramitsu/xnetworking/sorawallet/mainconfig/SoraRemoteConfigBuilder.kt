@@ -64,6 +64,7 @@ class SoraRemoteConfigBuilder(
                     fiat = mobileDto.explorerTypeFiat,
                     reward = mobileDto.explorerTypeReward,
                     sbapy = mobileDto.explorerTypeSbapy,
+                    assets = mobileDto.explorerTypeAssets,
                 ),
                 nodes = configDto.nodes.map {
                     SoraConfigNode(
@@ -116,6 +117,8 @@ private data class MobileDto(
     val explorerTypeSbapy: String,
     @SerialName("explorer_type_reward")
     val explorerTypeReward: String,
+    @SerialName("explorer_type_assets")
+    val explorerTypeAssets: String,
     @SerialName("join_link")
     val joinLink: String,
     @SerialName("substrate_types_android")

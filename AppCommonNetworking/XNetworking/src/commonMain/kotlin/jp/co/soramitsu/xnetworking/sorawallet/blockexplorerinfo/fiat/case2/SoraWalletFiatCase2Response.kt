@@ -1,5 +1,6 @@
 package jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.fiat.case2
 
+import jp.co.soramitsu.xnetworking.common.ResponsePageInfo
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -20,7 +21,7 @@ data class SoraWalletFiatCase2ResponseDataEntities(
     @SerialName("nodes")
     val nodes: List<SoraWalletFiatCase2ResponseDataEntitiesNode>,
     @SerialName("pageInfo")
-    val pageInfo: SoraWalletFiatCase2ResponseDataEntitiesPageInfo,
+    val pageInfo: ResponsePageInfo,
 )
 
 @Serializable
@@ -29,12 +30,4 @@ data class SoraWalletFiatCase2ResponseDataEntitiesNode(
     val id: String,
     @SerialName("priceUSD")
     val priceUSD: String,
-)
-
-@Serializable
-data class SoraWalletFiatCase2ResponseDataEntitiesPageInfo(
-    @SerialName("hasNextPage")
-    val hasNextPage: Boolean,
-    @SerialName("endCursor")
-    val endCursor: String?,
 )

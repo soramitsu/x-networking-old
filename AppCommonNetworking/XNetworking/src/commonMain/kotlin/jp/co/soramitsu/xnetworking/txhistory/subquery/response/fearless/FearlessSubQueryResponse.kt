@@ -1,5 +1,6 @@
 package jp.co.soramitsu.xnetworking.txhistory.subquery.response.fearless
 
+import jp.co.soramitsu.xnetworking.common.ResponsePageInfo
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -20,15 +21,7 @@ data class FearlessHistoryResponseDataElements(
     @SerialName("nodes")
     val nodes: List<FearlessHistoryResponseItem>,
     @SerialName("pageInfo")
-    val pageInfo: FearlessHistoryResponsePageInfo,
-)
-
-@Serializable
-data class FearlessHistoryResponsePageInfo(
-    @SerialName("endCursor")
-    val endCursor: String?,
-    @SerialName("hasNextPage")
-    val hasNextPage: Boolean,
+    val pageInfo: ResponsePageInfo,
 )
 
 @Serializable
