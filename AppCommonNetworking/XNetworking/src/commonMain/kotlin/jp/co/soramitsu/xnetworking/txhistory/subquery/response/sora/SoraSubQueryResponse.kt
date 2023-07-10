@@ -1,5 +1,6 @@
 package jp.co.soramitsu.xnetworking.txhistory.subquery.response.sora
 
+import jp.co.soramitsu.xnetworking.common.ResponsePageInfo
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonElement
@@ -21,15 +22,7 @@ data class HistoryResponseDataElements(
     @SerialName("nodes")
     val nodes: List<HistoryResponseItem>,
     @SerialName("pageInfo")
-    val pageInfo: HistoryResponsePageInfo,
-)
-
-@Serializable
-data class HistoryResponsePageInfo(
-    @SerialName("endCursor")
-    val endCursor: String?,
-    @SerialName("hasNextPage")
-    val hasNextPage: Boolean,
+    val pageInfo: ResponsePageInfo,
 )
 
 @Serializable

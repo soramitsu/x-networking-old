@@ -2,6 +2,8 @@ package jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo
 
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkException
+import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.assets.AssetsInfo
+import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.assets.SoraWalletAssetsCases
 import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.fiat.FiatData
 import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.fiat.SoraWalletFiatCases
 import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.referral.ReferrerRewardsInfo
@@ -36,6 +38,12 @@ class SoraWalletBlockExplorerInfo(
         val config = soraRemoteConfigBuilder.getConfig() ?: return emptyList()
         val case = SoraWalletSbApyCases.getCase(config.blockExplorerType.sbapy)
         return case.getSbApy(config.blockExplorerUrl, networkClient)
+    }
+
+    suspend fun getAssetsInfo(tokenIds: List<String>): List<AssetsInfo> {
+        val config = soraRemoteConfigBuilder.getConfig() ?: return emptyList()
+        val case = SoraWalletAssetsCases.getCase(config.blockExplorerType.assets)
+        return case.getAssetsInfo(config.blockExplorerUrl, networkClient, tokenIds)
     }
 
     @Throws(
