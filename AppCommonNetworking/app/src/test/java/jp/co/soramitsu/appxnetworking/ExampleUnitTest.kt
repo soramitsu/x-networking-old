@@ -104,7 +104,7 @@ class ExampleUnitTest {
         } returns SoraConfig(
             true,
             "",
-            ConfigExplorerType("", "", ""),
+            ConfigExplorerType("", "", "", ""),
             emptyList(),
             "",
             "",
