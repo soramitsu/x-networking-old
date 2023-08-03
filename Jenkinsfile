@@ -1,47 +1,15 @@
-def dockerImage = 'build-tools/android-build-box-jdk11:latest'
-def jenkinsAgent = 'android'
-def deploymentBranches = ['master', 'develop']
+@Library('jenkins-library') _
 
-node(jenkinsAgent) {
-    properties(
-	    [
-		    disableConcurrentBuilds(),
-            buildDiscarder(steps.logRotator(numToKeepStr: '20'))
-		]
-    )
-    timestamps {
-        try {
-            stage('Git pull'){
-                checkout scm
-            }
-            withCredentials([
-                [$class: 'UsernamePasswordMultiBinding', credentialsId: 'bot-soramitsu-rw', usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD']
-                ])
-            {
-                docker.withRegistry('https://docker.soramitsu.co.jp', 'bot-build-tools-ro') {
-                    docker.image("${dockerImage}").inside() {
-                        stage('Build library') {
-                            sh '''
-                                cd AppCommonNetworking
-                                ./gradlew clean build
-                            '''
-                        }
-                        if (env.BRANCH_NAME in deploymentBranches) {
-                            stage('Deploy library') {
-                                sh '''
-                                    cd AppCommonNetworking
-                                    ./gradlew :XNetworking:publishAndroidReleasePublicationToScnRepoRepository
-                                '''
-                            }
-                        }
-                    }
-                }
-            }
-        } catch (e) {
-            print e
-            currentBuild.result = 'FAILURE'
-        } finally {
-            cleanWs()
-        }
-    }
-}
+new org.soramitsu.mainLibrary().call(
+  agentLabel: "android",
+  skipSonar: true,
+  skipDojo: true,
+  agentImage: "android-build-box-jdk11:latest",
+  nexusCredentials: "bot-soramitsu-rw",
+  buildCommand: 'cd AppCommonNetworking && ./gradlew clean build',
+  testCommand: 'cd AppCommonNetworking && ./gradlew test --info',
+  publishCommand: 'cd AppCommonNetworking && ./gradlew :XNetworking:publishAndroidReleasePublicationToScnRepoRepository',
+  publishLibrary: true,
+  skipDockerImage: true,
+  dojoProductType: "x-networking"
+)
