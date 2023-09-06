@@ -14,4 +14,6 @@ pluginManagement {
 //}
 rootProject.name = "AppXNetworking"
 include(":app")
-include(":XNetworking")
+include(":XNetworking:basic")
+include(":XNetworking:sorawallet")
+include(":XNetworking:fearlesswallet")

@@ -1,17 +1,18 @@
 package jp.co.soramitsu.appxnetworking
 
-import jp.co.soramitsu.xnetworking.fearless.FearlessChainsBuilder
-import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
+import jp.co.soramitsu.xnetworking.basic.networkclient.SoramitsuNetworkClient
+import jp.co.soramitsu.xnetworking.basic.txhistory.TxHistoryItem
+import jp.co.soramitsu.xnetworking.fearlesswallet.chainbuilder.FearlessChainsBuilder
+import jp.co.soramitsu.xnetworking.fearlesswallet.txhistory.client.SubQueryClientForFearlessWallet
 import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.SoraWalletBlockExplorerInfo
 import jp.co.soramitsu.xnetworking.sorawallet.mainconfig.SoraConfig
 import jp.co.soramitsu.xnetworking.sorawallet.mainconfig.SoraRemoteConfigBuilder
 import jp.co.soramitsu.xnetworking.sorawallet.tokenwhitelist.SoraTokenWhitelistDto
 import jp.co.soramitsu.xnetworking.sorawallet.tokenwhitelist.SoraTokensWhitelistManager
-import jp.co.soramitsu.xnetworking.txhistory.TxHistoryItem
-import jp.co.soramitsu.xnetworking.txhistory.client.fearlesswallet.SubQueryClientForFearlessWallet
-import jp.co.soramitsu.xnetworking.txhistory.client.sorawallet.SubQueryClientForSoraWallet
+import jp.co.soramitsu.xnetworking.sorawallet.txhistory.client.SubQueryClientForSoraWallet
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import java.util.concurrent.TimeUnit
 
 class NetworkService(
     private val client: SoramitsuNetworkClient,
@@ -49,7 +50,7 @@ class NetworkService(
             "0x0200070000000000000000000000000000000000000000000000000000000000",
             "0x0200080000000000000000000000000000000000000000000000000000000000",
             "0x0200090000000000000000000000000000000000000000000000000000000000",
-        ))
+        ), TimeUnit.SECONDS.convert(System.currentTimeMillis(), TimeUnit.MILLISECONDS) - 24 * 60 * 60)
 
     suspend fun getHistorySora(page: Long, f: (TxHistoryItem) -> Boolean) =
         subQueryClientForSoraWallet.getTransactionHistoryPaged(

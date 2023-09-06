@@ -1,15 +1,15 @@
 package jp.co.soramitsu.appxnetworking
 
 import android.content.Context
-import jp.co.soramitsu.xnetworking.fearless.FearlessChainsBuilder
-import jp.co.soramitsu.xnetworking.networkclient.SoramitsuNetworkClient
+import jp.co.soramitsu.xnetworking.basic.networkclient.SoramitsuNetworkClient
+import jp.co.soramitsu.xnetworking.fearlesswallet.chainbuilder.FearlessChainsBuilder
+import jp.co.soramitsu.xnetworking.fearlesswallet.txhistory.client.SubQueryClientForFearlessWallet
+import jp.co.soramitsu.xnetworking.fearlesswallet.txhistory.client.SubQueryClientForFearlessWalletFactory
 import jp.co.soramitsu.xnetworking.sorawallet.blockexplorerinfo.SoraWalletBlockExplorerInfo
 import jp.co.soramitsu.xnetworking.sorawallet.mainconfig.SoraRemoteConfigProvider
 import jp.co.soramitsu.xnetworking.sorawallet.tokenwhitelist.SoraTokensWhitelistManager
-import jp.co.soramitsu.xnetworking.txhistory.client.fearlesswallet.SubQueryClientForFearlessWallet
-import jp.co.soramitsu.xnetworking.txhistory.client.fearlesswallet.SubQueryClientForFearlessWalletFactory
-import jp.co.soramitsu.xnetworking.txhistory.client.sorawallet.SubQueryClientForSoraWallet
-import jp.co.soramitsu.xnetworking.txhistory.client.sorawallet.SubQueryClientForSoraWalletFactory
+import jp.co.soramitsu.xnetworking.sorawallet.txhistory.client.SubQueryClientForSoraWallet
+import jp.co.soramitsu.xnetworking.sorawallet.txhistory.client.SubQueryClientForSoraWalletFactory
 
 object DepBuilder {
 
@@ -32,13 +32,17 @@ object DepBuilder {
             "https://config.polkaswap2.io/dev/mobile.json",
         ).provide()
         subQueryClientForSoraWallet =
-            SubQueryClientForSoraWalletFactory(ctx).create(
+            SubQueryClientForSoraWalletFactory(
+                ctx
+            ).create(
                 soraNetworkClient,
                 30,
                 soraRemoteConfigBuilder,
             )
         subQueryClientForFearlessWallet =
-            SubQueryClientForFearlessWalletFactory(ctx).create(
+            SubQueryClientForFearlessWalletFactory(
+                ctx
+            ).create(
                 soraNetworkClient,
                 30,
             )
@@ -52,7 +56,9 @@ object DepBuilder {
                 soraNetworkClient,
                 soraRemoteConfigBuilder,
             ),
-            SoraTokensWhitelistManager(soraNetworkClient),
+            SoraTokensWhitelistManager(
+                soraNetworkClient
+            ),
         )
     }
 }
