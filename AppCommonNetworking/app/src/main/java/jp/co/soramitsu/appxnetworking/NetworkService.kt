@@ -12,6 +12,7 @@ import jp.co.soramitsu.xnetworking.txhistory.client.fearlesswallet.SubQueryClien
 import jp.co.soramitsu.xnetworking.txhistory.client.sorawallet.SubQueryClientForSoraWallet
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import java.util.concurrent.TimeUnit
 
 class NetworkService(
     private val client: SoramitsuNetworkClient,
@@ -49,7 +50,7 @@ class NetworkService(
             "0x0200070000000000000000000000000000000000000000000000000000000000",
             "0x0200080000000000000000000000000000000000000000000000000000000000",
             "0x0200090000000000000000000000000000000000000000000000000000000000",
-        ))
+        ), TimeUnit.SECONDS.convert(System.currentTimeMillis(), TimeUnit.MILLISECONDS) - 24 * 60 * 60)
 
     suspend fun getHistorySora(page: Long, f: (TxHistoryItem) -> Boolean) =
         subQueryClientForSoraWallet.getTransactionHistoryPaged(
