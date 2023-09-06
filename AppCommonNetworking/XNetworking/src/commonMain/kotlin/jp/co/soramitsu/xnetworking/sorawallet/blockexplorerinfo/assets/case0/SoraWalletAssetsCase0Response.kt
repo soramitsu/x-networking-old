@@ -30,4 +30,30 @@ data class SoraWalletAssetsCase0ResponseDataEntitiesNode(
     val id: String,
     @SerialName("liquidity")
     val liquidity: String,
+    @SerialName("hourSnapshots")
+    val periods: SoraWalletAssetsCase0ResponseDataEntitiesNodeHour,
+)
+
+@Serializable
+data class SoraWalletAssetsCase0ResponseDataEntitiesNodeHour(
+    @SerialName("nodes")
+    val nodes: List<SoraWalletAssetsCase0ResponseDataEntitiesNodeHourNode>,
+)
+
+@Serializable
+data class SoraWalletAssetsCase0ResponseDataEntitiesNodeHourNode(
+    @SerialName("priceUSD")
+    val price: SoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePrice,
+)
+
+@Serializable
+data class SoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePrice(
+    @SerialName("low")
+    val low: String,
+    @SerialName("high")
+    val high: String,
+    @SerialName("open")
+    val open: String,
+    @SerialName("close")
+    val close: String,
 )
