@@ -6,10 +6,13 @@ new org.soramitsu.mainLibrary().call(
   skipDojo: true,
   agentImage: "android-build-box-jdk11:latest",
   nexusCredentials: "bot-soramitsu-rw",
-  buildCommand: 'cd AppCommonNetworking && ./gradlew clean build',
-  testCommand: 'cd AppCommonNetworking && ./gradlew test --info',
-  publishCommand: 'cd AppCommonNetworking && ./gradlew :XNetworking:publishAndroidReleasePublicationToScnRepoRepository',
+  buildCommand: './gradlew clean build',
+  testCommand: './gradlew test --info',
+  publishCommand:
+    './gradlew :core:basic:publishAndroidReleasePublicationToScnRepoRepository &&
+    ./gradlew :core:fearlesswallet:publishAndroidReleasePublicationToScnRepoRepository &&
+    ./gradlew :core:sorawallet:publishAndroidReleasePublicationToScnRepoRepository',
   publishLibrary: true,
-  skipDockerImage: true,
+  skipDockerImage: true,›
   dojoProductType: "x-networking"
 )
