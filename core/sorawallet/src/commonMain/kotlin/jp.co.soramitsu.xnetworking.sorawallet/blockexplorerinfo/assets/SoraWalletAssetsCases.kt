@@ -14,7 +14,7 @@ internal interface SoraWalletAssetsCase {
         url: String,
         networkClient: SoramitsuNetworkClient,
         tokenIds: List<String>,
-        timestamp: Long
+        timestamp: Long,
     ): List<AssetsInfo>
 }
 
