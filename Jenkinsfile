@@ -9,10 +9,10 @@ new org.soramitsu.mainLibrary().call(
   buildCommand: './gradlew clean build',
   testCommand: './gradlew test --info',
   publishCommand:
-    './gradlew :core:basic:publishAndroidReleasePublicationToScnRepoRepository &&
+    '''./gradlew :core:basic:publishAndroidReleasePublicationToScnRepoRepository &&
     ./gradlew :core:fearlesswallet:publishAndroidReleasePublicationToScnRepoRepository &&
-    ./gradlew :core:sorawallet:publishAndroidReleasePublicationToScnRepoRepository',
+    ./gradlew :core:sorawallet:publishAndroidReleasePublicationToScnRepoRepository''',
   publishLibrary: true,
-  skipDockerImage: true,›
+  skipDockerImage: true,
   dojoProductType: "x-networking"
 )
