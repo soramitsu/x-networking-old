@@ -1,0 +1,54 @@
+query HistoryRecordsQuery(
+    $cursor: String!
+    $address: String!
+) {
+    historyElements(
+        first: 100,
+        after: $cursor,
+        orderBy: TIMESTAMP_DESC,
+        filter: {
+            or: [
+                {
+                    address: { equalTo: $address }
+                    or: [
+                        { module: { equalTo: "assets" } method: { equalTo: "transfer" }}
+                        { module: { equalTo: "liquidityProxy" } method: { equalTo: "swap" }}
+                        { module: { equalTo: "poolXYK" } method: { equalTo: "depositLiquidity" }}
+                        { data: { contains: [{ method: { equalTo: "depositLiquidity" } }] }}
+                        { module: { equalTo: "poolXYK" } method: { equalTo: "withdrawLiquidity" }}
+                        { data: { contains: [{ method: { equalTo: "withdrawLiquidity" } }] }}
+                        { module: { equalTo: "referrals" } }
+                        { module: { equalTo: "ethBridge" } method: { equalTo: "transferToSidechain" }}
+                    ]
+                }
+                {
+                    data: { contains: { to: $address } }
+                    module: { equalTo: "assets" } method: { equalTo: "transfer" }
+                    execution: { contains: { success: true } }
+                }
+                {
+                    data: { contains: { to: $address } }
+                    module: { equalTo: "referrals" } method: { equalTo: "setReferrer" }
+                    execution: { contains: { success: true } }
+                }
+            ]
+        }
+    ) {
+        nodes {
+            id
+            blockHash
+            module
+            method
+            networkFee
+            timestamp
+            data {
+                name
+                value
+            }
+        }
+        pageInfo {
+            endCursor
+            hasNextPage
+        }
+    }
+}

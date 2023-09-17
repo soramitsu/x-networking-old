@@ -1,0 +1,99 @@
+enum Ordering {
+    TIMESTAMP_DESC
+}
+
+type PageInfo {
+    hasNextPage: Boolean!
+    endCursor: String
+}
+
+input SubQueryIntFilter {
+    distinctFrom: Int
+    equalTo: Int
+    greaterThan: Int
+    greaterThanOrEqualTo: Int
+    in: Int
+    isNull: Boolean
+    lessThan: Int
+    lessThanOrEqualTo: Int
+    notDistinctFrom: Int
+    notEqualTo: Int
+    notIn: Int
+}
+
+input SubQueryStringFilter {
+    distinctFrom: String
+    distinctFromInsensitive: String
+    endsWith: String
+    endsWithInsensitive: String
+    equalTo: String
+    equalToInsensitive: String
+    greaterThan: String
+    greaterThanInsensitive: String
+    greaterThanOrEqualTo: String
+    greaterThanOrEqualToInsensitive: String
+    in: String
+    inInsensitive: String
+    includes: String
+    includesInsensitive: String
+    isNull: Boolean
+    lessThan: String
+    lessThanInsensitive: String
+    lessThanOrEqualTo: String
+    lessThanOrEqualToInsensitive: String
+    like: String
+    likeInsensitive: String
+    notDistinctFrom: String
+    notDistinctFromInsensitive: String
+    notEndsWith: String
+    notEndsWithInsensitive: String
+    notEqualTo: String
+    notEqualToInsensitive: String
+    notIn: String
+    notInInsensitive: String
+    notInIncludes: String
+    notInIncludesInsensitive: String
+    notLike: String
+    notLikeInsensitive: String
+    notStartsWith: String
+    notStartsWithInsensitive: String
+    startsWith: String
+    startsWithInsensitive: String
+}
+
+input SubQueryDataAndExecutionFilter {
+    containedBy: [TxHistoryFilter!]
+    contains: [TxHistoryFilter!]
+    containsAllKeys: [TxHistoryFilter!]
+    containsAnyKeys: [TxHistoryFilter!]
+    containsKey: [TxHistoryFilter!]
+    distinctFrom: String
+    equalTo: String
+    greaterThan: String
+    greaterThanOrEqualTo: String
+    in: [String!]
+    isNull: Boolean
+    lessThan: String
+    lessThanOrEqualTo: String
+    notDistinctFrom: String
+    notEqualTo: String
+    notIn: [String!]
+}
+
+enum Period {
+    DEFAULT, HOUR, DAY, MONTH
+}
+
+input SubQueryEnumPeriodFilter {
+    distinctFrom: Period
+    equalTo: Period
+    greaterThan: Period
+    greaterThanOrEqualTo: Period
+    in: Period
+    isNull: Period
+    lessThan: Period
+    lessThanOrEqualTo: Period
+    notDistinctFrom: Period
+    notEqualTo: Period
+    notIn: Period
+}

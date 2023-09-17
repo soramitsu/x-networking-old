@@ -1,0 +1,52 @@
+query AssetsQuery(
+    $pageCount: Int!,
+    $cursor: String!,
+    $tokenIds: [String!]
+    $timestamp: String!
+) {
+    entities:
+        assets(
+            first: $pageCount
+            after: $cursor
+            filter: {
+                and: [
+                    {
+                        id: {
+                            in: $tokenIds
+                        }
+                    }
+                ]
+            }
+        ) {
+            nodes {
+                id
+                liquidity
+                hourSnapshots:
+                    data(
+                        orderBy: TIMESTAMP_DESC
+                        filter: {
+                            and: [
+                                {
+                                    timestamp: {
+                                        greaterThanOrEqualTo: $timestamp
+                                    }
+                                }
+                                {
+                                    type: {
+                                        equalTo: HOUR
+                                    }
+                                }
+                            ]
+                        }
+                    ) {
+                        nodes {
+                            priceUSD
+                        }
+                    }
+            }
+            pageInfo {
+                hasNextPage
+                endCursor
+            }
+        }
+}

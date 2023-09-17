@@ -1,0 +1,20 @@
+type ReferrerRewardsPagedResponse {
+    nodes: [ReferrerRewardsNodesData!]!
+    pageInfo: PageInfo!
+}
+
+type ReferrerRewardsNodesData {
+    referral: String!
+    amount: String!
+}
+
+input ReferrerRewardsFilter {
+    amount: SubQueryIntFilter
+    and: ReferrerRewardsFilter
+    id: SubQueryStringFilter
+    not: SubQueryIntFilter
+    or: SubQueryIntFilter
+    referral: SubQueryStringFilter
+    referrer: SubQueryStringFilter
+    updated: SubQueryIntFilter
+}

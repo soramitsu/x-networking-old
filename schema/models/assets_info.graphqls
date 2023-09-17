@@ -1,0 +1,48 @@
+type AssetsInfoPagedResponse {
+    nodes: [AssetsInfoNodesData!]!
+    pageInfo: PageInfo!
+}
+
+type AssetsInfoNodesData {
+    id: String!
+    timestamp: String!
+    liquidity: String!
+    priceUSD: String!
+
+    data(orderBy: Ordering, filter: AssetsDataFilter): [AssetsDataPagedData!]
+}
+
+input AssetsInfoFilter {
+    and: [AssetsInfoFilter!]
+    id: SubQueryDataAndExecutionFilter
+    liquidity: SubQueryIntFilter
+    not: [AssetsInfoFilter!]
+    or: [AssetsInfoFilter!]
+    priceUSD: SubQueryStringFilter
+    supply: SubQueryIntFilter
+}
+
+type AssetsDataPagedData {
+    nodes: [AssetsDataNodesData!]!
+    pageInfo: PageInfo!
+}
+
+type AssetsDataNodesData {
+    priceUSD: String!
+}
+
+input AssetsDataFilter {
+    and: [AssetsDataFilter!]
+    assetId: SubQueryDataAndExecutionFilter
+    burn: SubQueryIntFilter
+    id: SubQueryDataAndExecutionFilter
+    liquidity: SubQueryIntFilter
+    mint: SubQueryIntFilter
+    not: [AssetsDataFilter!]
+    or: [AssetsDataFilter!]
+    priceUSD: SubQueryDataAndExecutionFilter
+    supply: SubQueryIntFilter
+    timestamp: SubQueryStringFilter
+    type: SubQueryEnumPeriodFilter
+    volume: SubQueryDataAndExecutionFilter
+}
