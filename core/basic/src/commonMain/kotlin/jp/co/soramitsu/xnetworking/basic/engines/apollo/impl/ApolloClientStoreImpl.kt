@@ -18,14 +18,7 @@ class ApolloClientStoreImpl: ApolloClientStore {
             clientsMap.getOrPut(tag) {
                 ApolloClient.Builder()
                     .serverUrl(serverUrl)
-                    .addHttpInterceptor(
-                        LoggingInterceptor(
-                            level = LoggingInterceptor.Level.BODY,
-                            log = {
-                                println("This is checkpoint: log - $it")
-                            }
-                        )
-                    ).build()
+                    .build()
             }
         }
     }

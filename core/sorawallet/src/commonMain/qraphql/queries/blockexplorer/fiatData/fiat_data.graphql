@@ -1,6 +1,6 @@
 query GetFiatData(
     $pageCount: Int!,
-    $cursor: String!
+    $cursor: Cursor!
 ) {
     entities:
         assets(

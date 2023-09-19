@@ -11,7 +11,7 @@ internal class GetFiatDataUseCase {
     ): List<FiatDataResponse> {
         val result = mutableListOf<FiatDataResponse>()
 
-        var cursor = ""
+        var cursor: Any = ""
 
         while (true) {
             val response = apolloClient.query(
@@ -19,9 +19,9 @@ internal class GetFiatDataUseCase {
                     pageCount = 100,
                     cursor = cursor
                 )
-            ).execute().data?.entities?.firstOrNull() ?: return emptyList()
+            ).execute().data?.entities ?: return emptyList()
 
-            response.nodes.forEach { node ->
+            response.nodes.filterNotNull().forEach { node ->
                 result.add(node.mapToFiatDataResponse())
             }
 

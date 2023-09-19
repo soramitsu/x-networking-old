@@ -1,8 +1,8 @@
-query AssetsQuery(
+query GetAssetsInfo(
     $pageCount: Int!,
-    $cursor: String!,
+    $cursor: Cursor!,
     $tokenIds: [String!]
-    $timestamp: String!
+    $timestamp: Int!
 ) {
     entities:
         assets(

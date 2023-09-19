@@ -12,7 +12,7 @@ internal class GetReferrerRewardsUseCase {
     ): List<ReferrerRewardResponse> {
         val result = mutableListOf<ReferrerRewardResponse>()
 
-        var cursor = ""
+        var cursor: Any = ""
 
         while (true) {
             val response = apolloClient.query(
@@ -21,9 +21,9 @@ internal class GetReferrerRewardsUseCase {
                     cursor = cursor,
                     address = address
                 )
-            ).execute().data?.entities?.firstOrNull() ?: return emptyList()
+            ).execute().data?.entities ?: return emptyList()
 
-            response.nodes.forEach { node ->
+            response.nodes.filterNotNull().forEach { node ->
                 result.add(node.mapReferrerRewardsResponse())
             }
 
@@ -43,7 +43,7 @@ internal class GetReferrerRewardsUseCase {
     private fun GetReferrerRewardsQuery.Node.mapReferrerRewardsResponse() =
         ReferrerRewardResponse(
             referral = referral,
-            amount = amount
+            amount = amount.toString()
         )
 
 }

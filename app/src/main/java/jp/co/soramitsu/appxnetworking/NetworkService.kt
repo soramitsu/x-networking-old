@@ -57,7 +57,7 @@ class NetworkService(
                     "0x0200080000000000000000000000000000000000000000000000000000000000",
                     "0x0200090000000000000000000000000000000000000000000000000000000000",
                 ),
-                timeStamp = timeStampAsLong.toString()
+                timeStamp = timeStampAsLong.toInt()
             )
     }
 

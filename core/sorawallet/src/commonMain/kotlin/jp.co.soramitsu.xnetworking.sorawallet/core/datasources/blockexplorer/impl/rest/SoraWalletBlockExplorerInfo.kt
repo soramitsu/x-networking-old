@@ -29,10 +29,10 @@ class SoraWalletBlockExplorerInfo(
         return case.getSbApy(config.blockExplorerUrl, networkClient)
     }
 
-    override suspend fun getAssetsInfo(requestType: String, tokenIds: List<String>, timeStamp: String): List<AssetsInfoResponse> {
+    override suspend fun getAssetsInfo(requestType: String, tokenIds: List<String>, timeStamp: Int): List<AssetsInfoResponse> {
         val config = soraRemoteConfigBuilder.getConfig() ?: return emptyList()
         val case = SoraWalletAssetsCases.getCase(config.blockExplorerType.assets)
-        return case.getAssetsInfo(config.blockExplorerUrl, networkClient, tokenIds, timeStamp)
+        return case.getAssetsInfo(config.blockExplorerUrl, networkClient, tokenIds, timeStamp.toString())
     }
 
     override suspend fun getReferrerRewards(

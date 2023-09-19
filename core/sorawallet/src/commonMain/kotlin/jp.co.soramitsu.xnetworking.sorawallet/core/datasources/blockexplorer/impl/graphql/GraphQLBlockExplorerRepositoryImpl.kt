@@ -19,7 +19,7 @@ class GraphQLBlockExplorerRepositoryImpl(
     override suspend fun getAssetsInfo(
         requestType: String,
         tokenIds: List<String>,
-        timeStamp: String
+        timeStamp: Int
     ) = when(requestType) {
         "0" -> apolloClientStore.getClient(
             tag = ApolloClientStore.SUBQUERY_TAG

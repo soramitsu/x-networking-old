@@ -16,7 +16,7 @@ interface BlockExplorerInteractor {
     )
     suspend fun getAssetsInfo(
         tokenIds: List<String>,
-        timeStamp: String
+        timeStamp: Int
     ): List<AssetsInfoResponse>
 
     @Throws(

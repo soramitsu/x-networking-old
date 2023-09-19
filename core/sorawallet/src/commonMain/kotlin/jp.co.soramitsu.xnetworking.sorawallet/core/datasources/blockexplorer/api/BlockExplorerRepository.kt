@@ -18,7 +18,7 @@ interface BlockExplorerRepository {
     suspend fun getAssetsInfo(
         requestType: String,
         tokenIds: List<String>,
-        timeStamp: String
+        timeStamp: Int
     ): List<AssetsInfoResponse>
 
     @Throws(

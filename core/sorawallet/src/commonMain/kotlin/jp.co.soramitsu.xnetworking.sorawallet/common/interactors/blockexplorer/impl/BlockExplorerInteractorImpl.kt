@@ -23,7 +23,7 @@ class BlockExplorerInteractorImpl(
 
     override suspend fun getAssetsInfo(
         tokenIds: List<String>,
-        timeStamp: String
+        timeStamp: Int
     ): List<AssetsInfoResponse> {
         val commonConfig = configRepository.getCommonConfig()
         val mobileConfig = configRepository.getMobileConfig()
@@ -81,7 +81,7 @@ class BlockExplorerInteractorImpl(
         apolloClientStore.addClient(ApolloClientStore.SUBQUERY_TAG, commonConfig.subquery)
 
         return blockExplorerRepository.getSbApyInfo(
-            requestType = mobileConfig.explorerTypeReward
+            requestType = mobileConfig.explorerTypeSbapy
         )
     }
 

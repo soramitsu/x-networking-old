@@ -136,11 +136,7 @@ android {
 apollo {
     service("sorawallet") {
         packageName.set("jp.co.soramitsu.xnetworking")
-        schemaFiles.setFrom(
-            file("../../schema").walkTopDown().filter {
-                it.isFile && it.extension == "graphqls"
-            }.toList()
-        )
+        schemaFiles.setFrom(file("../../schema/schema.graphqls"))
         srcDir(file("src/commonMain/qraphql"))
         outputDir.set(File("${project.buildDir}/generated/apollo/", "schemas"))
     }

@@ -1,4 +1,4 @@
-query GetSbApyInfo($pageCount: Int!, $cursor: String!) {
+query GetSbApyInfo($pageCount: Int!, $cursor: Cursor!) {
     entities:
         poolXYKs(
             first: $pageCount
