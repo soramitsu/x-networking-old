@@ -47,7 +47,7 @@ val coroutineVersion = "1.6.4"
 val ktorVersion = "2.3.1"
 
 kotlin {
-    val iosFrameworkName = "XNetworking.FearlessWallet"
+    val iosFrameworkName = "fearlesswallet"
     val xcf = XCFramework()
 
     android()
@@ -56,11 +56,17 @@ kotlin {
             baseName = iosFrameworkName
             xcf.add(this)
         }
+        compilations.forEach {
+            it.kotlinOptions.freeCompilerArgs += arrayOf("-linker-options", "-lsqlite3")
+        }
     }
     iosArm64 {
         binaries.framework {
             baseName = iosFrameworkName
             xcf.add(this)
+        }
+        compilations.forEach {
+            it.kotlinOptions.freeCompilerArgs += arrayOf("-linker-options", "-lsqlite3")
         }
     }
 
@@ -68,6 +74,9 @@ kotlin {
         binaries.framework {
             baseName = iosFrameworkName
             xcf.add(this)
+        }
+        compilations.forEach {
+            it.kotlinOptions.freeCompilerArgs += arrayOf("-linker-options", "-lsqlite3")
         }
     }
 
