@@ -40,6 +40,11 @@ class SoraWalletBlockExplorerInfo(
         return case.getSbApy(config.blockExplorerUrl, networkClient)
     }
 
+    @Throws(
+        SoramitsuNetworkException::class,
+        CancellationException::class,
+        IllegalArgumentException::class
+    )
     suspend fun getAssetsInfo(tokenIds: List<String>, timestamp: Long): List<AssetsInfo> {
         val config = soraRemoteConfigBuilder.getConfig() ?: return emptyList()
         val case = SoraWalletAssetsCases.getCase(config.blockExplorerType.assets)
