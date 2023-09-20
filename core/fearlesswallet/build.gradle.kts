@@ -1,6 +1,4 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
-import kotlin.io.println
-import kotlin.collections.setOf
 
 plugins {
     id("com.android.library")
@@ -8,19 +6,18 @@ plugins {
     kotlin("plugin.serialization")
     kotlin("native.cocoapods")
     id("maven-publish")
-    id("com.squareup.sqldelight")
 }
 
-group = "jp.co.soramitsu"
+group = "jp.co.soramitsu.xnetworking"
 
-version = "0.1.0"
+version = "0.1.1"
 
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = "jp.co.soramitsu"
-            artifactId = "xnetworking.fearlesswallet"
-            version = "0.1.0"
+            groupId = "jp.co.soramitsu.xnetworking"
+            artifactId = "fearlesswallet"
+            version = "0.1.1"
 
             afterEvaluate {
                 from(components["release"])

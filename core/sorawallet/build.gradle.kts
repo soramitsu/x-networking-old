@@ -8,16 +8,16 @@ plugins {
     id("maven-publish")
 }
 
-group = "jp.co.soramitsu"
+group = "jp.co.soramitsu.xnetworking"
 
-version = "0.1.0"
+version = "0.1.1"
 
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = "jp.co.soramitsu"
-            artifactId = "xnetworking.sorawallet"
-            version = "0.1.0"
+            groupId = "jp.co.soramitsu.xnetworking"
+            artifactId = "sorawallet"
+            version = "0.1.1"
 
             afterEvaluate {
                 from(components["release"])
