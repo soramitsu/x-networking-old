@@ -6,7 +6,7 @@ Pod::Spec.new do |spec|
     spec.authors                  = ''
     spec.license                  = ''
     spec.summary                  = 'Some description for the Shared Module'
-    spec.vendored_frameworks      = 'build/cocoapods/framework/XNetworking.SoraWallet.framework'
+    spec.vendored_frameworks      = 'build/XCFrameworks/release/sorawallet.framework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target = '11.0'
                 
