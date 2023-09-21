@@ -6,7 +6,7 @@ Pod::Spec.new do |spec|
     spec.authors                  = ''
     spec.license                  = ''
     spec.summary                  = 'Some description for the Shared Module'
-    spec.vendored_frameworks      = 'build/XCFrameworks/release/sorawallet.framework'
+    spec.vendored_frameworks      = 'core/sorawallet/build/XCFrameworks/release/sorawallet.xcframework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target = '11.0'
                 

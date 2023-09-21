@@ -6,10 +6,9 @@ Pod::Spec.new do |spec|
     spec.authors                  = ''
     spec.license                  = ''
     spec.summary                  = 'Some description for the Shared Module'
-    spec.vendored_frameworks      = 'build/XCFrameworks/release/basic.framework'
+    spec.vendored_frameworks      = 'core/basic/build/XCFrameworks/release/basic.xcframework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target = '11.0'
-                
                 
     spec.pod_target_xcconfig = {
         'KOTLIN_PROJECT_PATH' => ':core:basic',
