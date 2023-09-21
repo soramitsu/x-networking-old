@@ -1,0 +1,6 @@
+framework module XNetworking.Basic {
+    umbrella header "XNetworking.Basic.h"
+
+    export *
+    module * { export * }
+}

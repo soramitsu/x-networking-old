@@ -1,0 +1,25 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/shlyapkinin/Desktop/Projects/x-networking/core/basic/src/androidMain/AndroidManifest.xml:2:1-13
+INJECTED from /Users/shlyapkinin/Desktop/Projects/x-networking/core/basic/src/androidMain/AndroidManifest.xml:2:1-13
+INJECTED from /Users/shlyapkinin/Desktop/Projects/x-networking/core/basic/src/androidMain/AndroidManifest.xml:2:1-13
+	package
+		INJECTED from /Users/shlyapkinin/Desktop/Projects/x-networking/core/basic/src/androidMain/AndroidManifest.xml
+		ADDED from /Users/shlyapkinin/Desktop/Projects/x-networking/core/basic/src/androidMain/AndroidManifest.xml:2:1-13
+		INJECTED from /Users/shlyapkinin/Desktop/Projects/x-networking/core/basic/src/androidMain/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/shlyapkinin/Desktop/Projects/x-networking/core/basic/src/androidMain/AndroidManifest.xml:2:1-13
+uses-sdk
+INJECTED from /Users/shlyapkinin/Desktop/Projects/x-networking/core/basic/src/androidMain/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/shlyapkinin/Desktop/Projects/x-networking/core/basic/src/androidMain/AndroidManifest.xml
+INJECTED from /Users/shlyapkinin/Desktop/Projects/x-networking/core/basic/src/androidMain/AndroidManifest.xml
+INJECTED from /Users/shlyapkinin/Desktop/Projects/x-networking/core/basic/src/androidMain/AndroidManifest.xml
+INJECTED from /Users/shlyapkinin/Desktop/Projects/x-networking/core/basic/src/androidMain/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/shlyapkinin/Desktop/Projects/x-networking/core/basic/src/androidMain/AndroidManifest.xml
+		ADDED from /Users/shlyapkinin/Desktop/Projects/x-networking/core/basic/src/androidMain/AndroidManifest.xml
+		INJECTED from /Users/shlyapkinin/Desktop/Projects/x-networking/core/basic/src/androidMain/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/shlyapkinin/Desktop/Projects/x-networking/core/basic/src/androidMain/AndroidManifest.xml
+		ADDED from /Users/shlyapkinin/Desktop/Projects/x-networking/core/basic/src/androidMain/AndroidManifest.xml
+		INJECTED from /Users/shlyapkinin/Desktop/Projects/x-networking/core/basic/src/androidMain/AndroidManifest.xml

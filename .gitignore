@@ -5,7 +5,6 @@
 *.aab
 *.xcuserstate
 
-core/basic/build/*
 core/fearlesswallet/build/*
 
 # Files for the ART/Dalvik VM
