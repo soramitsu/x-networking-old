@@ -45,7 +45,7 @@ val coroutineVersion = "1.6.4"
 val ktorVersion = "2.3.1"
 
 kotlin {
-    val iosFrameworkName = "XNetworking.Basic"
+    val iosFrameworkName = "basic"
     val xcf = XCFramework()
 
     android()
@@ -53,7 +53,6 @@ kotlin {
         binaries.framework {
             baseName = iosFrameworkName
             xcf.add(this)
-
         }
     }
     iosArm64 {
