@@ -1,7 +1,7 @@
 package jp.co.soramitsu.xnetworking.sorawallet.core.datasources.blockexplorer.impl.graphql.usecase
 
 import com.apollographql.apollo3.ApolloClient
-import jp.co.soramitsu.xnetworking.GetSbApyInfoQuery
+import jp.co.soramitsu.xnetworking.sorawallet.GetSbApyInfoQuery
 import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.blockexplorer.api.models.SbApyInfoResponse
 
 internal class GetSbApyInfoUseCase {
@@ -11,7 +11,7 @@ internal class GetSbApyInfoUseCase {
     ): List<SbApyInfoResponse> {
         val result = mutableListOf<SbApyInfoResponse>()
 
-        var cursor: Any = ""
+        var cursor = ""
 
         while (true) {
             val response = apolloClient.query(

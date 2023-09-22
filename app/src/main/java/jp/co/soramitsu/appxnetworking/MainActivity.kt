@@ -66,9 +66,7 @@ private fun MainScreen() {
                 GlobalScope.launch {
                     Log.e("foxxx", "r start btn 2")
                     try {
-                        val r = DepBuilder.networkService.getHistorySora(1) {
-                            true
-                        }!!
+                        val r = DepBuilder.networkService.getHistorySora(1)
                         Log.e(
                             "foxxx",
                             "r = ${r.endReached} ${r.page} ${r.items.size} ${r.errorMessage}"

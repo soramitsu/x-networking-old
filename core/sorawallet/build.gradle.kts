@@ -135,10 +135,20 @@ android {
 
 apollo {
     service("sorawallet") {
-        packageName.set("jp.co.soramitsu.xnetworking")
+        packageName.set("jp.co.soramitsu.xnetworking.sorawallet")
         schemaFiles.setFrom(file("../../schema/schema.graphqls"))
-        srcDir(file("src/commonMain/qraphql"))
+        srcDir(file("${project.projectDir}/src/commonMain/qraphql"))
         outputDir.set(File("${project.buildDir}/generated/apollo/", "schemas"))
+
+        mapScalarToKotlinString("Cursor")
+        mapScalarToKotlinString("BigInt")
+        mapScalarToKotlinString("BigFloat")
+
+        mapScalar(
+            "JSON",
+            "kotlinx.serialization.json.JsonElement",
+            "jp.co.soramitsu.xnetworking.basic.engines.apollo.impl.adapters.JSONAdapter()"
+        )
     }
 }
 

@@ -1,9 +1,0 @@
-type SbApyPagedResponse {
-    nodes: [SbApyNodesData!]!
-    pageInfo: PageInfo!
-}
-
-type SbApyNodesData {
-    id: String!
-    strategicBonusApy: String
-}
