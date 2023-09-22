@@ -6,19 +6,19 @@ plugins {
     kotlin("plugin.serialization")
     kotlin("native.cocoapods")
     id("maven-publish")
-    id("com.apollographql.apollo3") version "4.0.0-alpha.3"
+    id("com.apollographql.apollo3") version "3.8.2"
 }
 
-group = "jp.co.soramitsu"
+group = "jp.co.soramitsu.xnetworking"
 
-version = "0.1.0"
+version = "0.1.1"
 
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = "jp.co.soramitsu"
-            artifactId = "xnetworking.fearlesswallet"
-            version = "0.1.0"
+            groupId = "jp.co.soramitsu.xnetworking"
+            artifactId = "fearlesswallet"
+            version = "0.1.1"
 
             afterEvaluate {
                 from(components["release"])
@@ -45,7 +45,7 @@ val coroutineVersion = "1.6.4"
 val ktorVersion = "2.3.1"
 
 kotlin {
-    val iosFrameworkName = "XNetworking.FearlessWallet"
+    val iosFrameworkName = "fearlesswallet"
     val xcf = XCFramework()
 
     android()
@@ -54,11 +54,17 @@ kotlin {
             baseName = iosFrameworkName
             xcf.add(this)
         }
+        compilations.forEach {
+            it.kotlinOptions.freeCompilerArgs += arrayOf("-linker-options", "-lsqlite3")
+        }
     }
     iosArm64 {
         binaries.framework {
             baseName = iosFrameworkName
             xcf.add(this)
+        }
+        compilations.forEach {
+            it.kotlinOptions.freeCompilerArgs += arrayOf("-linker-options", "-lsqlite3")
         }
     }
 
@@ -66,6 +72,9 @@ kotlin {
         binaries.framework {
             baseName = iosFrameworkName
             xcf.add(this)
+        }
+        compilations.forEach {
+            it.kotlinOptions.freeCompilerArgs += arrayOf("-linker-options", "-lsqlite3")
         }
     }
 

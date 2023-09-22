@@ -9,16 +9,16 @@ plugins {
     id("com.squareup.sqldelight")
 }
 
-group = "jp.co.soramitsu"
+group = "jp.co.soramitsu.xnetworking"
 
-version = "0.1.0"
+version = "0.1.1"
 
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = "jp.co.soramitsu"
-            artifactId = "xnetworking.basic"
-            version = "0.1.0"
+            groupId = "jp.co.soramitsu.xnetworking"
+            artifactId = "basic"
+            version = "0.1.1"
 
             afterEvaluate {
                 from(components["release"])
@@ -45,7 +45,7 @@ val coroutineVersion = "1.6.4"
 val ktorVersion = "2.3.1"
 
 kotlin {
-    val iosFrameworkName = "XNetworking.Basic"
+    val iosFrameworkName = "basic"
     val xcf = XCFramework()
 
     android()
@@ -53,7 +53,6 @@ kotlin {
         binaries.framework {
             baseName = iosFrameworkName
             xcf.add(this)
-
         }
     }
     iosArm64 {
@@ -93,12 +92,13 @@ kotlin {
                 api("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 api("io.ktor:ktor-client-logging:$ktorVersion")
                 api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
+                api("com.apollographql.apollo3:apollo-runtime:3.8.2")
 
                 // Private
                 //implementation("com.ionspin.kotlin:bignum:0.3.6")
                 implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
 
-                implementation("com.russhwolf:multiplatform-settings:1.0.0")
+                api("com.russhwolf:multiplatform-settings:1.0.0")
                 implementation("com.russhwolf:multiplatform-settings-serialization:1.0.0")
 
                 implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion")
