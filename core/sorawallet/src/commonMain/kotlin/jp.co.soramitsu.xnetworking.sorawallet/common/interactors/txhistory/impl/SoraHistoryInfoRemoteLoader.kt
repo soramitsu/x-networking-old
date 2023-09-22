@@ -37,9 +37,7 @@ class SoraHistoryInfoRemoteLoader(
                     orderBy = Optional.present(listOf(HistoryElementsOrderBy.TIMESTAMP_DESC)),
                     filter = Optional.present(createHistoryElementsFilter(signAddress))
                 )
-            ).execute().apply {
-                exception?.let { throw it }
-            }.data?.historyElements
+            ).execute().dataAssertNoErrors.historyElements
                 ?: throw IllegalStateException("GetHistoryElementsQuery response is null")
         } ?: throw IllegalStateException("No Apollo Client is available")
 

@@ -1,13 +1,10 @@
 package jp.co.soramitsu.appxnetworking
 
 import android.content.Context
-import jp.co.soramitsu.xnetworking.basic.datasources.polkaswapconfig.impl.ConfigRepositoryCachingDecorator
-import jp.co.soramitsu.xnetworking.basic.datasources.polkaswapconfig.impl.ConfigRepositoryImpl
 import jp.co.soramitsu.xnetworking.basic.datasources.txhistory.api.HistoryItemsFilter
 import jp.co.soramitsu.xnetworking.basic.datasources.txhistory.api.models.TxHistoryItem
 import jp.co.soramitsu.xnetworking.basic.datasources.txhistory.impl.new.TxHistoryRepositoryImpl
 import jp.co.soramitsu.xnetworking.basic.datasources.txhistory.impl.new.builder.ExpectActualDBDriverFactory
-import jp.co.soramitsu.xnetworking.basic.dbengine.DatabaseDriverFactory
 import jp.co.soramitsu.xnetworking.basic.engines.apollo.api.ApolloClientStore
 import jp.co.soramitsu.xnetworking.basic.engines.apollo.impl.ApolloClientStoreImpl
 import jp.co.soramitsu.xnetworking.basic.engines.preferences.api.KeyValuePreferences
@@ -19,16 +16,13 @@ import jp.co.soramitsu.xnetworking.basic.engines.rest.impl.RestClientImpl
 import jp.co.soramitsu.xnetworking.basic.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.fearlesswallet.common.interactors.txhistory.impl.TxHistoryInteractorImpl as FearlessTxHistoryInteractorImpl
 import jp.co.soramitsu.xnetworking.fearlesswallet.core.datasources.chainbuilder.FearlessChainsBuilder
-import jp.co.soramitsu.xnetworking.fearlesswallet.core.datasources.txhistory.client.SubQueryClientForFearlessWallet
-import jp.co.soramitsu.xnetworking.fearlesswallet.core.datasources.txhistory.client.SubQueryClientForFearlessWalletFactory
 import jp.co.soramitsu.xnetworking.sorawallet.common.interactors.blockexplorer.impl.BlockExplorerInteractorImpl
 import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.blockexplorer.impl.graphql.GraphQLBlockExplorerRepositoryImpl
-import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.blockexplorer.impl.rest.SoraWalletBlockExplorerInfo
 import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.mainconfig.SoraRemoteConfigProvider
 import jp.co.soramitsu.xnetworking.fearlesswallet.common.interactors.txhistory.impl.FearlessHistoryInfoRemoteLoader
+import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.polkaswapconfig.impl.ConfigRepositoryCachingDecorator
+import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.polkaswapconfig.impl.ConfigRepositoryImpl
 import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.polkaswapwhitelist.impl.WhitelistRepositoryImpl
-import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.txhistory.client.SubQueryClientForSoraWallet
-import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.txhistory.client.SubQueryClientForSoraWalletFactory
 import kotlinx.serialization.json.Json
 
 object DepBuilder {
@@ -105,11 +99,10 @@ object DepBuilder {
             ),
             txHistoryInteractor = FearlessTxHistoryInteractorImpl(
                 apolloClientStore = apolloClientStore,
-                configRepository = configRepository,
                 txHistoryRepository = TxHistoryRepositoryImpl(
                     databaseDriverFactory = ExpectActualDBDriverFactory(
                         context = ctx,
-                        name = ""
+                        name = "historyDatabase.db"
                     ),
                     historyInfoRemoteLoader = FearlessHistoryInfoRemoteLoader(
                         apolloClientStore

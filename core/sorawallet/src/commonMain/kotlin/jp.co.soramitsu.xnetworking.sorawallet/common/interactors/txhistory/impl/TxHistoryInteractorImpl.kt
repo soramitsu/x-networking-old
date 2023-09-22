@@ -2,10 +2,10 @@ package jp.co.soramitsu.xnetworking.sorawallet.common.interactors.txhistory.impl
 
 import jp.co.soramitsu.xnetworking.basic.engines.apollo.api.ApolloClientStore
 import jp.co.soramitsu.xnetworking.sorawallet.common.interactors.txhistory.api.TxHistoryInteractor
-import jp.co.soramitsu.xnetworking.basic.datasources.polkaswapconfig.api.ConfigRepository
 import jp.co.soramitsu.xnetworking.basic.datasources.txhistory.api.TxHistoryRepository
 import jp.co.soramitsu.xnetworking.basic.datasources.txhistory.api.models.TxHistoryItem
 import jp.co.soramitsu.xnetworking.basic.datasources.txhistory.api.wrappers.TxHistoryResult
+import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.polkaswapconfig.api.ConfigRepository
 
 class TxHistoryInteractorImpl(
     private val apolloClientStore: ApolloClientStore,

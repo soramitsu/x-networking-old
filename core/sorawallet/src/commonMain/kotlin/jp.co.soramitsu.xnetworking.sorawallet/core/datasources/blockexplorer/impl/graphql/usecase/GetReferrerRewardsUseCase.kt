@@ -21,7 +21,7 @@ internal class GetReferrerRewardsUseCase {
                     cursor = cursor,
                     address = address
                 )
-            ).execute().data?.entities ?: return emptyList()
+            ).execute().dataAssertNoErrors.entities ?: return emptyList()
 
             response.nodes.filterNotNull().forEach { node ->
                 result.add(node.mapReferrerRewardsResponse())

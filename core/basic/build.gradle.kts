@@ -85,20 +85,19 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 // Public
-                api("com.apollographql.apollo3:apollo-runtime:4.0.0-alpha.3")
+                api("com.apollographql.apollo3:apollo-runtime:3.8.2")
                 api("io.ktor:ktor-client-core:$ktorVersion")
                 api("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
                 //implementation("io.ktor:ktor-client-json:$ktorVersion")
                 api("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 api("io.ktor:ktor-client-logging:$ktorVersion")
                 api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
-                api("com.apollographql.apollo3:apollo-runtime:3.8.2")
 
                 // Private
                 //implementation("com.ionspin.kotlin:bignum:0.3.6")
                 implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
 
-                api("com.russhwolf:multiplatform-settings:1.0.0")
+                implementation("com.russhwolf:multiplatform-settings:1.0.0")
                 implementation("com.russhwolf:multiplatform-settings-serialization:1.0.0")
 
                 implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion")

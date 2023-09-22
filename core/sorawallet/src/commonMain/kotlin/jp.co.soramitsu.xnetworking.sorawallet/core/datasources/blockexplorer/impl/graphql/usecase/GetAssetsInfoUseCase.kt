@@ -27,11 +27,7 @@ internal class GetAssetsInfoUseCase {
                     tokenIds = Optional.present(tokenIds),
                     timestamp = timeStamp
                 )
-            ).execute().apply {
-                println("This is checkpoint: GetAssetsInfoUseCase.errors - ${this.errors}")
-                println("This is checkpoint: GetAssetsInfoUseCase.exception - ${this.exception}")
-                exception?.printStackTrace()
-            }.data?.entities ?: return emptyList()
+            ).execute().dataAssertNoErrors.entities ?: return emptyList()
 
             response.nodes.filterNotNull().forEach { node ->
                 result.add(node.mapToAssetsInfoResponse())

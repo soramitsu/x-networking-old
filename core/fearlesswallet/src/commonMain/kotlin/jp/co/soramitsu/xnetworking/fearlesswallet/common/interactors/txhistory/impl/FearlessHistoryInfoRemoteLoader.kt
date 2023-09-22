@@ -29,21 +29,14 @@ class FearlessHistoryInfoRemoteLoader(
                     address = signAddress,
                     orderBy = Optional.present(listOf(HistoryElementsOrderBy.TIMESTAMP_DESC)),
                 )
-            ).execute().apply {
-                exception?.let { throw it }
-            }.data?.historyElements
+            ).execute().dataAssertNoErrors.historyElements
                 ?: throw IllegalStateException("GetHistoryElementsQuery response is null")
         } ?: throw IllegalStateException("No Apollo Client is available")
 
         // Unparsing JSON scalar and normally typed contents
         val items =
             response.nodes.filterNotNull().map {
-                val wasOperationSuccessful = it.execution.asJsonObjectNullable
-                    ?.getPrimitiveContentOrEmpty("success").toBoolean()
-
-                val rewards = it.data?.asJsonObjectNullable?.get("reward")
-                    ?.asJsonArrayNullable?.mapNotNull { json -> json.asJsonObjectNullable }
-                    ?.map { jsonObject ->
+                val rewards = it.reward?.asJsonObjectNullable?.let { jsonObject ->
                         listOf(
                             TxHistoryItemParam(
                                 "amount",
@@ -64,9 +57,7 @@ class FearlessHistoryInfoRemoteLoader(
                         )
                     }
 
-                val transfers = it.data?.asJsonObjectNullable?.get("transfers")
-                    ?.asJsonArrayNullable?.mapNotNull { json -> json.asJsonObjectNullable }
-                    ?.map { jsonObject ->
+                val transfers = it.transfer?.asJsonObjectNullable?.let { jsonObject ->
                         listOf(
                             TxHistoryItemParam(
                                 "block",
@@ -99,9 +90,7 @@ class FearlessHistoryInfoRemoteLoader(
                         )
                     }
 
-                val extrinsics = it.data?.asJsonObjectNullable?.get("extrinsic")
-                    ?.asJsonArrayNullable?.mapNotNull { json -> json.asJsonObjectNullable }
-                    ?.map { jsonObject ->
+                val extrinsics = it.extrinsic?.asJsonObjectNullable?.let { jsonObject ->
                         listOf(
                             TxHistoryItemParam(
                                 "call",
@@ -136,14 +125,14 @@ class FearlessHistoryInfoRemoteLoader(
                         else -> ""
                     },
                     method = "",
-                    timestamp = it.timestamp.toString(),
+                    timestamp = it.timestamp,
                     networkFee = "",
-                    success = wasOperationSuccessful,
+                    success = true,
                     nestedData = null,
                     data = when {
-                        rewards != null -> rewards.flatten()
-                        transfers != null -> transfers.flatten()
-                        extrinsics != null -> extrinsics.flatten()
+                        rewards != null -> rewards
+                        transfers != null -> transfers
+                        extrinsics != null -> extrinsics
                         else -> null
                     },
                 )

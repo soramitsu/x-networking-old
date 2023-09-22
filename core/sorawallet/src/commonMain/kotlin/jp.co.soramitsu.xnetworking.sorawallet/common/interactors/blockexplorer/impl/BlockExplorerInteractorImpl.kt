@@ -7,7 +7,7 @@ import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.blockexplorer.api
 import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.blockexplorer.api.models.FiatDataResponse
 import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.blockexplorer.api.models.ReferrerRewardResponse
 import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.blockexplorer.api.models.SbApyInfoResponse
-import jp.co.soramitsu.xnetworking.basic.datasources.polkaswapconfig.api.ConfigRepository
+import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.polkaswapconfig.api.ConfigRepository
 
 class BlockExplorerInteractorImpl(
     private val apolloClientStore: ApolloClientStore,

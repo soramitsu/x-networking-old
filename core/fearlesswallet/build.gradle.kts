@@ -88,7 +88,6 @@ kotlin {
     }
 
     sourceSets {
-
         val commonMain by getting {
             dependencies {
                 // Public
@@ -156,12 +155,11 @@ android {
 apollo {
     service("fearlesswallet") {
         packageName.set("jp.co.soramitsu.xnetworking.fearlesswallet")
-        schemaFiles.setFrom(file("../../schema/schema.graphqls"))
+        schemaFiles.setFrom(file("../../schema/fearless_westend_schema.graphqls"))
         srcDir(file("${project.projectDir}/src/commonMain/graphql"))
         outputDir.set(File("${project.buildDir}/generated/apollo/", "schemas"))
 
         mapScalarToKotlinString("Cursor")
-        mapScalarToKotlinString("BigInt")
         mapScalarToKotlinString("BigFloat")
 
         mapScalar(

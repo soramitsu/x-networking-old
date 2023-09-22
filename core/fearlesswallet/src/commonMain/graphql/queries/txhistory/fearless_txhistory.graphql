@@ -20,8 +20,9 @@ query GetHistoryElements(
             id
             timestamp
             address
-            data
-            execution
+            reward
+            transfer
+            extrinsic
         }
     }
 }

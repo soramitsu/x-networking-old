@@ -74,7 +74,7 @@ class NetworkService(
             networkName = "fearless"
         )
 
-    suspend fun getHistoryFearless(page: Long, f: (TxHistoryItem) -> Boolean) =
+    suspend fun getHistoryFearless(page: Long) =
         txHistoryInteractor.getTransactionHistoryPaged(
             address = "5ETrb47YCHE9pYxKfpm4b3bMNvKd7Zusi22yZLLHKadP5oYn",
             networkName = "fearless",

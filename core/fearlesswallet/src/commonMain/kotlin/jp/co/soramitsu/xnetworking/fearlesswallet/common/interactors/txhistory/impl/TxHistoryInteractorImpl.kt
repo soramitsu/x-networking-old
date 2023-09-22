@@ -1,7 +1,6 @@
 package jp.co.soramitsu.xnetworking.fearlesswallet.common.interactors.txhistory.impl
 
 import jp.co.soramitsu.xnetworking.basic.engines.apollo.api.ApolloClientStore
-import jp.co.soramitsu.xnetworking.basic.datasources.polkaswapconfig.api.ConfigRepository
 import jp.co.soramitsu.xnetworking.basic.datasources.txhistory.api.TxHistoryRepository
 import jp.co.soramitsu.xnetworking.basic.datasources.txhistory.api.models.TxHistoryItem
 import jp.co.soramitsu.xnetworking.basic.datasources.txhistory.api.wrappers.TxHistoryResult
@@ -9,7 +8,6 @@ import jp.co.soramitsu.xnetworking.fearlesswallet.common.interactors.txhistory.a
 
 class TxHistoryInteractorImpl(
     private val apolloClientStore: ApolloClientStore,
-    private val configRepository: ConfigRepository,
     private val txHistoryRepository: TxHistoryRepository
 ): TxHistoryInteractor {
 
