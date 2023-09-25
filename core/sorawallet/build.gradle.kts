@@ -52,6 +52,7 @@ kotlin {
         binaries.framework {
             baseName = iosFrameworkName
             xcf.add(this)
+            export(project(":core:basic"))
         }
         compilations.forEach {
             it.kotlinOptions.freeCompilerArgs += arrayOf("-linker-options", "-lsqlite3")
@@ -61,6 +62,7 @@ kotlin {
         binaries.framework {
             baseName = iosFrameworkName
             xcf.add(this)
+            export(project(":core:basic"))
         }
         compilations.forEach {
             it.kotlinOptions.freeCompilerArgs += arrayOf("-linker-options", "-lsqlite3")
@@ -71,6 +73,7 @@ kotlin {
         binaries.framework {
             baseName = iosFrameworkName
             xcf.add(this)
+            export(project(":core:basic"))
         }
         compilations.forEach {
             it.kotlinOptions.freeCompilerArgs += arrayOf("-linker-options", "-lsqlite3")
