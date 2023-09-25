@@ -99,7 +99,7 @@ kotlin {
         
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:basic"))
+                api(project(":core:basic"))
                 api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
                 implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion")
