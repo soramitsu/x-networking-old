@@ -10,6 +10,9 @@ plugins {
 
 val libVersion: String by project
 
+group = "jp.co.soramitsu.xnetworking"
+version = libVersion
+
 publishing {
     publications {
         register<MavenPublication>("release") {
