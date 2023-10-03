@@ -5,9 +5,10 @@
 *.aab
 *.xcuserstate
 
-core/basic/build/*
-core/sorawallet/build/*
-core/fearlesswallet/build/*
+androidApp/build/
+lib/basic/build/*
+lib/sorawallet/build/*
+lib/fearlesswallet/build/*
 
 # Files for the ART/Dalvik VM
 *.dex

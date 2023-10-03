@@ -1,27 +1,12 @@
-buildscript {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
-
-    val sqlDelightVersion: String by project
-
-    dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.20")
-        classpath("org.jetbrains.kotlin:kotlin-serialization:1.8.20")
-        classpath("com.squareup.sqldelight:gradle-plugin:$sqlDelightVersion")
-        classpath("com.android.tools.build:gradle:7.4.2")
-    }
+plugins {
+    //trick: for the same plugin versions in all sub-modules
+    id("com.android.application").version("8.2.0-beta06").apply(false)
+    id("com.android.library").version("8.2.0-beta06").apply(false)
+    id("com.squareup.sqldelight").version("1.5.5").apply(false)
+    kotlin("android").version("1.9.10").apply(false)
+    kotlin("multiplatform").version("1.9.10").apply(false)
+    kotlin("plugin.serialization").version("1.9.10").apply(false)
 }
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
 
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)

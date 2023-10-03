@@ -1,5 +1,0 @@
-target 'KMM sample' do
-  use_frameworks!
-  platform :ios, '14.1'
-  pod 'X-Networking', :podspec => 'https://raw.githubusercontent.com/soramitsu/x-networking/master/AppXNetworking/commonNetworking/X-Networking.podspec'
-end

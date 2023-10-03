@@ -1,19 +1,20 @@
 pluginManagement {
     repositories {
+        google()
         gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
+dependencyResolutionManagement {
+    repositories {
         google()
         mavenCentral()
     }
 }
-//dependencyResolutionManagement {
-//    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-//    repositories {
-//        google()
-//        mavenCentral()
-//    }
-//}
-//rootProject.name = "AppXNetworking"
-include(":app")
-include(":core:basic")
-include(":core:sorawallet")
-include(":core:fearlesswallet")
+
+rootProject.name = "xnetworking"
+include(":androidApp")
+include(":lib:basic")
+include(":lib:fearlesswallet")
+include(":lib:sorawallet")
