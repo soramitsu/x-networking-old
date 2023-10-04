@@ -50,6 +50,8 @@ dependencies {
     implementation("androidx.compose.material:material:1.5.2")
     implementation("androidx.activity:activity-compose:1.7.2")
     implementation("com.google.android.material:material:1.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+    implementation("io.ktor:ktor-client-core:2.3.1")
 
     //test
     implementation("androidx.test.ext:junit:1.1.5")

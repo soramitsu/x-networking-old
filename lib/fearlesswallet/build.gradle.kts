@@ -9,6 +9,9 @@ plugins {
 
 val libVersion: String by project
 
+group = "jp.co.soramitsu.xnetworking"
+version = libVersion
+
 publishing {
     publications {
         register<MavenPublication>("release") {
@@ -73,7 +76,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(project(":lib:basic"))
+                implementation(project(":lib:basic"))
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
 
                 implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion")
