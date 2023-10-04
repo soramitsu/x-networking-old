@@ -8,7 +8,7 @@ new org.android.ShareFeature().call(
   buildCmd: 'clean build',
   testCmd: 'test --info',
   publishCmd:
-    ''':lib:sorawallet:publishAndroidReleasePublicationToScnRepoRepository''',
+    ''':lib:basic:publishAndroidReleasePublicationToScnRepoRepository''',
   dojo: true,
   dojoProductType: "x-networking"
 )
