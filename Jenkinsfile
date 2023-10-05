@@ -7,8 +7,7 @@ new org.android.ShareFeature().call(
   nexusCredentials: "bot-soramitsu-rw",
   buildCmd: 'clean build',
   testCmd: 'test --info',
-  publishCmd:
-    ':lib:basic:publishAndroidReleasePublicationToScnRepoRepository :lib:sorawallet:publishAndroidReleasePublicationToScnRepoRepository :lib:fearlesswallet:publishAndroidReleasePublicationToScnRepoRepository',
+  publishCmd: ':lib:basic:publishAndroidReleasePublicationToScnRepoRepository :lib:sorawallet:publishAndroidReleasePublicationToScnRepoRepository :lib:fearlesswallet:publishAndroidReleasePublicationToScnRepoRepository',
   dojo: true,
-  dojoProductType: "x-networking"
+  dojoProductType: "fearless"
 )
