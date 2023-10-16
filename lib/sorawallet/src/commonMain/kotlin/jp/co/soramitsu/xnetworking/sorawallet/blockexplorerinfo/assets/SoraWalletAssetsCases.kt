@@ -34,25 +34,27 @@ private class SoraWalletAssetsCase0 : SoraWalletAssetsCase {
         tokenIds: List<String>,
         timestamp: Long,
     ): List<AssetsInfo> {
-        var cursor = ""
         val result = mutableListOf<AssetsInfo>()
-        val tokenIdsFormatted = tokenIds.joinToString(
-            separator = ",",
-        ) { "\"$it\"" }
-        while (true) {
-            val response = networkClient.createJsonRequest<SoraWalletAssetsCase0Response>(
-                url,
-                HttpMethod.Post,
-                SubQueryRequest(graphQLRequestSoraWalletAssetsCase0(cursor, tokenIdsFormatted, timestamp.toString())),
-            )
-            response.data.entities.nodes.forEach { node ->
-                val prevPrice = node.periods.nodes.lastOrNull()?.price?.open?.toDoubleNan()
-                result.add(AssetsInfo(node.id, node.liquidity, prevPrice))
-            }
-            if (response.data.entities.pageInfo.hasNextPage && response.data.entities.pageInfo.endCursor != null) {
-                cursor = response.data.entities.pageInfo.endCursor!!
-            } else {
-                break
+        tokenIds.chunked(70).forEach { chunk ->
+            var cursor = ""
+            val tokenIdsFormatted = chunk.joinToString(
+                separator = ",",
+            ) { "\"$it\"" }
+            while (true) {
+                val response = networkClient.createJsonRequest<SoraWalletAssetsCase0Response>(
+                    url,
+                    HttpMethod.Post,
+                    SubQueryRequest(graphQLRequestSoraWalletAssetsCase0(cursor, tokenIdsFormatted, timestamp.toString())),
+                )
+                response.data.entities.nodes.forEach { node ->
+                    val prevPrice = node.periods.nodes.lastOrNull()?.price?.open?.toDoubleNan()
+                    result.add(AssetsInfo(node.id, node.liquidity, prevPrice))
+                }
+                if (response.data.entities.pageInfo.hasNextPage && response.data.entities.pageInfo.endCursor != null) {
+                    cursor = response.data.entities.pageInfo.endCursor!!
+                } else {
+                    break
+                }
             }
         }
         return result
