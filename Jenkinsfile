@@ -1,4 +1,4 @@
-@Library('jenkins-library@duty/prdeploy') _
+@Library('jenkins-library') _
 
 def jobParams  = [
   booleanParam(defaultValue: false, name: 'prDeployment'),
