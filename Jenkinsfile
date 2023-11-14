@@ -4,7 +4,7 @@ def jobParams  = [
   booleanParam(defaultValue: false, name: 'prDeployment'),
 ]
 
-def pipeline = new org.android.ShareFeature(
+def pipeline = new org.android.ShareFeature().call(
   steps: this,
   jobParams: jobParams,
   detekt: false,
@@ -17,3 +17,4 @@ def pipeline = new org.android.ShareFeature(
   dojo: true,
   dojoProductType: "fearless"
 )
+pipeline.runPipeline()
