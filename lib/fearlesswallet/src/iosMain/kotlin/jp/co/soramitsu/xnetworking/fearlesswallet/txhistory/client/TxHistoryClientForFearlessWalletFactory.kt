@@ -4,8 +4,8 @@ import jp.co.soramitsu.xnetworking.basic.dbengine.DatabaseDriverFactory
 import jp.co.soramitsu.xnetworking.basic.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.basic.txhistory.HistoryDatabaseProvider
 
-actual class SubQueryClientForFearlessWalletFactory {
-    actual fun create(
+actual class TxHistoryClientForFearlessWalletFactory {
+    actual fun createSubQuery(
         soramitsuNetworkClient: SoramitsuNetworkClient,
         pageSize: Int,
     ): SubQueryClientForFearlessWallet {
@@ -13,6 +13,17 @@ actual class SubQueryClientForFearlessWalletFactory {
             networkClient = soramitsuNetworkClient,
             pageSize = pageSize,
             historyDatabaseProvider = HistoryDatabaseProvider(DatabaseDriverFactory()),
+        )
+    }
+
+    actual fun createSubSquid(
+        soramitsuNetworkClient: SoramitsuNetworkClient,
+        pageSize: Int
+    ): SubSquidClientForFearlessWallet {
+        return SubSquidClientForFearlessWallet(
+            networkClient = soramitsuNetworkClient,
+            pageSize = pageSize,
+            historyDatabaseProvider = HistoryDatabaseProvider(DatabaseDriverFactory())
         )
     }
 }

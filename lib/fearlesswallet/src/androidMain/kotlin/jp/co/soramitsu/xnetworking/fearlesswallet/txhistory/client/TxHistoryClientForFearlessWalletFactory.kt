@@ -5,14 +5,25 @@ import jp.co.soramitsu.xnetworking.basic.dbengine.DatabaseDriverFactory
 import jp.co.soramitsu.xnetworking.basic.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.basic.txhistory.HistoryDatabaseProvider
 
-actual class SubQueryClientForFearlessWalletFactory(
+actual class TxHistoryClientForFearlessWalletFactory(
     private val context: Context,
 ) {
-    actual fun create(
+    actual fun createSubQuery(
         soramitsuNetworkClient: SoramitsuNetworkClient,
         pageSize: Int,
     ): SubQueryClientForFearlessWallet {
         return SubQueryClientForFearlessWallet(
+            networkClient = soramitsuNetworkClient,
+            pageSize = pageSize,
+            historyDatabaseProvider = HistoryDatabaseProvider(DatabaseDriverFactory(context)),
+        )
+    }
+
+    actual fun createSubSquid(
+        soramitsuNetworkClient: SoramitsuNetworkClient,
+        pageSize: Int
+    ): SubSquidClientForFearlessWallet {
+        return SubSquidClientForFearlessWallet(
             networkClient = soramitsuNetworkClient,
             pageSize = pageSize,
             historyDatabaseProvider = HistoryDatabaseProvider(DatabaseDriverFactory(context)),

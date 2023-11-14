@@ -1,33 +1,23 @@
 package jp.co.soramitsu.xnetworking.basic.txhistory.client
 
-import io.ktor.http.*
-import jp.co.soramitsu.xnetworking.db.Extrinsics
-import jp.co.soramitsu.xnetworking.db.SignerInfo
-import jp.co.soramitsu.xnetworking.basic.networkclient.SoramitsuNetworkClient
 import jp.co.soramitsu.xnetworking.basic.networkclient.SoramitsuNetworkException
 import jp.co.soramitsu.xnetworking.basic.txhistory.HistoryDatabaseProvider
 import jp.co.soramitsu.xnetworking.basic.txhistory.HistoryMapper
 import jp.co.soramitsu.xnetworking.basic.txhistory.TxHistoryInfo
 import jp.co.soramitsu.xnetworking.basic.txhistory.TxHistoryItem
 import jp.co.soramitsu.xnetworking.basic.txhistory.TxHistoryResult
-import jp.co.soramitsu.xnetworking.basic.txhistory.subquery.graphqlrequest.SubQueryRequest
-import jp.co.soramitsu.xnetworking.basic.txhistory.subquery.graphqlrequest.txHistoryGraphQLVariables
-import kotlinx.serialization.DeserializationStrategy
+import jp.co.soramitsu.xnetworking.db.Extrinsics
+import jp.co.soramitsu.xnetworking.db.SignerInfo
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.math.max
 import kotlin.math.min
 
-class SubQueryClient<T, R> constructor(
-    private val networkClient: SoramitsuNetworkClient,
+abstract class TxHistoryClient<T, R>(
     private val pageSize: Int,
-    private val deserializationStrategy: DeserializationStrategy<T>,
-    private val jsonToHistoryInfo: (T) -> TxHistoryInfo,
     private val historyInfoToResult: (TxHistoryItem) -> R,
-    private val historyRequest: String,
     historyDatabaseProvider: HistoryDatabaseProvider
 ) {
     private val historyDatabase = historyDatabaseProvider.provide()
-
     fun clearAllData() {
         historyDatabase.clearDatabase()
     }
@@ -157,23 +147,13 @@ class SubQueryClient<T, R> constructor(
     }
 
     @Throws(SoramitsuNetworkException::class, CancellationException::class)
-    private suspend fun loadInfo(cursor: String = "", address: String, networkName: String, url: String) {
-        val request = SubQueryRequest(
-            query = historyRequest,
-            variables = txHistoryGraphQLVariables(
-                countRemote = pageSize,
-                myAddress = address,
-                cursor = cursor,
-            )
-        )
-        val response = networkClient.createRequest<String>(
-            url,
-            HttpMethod.Post,
-            request,
-            ContentType.Application.Json
-        )
-        val decoded = networkClient.json.decodeFromString(deserializationStrategy, response)
-        val infoDecoded = jsonToHistoryInfo.invoke(decoded)
+    private suspend fun loadInfo(
+        rawCursor: String? = null,
+        address: String,
+        networkName: String,
+        url: String
+    ) {
+        val infoDecoded = request(rawCursor, address, url)
         val info =
             historyDatabase.insertExtrinsics(address, networkName, infoDecoded)
         curSignerInfo = SignerInfo(
@@ -189,6 +169,12 @@ class SubQueryClient<T, R> constructor(
         )
         historyDatabase.insertSignerInfo(curSignerInfo)
     }
+
+    protected abstract suspend fun request(
+        cursor: String? = null,
+        address: String,
+        url: String
+    ): TxHistoryInfo
 
     private fun buildResultHistoryInfo(
         endReached: Boolean,
