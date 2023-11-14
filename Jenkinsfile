@@ -4,7 +4,9 @@ def jobParams  = [
   booleanParam(defaultValue: false, name: 'prDeployment'),
 ]
 
-new org.android.ShareFeature().call(
+def pipeline = new org.android.ShareFeature().call(
+  steps: this,
+  jobParams: jobParams,
   detekt: false,
   test: true,
   dockerImage: "build-tools/android-build-box:jdk17",
