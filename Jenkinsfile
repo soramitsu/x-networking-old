@@ -4,7 +4,7 @@ def jobParams  = [
   booleanParam(defaultValue: false, name: 'prDeployment'),
 ]
 
-def pipeline = new org.android.ShareFeature().call(
+def pipeline = new org.android.ShareFeature(
   steps: this,
   jobParams: jobParams,
   detekt: false,
