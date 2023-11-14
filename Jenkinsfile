@@ -1,7 +1,7 @@
 @Library('jenkins-library@duty/prdeploy') _
 
 def jobParams  = [
-  booleanParam(defaultValue: false, name: 'prDeployment')
+  booleanParam(defaultValue: false, name: 'prDeployment'),
 ]
 
 new org.android.ShareFeature().call(
