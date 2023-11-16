@@ -1,8 +1,8 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'fearlesswallet'
-    spec.version                  = '0.2.5-temp'
+    spec.version                  = '0.2.5-temp1'
     spec.homepage                 = 'Link to the Shared Module homepage'
-    spec.source                   = { :git => 'https://github.com/soramitsu/x-networking.git', :tag => '0.2.5-temp' }
+    spec.source                   = { :git => 'https://github.com/soramitsu/x-networking.git', :tag => '0.2.5-temp1' }
     spec.authors                  = ''
     spec.license                  = ''
     spec.summary                  = 'Some description for the Shared Module'
