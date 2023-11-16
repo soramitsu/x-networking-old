@@ -1,12 +1,12 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'XNetworking'
-    spec.version                  = '0.2.5-temp3'
+    spec.version                  = '0.2.5-temp4'
     spec.homepage                 = 'Link to the Shared Module homepage'
-    spec.source                   = { :git => 'https://github.com/soramitsu/x-networking.git', :tag => '0.2.5-temp3' }
+    spec.source                   = { :git => 'https://github.com/soramitsu/x-networking.git', :tag => '0.2.5-temp4' }
     spec.authors                  = ''
     spec.license                  = ''
     spec.summary                  = 'Some description for the Shared Module'
-    spec.vendored_frameworks      = 'XNetworking_fearlesswallet.framework'
+    spec.vendored_frameworks      = 'lib/fearlesswallet/XNetworking_fearlesswallet.framework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target = '14.1'
                 
