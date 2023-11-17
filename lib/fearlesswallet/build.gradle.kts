@@ -79,7 +79,16 @@ kotlin {
         framework {
             baseName = iosFrameworkName
             export(project(":lib:basic"))
+            transitiveExport = true
+            isStatic = true
         }
+//        dependencies {
+//this.
+//        }
+//        pod("basic") {
+////            version = "1.0"
+//            source = path(project.file("../basic/build/XCFrameworks/release/basic.xcframework"))
+//        }
     }
 
     sourceSets {
