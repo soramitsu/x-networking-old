@@ -6,7 +6,7 @@ import jp.co.soramitsu.xnetworking.basic.common.varMyAddress
 
 internal fun fearlessHistorySubSquidRequest() = """
     query MyQuery($varCountRemote: Int, $varMyAddress: String, $varAfterCursor: String) {
-  historyElementsConnection(where: {address_eq: $varMyAddress}, first: $varCountRemote, after: $varAfterCursor, orderBy: timestamp_DESC) {
+  historyElementsConnection(where: {address_eq: $varMyAddress, method_not_eq: "rewarded", OR: {dataTo_eq: $varMyAddress}}, first: $varCountRemote, after: $varAfterCursor, orderBy: timestamp_DESC) {
     pageInfo {
       endCursor
       hasNextPage
@@ -36,4 +36,5 @@ internal fun fearlessHistorySubSquidRequest() = """
     }
   }
 }
+
 """.trimIndent()
