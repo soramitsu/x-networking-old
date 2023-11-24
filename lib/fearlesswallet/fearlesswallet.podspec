@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'fearlesswallet'
-    spec.version                  = '0.2.5-temp6'
+    spec.version                  = '0.2.5-temp7'
     spec.homepage                 = 'Link to the Shared Module homepage'
     spec.source                   = { :http=> ''}
     spec.authors                  = ''
