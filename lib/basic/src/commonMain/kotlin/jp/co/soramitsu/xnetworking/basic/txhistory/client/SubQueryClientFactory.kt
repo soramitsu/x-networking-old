@@ -11,7 +11,7 @@ expect class SubQueryClientFactory<T, R> {
         baseUrl: String,
         pageSize: Int,
         deserializationStrategy: DeserializationStrategy<T>,
-        jsonToHistoryInfo: (T) -> TxHistoryInfo,
+        jsonToHistoryInfo: (T, String) -> TxHistoryInfo,
         historyIntoToResult: (TxHistoryItem) -> R,
         historyRequest: String,
     ): SubQueryClient<T, R>

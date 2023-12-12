@@ -21,7 +21,7 @@ class SubQueryClient<T, R> constructor(
     private val networkClient: SoramitsuNetworkClient,
     private val pageSize: Int,
     private val deserializationStrategy: DeserializationStrategy<T>,
-    private val jsonToHistoryInfo: (T) -> TxHistoryInfo,
+    private val jsonToHistoryInfo: (T, String) -> TxHistoryInfo,
     private val historyInfoToResult: (TxHistoryItem) -> R,
     private val historyRequest: String,
     historyDatabaseProvider: HistoryDatabaseProvider
@@ -173,7 +173,7 @@ class SubQueryClient<T, R> constructor(
             ContentType.Application.Json
         )
         val decoded = networkClient.json.decodeFromString(deserializationStrategy, response)
-        val infoDecoded = jsonToHistoryInfo.invoke(decoded)
+        val infoDecoded = jsonToHistoryInfo.invoke(decoded, address)
         val info =
             historyDatabase.insertExtrinsics(address, networkName, infoDecoded)
         curSignerInfo = SignerInfo(

@@ -26,7 +26,7 @@ class SubQueryClientForSoraWallet(
             networkClient = networkClient,
             pageSize = pageSize,
             deserializationStrategy = SoraSubQueryResponse.serializer(),
-            jsonToHistoryInfo = { response -> SoraWalletSubQueryHistoryMapper.map(response) },
+            jsonToHistoryInfo = { response, address -> SoraWalletSubQueryHistoryMapper.map(response, address) },
             historyInfoToResult = { it },
             historyRequest = soraHistoryGraphQLRequest(),
             historyDatabaseProvider = historyDatabaseProvider,
