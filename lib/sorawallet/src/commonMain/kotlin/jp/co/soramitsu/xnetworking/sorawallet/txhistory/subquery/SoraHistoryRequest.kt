@@ -13,10 +13,18 @@ internal fun soraHistoryGraphQLRequest(
                         after: $varAfterCursor 
                         filter: { 
                           or: [ 
+                            {
+                              data: { contains: {receivers:[{receivers:[{accountId:$varMyAddress}]}]} }
+                              or: [
+                                { module: { equalTo: "liquidityProxy" } method: { equalTo: "swapTransfer" }} 
+                                { module: { equalTo: "liquidityProxy" } method: { equalTo: "swapTransferBatch" }}
+                              ]
+                            }
                             { 
                               address: { equalTo: $varMyAddress } 
                               or: [
                                 { module: { equalTo: "assets" } method: { equalTo: "transfer" }} 
+                                { module: { equalTo: "liquidityProxy" } method: { equalTo: "xorlessTransfer" }} 
                                 { module: { equalTo: "liquidityProxy" } method: { equalTo: "swap" }} 
                                 { module: { equalTo: "poolXYK" } method: { equalTo: "depositLiquidity" }} 
                                 { data: { contains: [{ method: "depositLiquidity" }] }} 
@@ -24,6 +32,10 @@ internal fun soraHistoryGraphQLRequest(
                                 { data: { contains: [{ method: "withdrawLiquidity" }] }} 
                                 { module: { equalTo: "referrals" } }
                                 { module: { equalTo: "ethBridge" } method: { equalTo: "transferToSidechain" }} 
+                                { module: { equalTo: "demeterFarmingPlatform" } method: { equalTo: "deposit" }} 
+                                { module: { equalTo: "demeterFarmingPlatform" } method: { equalTo: "withdraw" }} 
+                                { module: { equalTo: "demeterFarmingPlatform" } method: { equalTo: "getRewards" }} 
+                                { module: { equalTo: "orderBook" } method: { equalTo: "placeLimitOrder" }} 
                               ] 
                             } 
                             { 

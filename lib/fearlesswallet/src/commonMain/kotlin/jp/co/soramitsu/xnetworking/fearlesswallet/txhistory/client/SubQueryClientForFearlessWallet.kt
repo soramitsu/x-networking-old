@@ -22,7 +22,7 @@ class SubQueryClientForFearlessWallet(
             networkClient = networkClient,
             pageSize = pageSize,
             deserializationStrategy = FearlessSubQueryResponse.serializer(),
-            jsonToHistoryInfo = { response -> FearlessWalletSubQueryHistoryMapper.map(response) },
+            jsonToHistoryInfo = { response, _ -> FearlessWalletSubQueryHistoryMapper.map(response) },
             historyInfoToResult = { it },
             historyRequest = fearlessHistoryGraphQLRequest(),
             historyDatabaseProvider = historyDatabaseProvider,

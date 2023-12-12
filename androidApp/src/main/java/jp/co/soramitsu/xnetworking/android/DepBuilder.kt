@@ -13,7 +13,7 @@ import jp.co.soramitsu.xnetworking.sorawallet.txhistory.client.SubQueryClientFor
 
 object DepBuilder {
 
-    private val soraNetworkClient = SoramitsuNetworkClient(logging = true)
+    val soraNetworkClient = SoramitsuNetworkClient(logging = true)
     private val fearlessChainsBuilder = FearlessChainsBuilder(
         soraNetworkClient,
         "https://raw.githubusercontent.com/arvifox/arvifoxandroid/develop/felete/",
@@ -23,6 +23,7 @@ object DepBuilder {
     lateinit var subQueryClientForSoraWallet: SubQueryClientForSoraWallet
     lateinit var subQueryClientForFearlessWallet: SubQueryClientForFearlessWallet
     lateinit var networkService: NetworkService
+    private const val pageSize = 30
 
     fun build(ctx: Context) {
         val soraRemoteConfigBuilder = SoraRemoteConfigProvider(
@@ -36,7 +37,7 @@ object DepBuilder {
                 ctx
             ).create(
                 soraNetworkClient,
-                30,
+                pageSize,
                 soraRemoteConfigBuilder,
             )
         subQueryClientForFearlessWallet =
@@ -44,7 +45,7 @@ object DepBuilder {
                 ctx
             ).create(
                 soraNetworkClient,
-                30,
+                pageSize,
             )
         networkService = NetworkService(
             soraNetworkClient,
