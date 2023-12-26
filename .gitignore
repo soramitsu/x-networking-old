@@ -6,7 +6,6 @@
 *.xcuserstate
 
 androidApp/build/
-lib/basic/build/*
 lib/fearlesswallet/build/*
 
 # Files for the ART/Dalvik VM

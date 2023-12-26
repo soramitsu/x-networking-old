@@ -1,0 +1,8 @@
+framework module basic {
+    umbrella header "basic.h"
+
+    export *
+    module * { export * }
+
+    use Foundation
+}
