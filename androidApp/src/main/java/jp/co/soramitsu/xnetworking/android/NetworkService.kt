@@ -41,21 +41,16 @@ class NetworkService(
     )
 
     suspend fun getApy() = soraWalletBlockExplorerInfo.getSpApy()
-    suspend fun getAssetsInfo() = soraWalletBlockExplorerInfo
-        .getAssetsInfo(listOf(
-            "0x0200000000000000000000000000000000000000000000000000000000000000",
-            "0x0200040000000000000000000000000000000000000000000000000000000000",
-            "0x0200050000000000000000000000000000000000000000000000000000000000",
-            "0x0200060000000000000000000000000000000000000000000000000000000000",
-            "0x0200070000000000000000000000000000000000000000000000000000000000",
-            "0x0200080000000000000000000000000000000000000000000000000000000000",
-            "0x0200090000000000000000000000000000000000000000000000000000000000",
-        ), TimeUnit.SECONDS.convert(System.currentTimeMillis(), TimeUnit.MILLISECONDS) - 24 * 60 * 60)
+    suspend fun getAssetsInfo(drs: List<String>) = soraWalletBlockExplorerInfo
+        .getAssetsInfo(
+            tokenIds = drs,
+            timestamp = TimeUnit.SECONDS.convert(System.currentTimeMillis(), TimeUnit.MILLISECONDS) - 24 * 60 * 60,
+        )
 
     suspend fun getHistorySora(page: Long, f: (TxHistoryItem) -> Boolean) =
         subQueryClientForSoraWallet.getTransactionHistoryPaged(
-            address = "cnUVLAjzRsrXrzEiqjxMpBwvb6YgdBy8DKibonvZgtcQY5ZKe",
-//            address = "cnWbtu2u7c51SPpYFr3SYDwTZkq1vF2bbaqAkCZvtCxsE19i3",
+//            address = "cnUVLAjzRsrXrzEiqjxMpBwvb6YgdBy8DKibonvZgtcQY5ZKe",
+            address = "cnWbtu2u7c51SPpYFr3SYDwTZkq1vF2bbaqAkCZvtCxsE19i3",
 //            address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
             page = page,
             filter = f
@@ -74,7 +69,8 @@ class NetworkService(
         subQueryClientForSoraWallet.getTransactionPeers(query)
 
     suspend fun getRewards() = soraWalletBlockExplorerInfo.getReferrerRewards(
-        address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
+//        address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
+        address = "cnWbtu2u7c51SPpYFr3SYDwTZkq1vF2bbaqAkCZvtCxsE19i3",
     )
 
     suspend fun getSoraConfig(): SoraConfig? = soraConfigBuilder.getConfig()

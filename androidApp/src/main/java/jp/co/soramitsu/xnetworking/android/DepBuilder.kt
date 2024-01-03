@@ -13,15 +13,15 @@ import jp.co.soramitsu.xnetworking.sorawallet.txhistory.client.SubQueryClientFor
 
 object DepBuilder {
 
-    val soraNetworkClient = SoramitsuNetworkClient(logging = true)
+    val soraNetworkClient = SoramitsuNetworkClient(logging = true, timeout = 20000)
     private val fearlessChainsBuilder = FearlessChainsBuilder(
         soraNetworkClient,
         "https://raw.githubusercontent.com/arvifox/arvifoxandroid/develop/felete/",
         "chains/index_android.json"
     )
 
-    lateinit var subQueryClientForSoraWallet: SubQueryClientForSoraWallet
-    lateinit var subQueryClientForFearlessWallet: SubQueryClientForFearlessWallet
+    private lateinit var subQueryClientForSoraWallet: SubQueryClientForSoraWallet
+    private lateinit var subQueryClientForFearlessWallet: SubQueryClientForFearlessWallet
     lateinit var networkService: NetworkService
     private const val pageSize = 30
 
