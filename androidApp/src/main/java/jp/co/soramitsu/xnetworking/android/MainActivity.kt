@@ -23,11 +23,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,12 +56,17 @@ private fun MainScreen() {
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
     ) {
+        val assetsInfo = LocalContext.current.assets
         Button(
             onClick = {
                 GlobalScope.launch {
+                    val drs = assetsInfo.open("qweqwe.txt").bufferedReader().use { it.readText() }.let {
+                        Json.decodeFromString<List<String>>(it)
+                    }
                     try {
                         Log.e("foxxx", "r start btn 1")
-                        val r = DepBuilder.networkService.getAssetsInfo()
+                        val r = DepBuilder.networkService.getAssetsInfo(drs)
+                        Log.e("foxxx", "r = ${r.size}")
                         Log.e("foxxx", "r = ${r}")
                     } catch (t: Throwable) {
                         Log.e("foxxx", "t= ${t.localizedMessage}")
@@ -114,7 +122,9 @@ private fun MainScreen() {
                 GlobalScope.launch {
                     Log.e("foxxx", "r start btn 3")
                     try {
-                        val r = DepBuilder.networkService.getFiat()
+//                        val r = DepBuilder.networkService.getFiat()
+                        val r = DepBuilder.networkService.getApy()
+//                        val r = DepBuilder.networkService.getRewards()
                         Log.e("foxxx", "r = $r")
                     } catch (t: Throwable) {
                         Log.e("foxxx", "t = ${t.localizedMessage}")
