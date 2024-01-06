@@ -7,7 +7,6 @@
 
 androidApp/build/
 lib/basic/build/*
-lib/sorawallet/build/*
 lib/fearlesswallet/build/*
 
 # Files for the ART/Dalvik VM
