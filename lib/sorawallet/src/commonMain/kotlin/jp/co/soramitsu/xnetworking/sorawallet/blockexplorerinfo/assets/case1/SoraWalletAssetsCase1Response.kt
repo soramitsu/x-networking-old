@@ -36,6 +36,6 @@ data class SoraWalletAssetsCase1ResponseDataEntitiesNodeHour(
     val id: String,
     @SerialName("priceChangeDay")
     val priceChangeDay: Double?,
-    @SerialName("liquidityUSD")
-    val liquidityUSD: String?,
+    @SerialName("liquidity")
+    val liquidity: String?,
 )

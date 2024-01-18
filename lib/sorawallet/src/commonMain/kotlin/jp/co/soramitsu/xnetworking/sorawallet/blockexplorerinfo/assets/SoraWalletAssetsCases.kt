@@ -52,7 +52,7 @@ private class SoraWalletAssetsCase1 : SoraWalletAssetsCase {
                 result.add(
                     AssetsInfo(
                         node.node.id,
-                        node.node.liquidityUSD.orEmpty(),
+                        node.node.liquidity.orEmpty(),
                         node.node.priceChangeDay
                     )
                 )
