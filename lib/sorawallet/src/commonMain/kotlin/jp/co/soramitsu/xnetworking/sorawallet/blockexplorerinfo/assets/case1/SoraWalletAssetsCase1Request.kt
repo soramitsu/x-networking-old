@@ -13,7 +13,7 @@ internal fun graphQLRequestSoraWalletAssetsCase1(
                 node {
                   id
                   priceChangeDay
-                  liquidityUSD
+                  liquidity
                 }
               }         
               pageInfo {
