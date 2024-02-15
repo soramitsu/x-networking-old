@@ -11,44 +11,52 @@ internal fun soraHistoryGraphQLRequest(
                         first: $varCountRemote 
                         orderBy: TIMESTAMP_DESC 
                         after: $varAfterCursor 
-                        filter: { 
-                          or: [ 
+                        filter: {
+                          and: [
                             {
-                              data: { contains: {receivers:[{receivers:[{accountId:$varMyAddress}]}]} }
-                              or: [
-                                { module: { equalTo: "liquidityProxy" } method: { equalTo: "swapTransfer" }} 
-                                { module: { equalTo: "liquidityProxy" } method: { equalTo: "swapTransferBatch" }}
+                              or: [ 
+                                {
+                                  or: [
+                                    { module: { equalTo: "liquidityProxy" } method: { equalTo: "swapTransfer" }} 
+                                    { module: { equalTo: "liquidityProxy" } method: { equalTo: "swapTransferBatch" }}
+                                  ]
+                                }
+                                { 
+                                  or: [
+                                    { module: { equalTo: "assets" } method: { equalToInsensitive: "transfer" }} 
+                                    { module: { equalTo: "liquidityProxy" } method: { equalTo: "xorlessTransfer" }} 
+                                    { module: { equalTo: "liquidityProxy" } method: { equalTo: "swap" }} 
+                                    { module: { equalTo: "poolXYK" } method: { equalTo: "depositLiquidity" }} 
+                                    { data: { contains: [{ method: "depositLiquidity" }] }} 
+                                    { module: { equalTo: "poolXYK" } method: { equalTo: "withdrawLiquidity" }} 
+                                    { data: { contains: [{ method: "withdrawLiquidity" }] }} 
+                                    { module: { equalTo: "referrals" } }
+                                    { module: { equalTo: "ethBridge" } method: { equalTo: "transferToSidechain" }} 
+                                    { module: { equalTo: "demeterFarmingPlatform" } method: { equalTo: "deposit" }} 
+                                    { module: { equalTo: "demeterFarmingPlatform" } method: { equalTo: "withdraw" }} 
+                                    { module: { equalTo: "demeterFarmingPlatform" } method: { equalTo: "getRewards" }} 
+                                    { module: { equalTo: "orderBook" } method: { equalTo: "placeLimitOrder" }} 
+                                  ] 
+                                } 
+                                { 
+                                  data: { contains: { to: $varMyAddress } }
+                                  module: { equalTo: "assets" } method: { equalTo: "transfer" }
+                                  execution: { contains: { success: true } }
+                                } 
+                                {
+                                  data: { contains: { to: $varMyAddress } }
+                                  module: { equalTo: "referrals" } method: { equalTo: "setReferrer" }
+                                  execution: { contains: { success: true } }
+                                }
                               ]
                             }
-                            { 
-                              address: { equalTo: $varMyAddress } 
-                              or: [
-                                { module: { equalTo: "assets" } method: { equalTo: "transfer" }} 
-                                { module: { equalTo: "liquidityProxy" } method: { equalTo: "xorlessTransfer" }} 
-                                { module: { equalTo: "liquidityProxy" } method: { equalTo: "swap" }} 
-                                { module: { equalTo: "poolXYK" } method: { equalTo: "depositLiquidity" }} 
-                                { data: { contains: [{ method: "depositLiquidity" }] }} 
-                                { module: { equalTo: "poolXYK" } method: { equalTo: "withdrawLiquidity" }} 
-                                { data: { contains: [{ method: "withdrawLiquidity" }] }} 
-                                { module: { equalTo: "referrals" } }
-                                { module: { equalTo: "ethBridge" } method: { equalTo: "transferToSidechain" }} 
-                                { module: { equalTo: "demeterFarmingPlatform" } method: { equalTo: "deposit" }} 
-                                { module: { equalTo: "demeterFarmingPlatform" } method: { equalTo: "withdraw" }} 
-                                { module: { equalTo: "demeterFarmingPlatform" } method: { equalTo: "getRewards" }} 
-                                { module: { equalTo: "orderBook" } method: { equalTo: "placeLimitOrder" }} 
-                              ] 
-                            } 
-                            { 
-                              data: { contains: { to: $varMyAddress } }
-                              module: { equalTo: "assets" } method: { equalTo: "transfer" }
-                              execution: { contains: { success: true } }
-                            } 
                             {
-                              data: { contains: { to: $varMyAddress } }
-                              module: { equalTo: "referrals" } method: { equalTo: "setReferrer" }
-                              execution: { contains: { success: true } }
+                              or: [
+                                { address: { equalTo: $varMyAddress } }
+                                { dataTo: { equalTo: $varMyAddress } }
+                              ]
                             }
-                          ] 
+                          ]  
                         } 
                       ) { 
                         nodes { 
@@ -60,7 +68,8 @@ internal fun soraHistoryGraphQLRequest(
                           networkFee
                           execution
                           timestamp
-                          data 
+                          data
+                          dataTo
                         }
                         pageInfo {
                           endCursor
