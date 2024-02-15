@@ -6,9 +6,9 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class SorawalletExtrinsicParam, SorawalletExtrinsics, SorawalletSignerInfo, SorawalletSoraHistoryDatabaseCompanion, SorawalletRuntimeQuery<__covariant RowType>, SorawalletResponsePageInfoCompanion, SorawalletResponsePageInfo, SorawalletUtils, SorawalletKotlinx_serialization_jsonJson, SorawalletWebSocketClientConfig, SorawalletNetworkClientConfig, SorawalletKtor_client_coreHttpClient, SorawalletKtor_httpHttpMethod, SorawalletKotlinPair<__covariant A, __covariant B>, SorawalletKtor_httpContentType, SorawalletKtor_client_coreHttpResponse, SorawalletKotlinThrowable, SorawalletKotlinArray<T>, SorawalletDatabaseDriverFactory, SorawalletHistoryMapper, SorawalletTxHistoryItemNested, SorawalletTxHistoryItem, SorawalletTxHistoryInfo, SorawalletTxHistoryItemParam, SorawalletSoramitsuNetworkClient, SorawalletHistoryDatabaseProvider, SorawalletTxHistoryResult<R>, SorawalletSubQueryClient<T, R>, SorawalletSubQueryRequestCompanion, SorawalletSubQueryRequest, SorawalletErrorCompanion, SorawalletError, SorawalletExecutionResultCompanion, SorawalletExecutionResult, SorawalletHistoryResponseItem, SorawalletHistoryResponseDataElementsCompanion, SorawalletHistoryResponseDataElements, SorawalletKotlinx_serialization_jsonJsonElement, SorawalletHistoryResponseItemCompanion, SorawalletSoraSubQueryResponseData, SorawalletSoraSubQueryResponseCompanion, SorawalletSoraSubQueryResponse, SorawalletSoraSubQueryResponseDataCompanion, SorawalletSoraWalletSubQueryHistoryMapper, SorawalletSoraRemoteConfigBuilder, SorawalletSubQueryClientForSoraWallet, SorawalletSoraTokenWhitelistDto, SorawalletSoraTokensWhitelistManagerCompanion, SorawalletConfigExplorerType, SorawalletSoraConfigNode, SorawalletSoraCurrency, SorawalletSoraConfig, SorawalletAssetsInfo, SorawalletFiatData, SorawalletReferrerRewardsInfo, SorawalletSbApyInfo, SorawalletSoraWalletFiatCase2ResponseData, SorawalletSoraWalletFiatCase2ResponseCompanion, SorawalletSoraWalletFiatCase2Response, SorawalletSoraWalletFiatCase2ResponseDataEntities, SorawalletSoraWalletFiatCase2ResponseDataCompanion, SorawalletSoraWalletFiatCase2ResponseDataEntitiesNode, SorawalletSoraWalletFiatCase2ResponseDataEntitiesCompanion, SorawalletSoraWalletFiatCase2ResponseDataEntitiesNodeCompanion, SorawalletSoraWalletAssetsCase0ResponseData, SorawalletSoraWalletAssetsCase0ResponseCompanion, SorawalletSoraWalletAssetsCase0Response, SorawalletSoraWalletAssetsCase0ResponseDataEntities, SorawalletSoraWalletAssetsCase0ResponseDataCompanion, SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNode, SorawalletSoraWalletAssetsCase0ResponseDataEntitiesCompanion, SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHour, SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeCompanion, SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNode, SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourCompanion, SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePrice, SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodeCompanion, SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePriceCompanion, SorawalletSoraWalletAssetsCase1ResponseData, SorawalletSoraWalletAssetsCase1ResponseCompanion, SorawalletSoraWalletAssetsCase1Response, SorawalletSoraWalletAssetsCase1ResponseDataEntities, SorawalletSoraWalletAssetsCase1ResponseDataCompanion, SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNode, SorawalletSoraWalletAssetsCase1ResponseDataEntitiesCompanion, SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeHour, SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeCompanion, SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeHourCompanion, SorawalletReferrerReward, SorawalletSoraWalletReferrerCase1ResponseData, SorawalletSoraWalletReferrerCase1ResponseCompanion, SorawalletSoraWalletReferrerCase1Response, SorawalletSoraWalletReferrerCase1ResponseDataRewards, SorawalletSoraWalletReferrerCase1ResponseDataCompanion, SorawalletSoraWalletReferrerCase1ResponseDataRewardsNode, SorawalletSoraWalletReferrerCase1ResponseDataRewardsCompanion, SorawalletSoraWalletReferrerCase1ResponseDataRewardsNodeCompanion, SorawalletSoraWalletSbApyCase2ResponseData, SorawalletSoraWalletSbApyCase2ResponseCompanion, SorawalletSoraWalletSbApyCase2Response, SorawalletSoraWalletSbApyCase2ResponseDataEntities, SorawalletSoraWalletSbApyCase2ResponseDataCompanion, SorawalletSoraWalletSbApyCase2ResponseDataEntitiesNode, SorawalletSoraWalletSbApyCase2ResponseDataEntitiesCompanion, SorawalletSoraWalletSbApyCase2ResponseDataEntitiesNodeCompanion, SorawalletKotlinByteArray, SorawalletRuntimeTransacterTransaction, SorawalletKtor_client_coreHttpClientEngineConfig, SorawalletKotlinx_serialization_coreSerializersModule, SorawalletKotlinx_serialization_jsonJsonDefault, SorawalletKotlinx_serialization_jsonJsonConfiguration, SorawalletKtor_client_coreHttpClientConfig<T>, SorawalletKtor_eventsEvents, SorawalletKtor_client_coreHttpReceivePipeline, SorawalletKtor_client_coreHttpRequestPipeline, SorawalletKtor_client_coreHttpResponsePipeline, SorawalletKtor_client_coreHttpSendPipeline, SorawalletKotlinException, SorawalletKotlinRuntimeException, SorawalletKotlinIllegalStateException, SorawalletKtor_httpHttpMethodCompanion, SorawalletKtor_httpHeaderValueParam, SorawalletKtor_httpHeaderValueWithParametersCompanion, SorawalletKtor_httpHeaderValueWithParameters, SorawalletKtor_httpContentTypeCompanion, SorawalletKtor_client_coreHttpClientCall, SorawalletKtor_utilsGMTDate, SorawalletKtor_httpHttpStatusCode, SorawalletKtor_httpHttpProtocolVersion, SorawalletKotlinx_serialization_jsonJsonElementCompanion, SorawalletKotlinByteIterator, SorawalletKotlinx_serialization_coreSerialKind, SorawalletKotlinNothing, SorawalletKtor_client_coreHttpRequestData, SorawalletKtor_client_coreHttpResponseData, SorawalletKotlinx_coroutines_coreCoroutineDispatcher, SorawalletKtor_client_coreProxyConfig, SorawalletKtor_utilsAttributeKey<T>, SorawalletKtor_eventsEventDefinition<T>, SorawalletKtor_utilsPipelinePhase, SorawalletKtor_utilsPipeline<TSubject, TContext>, SorawalletKtor_client_coreHttpReceivePipelinePhases, SorawalletKotlinUnit, SorawalletKtor_client_coreHttpRequestPipelinePhases, SorawalletKtor_client_coreHttpRequestBuilder, SorawalletKtor_client_coreHttpResponsePipelinePhases, SorawalletKtor_client_coreHttpResponseContainer, SorawalletKtor_client_coreHttpSendPipelinePhases, SorawalletKtor_client_coreHttpClientCallCompanion, SorawalletKtor_utilsTypeInfo, SorawalletKtor_ioMemory, SorawalletKtor_ioChunkBuffer, SorawalletKtor_ioBuffer, SorawalletKtor_ioByteReadPacket, SorawalletKtor_utilsGMTDateCompanion, SorawalletKtor_utilsWeekDay, SorawalletKtor_utilsMonth, SorawalletKtor_httpHttpStatusCodeCompanion, SorawalletKtor_httpHttpProtocolVersionCompanion, SorawalletKtor_httpUrl, SorawalletKtor_httpOutgoingContent, SorawalletKotlinAbstractCoroutineContextElement, SorawalletKotlinx_coroutines_coreCoroutineDispatcherKey, SorawalletKtor_httpHeadersBuilder, SorawalletKtor_client_coreHttpRequestBuilderCompanion, SorawalletKtor_httpURLBuilder, SorawalletKtor_ioMemoryCompanion, SorawalletKtor_ioBufferCompanion, SorawalletKtor_ioChunkBufferCompanion, SorawalletKtor_ioInputCompanion, SorawalletKtor_ioInput, SorawalletKtor_ioByteReadPacketCompanion, SorawalletKotlinEnumCompanion, SorawalletKotlinEnum<E>, SorawalletKtor_utilsWeekDayCompanion, SorawalletKtor_utilsMonthCompanion, SorawalletKtor_httpUrlCompanion, SorawalletKtor_httpURLProtocol, SorawalletKotlinCancellationException, SorawalletKotlinAbstractCoroutineContextKey<B, E>, SorawalletKtor_utilsStringValuesBuilderImpl, SorawalletKtor_httpURLBuilderCompanion, SorawalletKotlinKTypeProjection, SorawalletKtor_httpURLProtocolCompanion, SorawalletKotlinKVariance, SorawalletKotlinKTypeProjectionCompanion;
+@class SorawalletResponsePageInfoCompanion, SorawalletResponsePageInfo, SorawalletUtils, SorawalletKotlinx_serialization_jsonJson, SorawalletWebSocketClientConfig, SorawalletNetworkClientConfig, SorawalletKtor_client_coreHttpClient, SorawalletKtor_httpHttpMethod, SorawalletKotlinPair<__covariant A, __covariant B>, SorawalletKtor_httpContentType, SorawalletKtor_client_coreHttpResponse, SorawalletKotlinThrowable, SorawalletKotlinArray<T>, SorawalletDatabaseDriverFactory, SorawalletHistoryMapper, SorawalletTxHistoryItemNested, SorawalletExtrinsics, SorawalletExtrinsicParam, SorawalletTxHistoryItem, SorawalletTxHistoryInfo, SorawalletTxHistoryItemParam, SorawalletSoramitsuNetworkClient, SorawalletHistoryDatabaseProvider, SorawalletTxHistoryResult<R>, SorawalletSubQueryClient<T, R>, SorawalletSubQueryRequestCompanion, SorawalletSubQueryRequest, SorawalletSignerInfo, SorawalletSoraHistoryDatabaseCompanion, SorawalletRuntimeQuery<__covariant RowType>, SorawalletSoraRemoteConfigBuilder, SorawalletAssetsInfo, SorawalletFiatData, SorawalletReferrerRewardsInfo, SorawalletSbApyInfo, SorawalletSoraWalletAssetsCase0ResponseData, SorawalletSoraWalletAssetsCase0ResponseCompanion, SorawalletSoraWalletAssetsCase0Response, SorawalletSoraWalletAssetsCase0ResponseDataEntities, SorawalletSoraWalletAssetsCase0ResponseDataCompanion, SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNode, SorawalletSoraWalletAssetsCase0ResponseDataEntitiesCompanion, SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHour, SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeCompanion, SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNode, SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourCompanion, SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePrice, SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodeCompanion, SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePriceCompanion, SorawalletSoraWalletAssetsCase1ResponseData, SorawalletSoraWalletAssetsCase1ResponseCompanion, SorawalletSoraWalletAssetsCase1Response, SorawalletSoraWalletAssetsCase1ResponseDataEntities, SorawalletSoraWalletAssetsCase1ResponseDataCompanion, SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNode, SorawalletSoraWalletAssetsCase1ResponseDataEntitiesCompanion, SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeHour, SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeCompanion, SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeHourCompanion, SorawalletSoraWalletFiatCase2ResponseData, SorawalletSoraWalletFiatCase2ResponseCompanion, SorawalletSoraWalletFiatCase2Response, SorawalletSoraWalletFiatCase2ResponseDataEntities, SorawalletSoraWalletFiatCase2ResponseDataCompanion, SorawalletSoraWalletFiatCase2ResponseDataEntitiesNode, SorawalletSoraWalletFiatCase2ResponseDataEntitiesCompanion, SorawalletSoraWalletFiatCase2ResponseDataEntitiesNodeCompanion, SorawalletReferrerReward, SorawalletSoraWalletReferrerCase1ResponseData, SorawalletSoraWalletReferrerCase1ResponseCompanion, SorawalletSoraWalletReferrerCase1Response, SorawalletSoraWalletReferrerCase1ResponseDataRewards, SorawalletSoraWalletReferrerCase1ResponseDataCompanion, SorawalletSoraWalletReferrerCase1ResponseDataRewardsNode, SorawalletSoraWalletReferrerCase1ResponseDataRewardsCompanion, SorawalletSoraWalletReferrerCase1ResponseDataRewardsNodeCompanion, SorawalletSoraWalletSbApyCase2ResponseData, SorawalletSoraWalletSbApyCase2ResponseCompanion, SorawalletSoraWalletSbApyCase2Response, SorawalletSoraWalletSbApyCase2ResponseDataEntities, SorawalletSoraWalletSbApyCase2ResponseDataCompanion, SorawalletSoraWalletSbApyCase2ResponseDataEntitiesNode, SorawalletSoraWalletSbApyCase2ResponseDataEntitiesCompanion, SorawalletSoraWalletSbApyCase2ResponseDataEntitiesNodeCompanion, SorawalletConfigExplorerType, SorawalletSoraConfigNode, SorawalletSoraCurrency, SorawalletSoraConfig, SorawalletSoraTokenWhitelistDto, SorawalletSoraTokensWhitelistManagerCompanion, SorawalletSubQueryClientForSoraWallet, SorawalletErrorCompanion, SorawalletError, SorawalletExecutionResultCompanion, SorawalletExecutionResult, SorawalletHistoryResponseItem, SorawalletHistoryResponseDataElementsCompanion, SorawalletHistoryResponseDataElements, SorawalletKotlinx_serialization_jsonJsonElement, SorawalletHistoryResponseItemCompanion, SorawalletSoraSubQueryResponseData, SorawalletSoraSubQueryResponseCompanion, SorawalletSoraSubQueryResponse, SorawalletSoraSubQueryResponseDataCompanion, SorawalletSoraWalletSubQueryHistoryMapper, SorawalletKotlinByteArray, SorawalletRuntimeTransacterTransaction, SorawalletKtor_client_coreHttpClientEngineConfig, SorawalletKotlinx_serialization_coreSerializersModule, SorawalletKotlinx_serialization_jsonJsonDefault, SorawalletKotlinx_serialization_jsonJsonConfiguration, SorawalletKtor_client_coreHttpClientConfig<T>, SorawalletKtor_eventsEvents, SorawalletKtor_client_coreHttpReceivePipeline, SorawalletKtor_client_coreHttpRequestPipeline, SorawalletKtor_client_coreHttpResponsePipeline, SorawalletKtor_client_coreHttpSendPipeline, SorawalletKotlinException, SorawalletKotlinRuntimeException, SorawalletKotlinIllegalStateException, SorawalletKtor_httpHttpMethodCompanion, SorawalletKtor_httpHeaderValueParam, SorawalletKtor_httpHeaderValueWithParametersCompanion, SorawalletKtor_httpHeaderValueWithParameters, SorawalletKtor_httpContentTypeCompanion, SorawalletKtor_client_coreHttpClientCall, SorawalletKtor_utilsGMTDate, SorawalletKtor_httpHttpStatusCode, SorawalletKtor_httpHttpProtocolVersion, SorawalletKotlinx_serialization_jsonJsonElementCompanion, SorawalletKotlinByteIterator, SorawalletKotlinx_serialization_coreSerialKind, SorawalletKotlinNothing, SorawalletKtor_client_coreHttpRequestData, SorawalletKtor_client_coreHttpResponseData, SorawalletKotlinx_coroutines_coreCoroutineDispatcher, SorawalletKtor_client_coreProxyConfig, SorawalletKtor_utilsAttributeKey<T>, SorawalletKtor_eventsEventDefinition<T>, SorawalletKtor_utilsPipelinePhase, SorawalletKtor_utilsPipeline<TSubject, TContext>, SorawalletKtor_client_coreHttpReceivePipelinePhases, SorawalletKotlinUnit, SorawalletKtor_client_coreHttpRequestPipelinePhases, SorawalletKtor_client_coreHttpRequestBuilder, SorawalletKtor_client_coreHttpResponsePipelinePhases, SorawalletKtor_client_coreHttpResponseContainer, SorawalletKtor_client_coreHttpSendPipelinePhases, SorawalletKtor_client_coreHttpClientCallCompanion, SorawalletKtor_utilsTypeInfo, SorawalletKtor_ioMemory, SorawalletKtor_ioChunkBuffer, SorawalletKtor_ioBuffer, SorawalletKtor_ioByteReadPacket, SorawalletKtor_utilsGMTDateCompanion, SorawalletKtor_utilsWeekDay, SorawalletKtor_utilsMonth, SorawalletKtor_httpHttpStatusCodeCompanion, SorawalletKtor_httpHttpProtocolVersionCompanion, SorawalletKtor_httpUrl, SorawalletKtor_httpOutgoingContent, SorawalletKotlinAbstractCoroutineContextElement, SorawalletKotlinx_coroutines_coreCoroutineDispatcherKey, SorawalletKtor_httpHeadersBuilder, SorawalletKtor_client_coreHttpRequestBuilderCompanion, SorawalletKtor_httpURLBuilder, SorawalletKtor_ioMemoryCompanion, SorawalletKtor_ioBufferCompanion, SorawalletKtor_ioChunkBufferCompanion, SorawalletKtor_ioInputCompanion, SorawalletKtor_ioInput, SorawalletKtor_ioByteReadPacketCompanion, SorawalletKotlinEnumCompanion, SorawalletKotlinEnum<E>, SorawalletKtor_utilsWeekDayCompanion, SorawalletKtor_utilsMonthCompanion, SorawalletKtor_httpUrlCompanion, SorawalletKtor_httpURLProtocol, SorawalletKotlinCancellationException, SorawalletKotlinAbstractCoroutineContextKey<B, E>, SorawalletKtor_utilsStringValuesBuilderImpl, SorawalletKtor_httpURLBuilderCompanion, SorawalletKotlinKTypeProjection, SorawalletKtor_httpURLProtocolCompanion, SorawalletKotlinKVariance, SorawalletKotlinKTypeProjectionCompanion;
 
-@protocol SorawalletSoraHistoryDatabaseQueries, SorawalletRuntimeTransactionWithoutReturn, SorawalletRuntimeTransactionWithReturn, SorawalletRuntimeTransacter, SorawalletSoraHistoryDatabase, SorawalletRuntimeSqlDriver, SorawalletRuntimeSqlDriverSchema, SorawalletKotlinx_serialization_coreKSerializer, SorawalletKotlinx_coroutines_coreFlow, SorawalletKtor_client_coreHttpClientEngineFactory, SorawalletSoramitsuHttpClientProvider, SorawalletKotlinx_serialization_coreDeserializationStrategy, SorawalletMultiplatform_settingsSettings, SorawalletKtor_httpHeaders, SorawalletRuntimeTransactionCallbacks, SorawalletRuntimeSqlPreparedStatement, SorawalletRuntimeSqlCursor, SorawalletRuntimeCloseable, SorawalletRuntimeQueryListener, SorawalletKotlinx_serialization_coreEncoder, SorawalletKotlinx_serialization_coreSerialDescriptor, SorawalletKotlinx_serialization_coreSerializationStrategy, SorawalletKotlinx_serialization_coreDecoder, SorawalletKotlinx_coroutines_coreFlowCollector, SorawalletKtor_client_coreHttpClientEngine, SorawalletKotlinx_serialization_coreSerialFormat, SorawalletKotlinx_serialization_coreStringFormat, SorawalletKotlinCoroutineContext, SorawalletKotlinx_coroutines_coreCoroutineScope, SorawalletKtor_ioCloseable, SorawalletKtor_client_coreHttpClientEngineCapability, SorawalletKtor_utilsAttributes, SorawalletKtor_httpHttpMessage, SorawalletKtor_ioByteReadChannel, SorawalletKotlinIterator, SorawalletKotlinMapEntry, SorawalletKtor_utilsStringValues, SorawalletKotlinx_serialization_coreCompositeEncoder, SorawalletKotlinAnnotation, SorawalletKotlinx_serialization_coreCompositeDecoder, SorawalletKotlinx_serialization_coreSerializersModuleCollector, SorawalletKotlinKClass, SorawalletKotlinx_serialization_jsonJsonNamingStrategy, SorawalletKotlinCoroutineContextElement, SorawalletKotlinCoroutineContextKey, SorawalletKtor_client_coreHttpClientPlugin, SorawalletKotlinx_coroutines_coreDisposableHandle, SorawalletKotlinSuspendFunction2, SorawalletKtor_client_coreHttpRequest, SorawalletKtor_ioReadSession, SorawalletKotlinSuspendFunction1, SorawalletKotlinAppendable, SorawalletKotlinComparable, SorawalletKotlinx_coroutines_coreJob, SorawalletKotlinContinuation, SorawalletKotlinContinuationInterceptor, SorawalletKotlinx_coroutines_coreRunnable, SorawalletKotlinKDeclarationContainer, SorawalletKotlinKAnnotatedElement, SorawalletKotlinKClassifier, SorawalletKotlinFunction, SorawalletKtor_httpHttpMessageBuilder, SorawalletKotlinKType, SorawalletKtor_ioObjectPool, SorawalletKtor_httpParameters, SorawalletKotlinx_coroutines_coreChildHandle, SorawalletKotlinx_coroutines_coreChildJob, SorawalletKotlinSequence, SorawalletKotlinx_coroutines_coreSelectClause0, SorawalletKtor_utilsStringValuesBuilder, SorawalletKtor_httpParametersBuilder, SorawalletKotlinx_coroutines_coreParentJob, SorawalletKotlinx_coroutines_coreSelectInstance, SorawalletKotlinx_coroutines_coreSelectClause;
+@protocol SorawalletKotlinx_serialization_coreKSerializer, SorawalletRuntimeSqlDriver, SorawalletKtor_client_coreHttpClientEngineFactory, SorawalletSoramitsuHttpClientProvider, SorawalletKotlinx_coroutines_coreFlow, SorawalletKotlinx_serialization_coreDeserializationStrategy, SorawalletSoraHistoryDatabaseQueries, SorawalletRuntimeTransactionWithoutReturn, SorawalletRuntimeTransactionWithReturn, SorawalletRuntimeTransacter, SorawalletSoraHistoryDatabase, SorawalletRuntimeSqlDriverSchema, SorawalletMultiplatform_settingsSettings, SorawalletKtor_httpHeaders, SorawalletKotlinx_serialization_coreEncoder, SorawalletKotlinx_serialization_coreSerialDescriptor, SorawalletKotlinx_serialization_coreSerializationStrategy, SorawalletKotlinx_serialization_coreDecoder, SorawalletRuntimeSqlPreparedStatement, SorawalletRuntimeSqlCursor, SorawalletRuntimeCloseable, SorawalletKtor_client_coreHttpClientEngine, SorawalletKotlinx_serialization_coreSerialFormat, SorawalletKotlinx_serialization_coreStringFormat, SorawalletKotlinCoroutineContext, SorawalletKotlinx_coroutines_coreCoroutineScope, SorawalletKtor_ioCloseable, SorawalletKtor_client_coreHttpClientEngineCapability, SorawalletKtor_utilsAttributes, SorawalletKtor_httpHttpMessage, SorawalletKtor_ioByteReadChannel, SorawalletKotlinIterator, SorawalletKotlinx_coroutines_coreFlowCollector, SorawalletRuntimeTransactionCallbacks, SorawalletRuntimeQueryListener, SorawalletKotlinMapEntry, SorawalletKtor_utilsStringValues, SorawalletKotlinx_serialization_coreCompositeEncoder, SorawalletKotlinAnnotation, SorawalletKotlinx_serialization_coreCompositeDecoder, SorawalletKotlinx_serialization_coreSerializersModuleCollector, SorawalletKotlinKClass, SorawalletKotlinx_serialization_jsonJsonNamingStrategy, SorawalletKotlinCoroutineContextElement, SorawalletKotlinCoroutineContextKey, SorawalletKtor_client_coreHttpClientPlugin, SorawalletKotlinx_coroutines_coreDisposableHandle, SorawalletKotlinSuspendFunction2, SorawalletKtor_client_coreHttpRequest, SorawalletKtor_ioReadSession, SorawalletKotlinSuspendFunction1, SorawalletKotlinAppendable, SorawalletKotlinComparable, SorawalletKotlinx_coroutines_coreJob, SorawalletKotlinContinuation, SorawalletKotlinContinuationInterceptor, SorawalletKotlinx_coroutines_coreRunnable, SorawalletKotlinKDeclarationContainer, SorawalletKotlinKAnnotatedElement, SorawalletKotlinKClassifier, SorawalletKotlinFunction, SorawalletKtor_httpHttpMessageBuilder, SorawalletKotlinKType, SorawalletKtor_ioObjectPool, SorawalletKtor_httpParameters, SorawalletKotlinx_coroutines_coreChildHandle, SorawalletKotlinx_coroutines_coreChildJob, SorawalletKotlinSequence, SorawalletKotlinx_coroutines_coreSelectClause0, SorawalletKtor_utilsStringValuesBuilder, SorawalletKtor_httpParametersBuilder, SorawalletKotlinx_coroutines_coreParentJob, SorawalletKotlinx_coroutines_coreSelectInstance, SorawalletKotlinx_coroutines_coreSelectClause;
 
 NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
@@ -144,104 +144,6 @@ __attribute__((swift_name("KotlinBoolean")))
 + (instancetype)numberWithBool:(BOOL)value;
 @end
 
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ExtrinsicParam")))
-@interface SorawalletExtrinsicParam : SorawalletBase
-- (instancetype)initWithExtrinsicHash:(NSString *)extrinsicHash paramName:(NSString *)paramName paramValue:(NSString *)paramValue __attribute__((swift_name("init(extrinsicHash:paramName:paramValue:)"))) __attribute__((objc_designated_initializer));
-- (SorawalletExtrinsicParam *)doCopyExtrinsicHash:(NSString *)extrinsicHash paramName:(NSString *)paramName paramValue:(NSString *)paramValue __attribute__((swift_name("doCopy(extrinsicHash:paramName:paramValue:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString *extrinsicHash __attribute__((swift_name("extrinsicHash")));
-@property (readonly) NSString *paramName __attribute__((swift_name("paramName")));
-@property (readonly) NSString *paramValue __attribute__((swift_name("paramValue")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Extrinsics")))
-@interface SorawalletExtrinsics : SorawalletBase
-- (instancetype)initWithTxHash:(NSString *)txHash signAddress:(NSString *)signAddress blockHash:(NSString * _Nullable)blockHash module:(NSString *)module method:(NSString *)method networkFee:(NSString *)networkFee timestamp:(int64_t)timestamp success:(BOOL)success batch:(BOOL)batch parentHash:(NSString * _Nullable)parentHash networkName:(NSString *)networkName __attribute__((swift_name("init(txHash:signAddress:blockHash:module:method:networkFee:timestamp:success:batch:parentHash:networkName:)"))) __attribute__((objc_designated_initializer));
-- (SorawalletExtrinsics *)doCopyTxHash:(NSString *)txHash signAddress:(NSString *)signAddress blockHash:(NSString * _Nullable)blockHash module:(NSString *)module method:(NSString *)method networkFee:(NSString *)networkFee timestamp:(int64_t)timestamp success:(BOOL)success batch:(BOOL)batch parentHash:(NSString * _Nullable)parentHash networkName:(NSString *)networkName __attribute__((swift_name("doCopy(txHash:signAddress:blockHash:module:method:networkFee:timestamp:success:batch:parentHash:networkName:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) BOOL batch __attribute__((swift_name("batch")));
-@property (readonly) NSString * _Nullable blockHash __attribute__((swift_name("blockHash")));
-@property (readonly) NSString *method __attribute__((swift_name("method")));
-@property (readonly) NSString *module __attribute__((swift_name("module")));
-@property (readonly) NSString *networkFee __attribute__((swift_name("networkFee")));
-@property (readonly) NSString *networkName __attribute__((swift_name("networkName")));
-@property (readonly) NSString * _Nullable parentHash __attribute__((swift_name("parentHash")));
-@property (readonly) NSString *signAddress __attribute__((swift_name("signAddress")));
-@property (readonly) BOOL success __attribute__((swift_name("success")));
-@property (readonly) int64_t timestamp __attribute__((swift_name("timestamp")));
-@property (readonly) NSString *txHash __attribute__((swift_name("txHash")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SignerInfo")))
-@interface SorawalletSignerInfo : SorawalletBase
-- (instancetype)initWithSignAddress:(NSString *)signAddress topTime:(int64_t)topTime oldTime:(int64_t)oldTime oldCursor:(NSString * _Nullable)oldCursor endReached:(BOOL)endReached networkName:(NSString *)networkName __attribute__((swift_name("init(signAddress:topTime:oldTime:oldCursor:endReached:networkName:)"))) __attribute__((objc_designated_initializer));
-- (SorawalletSignerInfo *)doCopySignAddress:(NSString *)signAddress topTime:(int64_t)topTime oldTime:(int64_t)oldTime oldCursor:(NSString * _Nullable)oldCursor endReached:(BOOL)endReached networkName:(NSString *)networkName __attribute__((swift_name("doCopy(signAddress:topTime:oldTime:oldCursor:endReached:networkName:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) BOOL endReached __attribute__((swift_name("endReached")));
-@property (readonly) NSString *networkName __attribute__((swift_name("networkName")));
-@property (readonly) NSString * _Nullable oldCursor __attribute__((swift_name("oldCursor")));
-@property (readonly) int64_t oldTime __attribute__((swift_name("oldTime")));
-@property (readonly) NSString *signAddress __attribute__((swift_name("signAddress")));
-@property (readonly) int64_t topTime __attribute__((swift_name("topTime")));
-@end
-
-__attribute__((swift_name("RuntimeTransacter")))
-@protocol SorawalletRuntimeTransacter
-@required
-- (void)transactionNoEnclosing:(BOOL)noEnclosing body:(void (^)(id<SorawalletRuntimeTransactionWithoutReturn>))body __attribute__((swift_name("transaction(noEnclosing:body:)")));
-- (id _Nullable)transactionWithResultNoEnclosing:(BOOL)noEnclosing bodyWithReturn:(id _Nullable (^)(id<SorawalletRuntimeTransactionWithReturn>))bodyWithReturn __attribute__((swift_name("transactionWithResult(noEnclosing:bodyWithReturn:)")));
-@end
-
-__attribute__((swift_name("SoraHistoryDatabase")))
-@protocol SorawalletSoraHistoryDatabase <SorawalletRuntimeTransacter>
-@required
-@property (readonly) id<SorawalletSoraHistoryDatabaseQueries> soraHistoryDatabaseQueries __attribute__((swift_name("soraHistoryDatabaseQueries")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraHistoryDatabaseCompanion")))
-@interface SorawalletSoraHistoryDatabaseCompanion : SorawalletBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraHistoryDatabaseCompanion *shared __attribute__((swift_name("shared")));
-- (id<SorawalletSoraHistoryDatabase>)invokeDriver:(id<SorawalletRuntimeSqlDriver>)driver __attribute__((swift_name("invoke(driver:)")));
-@property (readonly) id<SorawalletRuntimeSqlDriverSchema> Schema __attribute__((swift_name("Schema")));
-@end
-
-__attribute__((swift_name("SoraHistoryDatabaseQueries")))
-@protocol SorawalletSoraHistoryDatabaseQueries <SorawalletRuntimeTransacter>
-@required
-- (void)insertExtrinsicTxHash:(NSString *)txHash signAddress:(NSString *)signAddress networkName:(NSString *)networkName blockHash:(NSString * _Nullable)blockHash module:(NSString *)module method:(NSString *)method networkFee:(NSString *)networkFee timestamp:(int64_t)timestamp success:(BOOL)success batch:(BOOL)batch parentHash:(NSString * _Nullable)parentHash __attribute__((swift_name("insertExtrinsic(txHash:signAddress:networkName:blockHash:module:method:networkFee:timestamp:success:batch:parentHash:)")));
-- (void)insertExtrinsicParamExtrinsicHash:(NSString *)extrinsicHash paramName:(NSString *)paramName paramValue:(NSString *)paramValue __attribute__((swift_name("insertExtrinsicParam(extrinsicHash:paramName:paramValue:)")));
-- (void)insertSignerInfoSignAddress:(NSString *)signAddress networkName:(NSString *)networkName topTime:(int64_t)topTime oldTime:(int64_t)oldTime oldCursor:(NSString * _Nullable)oldCursor endReached:(BOOL)endReached __attribute__((swift_name("insertSignerInfo(signAddress:networkName:topTime:oldTime:oldCursor:endReached:)")));
-- (void)insertSignerInfoFullSignerInfo:(SorawalletSignerInfo *)SignerInfo __attribute__((swift_name("insertSignerInfoFull(SignerInfo:)")));
-- (void)removeAllExtrinsics __attribute__((swift_name("removeAllExtrinsics()")));
-- (void)removeAllSignerInfo __attribute__((swift_name("removeAllSignerInfo()")));
-- (void)removeExtrinsicsAddress:(NSString *)address network:(NSString *)network __attribute__((swift_name("removeExtrinsics(address:network:)")));
-- (void)removeSignerInfoAddress:(NSString *)address network:(NSString *)network __attribute__((swift_name("removeSignerInfo(address:network:)")));
-- (SorawalletRuntimeQuery<SorawalletExtrinsics *> *)selectExtrinsicHash:(NSString *)hash address:(NSString *)address network:(NSString *)network __attribute__((swift_name("selectExtrinsic(hash:address:network:)")));
-- (SorawalletRuntimeQuery<id> *)selectExtrinsicHash:(NSString *)hash address:(NSString *)address network:(NSString *)network mapper:(id (^)(NSString *, NSString *, NSString * _Nullable, NSString *, NSString *, NSString *, SorawalletLong *, SorawalletBoolean *, SorawalletBoolean *, NSString * _Nullable, NSString *))mapper __attribute__((swift_name("selectExtrinsic(hash:address:network:mapper:)")));
-- (SorawalletRuntimeQuery<SorawalletExtrinsicParam *> *)selectExtrinsicParamsExtrinsicHash:(NSString *)extrinsicHash __attribute__((swift_name("selectExtrinsicParams(extrinsicHash:)")));
-- (SorawalletRuntimeQuery<id> *)selectExtrinsicParamsExtrinsicHash:(NSString *)extrinsicHash mapper:(id (^)(NSString *, NSString *, NSString *))mapper __attribute__((swift_name("selectExtrinsicParams(extrinsicHash:mapper:)")));
-- (SorawalletRuntimeQuery<SorawalletExtrinsics *> *)selectExtrinsicsNestedParentHash:(NSString * _Nullable)parentHash __attribute__((swift_name("selectExtrinsicsNested(parentHash:)")));
-- (SorawalletRuntimeQuery<id> *)selectExtrinsicsNestedParentHash:(NSString * _Nullable)parentHash mapper:(id (^)(NSString *, NSString *, NSString * _Nullable, NSString *, NSString *, NSString *, SorawalletLong *, SorawalletBoolean *, SorawalletBoolean *, NSString * _Nullable, NSString *))mapper __attribute__((swift_name("selectExtrinsicsNested(parentHash:mapper:)")));
-- (SorawalletRuntimeQuery<SorawalletExtrinsics *> *)selectExtrinsicsPagedAddress:(NSString *)address network:(NSString *)network limit:(int64_t)limit offset:(int64_t)offset __attribute__((swift_name("selectExtrinsicsPaged(address:network:limit:offset:)")));
-- (SorawalletRuntimeQuery<id> *)selectExtrinsicsPagedAddress:(NSString *)address network:(NSString *)network limit:(int64_t)limit offset:(int64_t)offset mapper:(id (^)(NSString *, NSString *, NSString * _Nullable, NSString *, NSString *, NSString *, SorawalletLong *, SorawalletBoolean *, SorawalletBoolean *, NSString * _Nullable, NSString *))mapper __attribute__((swift_name("selectExtrinsicsPaged(address:network:limit:offset:mapper:)")));
-- (SorawalletRuntimeQuery<SorawalletSignerInfo *> *)selectSignerInfoAddress:(NSString *)address network:(NSString *)network __attribute__((swift_name("selectSignerInfo(address:network:)")));
-- (SorawalletRuntimeQuery<id> *)selectSignerInfoAddress:(NSString *)address network:(NSString *)network mapper:(id (^)(NSString *, SorawalletLong *, SorawalletLong *, NSString * _Nullable, SorawalletBoolean *, NSString *))mapper __attribute__((swift_name("selectSignerInfo(address:network:mapper:)")));
-- (SorawalletRuntimeQuery<NSString *> *)selectTransfersPeersNetwork:(NSString *)network query:(NSString *)query __attribute__((swift_name("selectTransfersPeers(network:query:)")));
-@end
-
 
 /**
  * @note annotations
@@ -256,7 +158,17 @@ __attribute__((swift_name("ResponsePageInfo")))
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="endCursor")
+*/
 @property (readonly) NSString * _Nullable endCursor __attribute__((swift_name("endCursor")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="hasNextPage")
+*/
 @property (readonly) BOOL hasNextPage __attribute__((swift_name("hasNextPage")));
 @end
 
@@ -281,11 +193,11 @@ __attribute__((swift_name("Utils")))
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Cryp")))
-@interface SorawalletCryp : SorawalletBase
+__attribute__((swift_name("DatabaseDriverFactory")))
+@interface SorawalletDatabaseDriverFactory : SorawalletBase
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (id<SorawalletKotlinx_coroutines_coreFlow>)doFlow __attribute__((swift_name("doFlow()")));
+- (id<SorawalletRuntimeSqlDriver>)createDriver __attribute__((swift_name("createDriver()")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -372,10 +284,10 @@ __attribute__((swift_name("SoramitsuNetworkClient")))
 
 __attribute__((swift_name("KotlinThrowable")))
 @interface SorawalletKotlinThrowable : SorawalletBase
-- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithCause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithCause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
 
 /**
@@ -394,10 +306,10 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SoramitsuNetworkException")))
 @interface SorawalletSoramitsuNetworkException : SorawalletKotlinThrowable
 - (instancetype)initWithM:(NSString *)m c:(SorawalletKotlinThrowable * _Nullable)c reason:(NSString *)reason __attribute__((swift_name("init(m:c:reason:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
-- (instancetype)initWithCause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)new __attribute__((unavailable));
+- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithCause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 - (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @property (readonly) NSString *m __attribute__((swift_name("m")));
 @property (readonly) NSString *reason __attribute__((swift_name("reason")));
@@ -413,6 +325,14 @@ __attribute__((swift_name("WebSocketClientConfig")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) int64_t maxFrameSize __attribute__((swift_name("maxFrameSize")));
 @property (readonly) int64_t pingInterval __attribute__((swift_name("pingInterval")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Cryp")))
+@interface SorawalletCryp : SorawalletBase
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (id<SorawalletKotlinx_coroutines_coreFlow>)doFlow __attribute__((swift_name("doFlow()")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -541,7 +461,17 @@ __attribute__((swift_name("SubQueryRequest")))
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="query")
+*/
 @property (readonly) NSString *query __attribute__((swift_name("query")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="variables")
+*/
 @property (readonly) NSString * _Nullable variables __attribute__((swift_name("variables")));
 @end
 
@@ -556,11 +486,156 @@ __attribute__((swift_name("SubQueryRequest.Companion")))
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("DatabaseDriverFactory")))
-@interface SorawalletDatabaseDriverFactory : SorawalletBase
+__attribute__((swift_name("ExtrinsicParam")))
+@interface SorawalletExtrinsicParam : SorawalletBase
+- (instancetype)initWithExtrinsicHash:(NSString *)extrinsicHash paramName:(NSString *)paramName paramValue:(NSString *)paramValue __attribute__((swift_name("init(extrinsicHash:paramName:paramValue:)"))) __attribute__((objc_designated_initializer));
+- (SorawalletExtrinsicParam *)doCopyExtrinsicHash:(NSString *)extrinsicHash paramName:(NSString *)paramName paramValue:(NSString *)paramValue __attribute__((swift_name("doCopy(extrinsicHash:paramName:paramValue:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString *extrinsicHash __attribute__((swift_name("extrinsicHash")));
+@property (readonly) NSString *paramName __attribute__((swift_name("paramName")));
+@property (readonly) NSString *paramValue __attribute__((swift_name("paramValue")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Extrinsics")))
+@interface SorawalletExtrinsics : SorawalletBase
+- (instancetype)initWithTxHash:(NSString *)txHash signAddress:(NSString *)signAddress blockHash:(NSString * _Nullable)blockHash module:(NSString *)module method:(NSString *)method networkFee:(NSString *)networkFee timestamp:(int64_t)timestamp success:(BOOL)success batch:(BOOL)batch parentHash:(NSString * _Nullable)parentHash networkName:(NSString *)networkName __attribute__((swift_name("init(txHash:signAddress:blockHash:module:method:networkFee:timestamp:success:batch:parentHash:networkName:)"))) __attribute__((objc_designated_initializer));
+- (SorawalletExtrinsics *)doCopyTxHash:(NSString *)txHash signAddress:(NSString *)signAddress blockHash:(NSString * _Nullable)blockHash module:(NSString *)module method:(NSString *)method networkFee:(NSString *)networkFee timestamp:(int64_t)timestamp success:(BOOL)success batch:(BOOL)batch parentHash:(NSString * _Nullable)parentHash networkName:(NSString *)networkName __attribute__((swift_name("doCopy(txHash:signAddress:blockHash:module:method:networkFee:timestamp:success:batch:parentHash:networkName:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) BOOL batch __attribute__((swift_name("batch")));
+@property (readonly) NSString * _Nullable blockHash __attribute__((swift_name("blockHash")));
+@property (readonly) NSString *method __attribute__((swift_name("method")));
+@property (readonly) NSString *module __attribute__((swift_name("module")));
+@property (readonly) NSString *networkFee __attribute__((swift_name("networkFee")));
+@property (readonly) NSString *networkName __attribute__((swift_name("networkName")));
+@property (readonly) NSString * _Nullable parentHash __attribute__((swift_name("parentHash")));
+@property (readonly) NSString *signAddress __attribute__((swift_name("signAddress")));
+@property (readonly) BOOL success __attribute__((swift_name("success")));
+@property (readonly) int64_t timestamp __attribute__((swift_name("timestamp")));
+@property (readonly) NSString *txHash __attribute__((swift_name("txHash")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SignerInfo")))
+@interface SorawalletSignerInfo : SorawalletBase
+- (instancetype)initWithSignAddress:(NSString *)signAddress topTime:(int64_t)topTime oldTime:(int64_t)oldTime oldCursor:(NSString * _Nullable)oldCursor endReached:(BOOL)endReached networkName:(NSString *)networkName __attribute__((swift_name("init(signAddress:topTime:oldTime:oldCursor:endReached:networkName:)"))) __attribute__((objc_designated_initializer));
+- (SorawalletSignerInfo *)doCopySignAddress:(NSString *)signAddress topTime:(int64_t)topTime oldTime:(int64_t)oldTime oldCursor:(NSString * _Nullable)oldCursor endReached:(BOOL)endReached networkName:(NSString *)networkName __attribute__((swift_name("doCopy(signAddress:topTime:oldTime:oldCursor:endReached:networkName:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) BOOL endReached __attribute__((swift_name("endReached")));
+@property (readonly) NSString *networkName __attribute__((swift_name("networkName")));
+@property (readonly) NSString * _Nullable oldCursor __attribute__((swift_name("oldCursor")));
+@property (readonly) int64_t oldTime __attribute__((swift_name("oldTime")));
+@property (readonly) NSString *signAddress __attribute__((swift_name("signAddress")));
+@property (readonly) int64_t topTime __attribute__((swift_name("topTime")));
+@end
+
+__attribute__((swift_name("RuntimeTransacter")))
+@protocol SorawalletRuntimeTransacter
+@required
+- (void)transactionNoEnclosing:(BOOL)noEnclosing body:(void (^)(id<SorawalletRuntimeTransactionWithoutReturn>))body __attribute__((swift_name("transaction(noEnclosing:body:)")));
+- (id _Nullable)transactionWithResultNoEnclosing:(BOOL)noEnclosing bodyWithReturn:(id _Nullable (^)(id<SorawalletRuntimeTransactionWithReturn>))bodyWithReturn __attribute__((swift_name("transactionWithResult(noEnclosing:bodyWithReturn:)")));
+@end
+
+__attribute__((swift_name("SoraHistoryDatabase")))
+@protocol SorawalletSoraHistoryDatabase <SorawalletRuntimeTransacter>
+@required
+@property (readonly) id<SorawalletSoraHistoryDatabaseQueries> soraHistoryDatabaseQueries __attribute__((swift_name("soraHistoryDatabaseQueries")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraHistoryDatabaseCompanion")))
+@interface SorawalletSoraHistoryDatabaseCompanion : SorawalletBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SorawalletSoraHistoryDatabaseCompanion *shared __attribute__((swift_name("shared")));
+- (id<SorawalletSoraHistoryDatabase>)invokeDriver:(id<SorawalletRuntimeSqlDriver>)driver __attribute__((swift_name("invoke(driver:)")));
+@property (readonly) id<SorawalletRuntimeSqlDriverSchema> Schema __attribute__((swift_name("Schema")));
+@end
+
+__attribute__((swift_name("SoraHistoryDatabaseQueries")))
+@protocol SorawalletSoraHistoryDatabaseQueries <SorawalletRuntimeTransacter>
+@required
+- (void)insertExtrinsicTxHash:(NSString *)txHash signAddress:(NSString *)signAddress networkName:(NSString *)networkName blockHash:(NSString * _Nullable)blockHash module:(NSString *)module method:(NSString *)method networkFee:(NSString *)networkFee timestamp:(int64_t)timestamp success:(BOOL)success batch:(BOOL)batch parentHash:(NSString * _Nullable)parentHash __attribute__((swift_name("insertExtrinsic(txHash:signAddress:networkName:blockHash:module:method:networkFee:timestamp:success:batch:parentHash:)")));
+- (void)insertExtrinsicParamExtrinsicHash:(NSString *)extrinsicHash paramName:(NSString *)paramName paramValue:(NSString *)paramValue __attribute__((swift_name("insertExtrinsicParam(extrinsicHash:paramName:paramValue:)")));
+- (void)insertSignerInfoSignAddress:(NSString *)signAddress networkName:(NSString *)networkName topTime:(int64_t)topTime oldTime:(int64_t)oldTime oldCursor:(NSString * _Nullable)oldCursor endReached:(BOOL)endReached __attribute__((swift_name("insertSignerInfo(signAddress:networkName:topTime:oldTime:oldCursor:endReached:)")));
+- (void)insertSignerInfoFullSignerInfo:(SorawalletSignerInfo *)SignerInfo __attribute__((swift_name("insertSignerInfoFull(SignerInfo:)")));
+- (void)removeAllExtrinsics __attribute__((swift_name("removeAllExtrinsics()")));
+- (void)removeAllSignerInfo __attribute__((swift_name("removeAllSignerInfo()")));
+- (void)removeExtrinsicsAddress:(NSString *)address network:(NSString *)network __attribute__((swift_name("removeExtrinsics(address:network:)")));
+- (void)removeSignerInfoAddress:(NSString *)address network:(NSString *)network __attribute__((swift_name("removeSignerInfo(address:network:)")));
+- (SorawalletRuntimeQuery<SorawalletExtrinsics *> *)selectExtrinsicHash:(NSString *)hash address:(NSString *)address network:(NSString *)network __attribute__((swift_name("selectExtrinsic(hash:address:network:)")));
+- (SorawalletRuntimeQuery<id> *)selectExtrinsicHash:(NSString *)hash address:(NSString *)address network:(NSString *)network mapper:(id (^)(NSString *, NSString *, NSString * _Nullable, NSString *, NSString *, NSString *, SorawalletLong *, SorawalletBoolean *, SorawalletBoolean *, NSString * _Nullable, NSString *))mapper __attribute__((swift_name("selectExtrinsic(hash:address:network:mapper:)")));
+- (SorawalletRuntimeQuery<SorawalletExtrinsicParam *> *)selectExtrinsicParamsExtrinsicHash:(NSString *)extrinsicHash __attribute__((swift_name("selectExtrinsicParams(extrinsicHash:)")));
+- (SorawalletRuntimeQuery<id> *)selectExtrinsicParamsExtrinsicHash:(NSString *)extrinsicHash mapper:(id (^)(NSString *, NSString *, NSString *))mapper __attribute__((swift_name("selectExtrinsicParams(extrinsicHash:mapper:)")));
+- (SorawalletRuntimeQuery<SorawalletExtrinsics *> *)selectExtrinsicsNestedParentHash:(NSString * _Nullable)parentHash __attribute__((swift_name("selectExtrinsicsNested(parentHash:)")));
+- (SorawalletRuntimeQuery<id> *)selectExtrinsicsNestedParentHash:(NSString * _Nullable)parentHash mapper:(id (^)(NSString *, NSString *, NSString * _Nullable, NSString *, NSString *, NSString *, SorawalletLong *, SorawalletBoolean *, SorawalletBoolean *, NSString * _Nullable, NSString *))mapper __attribute__((swift_name("selectExtrinsicsNested(parentHash:mapper:)")));
+- (SorawalletRuntimeQuery<SorawalletExtrinsics *> *)selectExtrinsicsPagedAddress:(NSString *)address network:(NSString *)network limit:(int64_t)limit offset:(int64_t)offset __attribute__((swift_name("selectExtrinsicsPaged(address:network:limit:offset:)")));
+- (SorawalletRuntimeQuery<id> *)selectExtrinsicsPagedAddress:(NSString *)address network:(NSString *)network limit:(int64_t)limit offset:(int64_t)offset mapper:(id (^)(NSString *, NSString *, NSString * _Nullable, NSString *, NSString *, NSString *, SorawalletLong *, SorawalletBoolean *, SorawalletBoolean *, NSString * _Nullable, NSString *))mapper __attribute__((swift_name("selectExtrinsicsPaged(address:network:limit:offset:mapper:)")));
+- (SorawalletRuntimeQuery<SorawalletSignerInfo *> *)selectSignerInfoAddress:(NSString *)address network:(NSString *)network __attribute__((swift_name("selectSignerInfo(address:network:)")));
+- (SorawalletRuntimeQuery<id> *)selectSignerInfoAddress:(NSString *)address network:(NSString *)network mapper:(id (^)(NSString *, SorawalletLong *, SorawalletLong *, NSString * _Nullable, SorawalletBoolean *, NSString *))mapper __attribute__((swift_name("selectSignerInfo(address:network:mapper:)")));
+- (SorawalletRuntimeQuery<NSString *> *)selectTransfersPeersNetwork:(NSString *)network query:(NSString *)query __attribute__((swift_name("selectTransfersPeers(network:query:)")));
+@end
+
+__attribute__((swift_name("BasicCases")))
+@interface SorawalletBasicCases<T> : SorawalletBase
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (id<SorawalletRuntimeSqlDriver>)createDriver __attribute__((swift_name("createDriver()")));
+- (T _Nullable)getCaseCaseName:(NSString *)caseName __attribute__((swift_name("getCase(caseName:)")));
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+- (T _Nullable)provideInstanceCaseName:(NSString *)caseName __attribute__((swift_name("provideInstance(caseName:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletBlockExplorerInfo")))
+@interface SorawalletSoraWalletBlockExplorerInfo : SorawalletBase
+- (instancetype)initWithNetworkClient:(SorawalletSoramitsuNetworkClient *)networkClient soraRemoteConfigBuilder:(SorawalletSoraRemoteConfigBuilder *)soraRemoteConfigBuilder __attribute__((swift_name("init(networkClient:soraRemoteConfigBuilder:)"))) __attribute__((objc_designated_initializer));
+
+/**
+ * @note This method converts instances of SoramitsuNetworkException, CancellationException, IllegalArgumentException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getAssetsInfoTokenIds:(NSArray<NSString *> *)tokenIds timestamp:(int64_t)timestamp completionHandler:(void (^)(NSArray<SorawalletAssetsInfo *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getAssetsInfo(tokenIds:timestamp:completionHandler:)")));
+
+/**
+ * @note This method converts instances of SoramitsuNetworkException, CancellationException, IllegalArgumentException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getFiatWithCompletionHandler:(void (^)(NSArray<SorawalletFiatData *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getFiat(completionHandler:)")));
+
+/**
+ * @note This method converts instances of SoramitsuNetworkException, CancellationException, IllegalArgumentException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getReferrerRewardsAddress:(NSString *)address completionHandler:(void (^)(SorawalletReferrerRewardsInfo * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getReferrerRewards(address:completionHandler:)")));
+
+/**
+ * @note This method converts instances of SoramitsuNetworkException, CancellationException, IllegalArgumentException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getSpApyWithCompletionHandler:(void (^)(NSArray<SorawalletSbApyInfo *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getSpApy(completionHandler:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("AssetsInfo")))
+@interface SorawalletAssetsInfo : SorawalletBase
+- (instancetype)initWithTokenId:(NSString *)tokenId liquidity:(NSString *)liquidity hourDelta:(SorawalletDouble * _Nullable)hourDelta __attribute__((swift_name("init(tokenId:liquidity:hourDelta:)"))) __attribute__((objc_designated_initializer));
+- (SorawalletAssetsInfo *)doCopyTokenId:(NSString *)tokenId liquidity:(NSString *)liquidity hourDelta:(SorawalletDouble * _Nullable)hourDelta __attribute__((swift_name("doCopy(tokenId:liquidity:hourDelta:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) SorawalletDouble * _Nullable hourDelta __attribute__((swift_name("hourDelta")));
+@property (readonly) NSString *liquidity __attribute__((swift_name("liquidity")));
+@property (readonly) NSString *tokenId __attribute__((swift_name("tokenId")));
 @end
 
 
@@ -569,26 +644,29 @@ __attribute__((swift_name("DatabaseDriverFactory")))
  *   kotlinx.serialization.Serializable
 */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Error")))
-@interface SorawalletError : SorawalletBase
-- (instancetype)initWithModuleErrorId:(NSString * _Nullable)moduleErrorId moduleErrorIndex:(SorawalletInt * _Nullable)moduleErrorIndex nonModuleErrorMessage:(NSString * _Nullable)nonModuleErrorMessage __attribute__((swift_name("init(moduleErrorId:moduleErrorIndex:nonModuleErrorMessage:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletErrorCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletError *)doCopyModuleErrorId:(NSString * _Nullable)moduleErrorId moduleErrorIndex:(SorawalletInt * _Nullable)moduleErrorIndex nonModuleErrorMessage:(NSString * _Nullable)nonModuleErrorMessage __attribute__((swift_name("doCopy(moduleErrorId:moduleErrorIndex:nonModuleErrorMessage:)")));
+__attribute__((swift_name("SoraWalletAssetsCase0Response")))
+@interface SorawalletSoraWalletAssetsCase0Response : SorawalletBase
+- (instancetype)initWithData:(SorawalletSoraWalletAssetsCase0ResponseData *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase0ResponseCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletAssetsCase0Response *)doCopyData:(SorawalletSoraWalletAssetsCase0ResponseData *)data __attribute__((swift_name("doCopy(data:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString * _Nullable moduleErrorId __attribute__((swift_name("moduleErrorId")));
-@property (readonly) SorawalletInt * _Nullable moduleErrorIndex __attribute__((swift_name("moduleErrorIndex")));
-@property (readonly) NSString * _Nullable nonModuleErrorMessage __attribute__((swift_name("nonModuleErrorMessage")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="data")
+*/
+@property (readonly) SorawalletSoraWalletAssetsCase0ResponseData *data __attribute__((swift_name("data")));
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Error.Companion")))
-@interface SorawalletErrorCompanion : SorawalletBase
+__attribute__((swift_name("SoraWalletAssetsCase0Response.Companion")))
+@interface SorawalletSoraWalletAssetsCase0ResponseCompanion : SorawalletBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletErrorCompanion *shared __attribute__((swift_name("shared")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase0ResponseCompanion *shared __attribute__((swift_name("shared")));
 - (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
@@ -598,25 +676,29 @@ __attribute__((swift_name("Error.Companion")))
  *   kotlinx.serialization.Serializable
 */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ExecutionResult")))
-@interface SorawalletExecutionResult : SorawalletBase
-- (instancetype)initWithSuccess:(BOOL)success error:(SorawalletError * _Nullable)error __attribute__((swift_name("init(success:error:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletExecutionResultCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletExecutionResult *)doCopySuccess:(BOOL)success error:(SorawalletError * _Nullable)error __attribute__((swift_name("doCopy(success:error:)")));
+__attribute__((swift_name("SoraWalletAssetsCase0ResponseData")))
+@interface SorawalletSoraWalletAssetsCase0ResponseData : SorawalletBase
+- (instancetype)initWithEntities:(SorawalletSoraWalletAssetsCase0ResponseDataEntities *)entities __attribute__((swift_name("init(entities:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase0ResponseDataCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletAssetsCase0ResponseData *)doCopyEntities:(SorawalletSoraWalletAssetsCase0ResponseDataEntities *)entities __attribute__((swift_name("doCopy(entities:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SorawalletError * _Nullable error __attribute__((swift_name("error")));
-@property (readonly) BOOL success __attribute__((swift_name("success")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="entities")
+*/
+@property (readonly) SorawalletSoraWalletAssetsCase0ResponseDataEntities *entities __attribute__((swift_name("entities")));
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ExecutionResult.Companion")))
-@interface SorawalletExecutionResultCompanion : SorawalletBase
+__attribute__((swift_name("SoraWalletAssetsCase0ResponseData.Companion")))
+@interface SorawalletSoraWalletAssetsCase0ResponseDataCompanion : SorawalletBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletExecutionResultCompanion *shared __attribute__((swift_name("shared")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase0ResponseDataCompanion *shared __attribute__((swift_name("shared")));
 - (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
@@ -626,25 +708,35 @@ __attribute__((swift_name("ExecutionResult.Companion")))
  *   kotlinx.serialization.Serializable
 */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("HistoryResponseDataElements")))
-@interface SorawalletHistoryResponseDataElements : SorawalletBase
-- (instancetype)initWithNodes:(NSArray<SorawalletHistoryResponseItem *> *)nodes pageInfo:(SorawalletResponsePageInfo *)pageInfo __attribute__((swift_name("init(nodes:pageInfo:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletHistoryResponseDataElementsCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletHistoryResponseDataElements *)doCopyNodes:(NSArray<SorawalletHistoryResponseItem *> *)nodes pageInfo:(SorawalletResponsePageInfo *)pageInfo __attribute__((swift_name("doCopy(nodes:pageInfo:)")));
+__attribute__((swift_name("SoraWalletAssetsCase0ResponseDataEntities")))
+@interface SorawalletSoraWalletAssetsCase0ResponseDataEntities : SorawalletBase
+- (instancetype)initWithNodes:(NSArray<SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNode *> *)nodes pageInfo:(SorawalletResponsePageInfo *)pageInfo __attribute__((swift_name("init(nodes:pageInfo:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletAssetsCase0ResponseDataEntities *)doCopyNodes:(NSArray<SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNode *> *)nodes pageInfo:(SorawalletResponsePageInfo *)pageInfo __attribute__((swift_name("doCopy(nodes:pageInfo:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<SorawalletHistoryResponseItem *> *nodes __attribute__((swift_name("nodes")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="nodes")
+*/
+@property (readonly) NSArray<SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNode *> *nodes __attribute__((swift_name("nodes")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="pageInfo")
+*/
 @property (readonly) SorawalletResponsePageInfo *pageInfo __attribute__((swift_name("pageInfo")));
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("HistoryResponseDataElements.Companion")))
-@interface SorawalletHistoryResponseDataElementsCompanion : SorawalletBase
+__attribute__((swift_name("SoraWalletAssetsCase0ResponseDataEntities.Companion")))
+@interface SorawalletSoraWalletAssetsCase0ResponseDataEntitiesCompanion : SorawalletBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletHistoryResponseDataElementsCompanion *shared __attribute__((swift_name("shared")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesCompanion *shared __attribute__((swift_name("shared")));
 - (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
@@ -654,31 +746,41 @@ __attribute__((swift_name("HistoryResponseDataElements.Companion")))
  *   kotlinx.serialization.Serializable
 */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("HistoryResponseItem")))
-@interface SorawalletHistoryResponseItem : SorawalletBase
-- (instancetype)initWithId:(NSString *)id blockHash:(NSString *)blockHash module:(NSString *)module method:(NSString *)method timestamp:(NSString *)timestamp networkFee:(NSString *)networkFee execution:(SorawalletExecutionResult *)execution data:(SorawalletKotlinx_serialization_jsonJsonElement *)data __attribute__((swift_name("init(id:blockHash:module:method:timestamp:networkFee:execution:data:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletHistoryResponseItemCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletHistoryResponseItem *)doCopyId:(NSString *)id blockHash:(NSString *)blockHash module:(NSString *)module method:(NSString *)method timestamp:(NSString *)timestamp networkFee:(NSString *)networkFee execution:(SorawalletExecutionResult *)execution data:(SorawalletKotlinx_serialization_jsonJsonElement *)data __attribute__((swift_name("doCopy(id:blockHash:module:method:timestamp:networkFee:execution:data:)")));
+__attribute__((swift_name("SoraWalletAssetsCase0ResponseDataEntitiesNode")))
+@interface SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNode : SorawalletBase
+- (instancetype)initWithId:(NSString *)id liquidity:(NSString *)liquidity periods:(SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHour *)periods __attribute__((swift_name("init(id:liquidity:periods:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNode *)doCopyId:(NSString *)id liquidity:(NSString *)liquidity periods:(SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHour *)periods __attribute__((swift_name("doCopy(id:liquidity:periods:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString *blockHash __attribute__((swift_name("blockHash")));
-@property (readonly) SorawalletKotlinx_serialization_jsonJsonElement *data __attribute__((swift_name("data")));
-@property (readonly) SorawalletExecutionResult *execution __attribute__((swift_name("execution")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="id")
+*/
 @property (readonly) NSString *id __attribute__((swift_name("id")));
-@property (readonly) NSString *method __attribute__((swift_name("method")));
-@property (readonly) NSString *module __attribute__((swift_name("module")));
-@property (readonly) NSString *networkFee __attribute__((swift_name("networkFee")));
-@property (readonly) NSString *timestamp __attribute__((swift_name("timestamp")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="liquidity")
+*/
+@property (readonly) NSString *liquidity __attribute__((swift_name("liquidity")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="hourSnapshots")
+*/
+@property (readonly) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHour *periods __attribute__((swift_name("periods")));
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("HistoryResponseItem.Companion")))
-@interface SorawalletHistoryResponseItemCompanion : SorawalletBase
+__attribute__((swift_name("SoraWalletAssetsCase0ResponseDataEntitiesNode.Companion")))
+@interface SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeCompanion : SorawalletBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletHistoryResponseItemCompanion *shared __attribute__((swift_name("shared")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeCompanion *shared __attribute__((swift_name("shared")));
 - (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
@@ -688,24 +790,29 @@ __attribute__((swift_name("HistoryResponseItem.Companion")))
  *   kotlinx.serialization.Serializable
 */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraSubQueryResponse")))
-@interface SorawalletSoraSubQueryResponse : SorawalletBase
-- (instancetype)initWithData:(SorawalletSoraSubQueryResponseData *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraSubQueryResponseCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraSubQueryResponse *)doCopyData:(SorawalletSoraSubQueryResponseData *)data __attribute__((swift_name("doCopy(data:)")));
+__attribute__((swift_name("SoraWalletAssetsCase0ResponseDataEntitiesNodeHour")))
+@interface SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHour : SorawalletBase
+- (instancetype)initWithNodes:(NSArray<SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNode *> *)nodes __attribute__((swift_name("init(nodes:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHour *)doCopyNodes:(NSArray<SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNode *> *)nodes __attribute__((swift_name("doCopy(nodes:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SorawalletSoraSubQueryResponseData *data __attribute__((swift_name("data")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="nodes")
+*/
+@property (readonly) NSArray<SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNode *> *nodes __attribute__((swift_name("nodes")));
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraSubQueryResponse.Companion")))
-@interface SorawalletSoraSubQueryResponseCompanion : SorawalletBase
+__attribute__((swift_name("SoraWalletAssetsCase0ResponseDataEntitiesNodeHour.Companion")))
+@interface SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourCompanion : SorawalletBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraSubQueryResponseCompanion *shared __attribute__((swift_name("shared")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourCompanion *shared __attribute__((swift_name("shared")));
 - (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
@@ -715,95 +822,725 @@ __attribute__((swift_name("SoraSubQueryResponse.Companion")))
  *   kotlinx.serialization.Serializable
 */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraSubQueryResponseData")))
-@interface SorawalletSoraSubQueryResponseData : SorawalletBase
-- (instancetype)initWithHistoryElements:(SorawalletHistoryResponseDataElements *)historyElements __attribute__((swift_name("init(historyElements:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraSubQueryResponseDataCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraSubQueryResponseData *)doCopyHistoryElements:(SorawalletHistoryResponseDataElements *)historyElements __attribute__((swift_name("doCopy(historyElements:)")));
+__attribute__((swift_name("SoraWalletAssetsCase0ResponseDataEntitiesNodeHourNode")))
+@interface SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNode : SorawalletBase
+- (instancetype)initWithPrice:(SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePrice *)price __attribute__((swift_name("init(price:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodeCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNode *)doCopyPrice:(SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePrice *)price __attribute__((swift_name("doCopy(price:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SorawalletHistoryResponseDataElements *historyElements __attribute__((swift_name("historyElements")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="priceUSD")
+*/
+@property (readonly) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePrice *price __attribute__((swift_name("price")));
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraSubQueryResponseData.Companion")))
-@interface SorawalletSoraSubQueryResponseDataCompanion : SorawalletBase
+__attribute__((swift_name("SoraWalletAssetsCase0ResponseDataEntitiesNodeHourNode.Companion")))
+@interface SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodeCompanion : SorawalletBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraSubQueryResponseDataCompanion *shared __attribute__((swift_name("shared")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodeCompanion *shared __attribute__((swift_name("shared")));
+- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePrice")))
+@interface SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePrice : SorawalletBase
+- (instancetype)initWithLow:(NSString *)low high:(NSString *)high open:(NSString *)open close:(NSString *)close __attribute__((swift_name("init(low:high:open:close:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePriceCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePrice *)doCopyLow:(NSString *)low high:(NSString *)high open:(NSString *)open close:(NSString *)close __attribute__((swift_name("doCopy(low:high:open:close:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="close")
+*/
+@property (readonly) NSString *close __attribute__((swift_name("close")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="high")
+*/
+@property (readonly) NSString *high __attribute__((swift_name("high")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="low")
+*/
+@property (readonly) NSString *low __attribute__((swift_name("low")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="open")
+*/
+@property (readonly) NSString *open __attribute__((swift_name("open")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePrice.Companion")))
+@interface SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePriceCompanion : SorawalletBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePriceCompanion *shared __attribute__((swift_name("shared")));
+- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletAssetsCase1Response")))
+@interface SorawalletSoraWalletAssetsCase1Response : SorawalletBase
+- (instancetype)initWithData:(SorawalletSoraWalletAssetsCase1ResponseData *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase1ResponseCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletAssetsCase1Response *)doCopyData:(SorawalletSoraWalletAssetsCase1ResponseData *)data __attribute__((swift_name("doCopy(data:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="data")
+*/
+@property (readonly) SorawalletSoraWalletAssetsCase1ResponseData *data __attribute__((swift_name("data")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletAssetsCase1Response.Companion")))
+@interface SorawalletSoraWalletAssetsCase1ResponseCompanion : SorawalletBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase1ResponseCompanion *shared __attribute__((swift_name("shared")));
+- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletAssetsCase1ResponseData")))
+@interface SorawalletSoraWalletAssetsCase1ResponseData : SorawalletBase
+- (instancetype)initWithEntities:(SorawalletSoraWalletAssetsCase1ResponseDataEntities *)entities __attribute__((swift_name("init(entities:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase1ResponseDataCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletAssetsCase1ResponseData *)doCopyEntities:(SorawalletSoraWalletAssetsCase1ResponseDataEntities *)entities __attribute__((swift_name("doCopy(entities:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="data")
+*/
+@property (readonly) SorawalletSoraWalletAssetsCase1ResponseDataEntities *entities __attribute__((swift_name("entities")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletAssetsCase1ResponseData.Companion")))
+@interface SorawalletSoraWalletAssetsCase1ResponseDataCompanion : SorawalletBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase1ResponseDataCompanion *shared __attribute__((swift_name("shared")));
+- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletAssetsCase1ResponseDataEntities")))
+@interface SorawalletSoraWalletAssetsCase1ResponseDataEntities : SorawalletBase
+- (instancetype)initWithNodes:(NSArray<SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNode *> *)nodes pageInfo:(SorawalletResponsePageInfo *)pageInfo __attribute__((swift_name("init(nodes:pageInfo:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase1ResponseDataEntitiesCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletAssetsCase1ResponseDataEntities *)doCopyNodes:(NSArray<SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNode *> *)nodes pageInfo:(SorawalletResponsePageInfo *)pageInfo __attribute__((swift_name("doCopy(nodes:pageInfo:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="edges")
+*/
+@property (readonly) NSArray<SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNode *> *nodes __attribute__((swift_name("nodes")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="pageInfo")
+*/
+@property (readonly) SorawalletResponsePageInfo *pageInfo __attribute__((swift_name("pageInfo")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletAssetsCase1ResponseDataEntities.Companion")))
+@interface SorawalletSoraWalletAssetsCase1ResponseDataEntitiesCompanion : SorawalletBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase1ResponseDataEntitiesCompanion *shared __attribute__((swift_name("shared")));
+- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletAssetsCase1ResponseDataEntitiesNode")))
+@interface SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNode : SorawalletBase
+- (instancetype)initWithNode:(SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeHour *)node __attribute__((swift_name("init(node:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNode *)doCopyNode:(SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeHour *)node __attribute__((swift_name("doCopy(node:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="node")
+*/
+@property (readonly) SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeHour *node __attribute__((swift_name("node")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletAssetsCase1ResponseDataEntitiesNode.Companion")))
+@interface SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeCompanion : SorawalletBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeCompanion *shared __attribute__((swift_name("shared")));
+- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletAssetsCase1ResponseDataEntitiesNodeHour")))
+@interface SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeHour : SorawalletBase
+- (instancetype)initWithId:(NSString *)id priceChangeDay:(SorawalletDouble * _Nullable)priceChangeDay liquidity:(NSString * _Nullable)liquidity __attribute__((swift_name("init(id:priceChangeDay:liquidity:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeHourCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeHour *)doCopyId:(NSString *)id priceChangeDay:(SorawalletDouble * _Nullable)priceChangeDay liquidity:(NSString * _Nullable)liquidity __attribute__((swift_name("doCopy(id:priceChangeDay:liquidity:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="id")
+*/
+@property (readonly) NSString *id __attribute__((swift_name("id")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="liquidity")
+*/
+@property (readonly) NSString * _Nullable liquidity __attribute__((swift_name("liquidity")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="priceChangeDay")
+*/
+@property (readonly) SorawalletDouble * _Nullable priceChangeDay __attribute__((swift_name("priceChangeDay")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletAssetsCase1ResponseDataEntitiesNodeHour.Companion")))
+@interface SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeHourCompanion : SorawalletBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeHourCompanion *shared __attribute__((swift_name("shared")));
 - (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSubQueryHistoryMapper")))
-@interface SorawalletSoraWalletSubQueryHistoryMapper : SorawalletBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)soraWalletSubQueryHistoryMapper __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletSubQueryHistoryMapper *shared __attribute__((swift_name("shared")));
-- (SorawalletTxHistoryInfo *)mapResponse:(SorawalletSoraSubQueryResponse *)response myAddress:(NSString *)myAddress __attribute__((swift_name("map(response:myAddress:)")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SubQueryClientForSoraWallet")))
-@interface SorawalletSubQueryClientForSoraWallet : SorawalletBase
-- (instancetype)initWithNetworkClient:(SorawalletSoramitsuNetworkClient *)networkClient pageSize:(int32_t)pageSize historyDatabaseProvider:(SorawalletHistoryDatabaseProvider *)historyDatabaseProvider soraRemoteConfigBuilder:(SorawalletSoraRemoteConfigBuilder *)soraRemoteConfigBuilder __attribute__((swift_name("init(networkClient:pageSize:historyDatabaseProvider:soraRemoteConfigBuilder:)"))) __attribute__((objc_designated_initializer));
-- (void)clearAllData __attribute__((swift_name("clearAllData()")));
-- (void)clearDataAddress:(NSString *)address __attribute__((swift_name("clearData(address:)")));
-- (SorawalletTxHistoryInfo *)getTransactionCachedAddress:(NSString *)address txHash:(NSString *)txHash __attribute__((swift_name("getTransactionCached(address:txHash:)")));
-- (NSArray<SorawalletTxHistoryItem *> *)getTransactionHistoryCachedAddress:(NSString *)address count:(int32_t)count filter:(SorawalletBoolean *(^ _Nullable)(SorawalletTxHistoryItem *))filter __attribute__((swift_name("getTransactionHistoryCached(address:count:filter:)")));
-
-/**
- * @note This method converts instances of CancellationException, IllegalArgumentException to errors.
- * Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)getTransactionHistoryPagedAddress:(NSString *)address page:(int64_t)page filter:(SorawalletBoolean *(^ _Nullable)(SorawalletTxHistoryItem *))filter completionHandler:(void (^)(SorawalletTxHistoryResult<SorawalletTxHistoryItem *> * _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("getTransactionHistoryPaged(address:page:filter:completionHandler:)")));
-- (NSArray<NSString *> *)getTransactionPeersQuery:(NSString *)query __attribute__((swift_name("getTransactionPeers(query:)")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SubQueryClientForSoraWalletFactory")))
-@interface SorawalletSubQueryClientForSoraWalletFactory : SorawalletBase
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
-+ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (SorawalletSubQueryClientForSoraWallet *)createSoramitsuNetworkClient:(SorawalletSoramitsuNetworkClient *)soramitsuNetworkClient pageSize:(int32_t)pageSize soraRemoteConfigBuilder:(SorawalletSoraRemoteConfigBuilder *)soraRemoteConfigBuilder __attribute__((swift_name("create(soramitsuNetworkClient:pageSize:soraRemoteConfigBuilder:)")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraTokenWhitelistDto")))
-@interface SorawalletSoraTokenWhitelistDto : SorawalletBase
-- (instancetype)initWithAddress:(NSString *)address rawIcon:(id)rawIcon type:(NSString *)type __attribute__((swift_name("init(address:rawIcon:type:)"))) __attribute__((objc_designated_initializer));
-- (SorawalletSoraTokenWhitelistDto *)doCopyAddress:(NSString *)address rawIcon:(id)rawIcon type:(NSString *)type __attribute__((swift_name("doCopy(address:rawIcon:type:)")));
+__attribute__((swift_name("FiatData")))
+@interface SorawalletFiatData : SorawalletBase
+- (instancetype)initWithId:(NSString *)id priceUsd:(SorawalletDouble * _Nullable)priceUsd __attribute__((swift_name("init(id:priceUsd:)"))) __attribute__((objc_designated_initializer));
+- (SorawalletFiatData *)doCopyId:(NSString *)id priceUsd:(SorawalletDouble * _Nullable)priceUsd __attribute__((swift_name("doCopy(id:priceUsd:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString *address __attribute__((swift_name("address")));
-@property (readonly) id rawIcon __attribute__((swift_name("rawIcon")));
-@property (readonly) NSString *type __attribute__((swift_name("type")));
+@property (readonly) NSString *id __attribute__((swift_name("id")));
+@property (readonly) SorawalletDouble * _Nullable priceUsd __attribute__((swift_name("priceUsd")));
 @end
 
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraTokensWhitelistManager")))
-@interface SorawalletSoraTokensWhitelistManager : SorawalletBase
-- (instancetype)initWithNetworkClient:(SorawalletSoramitsuNetworkClient *)networkClient __attribute__((swift_name("init(networkClient:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraTokensWhitelistManagerCompanion *companion __attribute__((swift_name("companion")));
 
 /**
- * @note This method converts instances of SoramitsuNetworkException, CancellationException to errors.
- * Other uncaught Kotlin exceptions are fatal.
+ * @note annotations
+ *   kotlinx.serialization.Serializable
 */
-- (void)getTokensWithCompletionHandler:(void (^)(NSArray<SorawalletSoraTokenWhitelistDto *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getTokens(completionHandler:)")));
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletFiatCase2Response")))
+@interface SorawalletSoraWalletFiatCase2Response : SorawalletBase
+- (instancetype)initWithData:(SorawalletSoraWalletFiatCase2ResponseData *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletFiatCase2ResponseCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletFiatCase2Response *)doCopyData:(SorawalletSoraWalletFiatCase2ResponseData *)data __attribute__((swift_name("doCopy(data:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="data")
+*/
+@property (readonly) SorawalletSoraWalletFiatCase2ResponseData *data __attribute__((swift_name("data")));
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraTokensWhitelistManager.Companion")))
-@interface SorawalletSoraTokensWhitelistManagerCompanion : SorawalletBase
+__attribute__((swift_name("SoraWalletFiatCase2Response.Companion")))
+@interface SorawalletSoraWalletFiatCase2ResponseCompanion : SorawalletBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraTokensWhitelistManagerCompanion *shared __attribute__((swift_name("shared")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletFiatCase2ResponseCompanion *shared __attribute__((swift_name("shared")));
+- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletFiatCase2ResponseData")))
+@interface SorawalletSoraWalletFiatCase2ResponseData : SorawalletBase
+- (instancetype)initWithEntities:(SorawalletSoraWalletFiatCase2ResponseDataEntities *)entities __attribute__((swift_name("init(entities:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletFiatCase2ResponseDataCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletFiatCase2ResponseData *)doCopyEntities:(SorawalletSoraWalletFiatCase2ResponseDataEntities *)entities __attribute__((swift_name("doCopy(entities:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="entities")
+*/
+@property (readonly) SorawalletSoraWalletFiatCase2ResponseDataEntities *entities __attribute__((swift_name("entities")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletFiatCase2ResponseData.Companion")))
+@interface SorawalletSoraWalletFiatCase2ResponseDataCompanion : SorawalletBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletFiatCase2ResponseDataCompanion *shared __attribute__((swift_name("shared")));
+- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletFiatCase2ResponseDataEntities")))
+@interface SorawalletSoraWalletFiatCase2ResponseDataEntities : SorawalletBase
+- (instancetype)initWithNodes:(NSArray<SorawalletSoraWalletFiatCase2ResponseDataEntitiesNode *> *)nodes pageInfo:(SorawalletResponsePageInfo *)pageInfo __attribute__((swift_name("init(nodes:pageInfo:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletFiatCase2ResponseDataEntitiesCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletFiatCase2ResponseDataEntities *)doCopyNodes:(NSArray<SorawalletSoraWalletFiatCase2ResponseDataEntitiesNode *> *)nodes pageInfo:(SorawalletResponsePageInfo *)pageInfo __attribute__((swift_name("doCopy(nodes:pageInfo:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="nodes")
+*/
+@property (readonly) NSArray<SorawalletSoraWalletFiatCase2ResponseDataEntitiesNode *> *nodes __attribute__((swift_name("nodes")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="pageInfo")
+*/
+@property (readonly) SorawalletResponsePageInfo *pageInfo __attribute__((swift_name("pageInfo")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletFiatCase2ResponseDataEntities.Companion")))
+@interface SorawalletSoraWalletFiatCase2ResponseDataEntitiesCompanion : SorawalletBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletFiatCase2ResponseDataEntitiesCompanion *shared __attribute__((swift_name("shared")));
+- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletFiatCase2ResponseDataEntitiesNode")))
+@interface SorawalletSoraWalletFiatCase2ResponseDataEntitiesNode : SorawalletBase
+- (instancetype)initWithId:(NSString *)id priceUSD:(NSString *)priceUSD __attribute__((swift_name("init(id:priceUSD:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletFiatCase2ResponseDataEntitiesNodeCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletFiatCase2ResponseDataEntitiesNode *)doCopyId:(NSString *)id priceUSD:(NSString *)priceUSD __attribute__((swift_name("doCopy(id:priceUSD:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="id")
+*/
+@property (readonly) NSString *id __attribute__((swift_name("id")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="priceUSD")
+*/
+@property (readonly) NSString *priceUSD __attribute__((swift_name("priceUSD")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletFiatCase2ResponseDataEntitiesNode.Companion")))
+@interface SorawalletSoraWalletFiatCase2ResponseDataEntitiesNodeCompanion : SorawalletBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletFiatCase2ResponseDataEntitiesNodeCompanion *shared __attribute__((swift_name("shared")));
+- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ReferrerReward")))
+@interface SorawalletReferrerReward : SorawalletBase
+- (instancetype)initWithReferral:(NSString *)referral amount:(NSString *)amount __attribute__((swift_name("init(referral:amount:)"))) __attribute__((objc_designated_initializer));
+- (SorawalletReferrerReward *)doCopyReferral:(NSString *)referral amount:(NSString *)amount __attribute__((swift_name("doCopy(referral:amount:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString *amount __attribute__((swift_name("amount")));
+@property (readonly) NSString *referral __attribute__((swift_name("referral")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ReferrerRewardsInfo")))
+@interface SorawalletReferrerRewardsInfo : SorawalletBase
+- (instancetype)initWithRewards:(NSArray<SorawalletReferrerReward *> *)rewards __attribute__((swift_name("init(rewards:)"))) __attribute__((objc_designated_initializer));
+- (SorawalletReferrerRewardsInfo *)doCopyRewards:(NSArray<SorawalletReferrerReward *> *)rewards __attribute__((swift_name("doCopy(rewards:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSArray<SorawalletReferrerReward *> *rewards __attribute__((swift_name("rewards")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletReferrerCase1Response")))
+@interface SorawalletSoraWalletReferrerCase1Response : SorawalletBase
+- (instancetype)initWithData:(SorawalletSoraWalletReferrerCase1ResponseData *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletReferrerCase1ResponseCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletReferrerCase1Response *)doCopyData:(SorawalletSoraWalletReferrerCase1ResponseData *)data __attribute__((swift_name("doCopy(data:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="data")
+*/
+@property (readonly) SorawalletSoraWalletReferrerCase1ResponseData *data __attribute__((swift_name("data")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletReferrerCase1Response.Companion")))
+@interface SorawalletSoraWalletReferrerCase1ResponseCompanion : SorawalletBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletReferrerCase1ResponseCompanion *shared __attribute__((swift_name("shared")));
+- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletReferrerCase1ResponseData")))
+@interface SorawalletSoraWalletReferrerCase1ResponseData : SorawalletBase
+- (instancetype)initWithReferrerRewards:(SorawalletSoraWalletReferrerCase1ResponseDataRewards *)referrerRewards __attribute__((swift_name("init(referrerRewards:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletReferrerCase1ResponseDataCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletReferrerCase1ResponseData *)doCopyReferrerRewards:(SorawalletSoraWalletReferrerCase1ResponseDataRewards *)referrerRewards __attribute__((swift_name("doCopy(referrerRewards:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="referrerRewards")
+*/
+@property (readonly) SorawalletSoraWalletReferrerCase1ResponseDataRewards *referrerRewards __attribute__((swift_name("referrerRewards")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletReferrerCase1ResponseData.Companion")))
+@interface SorawalletSoraWalletReferrerCase1ResponseDataCompanion : SorawalletBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletReferrerCase1ResponseDataCompanion *shared __attribute__((swift_name("shared")));
+- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletReferrerCase1ResponseDataRewards")))
+@interface SorawalletSoraWalletReferrerCase1ResponseDataRewards : SorawalletBase
+- (instancetype)initWithPageInfo:(SorawalletResponsePageInfo *)pageInfo nodes:(NSArray<SorawalletSoraWalletReferrerCase1ResponseDataRewardsNode *> *)nodes __attribute__((swift_name("init(pageInfo:nodes:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletReferrerCase1ResponseDataRewardsCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletReferrerCase1ResponseDataRewards *)doCopyPageInfo:(SorawalletResponsePageInfo *)pageInfo nodes:(NSArray<SorawalletSoraWalletReferrerCase1ResponseDataRewardsNode *> *)nodes __attribute__((swift_name("doCopy(pageInfo:nodes:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="nodes")
+*/
+@property (readonly) NSArray<SorawalletSoraWalletReferrerCase1ResponseDataRewardsNode *> *nodes __attribute__((swift_name("nodes")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="pageInfo")
+*/
+@property (readonly) SorawalletResponsePageInfo *pageInfo __attribute__((swift_name("pageInfo")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletReferrerCase1ResponseDataRewards.Companion")))
+@interface SorawalletSoraWalletReferrerCase1ResponseDataRewardsCompanion : SorawalletBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletReferrerCase1ResponseDataRewardsCompanion *shared __attribute__((swift_name("shared")));
+- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletReferrerCase1ResponseDataRewardsNode")))
+@interface SorawalletSoraWalletReferrerCase1ResponseDataRewardsNode : SorawalletBase
+- (instancetype)initWithReferral:(NSString *)referral amount:(NSString *)amount __attribute__((swift_name("init(referral:amount:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletReferrerCase1ResponseDataRewardsNodeCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletReferrerCase1ResponseDataRewardsNode *)doCopyReferral:(NSString *)referral amount:(NSString *)amount __attribute__((swift_name("doCopy(referral:amount:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="amount")
+*/
+@property (readonly) NSString *amount __attribute__((swift_name("amount")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="referral")
+*/
+@property (readonly) NSString *referral __attribute__((swift_name("referral")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletReferrerCase1ResponseDataRewardsNode.Companion")))
+@interface SorawalletSoraWalletReferrerCase1ResponseDataRewardsNodeCompanion : SorawalletBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletReferrerCase1ResponseDataRewardsNodeCompanion *shared __attribute__((swift_name("shared")));
+- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SbApyInfo")))
+@interface SorawalletSbApyInfo : SorawalletBase
+- (instancetype)initWithId:(NSString *)id sbApy:(SorawalletDouble * _Nullable)sbApy __attribute__((swift_name("init(id:sbApy:)"))) __attribute__((objc_designated_initializer));
+- (SorawalletSbApyInfo *)doCopyId:(NSString *)id sbApy:(SorawalletDouble * _Nullable)sbApy __attribute__((swift_name("doCopy(id:sbApy:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString *id __attribute__((swift_name("id")));
+@property (readonly) SorawalletDouble * _Nullable sbApy __attribute__((swift_name("sbApy")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletSbApyCase2Response")))
+@interface SorawalletSoraWalletSbApyCase2Response : SorawalletBase
+- (instancetype)initWithData:(SorawalletSoraWalletSbApyCase2ResponseData *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletSbApyCase2ResponseCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletSbApyCase2Response *)doCopyData:(SorawalletSoraWalletSbApyCase2ResponseData *)data __attribute__((swift_name("doCopy(data:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="data")
+*/
+@property (readonly) SorawalletSoraWalletSbApyCase2ResponseData *data __attribute__((swift_name("data")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletSbApyCase2Response.Companion")))
+@interface SorawalletSoraWalletSbApyCase2ResponseCompanion : SorawalletBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletSbApyCase2ResponseCompanion *shared __attribute__((swift_name("shared")));
+- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletSbApyCase2ResponseData")))
+@interface SorawalletSoraWalletSbApyCase2ResponseData : SorawalletBase
+- (instancetype)initWithEntities:(SorawalletSoraWalletSbApyCase2ResponseDataEntities *)entities __attribute__((swift_name("init(entities:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletSbApyCase2ResponseDataCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletSbApyCase2ResponseData *)doCopyEntities:(SorawalletSoraWalletSbApyCase2ResponseDataEntities *)entities __attribute__((swift_name("doCopy(entities:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="entities")
+*/
+@property (readonly) SorawalletSoraWalletSbApyCase2ResponseDataEntities *entities __attribute__((swift_name("entities")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletSbApyCase2ResponseData.Companion")))
+@interface SorawalletSoraWalletSbApyCase2ResponseDataCompanion : SorawalletBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletSbApyCase2ResponseDataCompanion *shared __attribute__((swift_name("shared")));
+- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletSbApyCase2ResponseDataEntities")))
+@interface SorawalletSoraWalletSbApyCase2ResponseDataEntities : SorawalletBase
+- (instancetype)initWithNodes:(NSArray<SorawalletSoraWalletSbApyCase2ResponseDataEntitiesNode *> *)nodes pageInfo:(SorawalletResponsePageInfo *)pageInfo __attribute__((swift_name("init(nodes:pageInfo:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletSbApyCase2ResponseDataEntitiesCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletSbApyCase2ResponseDataEntities *)doCopyNodes:(NSArray<SorawalletSoraWalletSbApyCase2ResponseDataEntitiesNode *> *)nodes pageInfo:(SorawalletResponsePageInfo *)pageInfo __attribute__((swift_name("doCopy(nodes:pageInfo:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="nodes")
+*/
+@property (readonly) NSArray<SorawalletSoraWalletSbApyCase2ResponseDataEntitiesNode *> *nodes __attribute__((swift_name("nodes")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="pageInfo")
+*/
+@property (readonly) SorawalletResponsePageInfo *pageInfo __attribute__((swift_name("pageInfo")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletSbApyCase2ResponseDataEntities.Companion")))
+@interface SorawalletSoraWalletSbApyCase2ResponseDataEntitiesCompanion : SorawalletBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletSbApyCase2ResponseDataEntitiesCompanion *shared __attribute__((swift_name("shared")));
+- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletSbApyCase2ResponseDataEntitiesNode")))
+@interface SorawalletSoraWalletSbApyCase2ResponseDataEntitiesNode : SorawalletBase
+- (instancetype)initWithId:(NSString *)id strategicBonusApy:(NSString * _Nullable)strategicBonusApy __attribute__((swift_name("init(id:strategicBonusApy:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraWalletSbApyCase2ResponseDataEntitiesNodeCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraWalletSbApyCase2ResponseDataEntitiesNode *)doCopyId:(NSString *)id strategicBonusApy:(NSString * _Nullable)strategicBonusApy __attribute__((swift_name("doCopy(id:strategicBonusApy:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="id")
+*/
+@property (readonly) NSString *id __attribute__((swift_name("id")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="strategicBonusApy")
+*/
+@property (readonly) NSString * _Nullable strategicBonusApy __attribute__((swift_name("strategicBonusApy")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraWalletSbApyCase2ResponseDataEntitiesNode.Companion")))
+@interface SorawalletSoraWalletSbApyCase2ResponseDataEntitiesNodeCompanion : SorawalletBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletSbApyCase2ResponseDataEntitiesNodeCompanion *shared __attribute__((swift_name("shared")));
+- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -884,58 +1621,64 @@ __attribute__((swift_name("SoraRemoteConfigProvider")))
 - (SorawalletSoraRemoteConfigBuilder *)provide __attribute__((swift_name("provide()")));
 @end
 
-__attribute__((swift_name("BasicCases")))
-@interface SorawalletBasicCases<T> : SorawalletBase
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraTokenWhitelistDto")))
+@interface SorawalletSoraTokenWhitelistDto : SorawalletBase
+- (instancetype)initWithAddress:(NSString *)address rawIcon:(id)rawIcon type:(NSString *)type __attribute__((swift_name("init(address:rawIcon:type:)"))) __attribute__((objc_designated_initializer));
+- (SorawalletSoraTokenWhitelistDto *)doCopyAddress:(NSString *)address rawIcon:(id)rawIcon type:(NSString *)type __attribute__((swift_name("doCopy(address:rawIcon:type:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString *address __attribute__((swift_name("address")));
+@property (readonly) id rawIcon __attribute__((swift_name("rawIcon")));
+@property (readonly) NSString *type __attribute__((swift_name("type")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraTokensWhitelistManager")))
+@interface SorawalletSoraTokensWhitelistManager : SorawalletBase
+- (instancetype)initWithNetworkClient:(SorawalletSoramitsuNetworkClient *)networkClient __attribute__((swift_name("init(networkClient:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraTokensWhitelistManagerCompanion *companion __attribute__((swift_name("companion")));
+
+/**
+ * @note This method converts instances of SoramitsuNetworkException, CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getTokensWithCompletionHandler:(void (^)(NSArray<SorawalletSoraTokenWhitelistDto *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getTokens(completionHandler:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoraTokensWhitelistManager.Companion")))
+@interface SorawalletSoraTokensWhitelistManagerCompanion : SorawalletBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SorawalletSoraTokensWhitelistManagerCompanion *shared __attribute__((swift_name("shared")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SubQueryClientForSoraWallet")))
+@interface SorawalletSubQueryClientForSoraWallet : SorawalletBase
+- (instancetype)initWithNetworkClient:(SorawalletSoramitsuNetworkClient *)networkClient pageSize:(int32_t)pageSize historyDatabaseProvider:(SorawalletHistoryDatabaseProvider *)historyDatabaseProvider soraRemoteConfigBuilder:(SorawalletSoraRemoteConfigBuilder *)soraRemoteConfigBuilder __attribute__((swift_name("init(networkClient:pageSize:historyDatabaseProvider:soraRemoteConfigBuilder:)"))) __attribute__((objc_designated_initializer));
+- (void)clearAllData __attribute__((swift_name("clearAllData()")));
+- (void)clearDataAddress:(NSString *)address __attribute__((swift_name("clearData(address:)")));
+- (SorawalletTxHistoryInfo *)getTransactionCachedAddress:(NSString *)address txHash:(NSString *)txHash __attribute__((swift_name("getTransactionCached(address:txHash:)")));
+- (NSArray<SorawalletTxHistoryItem *> *)getTransactionHistoryCachedAddress:(NSString *)address count:(int32_t)count filter:(SorawalletBoolean *(^ _Nullable)(SorawalletTxHistoryItem *))filter __attribute__((swift_name("getTransactionHistoryCached(address:count:filter:)")));
+
+/**
+ * @note This method converts instances of CancellationException, IllegalArgumentException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getTransactionHistoryPagedAddress:(NSString *)address page:(int64_t)page filter:(SorawalletBoolean *(^ _Nullable)(SorawalletTxHistoryItem *))filter completionHandler:(void (^)(SorawalletTxHistoryResult<SorawalletTxHistoryItem *> * _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("getTransactionHistoryPaged(address:page:filter:completionHandler:)")));
+- (NSArray<NSString *> *)getTransactionPeersQuery:(NSString *)query __attribute__((swift_name("getTransactionPeers(query:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SubQueryClientForSoraWalletFactory")))
+@interface SorawalletSubQueryClientForSoraWalletFactory : SorawalletBase
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (T _Nullable)getCaseCaseName:(NSString *)caseName __attribute__((swift_name("getCase(caseName:)")));
-
-/**
- * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-- (T _Nullable)provideInstanceCaseName:(NSString *)caseName __attribute__((swift_name("provideInstance(caseName:)")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletBlockExplorerInfo")))
-@interface SorawalletSoraWalletBlockExplorerInfo : SorawalletBase
-- (instancetype)initWithNetworkClient:(SorawalletSoramitsuNetworkClient *)networkClient soraRemoteConfigBuilder:(SorawalletSoraRemoteConfigBuilder *)soraRemoteConfigBuilder __attribute__((swift_name("init(networkClient:soraRemoteConfigBuilder:)"))) __attribute__((objc_designated_initializer));
-
-/**
- * @note This method converts instances of SoramitsuNetworkException, CancellationException, IllegalArgumentException to errors.
- * Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)getAssetsInfoTokenIds:(NSArray<NSString *> *)tokenIds timestamp:(int64_t)timestamp completionHandler:(void (^)(NSArray<SorawalletAssetsInfo *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getAssetsInfo(tokenIds:timestamp:completionHandler:)")));
-
-/**
- * @note This method converts instances of SoramitsuNetworkException, CancellationException, IllegalArgumentException to errors.
- * Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)getFiatWithCompletionHandler:(void (^)(NSArray<SorawalletFiatData *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getFiat(completionHandler:)")));
-
-/**
- * @note This method converts instances of SoramitsuNetworkException, CancellationException, IllegalArgumentException to errors.
- * Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)getReferrerRewardsAddress:(NSString *)address completionHandler:(void (^)(SorawalletReferrerRewardsInfo * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getReferrerRewards(address:completionHandler:)")));
-
-/**
- * @note This method converts instances of SoramitsuNetworkException, CancellationException, IllegalArgumentException to errors.
- * Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)getSpApyWithCompletionHandler:(void (^)(NSArray<SorawalletSbApyInfo *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getSpApy(completionHandler:)")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("FiatData")))
-@interface SorawalletFiatData : SorawalletBase
-- (instancetype)initWithId:(NSString *)id priceUsd:(SorawalletDouble * _Nullable)priceUsd __attribute__((swift_name("init(id:priceUsd:)"))) __attribute__((objc_designated_initializer));
-- (SorawalletFiatData *)doCopyId:(NSString *)id priceUsd:(SorawalletDouble * _Nullable)priceUsd __attribute__((swift_name("doCopy(id:priceUsd:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString *id __attribute__((swift_name("id")));
-@property (readonly) SorawalletDouble * _Nullable priceUsd __attribute__((swift_name("priceUsd")));
+- (SorawalletSubQueryClientForSoraWallet *)createSoramitsuNetworkClient:(SorawalletSoramitsuNetworkClient *)soramitsuNetworkClient pageSize:(int32_t)pageSize soraRemoteConfigBuilder:(SorawalletSoraRemoteConfigBuilder *)soraRemoteConfigBuilder __attribute__((swift_name("create(soramitsuNetworkClient:pageSize:soraRemoteConfigBuilder:)")));
 @end
 
 
@@ -944,24 +1687,41 @@ __attribute__((swift_name("FiatData")))
  *   kotlinx.serialization.Serializable
 */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletFiatCase2Response")))
-@interface SorawalletSoraWalletFiatCase2Response : SorawalletBase
-- (instancetype)initWithData:(SorawalletSoraWalletFiatCase2ResponseData *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletFiatCase2ResponseCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletFiatCase2Response *)doCopyData:(SorawalletSoraWalletFiatCase2ResponseData *)data __attribute__((swift_name("doCopy(data:)")));
+__attribute__((swift_name("Error")))
+@interface SorawalletError : SorawalletBase
+- (instancetype)initWithModuleErrorId:(NSString * _Nullable)moduleErrorId moduleErrorIndex:(SorawalletInt * _Nullable)moduleErrorIndex nonModuleErrorMessage:(NSString * _Nullable)nonModuleErrorMessage __attribute__((swift_name("init(moduleErrorId:moduleErrorIndex:nonModuleErrorMessage:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletErrorCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletError *)doCopyModuleErrorId:(NSString * _Nullable)moduleErrorId moduleErrorIndex:(SorawalletInt * _Nullable)moduleErrorIndex nonModuleErrorMessage:(NSString * _Nullable)nonModuleErrorMessage __attribute__((swift_name("doCopy(moduleErrorId:moduleErrorIndex:nonModuleErrorMessage:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SorawalletSoraWalletFiatCase2ResponseData *data __attribute__((swift_name("data")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="moduleErrorId")
+*/
+@property (readonly) NSString * _Nullable moduleErrorId __attribute__((swift_name("moduleErrorId")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="moduleErrorIndex")
+*/
+@property (readonly) SorawalletInt * _Nullable moduleErrorIndex __attribute__((swift_name("moduleErrorIndex")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="nonModuleErrorMessage")
+*/
+@property (readonly) NSString * _Nullable nonModuleErrorMessage __attribute__((swift_name("nonModuleErrorMessage")));
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletFiatCase2Response.Companion")))
-@interface SorawalletSoraWalletFiatCase2ResponseCompanion : SorawalletBase
+__attribute__((swift_name("Error.Companion")))
+@interface SorawalletErrorCompanion : SorawalletBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletFiatCase2ResponseCompanion *shared __attribute__((swift_name("shared")));
+@property (class, readonly, getter=shared) SorawalletErrorCompanion *shared __attribute__((swift_name("shared")));
 - (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
@@ -971,24 +1731,35 @@ __attribute__((swift_name("SoraWalletFiatCase2Response.Companion")))
  *   kotlinx.serialization.Serializable
 */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletFiatCase2ResponseData")))
-@interface SorawalletSoraWalletFiatCase2ResponseData : SorawalletBase
-- (instancetype)initWithEntities:(SorawalletSoraWalletFiatCase2ResponseDataEntities *)entities __attribute__((swift_name("init(entities:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletFiatCase2ResponseDataCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletFiatCase2ResponseData *)doCopyEntities:(SorawalletSoraWalletFiatCase2ResponseDataEntities *)entities __attribute__((swift_name("doCopy(entities:)")));
+__attribute__((swift_name("ExecutionResult")))
+@interface SorawalletExecutionResult : SorawalletBase
+- (instancetype)initWithSuccess:(BOOL)success error:(SorawalletError * _Nullable)error __attribute__((swift_name("init(success:error:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletExecutionResultCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletExecutionResult *)doCopySuccess:(BOOL)success error:(SorawalletError * _Nullable)error __attribute__((swift_name("doCopy(success:error:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SorawalletSoraWalletFiatCase2ResponseDataEntities *entities __attribute__((swift_name("entities")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="error")
+*/
+@property (readonly) SorawalletError * _Nullable error __attribute__((swift_name("error")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="success")
+*/
+@property (readonly) BOOL success __attribute__((swift_name("success")));
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletFiatCase2ResponseData.Companion")))
-@interface SorawalletSoraWalletFiatCase2ResponseDataCompanion : SorawalletBase
+__attribute__((swift_name("ExecutionResult.Companion")))
+@interface SorawalletExecutionResultCompanion : SorawalletBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletFiatCase2ResponseDataCompanion *shared __attribute__((swift_name("shared")));
+@property (class, readonly, getter=shared) SorawalletExecutionResultCompanion *shared __attribute__((swift_name("shared")));
 - (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
@@ -998,25 +1769,35 @@ __attribute__((swift_name("SoraWalletFiatCase2ResponseData.Companion")))
  *   kotlinx.serialization.Serializable
 */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletFiatCase2ResponseDataEntities")))
-@interface SorawalletSoraWalletFiatCase2ResponseDataEntities : SorawalletBase
-- (instancetype)initWithNodes:(NSArray<SorawalletSoraWalletFiatCase2ResponseDataEntitiesNode *> *)nodes pageInfo:(SorawalletResponsePageInfo *)pageInfo __attribute__((swift_name("init(nodes:pageInfo:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletFiatCase2ResponseDataEntitiesCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletFiatCase2ResponseDataEntities *)doCopyNodes:(NSArray<SorawalletSoraWalletFiatCase2ResponseDataEntitiesNode *> *)nodes pageInfo:(SorawalletResponsePageInfo *)pageInfo __attribute__((swift_name("doCopy(nodes:pageInfo:)")));
+__attribute__((swift_name("HistoryResponseDataElements")))
+@interface SorawalletHistoryResponseDataElements : SorawalletBase
+- (instancetype)initWithNodes:(NSArray<SorawalletHistoryResponseItem *> *)nodes pageInfo:(SorawalletResponsePageInfo *)pageInfo __attribute__((swift_name("init(nodes:pageInfo:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletHistoryResponseDataElementsCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletHistoryResponseDataElements *)doCopyNodes:(NSArray<SorawalletHistoryResponseItem *> *)nodes pageInfo:(SorawalletResponsePageInfo *)pageInfo __attribute__((swift_name("doCopy(nodes:pageInfo:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<SorawalletSoraWalletFiatCase2ResponseDataEntitiesNode *> *nodes __attribute__((swift_name("nodes")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="nodes")
+*/
+@property (readonly) NSArray<SorawalletHistoryResponseItem *> *nodes __attribute__((swift_name("nodes")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="pageInfo")
+*/
 @property (readonly) SorawalletResponsePageInfo *pageInfo __attribute__((swift_name("pageInfo")));
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletFiatCase2ResponseDataEntities.Companion")))
-@interface SorawalletSoraWalletFiatCase2ResponseDataEntitiesCompanion : SorawalletBase
+__attribute__((swift_name("HistoryResponseDataElements.Companion")))
+@interface SorawalletHistoryResponseDataElementsCompanion : SorawalletBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletFiatCase2ResponseDataEntitiesCompanion *shared __attribute__((swift_name("shared")));
+@property (class, readonly, getter=shared) SorawalletHistoryResponseDataElementsCompanion *shared __attribute__((swift_name("shared")));
 - (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
@@ -1026,65 +1807,71 @@ __attribute__((swift_name("SoraWalletFiatCase2ResponseDataEntities.Companion")))
  *   kotlinx.serialization.Serializable
 */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletFiatCase2ResponseDataEntitiesNode")))
-@interface SorawalletSoraWalletFiatCase2ResponseDataEntitiesNode : SorawalletBase
-- (instancetype)initWithId:(NSString *)id priceUSD:(NSString *)priceUSD __attribute__((swift_name("init(id:priceUSD:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletFiatCase2ResponseDataEntitiesNodeCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletFiatCase2ResponseDataEntitiesNode *)doCopyId:(NSString *)id priceUSD:(NSString *)priceUSD __attribute__((swift_name("doCopy(id:priceUSD:)")));
+__attribute__((swift_name("HistoryResponseItem")))
+@interface SorawalletHistoryResponseItem : SorawalletBase
+- (instancetype)initWithId:(NSString *)id blockHash:(NSString *)blockHash module:(NSString *)module method:(NSString *)method timestamp:(NSString *)timestamp networkFee:(NSString *)networkFee execution:(SorawalletExecutionResult *)execution data:(SorawalletKotlinx_serialization_jsonJsonElement *)data __attribute__((swift_name("init(id:blockHash:module:method:timestamp:networkFee:execution:data:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletHistoryResponseItemCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletHistoryResponseItem *)doCopyId:(NSString *)id blockHash:(NSString *)blockHash module:(NSString *)module method:(NSString *)method timestamp:(NSString *)timestamp networkFee:(NSString *)networkFee execution:(SorawalletExecutionResult *)execution data:(SorawalletKotlinx_serialization_jsonJsonElement *)data __attribute__((swift_name("doCopy(id:blockHash:module:method:timestamp:networkFee:execution:data:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="blockHash")
+*/
+@property (readonly) NSString *blockHash __attribute__((swift_name("blockHash")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="data")
+*/
+@property (readonly) SorawalletKotlinx_serialization_jsonJsonElement *data __attribute__((swift_name("data")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="execution")
+*/
+@property (readonly) SorawalletExecutionResult *execution __attribute__((swift_name("execution")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="id")
+*/
 @property (readonly) NSString *id __attribute__((swift_name("id")));
-@property (readonly) NSString *priceUSD __attribute__((swift_name("priceUSD")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletFiatCase2ResponseDataEntitiesNode.Companion")))
-@interface SorawalletSoraWalletFiatCase2ResponseDataEntitiesNodeCompanion : SorawalletBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletFiatCase2ResponseDataEntitiesNodeCompanion *shared __attribute__((swift_name("shared")));
-- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("AssetsInfo")))
-@interface SorawalletAssetsInfo : SorawalletBase
-- (instancetype)initWithTokenId:(NSString *)tokenId liquidity:(NSString *)liquidity hourDelta:(SorawalletDouble * _Nullable)hourDelta __attribute__((swift_name("init(tokenId:liquidity:hourDelta:)"))) __attribute__((objc_designated_initializer));
-- (SorawalletAssetsInfo *)doCopyTokenId:(NSString *)tokenId liquidity:(NSString *)liquidity hourDelta:(SorawalletDouble * _Nullable)hourDelta __attribute__((swift_name("doCopy(tokenId:liquidity:hourDelta:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SorawalletDouble * _Nullable hourDelta __attribute__((swift_name("hourDelta")));
-@property (readonly) NSString *liquidity __attribute__((swift_name("liquidity")));
-@property (readonly) NSString *tokenId __attribute__((swift_name("tokenId")));
-@end
-
 
 /**
  * @note annotations
- *   kotlinx.serialization.Serializable
+ *   kotlinx.serialization.SerialName(value="method")
 */
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase0Response")))
-@interface SorawalletSoraWalletAssetsCase0Response : SorawalletBase
-- (instancetype)initWithData:(SorawalletSoraWalletAssetsCase0ResponseData *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase0ResponseCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletAssetsCase0Response *)doCopyData:(SorawalletSoraWalletAssetsCase0ResponseData *)data __attribute__((swift_name("doCopy(data:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SorawalletSoraWalletAssetsCase0ResponseData *data __attribute__((swift_name("data")));
+@property (readonly) NSString *method __attribute__((swift_name("method")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="module")
+*/
+@property (readonly) NSString *module __attribute__((swift_name("module")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="networkFee")
+*/
+@property (readonly) NSString *networkFee __attribute__((swift_name("networkFee")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="timestamp")
+*/
+@property (readonly) NSString *timestamp __attribute__((swift_name("timestamp")));
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase0Response.Companion")))
-@interface SorawalletSoraWalletAssetsCase0ResponseCompanion : SorawalletBase
+__attribute__((swift_name("HistoryResponseItem.Companion")))
+@interface SorawalletHistoryResponseItemCompanion : SorawalletBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase0ResponseCompanion *shared __attribute__((swift_name("shared")));
+@property (class, readonly, getter=shared) SorawalletHistoryResponseItemCompanion *shared __attribute__((swift_name("shared")));
 - (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
@@ -1094,24 +1881,29 @@ __attribute__((swift_name("SoraWalletAssetsCase0Response.Companion")))
  *   kotlinx.serialization.Serializable
 */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase0ResponseData")))
-@interface SorawalletSoraWalletAssetsCase0ResponseData : SorawalletBase
-- (instancetype)initWithEntities:(SorawalletSoraWalletAssetsCase0ResponseDataEntities *)entities __attribute__((swift_name("init(entities:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase0ResponseDataCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletAssetsCase0ResponseData *)doCopyEntities:(SorawalletSoraWalletAssetsCase0ResponseDataEntities *)entities __attribute__((swift_name("doCopy(entities:)")));
+__attribute__((swift_name("SoraSubQueryResponse")))
+@interface SorawalletSoraSubQueryResponse : SorawalletBase
+- (instancetype)initWithData:(SorawalletSoraSubQueryResponseData *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraSubQueryResponseCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraSubQueryResponse *)doCopyData:(SorawalletSoraSubQueryResponseData *)data __attribute__((swift_name("doCopy(data:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SorawalletSoraWalletAssetsCase0ResponseDataEntities *entities __attribute__((swift_name("entities")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="data")
+*/
+@property (readonly) SorawalletSoraSubQueryResponseData *data __attribute__((swift_name("data")));
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase0ResponseData.Companion")))
-@interface SorawalletSoraWalletAssetsCase0ResponseDataCompanion : SorawalletBase
+__attribute__((swift_name("SoraSubQueryResponse.Companion")))
+@interface SorawalletSoraSubQueryResponseCompanion : SorawalletBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase0ResponseDataCompanion *shared __attribute__((swift_name("shared")));
+@property (class, readonly, getter=shared) SorawalletSoraSubQueryResponseCompanion *shared __attribute__((swift_name("shared")));
 - (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
@@ -1121,557 +1913,46 @@ __attribute__((swift_name("SoraWalletAssetsCase0ResponseData.Companion")))
  *   kotlinx.serialization.Serializable
 */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase0ResponseDataEntities")))
-@interface SorawalletSoraWalletAssetsCase0ResponseDataEntities : SorawalletBase
-- (instancetype)initWithNodes:(NSArray<SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNode *> *)nodes pageInfo:(SorawalletResponsePageInfo *)pageInfo __attribute__((swift_name("init(nodes:pageInfo:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletAssetsCase0ResponseDataEntities *)doCopyNodes:(NSArray<SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNode *> *)nodes pageInfo:(SorawalletResponsePageInfo *)pageInfo __attribute__((swift_name("doCopy(nodes:pageInfo:)")));
+__attribute__((swift_name("SoraSubQueryResponseData")))
+@interface SorawalletSoraSubQueryResponseData : SorawalletBase
+- (instancetype)initWithHistoryElements:(SorawalletHistoryResponseDataElements *)historyElements __attribute__((swift_name("init(historyElements:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) SorawalletSoraSubQueryResponseDataCompanion *companion __attribute__((swift_name("companion")));
+- (SorawalletSoraSubQueryResponseData *)doCopyHistoryElements:(SorawalletHistoryResponseDataElements *)historyElements __attribute__((swift_name("doCopy(historyElements:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNode *> *nodes __attribute__((swift_name("nodes")));
-@property (readonly) SorawalletResponsePageInfo *pageInfo __attribute__((swift_name("pageInfo")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase0ResponseDataEntities.Companion")))
-@interface SorawalletSoraWalletAssetsCase0ResponseDataEntitiesCompanion : SorawalletBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesCompanion *shared __attribute__((swift_name("shared")));
-- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
 
 /**
  * @note annotations
- *   kotlinx.serialization.Serializable
+ *   kotlinx.serialization.SerialName(value="historyElements")
 */
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase0ResponseDataEntitiesNode")))
-@interface SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNode : SorawalletBase
-- (instancetype)initWithId:(NSString *)id liquidity:(NSString *)liquidity periods:(SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHour *)periods __attribute__((swift_name("init(id:liquidity:periods:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNode *)doCopyId:(NSString *)id liquidity:(NSString *)liquidity periods:(SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHour *)periods __attribute__((swift_name("doCopy(id:liquidity:periods:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString *id __attribute__((swift_name("id")));
-@property (readonly) NSString *liquidity __attribute__((swift_name("liquidity")));
-@property (readonly) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHour *periods __attribute__((swift_name("periods")));
+@property (readonly) SorawalletHistoryResponseDataElements *historyElements __attribute__((swift_name("historyElements")));
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase0ResponseDataEntitiesNode.Companion")))
-@interface SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeCompanion : SorawalletBase
+__attribute__((swift_name("SoraSubQueryResponseData.Companion")))
+@interface SorawalletSoraSubQueryResponseDataCompanion : SorawalletBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeCompanion *shared __attribute__((swift_name("shared")));
-- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase0ResponseDataEntitiesNodeHour")))
-@interface SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHour : SorawalletBase
-- (instancetype)initWithNodes:(NSArray<SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNode *> *)nodes __attribute__((swift_name("init(nodes:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHour *)doCopyNodes:(NSArray<SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNode *> *)nodes __attribute__((swift_name("doCopy(nodes:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNode *> *nodes __attribute__((swift_name("nodes")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase0ResponseDataEntitiesNodeHour.Companion")))
-@interface SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourCompanion : SorawalletBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourCompanion *shared __attribute__((swift_name("shared")));
-- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase0ResponseDataEntitiesNodeHourNode")))
-@interface SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNode : SorawalletBase
-- (instancetype)initWithPrice:(SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePrice *)price __attribute__((swift_name("init(price:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodeCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNode *)doCopyPrice:(SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePrice *)price __attribute__((swift_name("doCopy(price:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePrice *price __attribute__((swift_name("price")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase0ResponseDataEntitiesNodeHourNode.Companion")))
-@interface SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodeCompanion : SorawalletBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodeCompanion *shared __attribute__((swift_name("shared")));
-- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePrice")))
-@interface SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePrice : SorawalletBase
-- (instancetype)initWithLow:(NSString *)low high:(NSString *)high open:(NSString *)open close:(NSString *)close __attribute__((swift_name("init(low:high:open:close:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePriceCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePrice *)doCopyLow:(NSString *)low high:(NSString *)high open:(NSString *)open close:(NSString *)close __attribute__((swift_name("doCopy(low:high:open:close:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString *close __attribute__((swift_name("close")));
-@property (readonly) NSString *high __attribute__((swift_name("high")));
-@property (readonly) NSString *low __attribute__((swift_name("low")));
-@property (readonly) NSString *open __attribute__((swift_name("open")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePrice.Companion")))
-@interface SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePriceCompanion : SorawalletBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase0ResponseDataEntitiesNodeHourNodePriceCompanion *shared __attribute__((swift_name("shared")));
-- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase1Response")))
-@interface SorawalletSoraWalletAssetsCase1Response : SorawalletBase
-- (instancetype)initWithData:(SorawalletSoraWalletAssetsCase1ResponseData *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase1ResponseCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletAssetsCase1Response *)doCopyData:(SorawalletSoraWalletAssetsCase1ResponseData *)data __attribute__((swift_name("doCopy(data:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SorawalletSoraWalletAssetsCase1ResponseData *data __attribute__((swift_name("data")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase1Response.Companion")))
-@interface SorawalletSoraWalletAssetsCase1ResponseCompanion : SorawalletBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase1ResponseCompanion *shared __attribute__((swift_name("shared")));
-- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase1ResponseData")))
-@interface SorawalletSoraWalletAssetsCase1ResponseData : SorawalletBase
-- (instancetype)initWithEntities:(SorawalletSoraWalletAssetsCase1ResponseDataEntities *)entities __attribute__((swift_name("init(entities:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase1ResponseDataCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletAssetsCase1ResponseData *)doCopyEntities:(SorawalletSoraWalletAssetsCase1ResponseDataEntities *)entities __attribute__((swift_name("doCopy(entities:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SorawalletSoraWalletAssetsCase1ResponseDataEntities *entities __attribute__((swift_name("entities")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase1ResponseData.Companion")))
-@interface SorawalletSoraWalletAssetsCase1ResponseDataCompanion : SorawalletBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase1ResponseDataCompanion *shared __attribute__((swift_name("shared")));
-- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase1ResponseDataEntities")))
-@interface SorawalletSoraWalletAssetsCase1ResponseDataEntities : SorawalletBase
-- (instancetype)initWithNodes:(NSArray<SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNode *> *)nodes pageInfo:(SorawalletResponsePageInfo *)pageInfo __attribute__((swift_name("init(nodes:pageInfo:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase1ResponseDataEntitiesCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletAssetsCase1ResponseDataEntities *)doCopyNodes:(NSArray<SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNode *> *)nodes pageInfo:(SorawalletResponsePageInfo *)pageInfo __attribute__((swift_name("doCopy(nodes:pageInfo:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNode *> *nodes __attribute__((swift_name("nodes")));
-@property (readonly) SorawalletResponsePageInfo *pageInfo __attribute__((swift_name("pageInfo")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase1ResponseDataEntities.Companion")))
-@interface SorawalletSoraWalletAssetsCase1ResponseDataEntitiesCompanion : SorawalletBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase1ResponseDataEntitiesCompanion *shared __attribute__((swift_name("shared")));
-- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase1ResponseDataEntitiesNode")))
-@interface SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNode : SorawalletBase
-- (instancetype)initWithNode:(SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeHour *)node __attribute__((swift_name("init(node:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNode *)doCopyNode:(SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeHour *)node __attribute__((swift_name("doCopy(node:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeHour *node __attribute__((swift_name("node")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase1ResponseDataEntitiesNode.Companion")))
-@interface SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeCompanion : SorawalletBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeCompanion *shared __attribute__((swift_name("shared")));
-- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase1ResponseDataEntitiesNodeHour")))
-@interface SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeHour : SorawalletBase
-- (instancetype)initWithId:(NSString *)id priceChangeDay:(SorawalletDouble * _Nullable)priceChangeDay liquidityUSD:(NSString * _Nullable)liquidityUSD __attribute__((swift_name("init(id:priceChangeDay:liquidityUSD:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeHourCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeHour *)doCopyId:(NSString *)id priceChangeDay:(SorawalletDouble * _Nullable)priceChangeDay liquidityUSD:(NSString * _Nullable)liquidityUSD __attribute__((swift_name("doCopy(id:priceChangeDay:liquidityUSD:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString *id __attribute__((swift_name("id")));
-@property (readonly) NSString * _Nullable liquidityUSD __attribute__((swift_name("liquidityUSD")));
-@property (readonly) SorawalletDouble * _Nullable priceChangeDay __attribute__((swift_name("priceChangeDay")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletAssetsCase1ResponseDataEntitiesNodeHour.Companion")))
-@interface SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeHourCompanion : SorawalletBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletAssetsCase1ResponseDataEntitiesNodeHourCompanion *shared __attribute__((swift_name("shared")));
+@property (class, readonly, getter=shared) SorawalletSoraSubQueryResponseDataCompanion *shared __attribute__((swift_name("shared")));
 - (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ReferrerReward")))
-@interface SorawalletReferrerReward : SorawalletBase
-- (instancetype)initWithReferral:(NSString *)referral amount:(NSString *)amount __attribute__((swift_name("init(referral:amount:)"))) __attribute__((objc_designated_initializer));
-- (SorawalletReferrerReward *)doCopyReferral:(NSString *)referral amount:(NSString *)amount __attribute__((swift_name("doCopy(referral:amount:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString *amount __attribute__((swift_name("amount")));
-@property (readonly) NSString *referral __attribute__((swift_name("referral")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ReferrerRewardsInfo")))
-@interface SorawalletReferrerRewardsInfo : SorawalletBase
-- (instancetype)initWithRewards:(NSArray<SorawalletReferrerReward *> *)rewards __attribute__((swift_name("init(rewards:)"))) __attribute__((objc_designated_initializer));
-- (SorawalletReferrerRewardsInfo *)doCopyRewards:(NSArray<SorawalletReferrerReward *> *)rewards __attribute__((swift_name("doCopy(rewards:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<SorawalletReferrerReward *> *rewards __attribute__((swift_name("rewards")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletReferrerCase1Response")))
-@interface SorawalletSoraWalletReferrerCase1Response : SorawalletBase
-- (instancetype)initWithData:(SorawalletSoraWalletReferrerCase1ResponseData *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletReferrerCase1ResponseCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletReferrerCase1Response *)doCopyData:(SorawalletSoraWalletReferrerCase1ResponseData *)data __attribute__((swift_name("doCopy(data:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SorawalletSoraWalletReferrerCase1ResponseData *data __attribute__((swift_name("data")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletReferrerCase1Response.Companion")))
-@interface SorawalletSoraWalletReferrerCase1ResponseCompanion : SorawalletBase
+__attribute__((swift_name("SoraWalletSubQueryHistoryMapper")))
+@interface SorawalletSoraWalletSubQueryHistoryMapper : SorawalletBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletReferrerCase1ResponseCompanion *shared __attribute__((swift_name("shared")));
-- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletReferrerCase1ResponseData")))
-@interface SorawalletSoraWalletReferrerCase1ResponseData : SorawalletBase
-- (instancetype)initWithReferrerRewards:(SorawalletSoraWalletReferrerCase1ResponseDataRewards *)referrerRewards __attribute__((swift_name("init(referrerRewards:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletReferrerCase1ResponseDataCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletReferrerCase1ResponseData *)doCopyReferrerRewards:(SorawalletSoraWalletReferrerCase1ResponseDataRewards *)referrerRewards __attribute__((swift_name("doCopy(referrerRewards:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SorawalletSoraWalletReferrerCase1ResponseDataRewards *referrerRewards __attribute__((swift_name("referrerRewards")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletReferrerCase1ResponseData.Companion")))
-@interface SorawalletSoraWalletReferrerCase1ResponseDataCompanion : SorawalletBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletReferrerCase1ResponseDataCompanion *shared __attribute__((swift_name("shared")));
-- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletReferrerCase1ResponseDataRewards")))
-@interface SorawalletSoraWalletReferrerCase1ResponseDataRewards : SorawalletBase
-- (instancetype)initWithPageInfo:(SorawalletResponsePageInfo *)pageInfo nodes:(NSArray<SorawalletSoraWalletReferrerCase1ResponseDataRewardsNode *> *)nodes __attribute__((swift_name("init(pageInfo:nodes:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletReferrerCase1ResponseDataRewardsCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletReferrerCase1ResponseDataRewards *)doCopyPageInfo:(SorawalletResponsePageInfo *)pageInfo nodes:(NSArray<SorawalletSoraWalletReferrerCase1ResponseDataRewardsNode *> *)nodes __attribute__((swift_name("doCopy(pageInfo:nodes:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<SorawalletSoraWalletReferrerCase1ResponseDataRewardsNode *> *nodes __attribute__((swift_name("nodes")));
-@property (readonly) SorawalletResponsePageInfo *pageInfo __attribute__((swift_name("pageInfo")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletReferrerCase1ResponseDataRewards.Companion")))
-@interface SorawalletSoraWalletReferrerCase1ResponseDataRewardsCompanion : SorawalletBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletReferrerCase1ResponseDataRewardsCompanion *shared __attribute__((swift_name("shared")));
-- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletReferrerCase1ResponseDataRewardsNode")))
-@interface SorawalletSoraWalletReferrerCase1ResponseDataRewardsNode : SorawalletBase
-- (instancetype)initWithReferral:(NSString *)referral amount:(NSString *)amount __attribute__((swift_name("init(referral:amount:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletReferrerCase1ResponseDataRewardsNodeCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletReferrerCase1ResponseDataRewardsNode *)doCopyReferral:(NSString *)referral amount:(NSString *)amount __attribute__((swift_name("doCopy(referral:amount:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString *amount __attribute__((swift_name("amount")));
-@property (readonly) NSString *referral __attribute__((swift_name("referral")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletReferrerCase1ResponseDataRewardsNode.Companion")))
-@interface SorawalletSoraWalletReferrerCase1ResponseDataRewardsNodeCompanion : SorawalletBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletReferrerCase1ResponseDataRewardsNodeCompanion *shared __attribute__((swift_name("shared")));
-- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SbApyInfo")))
-@interface SorawalletSbApyInfo : SorawalletBase
-- (instancetype)initWithId:(NSString *)id sbApy:(SorawalletDouble * _Nullable)sbApy __attribute__((swift_name("init(id:sbApy:)"))) __attribute__((objc_designated_initializer));
-- (SorawalletSbApyInfo *)doCopyId:(NSString *)id sbApy:(SorawalletDouble * _Nullable)sbApy __attribute__((swift_name("doCopy(id:sbApy:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString *id __attribute__((swift_name("id")));
-@property (readonly) SorawalletDouble * _Nullable sbApy __attribute__((swift_name("sbApy")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase2Response")))
-@interface SorawalletSoraWalletSbApyCase2Response : SorawalletBase
-- (instancetype)initWithData:(SorawalletSoraWalletSbApyCase2ResponseData *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletSbApyCase2ResponseCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletSbApyCase2Response *)doCopyData:(SorawalletSoraWalletSbApyCase2ResponseData *)data __attribute__((swift_name("doCopy(data:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SorawalletSoraWalletSbApyCase2ResponseData *data __attribute__((swift_name("data")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase2Response.Companion")))
-@interface SorawalletSoraWalletSbApyCase2ResponseCompanion : SorawalletBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletSbApyCase2ResponseCompanion *shared __attribute__((swift_name("shared")));
-- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase2ResponseData")))
-@interface SorawalletSoraWalletSbApyCase2ResponseData : SorawalletBase
-- (instancetype)initWithEntities:(SorawalletSoraWalletSbApyCase2ResponseDataEntities *)entities __attribute__((swift_name("init(entities:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletSbApyCase2ResponseDataCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletSbApyCase2ResponseData *)doCopyEntities:(SorawalletSoraWalletSbApyCase2ResponseDataEntities *)entities __attribute__((swift_name("doCopy(entities:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) SorawalletSoraWalletSbApyCase2ResponseDataEntities *entities __attribute__((swift_name("entities")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase2ResponseData.Companion")))
-@interface SorawalletSoraWalletSbApyCase2ResponseDataCompanion : SorawalletBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletSbApyCase2ResponseDataCompanion *shared __attribute__((swift_name("shared")));
-- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase2ResponseDataEntities")))
-@interface SorawalletSoraWalletSbApyCase2ResponseDataEntities : SorawalletBase
-- (instancetype)initWithNodes:(NSArray<SorawalletSoraWalletSbApyCase2ResponseDataEntitiesNode *> *)nodes pageInfo:(SorawalletResponsePageInfo *)pageInfo __attribute__((swift_name("init(nodes:pageInfo:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletSbApyCase2ResponseDataEntitiesCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletSbApyCase2ResponseDataEntities *)doCopyNodes:(NSArray<SorawalletSoraWalletSbApyCase2ResponseDataEntitiesNode *> *)nodes pageInfo:(SorawalletResponsePageInfo *)pageInfo __attribute__((swift_name("doCopy(nodes:pageInfo:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<SorawalletSoraWalletSbApyCase2ResponseDataEntitiesNode *> *nodes __attribute__((swift_name("nodes")));
-@property (readonly) SorawalletResponsePageInfo *pageInfo __attribute__((swift_name("pageInfo")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase2ResponseDataEntities.Companion")))
-@interface SorawalletSoraWalletSbApyCase2ResponseDataEntitiesCompanion : SorawalletBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletSbApyCase2ResponseDataEntitiesCompanion *shared __attribute__((swift_name("shared")));
-- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase2ResponseDataEntitiesNode")))
-@interface SorawalletSoraWalletSbApyCase2ResponseDataEntitiesNode : SorawalletBase
-- (instancetype)initWithId:(NSString *)id strategicBonusApy:(NSString * _Nullable)strategicBonusApy __attribute__((swift_name("init(id:strategicBonusApy:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) SorawalletSoraWalletSbApyCase2ResponseDataEntitiesNodeCompanion *companion __attribute__((swift_name("companion")));
-- (SorawalletSoraWalletSbApyCase2ResponseDataEntitiesNode *)doCopyId:(NSString *)id strategicBonusApy:(NSString * _Nullable)strategicBonusApy __attribute__((swift_name("doCopy(id:strategicBonusApy:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString *id __attribute__((swift_name("id")));
-@property (readonly) NSString * _Nullable strategicBonusApy __attribute__((swift_name("strategicBonusApy")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoraWalletSbApyCase2ResponseDataEntitiesNode.Companion")))
-@interface SorawalletSoraWalletSbApyCase2ResponseDataEntitiesNodeCompanion : SorawalletBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) SorawalletSoraWalletSbApyCase2ResponseDataEntitiesNodeCompanion *shared __attribute__((swift_name("shared")));
-- (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ExpectInfoKt")))
-@interface SorawalletExpectInfoKt : SorawalletBase
-@property (class, readonly) NSString *platform_android __attribute__((swift_name("platform_android")));
-@property (class, readonly) NSString *platform_ios __attribute__((swift_name("platform_ios")));
++ (instancetype)soraWalletSubQueryHistoryMapper __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) SorawalletSoraWalletSubQueryHistoryMapper *shared __attribute__((swift_name("shared")));
+- (SorawalletTxHistoryInfo *)mapResponse:(SorawalletSoraSubQueryResponse *)response myAddress:(NSString *)myAddress __attribute__((swift_name("map(response:myAddress:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ActualInfoKt")))
 @interface SorawalletActualInfoKt : SorawalletBase
 + (NSString *)platform __attribute__((swift_name("platform()")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("TbdActualInfoIosKt")))
-@interface SorawalletTbdActualInfoIosKt : SorawalletBase
-+ (NSString *)shaA:(SorawalletKotlinByteArray *)a __attribute__((swift_name("sha(a:)")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("SoramitsuNetworkClientKt")))
-@interface SorawalletSoramitsuNetworkClientKt : SorawalletBase
-+ (id<SorawalletKtor_httpHeaders>)plus:(id<SorawalletKtor_httpHeaders>)receiver other:(id<SorawalletKtor_httpHeaders>)other __attribute__((swift_name("plus(_:other:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -1682,61 +1963,23 @@ __attribute__((swift_name("CommonSubQueryRequestKt")))
 @property (class, readonly) NSString *varMyAddress __attribute__((swift_name("varMyAddress")));
 @end
 
-__attribute__((swift_name("RuntimeTransactionCallbacks")))
-@protocol SorawalletRuntimeTransactionCallbacks
-@required
-- (void)afterCommitFunction:(void (^)(void))function __attribute__((swift_name("afterCommit(function:)")));
-- (void)afterRollbackFunction:(void (^)(void))function __attribute__((swift_name("afterRollback(function:)")));
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ExpectInfoKt")))
+@interface SorawalletExpectInfoKt : SorawalletBase
+@property (class, readonly) NSString *platform_android __attribute__((swift_name("platform_android")));
+@property (class, readonly) NSString *platform_ios __attribute__((swift_name("platform_ios")));
 @end
 
-__attribute__((swift_name("RuntimeTransactionWithoutReturn")))
-@protocol SorawalletRuntimeTransactionWithoutReturn <SorawalletRuntimeTransactionCallbacks>
-@required
-- (void)rollback __attribute__((swift_name("rollback()")));
-- (void)transactionBody:(void (^)(id<SorawalletRuntimeTransactionWithoutReturn>))body __attribute__((swift_name("transaction(body:)")));
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SoramitsuNetworkClientKt")))
+@interface SorawalletSoramitsuNetworkClientKt : SorawalletBase
++ (id<SorawalletKtor_httpHeaders>)plus:(id<SorawalletKtor_httpHeaders>)receiver other:(id<SorawalletKtor_httpHeaders>)other __attribute__((swift_name("plus(_:other:)")));
 @end
 
-__attribute__((swift_name("RuntimeTransactionWithReturn")))
-@protocol SorawalletRuntimeTransactionWithReturn <SorawalletRuntimeTransactionCallbacks>
-@required
-- (void)rollbackReturnValue:(id _Nullable)returnValue __attribute__((swift_name("rollback(returnValue:)")));
-- (id _Nullable)transactionBody_:(id _Nullable (^)(id<SorawalletRuntimeTransactionWithReturn>))body __attribute__((swift_name("transaction(body_:)")));
-@end
-
-__attribute__((swift_name("RuntimeCloseable")))
-@protocol SorawalletRuntimeCloseable
-@required
-- (void)close __attribute__((swift_name("close()")));
-@end
-
-__attribute__((swift_name("RuntimeSqlDriver")))
-@protocol SorawalletRuntimeSqlDriver <SorawalletRuntimeCloseable>
-@required
-- (SorawalletRuntimeTransacterTransaction * _Nullable)currentTransaction __attribute__((swift_name("currentTransaction()")));
-- (void)executeIdentifier:(SorawalletInt * _Nullable)identifier sql:(NSString *)sql parameters:(int32_t)parameters binders:(void (^ _Nullable)(id<SorawalletRuntimeSqlPreparedStatement>))binders __attribute__((swift_name("execute(identifier:sql:parameters:binders:)")));
-- (id<SorawalletRuntimeSqlCursor>)executeQueryIdentifier:(SorawalletInt * _Nullable)identifier sql:(NSString *)sql parameters:(int32_t)parameters binders:(void (^ _Nullable)(id<SorawalletRuntimeSqlPreparedStatement>))binders __attribute__((swift_name("executeQuery(identifier:sql:parameters:binders:)")));
-- (SorawalletRuntimeTransacterTransaction *)doNewTransaction __attribute__((swift_name("doNewTransaction()")));
-@end
-
-__attribute__((swift_name("RuntimeSqlDriverSchema")))
-@protocol SorawalletRuntimeSqlDriverSchema
-@required
-- (void)createDriver:(id<SorawalletRuntimeSqlDriver>)driver __attribute__((swift_name("create(driver:)")));
-- (void)migrateDriver:(id<SorawalletRuntimeSqlDriver>)driver oldVersion:(int32_t)oldVersion newVersion:(int32_t)newVersion __attribute__((swift_name("migrate(driver:oldVersion:newVersion:)")));
-@property (readonly) int32_t version __attribute__((swift_name("version")));
-@end
-
-__attribute__((swift_name("RuntimeQuery")))
-@interface SorawalletRuntimeQuery<__covariant RowType> : SorawalletBase
-- (instancetype)initWithQueries:(NSMutableArray<SorawalletRuntimeQuery<id> *> *)queries mapper:(RowType (^)(id<SorawalletRuntimeSqlCursor>))mapper __attribute__((swift_name("init(queries:mapper:)"))) __attribute__((objc_designated_initializer));
-- (void)addListenerListener:(id<SorawalletRuntimeQueryListener>)listener __attribute__((swift_name("addListener(listener:)")));
-- (id<SorawalletRuntimeSqlCursor>)execute __attribute__((swift_name("execute()")));
-- (NSArray<RowType> *)executeAsList __attribute__((swift_name("executeAsList()")));
-- (RowType)executeAsOne __attribute__((swift_name("executeAsOne()")));
-- (RowType _Nullable)executeAsOneOrNull __attribute__((swift_name("executeAsOneOrNull()")));
-- (void)notifyDataChanged __attribute__((swift_name("notifyDataChanged()")));
-- (void)removeListenerListener:(id<SorawalletRuntimeQueryListener>)listener __attribute__((swift_name("removeListener(listener:)")));
-@property (readonly) RowType (^mapper)(id<SorawalletRuntimeSqlCursor>) __attribute__((swift_name("mapper")));
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("TbdActualInfoIosKt")))
+@interface SorawalletTbdActualInfoIosKt : SorawalletBase
++ (NSString *)shaA:(SorawalletKotlinByteArray *)a __attribute__((swift_name("sha(a:)")));
 @end
 
 __attribute__((swift_name("Kotlinx_serialization_coreSerializationStrategy")))
@@ -1758,15 +2001,19 @@ __attribute__((swift_name("Kotlinx_serialization_coreKSerializer")))
 @required
 @end
 
-__attribute__((swift_name("Kotlinx_coroutines_coreFlow")))
-@protocol SorawalletKotlinx_coroutines_coreFlow
+__attribute__((swift_name("RuntimeCloseable")))
+@protocol SorawalletRuntimeCloseable
 @required
+- (void)close __attribute__((swift_name("close()")));
+@end
 
-/**
- * @note This method converts instances of CancellationException to errors.
- * Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)collectCollector:(id<SorawalletKotlinx_coroutines_coreFlowCollector>)collector completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("collect(collector:completionHandler:)")));
+__attribute__((swift_name("RuntimeSqlDriver")))
+@protocol SorawalletRuntimeSqlDriver <SorawalletRuntimeCloseable>
+@required
+- (SorawalletRuntimeTransacterTransaction * _Nullable)currentTransaction __attribute__((swift_name("currentTransaction()")));
+- (void)executeIdentifier:(SorawalletInt * _Nullable)identifier sql:(NSString *)sql parameters:(int32_t)parameters binders:(void (^ _Nullable)(id<SorawalletRuntimeSqlPreparedStatement>))binders __attribute__((swift_name("execute(identifier:sql:parameters:binders:)")));
+- (id<SorawalletRuntimeSqlCursor>)executeQueryIdentifier:(SorawalletInt * _Nullable)identifier sql:(NSString *)sql parameters:(int32_t)parameters binders:(void (^ _Nullable)(id<SorawalletRuntimeSqlPreparedStatement>))binders __attribute__((swift_name("executeQuery(identifier:sql:parameters:binders:)")));
+- (SorawalletRuntimeTransacterTransaction *)doNewTransaction __attribute__((swift_name("doNewTransaction()")));
 @end
 
 __attribute__((swift_name("Ktor_client_coreHttpClientEngineFactory")))
@@ -1837,8 +2084,8 @@ __attribute__((swift_name("KotlinException")))
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
 @end
 
 __attribute__((swift_name("KotlinRuntimeException")))
@@ -1846,8 +2093,8 @@ __attribute__((swift_name("KotlinRuntimeException")))
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
 @end
 
 __attribute__((swift_name("KotlinIllegalStateException")))
@@ -1855,8 +2102,8 @@ __attribute__((swift_name("KotlinIllegalStateException")))
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
 @end
 
 
@@ -1869,8 +2116,8 @@ __attribute__((swift_name("KotlinCancellationException")))
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -1943,7 +2190,7 @@ __attribute__((swift_name("Ktor_client_coreHttpResponse")))
 @property (readonly) SorawalletKtor_utilsGMTDate *requestTime __attribute__((swift_name("requestTime")));
 @property (readonly) SorawalletKtor_utilsGMTDate *responseTime __attribute__((swift_name("responseTime")));
 @property (readonly) SorawalletKtor_httpHttpStatusCode *status __attribute__((swift_name("status")));
-@property (readonly) SorawalletKtor_httpHttpProtocolVersion *version_ __attribute__((swift_name("version_")));
+@property (readonly) SorawalletKtor_httpHttpProtocolVersion *version __attribute__((swift_name("version")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -1958,23 +2205,66 @@ __attribute__((swift_name("KotlinArray")))
 @property (readonly) int32_t size __attribute__((swift_name("size")));
 @end
 
+__attribute__((swift_name("Kotlinx_coroutines_coreFlow")))
+@protocol SorawalletKotlinx_coroutines_coreFlow
+@required
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)collectCollector:(id<SorawalletKotlinx_coroutines_coreFlowCollector>)collector completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("collect(collector:completionHandler:)")));
+@end
+
 __attribute__((swift_name("KotlinIllegalArgumentException")))
 @interface SorawalletKotlinIllegalArgumentException : SorawalletKotlinRuntimeException
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SorawalletKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
 @end
 
+__attribute__((swift_name("RuntimeTransactionCallbacks")))
+@protocol SorawalletRuntimeTransactionCallbacks
+@required
+- (void)afterCommitFunction:(void (^)(void))function __attribute__((swift_name("afterCommit(function:)")));
+- (void)afterRollbackFunction:(void (^)(void))function __attribute__((swift_name("afterRollback(function:)")));
+@end
 
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable(with=NormalClass(value=kotlinx/serialization/json/JsonElementSerializer))
-*/
-__attribute__((swift_name("Kotlinx_serialization_jsonJsonElement")))
-@interface SorawalletKotlinx_serialization_jsonJsonElement : SorawalletBase
-@property (class, readonly, getter=companion) SorawalletKotlinx_serialization_jsonJsonElementCompanion *companion __attribute__((swift_name("companion")));
+__attribute__((swift_name("RuntimeTransactionWithoutReturn")))
+@protocol SorawalletRuntimeTransactionWithoutReturn <SorawalletRuntimeTransactionCallbacks>
+@required
+- (void)rollback __attribute__((swift_name("rollback()")));
+- (void)transactionBody:(void (^)(id<SorawalletRuntimeTransactionWithoutReturn>))body __attribute__((swift_name("transaction(body:)")));
+@end
+
+__attribute__((swift_name("RuntimeTransactionWithReturn")))
+@protocol SorawalletRuntimeTransactionWithReturn <SorawalletRuntimeTransactionCallbacks>
+@required
+- (void)rollbackReturnValue:(id _Nullable)returnValue __attribute__((swift_name("rollback(returnValue:)")));
+- (id _Nullable)transactionBody_:(id _Nullable (^)(id<SorawalletRuntimeTransactionWithReturn>))body __attribute__((swift_name("transaction(body_:)")));
+@end
+
+__attribute__((swift_name("RuntimeSqlDriverSchema")))
+@protocol SorawalletRuntimeSqlDriverSchema
+@required
+- (void)createDriver:(id<SorawalletRuntimeSqlDriver>)driver __attribute__((swift_name("create(driver:)")));
+- (void)migrateDriver:(id<SorawalletRuntimeSqlDriver>)driver oldVersion:(int32_t)oldVersion newVersion:(int32_t)newVersion __attribute__((swift_name("migrate(driver:oldVersion:newVersion:)")));
+@property (readonly) int32_t version_ __attribute__((swift_name("version_")));
+@end
+
+__attribute__((swift_name("RuntimeQuery")))
+@interface SorawalletRuntimeQuery<__covariant RowType> : SorawalletBase
+- (instancetype)initWithQueries:(NSMutableArray<SorawalletRuntimeQuery<id> *> *)queries mapper:(RowType (^)(id<SorawalletRuntimeSqlCursor>))mapper __attribute__((swift_name("init(queries:mapper:)"))) __attribute__((objc_designated_initializer));
+- (void)addListenerListener:(id<SorawalletRuntimeQueryListener>)listener __attribute__((swift_name("addListener(listener:)")));
+- (id<SorawalletRuntimeSqlCursor>)execute __attribute__((swift_name("execute()")));
+- (NSArray<RowType> *)executeAsList __attribute__((swift_name("executeAsList()")));
+- (RowType)executeAsOne __attribute__((swift_name("executeAsOne()")));
+- (RowType _Nullable)executeAsOneOrNull __attribute__((swift_name("executeAsOneOrNull()")));
+- (void)notifyDataChanged __attribute__((swift_name("notifyDataChanged()")));
+- (void)removeListenerListener:(id<SorawalletRuntimeQueryListener>)listener __attribute__((swift_name("removeListener(listener:)")));
+@property (readonly) RowType (^mapper)(id<SorawalletRuntimeSqlCursor>) __attribute__((swift_name("mapper")));
 @end
 
 __attribute__((swift_name("Multiplatform_settingsSettings")))
@@ -2005,17 +2295,14 @@ __attribute__((swift_name("Multiplatform_settingsSettings")))
 @property (readonly) int32_t size __attribute__((swift_name("size")));
 @end
 
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("KotlinByteArray")))
-@interface SorawalletKotlinByteArray : SorawalletBase
-+ (instancetype)arrayWithSize:(int32_t)size __attribute__((swift_name("init(size:)")));
-+ (instancetype)arrayWithSize:(int32_t)size init:(SorawalletByte *(^)(SorawalletInt *))init __attribute__((swift_name("init(size:init:)")));
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (int8_t)getIndex:(int32_t)index __attribute__((swift_name("get(index:)")));
-- (SorawalletKotlinByteIterator *)iterator __attribute__((swift_name("iterator()")));
-- (void)setIndex:(int32_t)index value:(int8_t)value __attribute__((swift_name("set(index:value:)")));
-@property (readonly) int32_t size __attribute__((swift_name("size")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable(with=NormalClass(value=kotlinx/serialization/json/JsonElementSerializer))
+*/
+__attribute__((swift_name("Kotlinx_serialization_jsonJsonElement")))
+@interface SorawalletKotlinx_serialization_jsonJsonElement : SorawalletBase
+@property (class, readonly, getter=companion) SorawalletKotlinx_serialization_jsonJsonElementCompanion *companion __attribute__((swift_name("companion")));
 @end
 
 __attribute__((swift_name("Ktor_utilsStringValues")))
@@ -2037,47 +2324,17 @@ __attribute__((swift_name("Ktor_httpHeaders")))
 @required
 @end
 
-__attribute__((swift_name("RuntimeTransacterTransaction")))
-@interface SorawalletRuntimeTransacterTransaction : SorawalletBase <SorawalletRuntimeTransactionCallbacks>
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
-+ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (void)afterCommitFunction:(void (^)(void))function __attribute__((swift_name("afterCommit(function:)")));
-- (void)afterRollbackFunction:(void (^)(void))function __attribute__((swift_name("afterRollback(function:)")));
-
-/**
- * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-- (void)endTransactionSuccessful:(BOOL)successful __attribute__((swift_name("endTransaction(successful:)")));
-
-/**
- * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
-*/
-@property (readonly) SorawalletRuntimeTransacterTransaction * _Nullable enclosingTransaction __attribute__((swift_name("enclosingTransaction")));
-@end
-
-__attribute__((swift_name("RuntimeSqlPreparedStatement")))
-@protocol SorawalletRuntimeSqlPreparedStatement
-@required
-- (void)bindBytesIndex:(int32_t)index bytes:(SorawalletKotlinByteArray * _Nullable)bytes __attribute__((swift_name("bindBytes(index:bytes:)")));
-- (void)bindDoubleIndex:(int32_t)index double:(SorawalletDouble * _Nullable)double_ __attribute__((swift_name("bindDouble(index:double:)")));
-- (void)bindLongIndex:(int32_t)index long:(SorawalletLong * _Nullable)long_ __attribute__((swift_name("bindLong(index:long:)")));
-- (void)bindStringIndex:(int32_t)index string:(NSString * _Nullable)string __attribute__((swift_name("bindString(index:string:)")));
-@end
-
-__attribute__((swift_name("RuntimeSqlCursor")))
-@protocol SorawalletRuntimeSqlCursor <SorawalletRuntimeCloseable>
-@required
-- (SorawalletKotlinByteArray * _Nullable)getBytesIndex:(int32_t)index __attribute__((swift_name("getBytes(index:)")));
-- (SorawalletDouble * _Nullable)getDoubleIndex:(int32_t)index __attribute__((swift_name("getDouble(index:)")));
-- (SorawalletLong * _Nullable)getLongIndex:(int32_t)index __attribute__((swift_name("getLong(index:)")));
-- (NSString * _Nullable)getStringIndex:(int32_t)index __attribute__((swift_name("getString(index:)")));
-- (BOOL)next __attribute__((swift_name("next()")));
-@end
-
-__attribute__((swift_name("RuntimeQueryListener")))
-@protocol SorawalletRuntimeQueryListener
-@required
-- (void)queryResultsChanged __attribute__((swift_name("queryResultsChanged()")));
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KotlinByteArray")))
+@interface SorawalletKotlinByteArray : SorawalletBase
++ (instancetype)arrayWithSize:(int32_t)size __attribute__((swift_name("init(size:)")));
++ (instancetype)arrayWithSize:(int32_t)size init:(SorawalletByte *(^)(SorawalletInt *))init __attribute__((swift_name("init(size:init:)")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (int8_t)getIndex:(int32_t)index __attribute__((swift_name("get(index:)")));
+- (SorawalletKotlinByteIterator *)iterator __attribute__((swift_name("iterator()")));
+- (void)setIndex:(int32_t)index value:(int8_t)value __attribute__((swift_name("set(index:value:)")));
+@property (readonly) int32_t size __attribute__((swift_name("size")));
 @end
 
 __attribute__((swift_name("Kotlinx_serialization_coreEncoder")))
@@ -2221,15 +2478,41 @@ __attribute__((swift_name("Kotlinx_serialization_coreDecoder")))
 @property (readonly) SorawalletKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
 @end
 
-__attribute__((swift_name("Kotlinx_coroutines_coreFlowCollector")))
-@protocol SorawalletKotlinx_coroutines_coreFlowCollector
-@required
+__attribute__((swift_name("RuntimeTransacterTransaction")))
+@interface SorawalletRuntimeTransacterTransaction : SorawalletBase <SorawalletRuntimeTransactionCallbacks>
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (void)afterCommitFunction:(void (^)(void))function __attribute__((swift_name("afterCommit(function:)")));
+- (void)afterRollbackFunction:(void (^)(void))function __attribute__((swift_name("afterRollback(function:)")));
 
 /**
- * @note This method converts instances of CancellationException to errors.
- * Other uncaught Kotlin exceptions are fatal.
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
 */
-- (void)emitValue:(id _Nullable)value completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("emit(value:completionHandler:)")));
+- (void)endTransactionSuccessful:(BOOL)successful __attribute__((swift_name("endTransaction(successful:)")));
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+@property (readonly) SorawalletRuntimeTransacterTransaction * _Nullable enclosingTransaction __attribute__((swift_name("enclosingTransaction")));
+@end
+
+__attribute__((swift_name("RuntimeSqlPreparedStatement")))
+@protocol SorawalletRuntimeSqlPreparedStatement
+@required
+- (void)bindBytesIndex:(int32_t)index bytes:(SorawalletKotlinByteArray * _Nullable)bytes __attribute__((swift_name("bindBytes(index:bytes:)")));
+- (void)bindDoubleIndex:(int32_t)index double:(SorawalletDouble * _Nullable)double_ __attribute__((swift_name("bindDouble(index:double:)")));
+- (void)bindLongIndex:(int32_t)index long:(SorawalletLong * _Nullable)long_ __attribute__((swift_name("bindLong(index:long:)")));
+- (void)bindStringIndex:(int32_t)index string:(NSString * _Nullable)string __attribute__((swift_name("bindString(index:string:)")));
+@end
+
+__attribute__((swift_name("RuntimeSqlCursor")))
+@protocol SorawalletRuntimeSqlCursor <SorawalletRuntimeCloseable>
+@required
+- (SorawalletKotlinByteArray * _Nullable)getBytesIndex:(int32_t)index __attribute__((swift_name("getBytes(index:)")));
+- (SorawalletDouble * _Nullable)getDoubleIndex:(int32_t)index __attribute__((swift_name("getDouble(index:)")));
+- (SorawalletLong * _Nullable)getLongIndex:(int32_t)index __attribute__((swift_name("getLong(index:)")));
+- (NSString * _Nullable)getStringIndex:(int32_t)index __attribute__((swift_name("getString(index:)")));
+- (BOOL)next __attribute__((swift_name("next()")));
 @end
 
 __attribute__((swift_name("Ktor_client_coreHttpClientEngine")))
@@ -2301,6 +2584,12 @@ __attribute__((swift_name("Kotlinx_serialization_jsonJsonConfiguration")))
 @property (readonly) BOOL allowStructuredMapKeys __attribute__((swift_name("allowStructuredMapKeys")));
 @property (readonly) NSString *classDiscriminator __attribute__((swift_name("classDiscriminator")));
 @property (readonly) BOOL coerceInputValues __attribute__((swift_name("coerceInputValues")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+@property (readonly) BOOL decodeEnumsCaseInsensitive __attribute__((swift_name("decodeEnumsCaseInsensitive")));
 @property (readonly) BOOL encodeDefaults __attribute__((swift_name("encodeDefaults")));
 
 /**
@@ -2389,8 +2678,8 @@ __attribute__((swift_name("Ktor_eventsEvents")))
 
 __attribute__((swift_name("Ktor_utilsPipeline")))
 @interface SorawalletKtor_utilsPipeline<TSubject, TContext> : SorawalletBase
-- (instancetype)initWithPhase:(SorawalletKtor_utilsPipelinePhase *)phase interceptors:(NSArray<id<SorawalletKotlinSuspendFunction2>> *)interceptors __attribute__((swift_name("init(phase:interceptors:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithPhases:(SorawalletKotlinArray<SorawalletKtor_utilsPipelinePhase *> *)phases __attribute__((swift_name("init(phases:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithPhase:(SorawalletKtor_utilsPipelinePhase *)phase interceptors:(NSArray<id<SorawalletKotlinSuspendFunction2>> *)interceptors __attribute__((swift_name("init(phase:interceptors:)"))) __attribute__((objc_designated_initializer));
 - (void)addPhasePhase:(SorawalletKtor_utilsPipelinePhase *)phase __attribute__((swift_name("addPhase(phase:)")));
 - (void)afterIntercepted __attribute__((swift_name("afterIntercepted()")));
 
@@ -2416,8 +2705,8 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Ktor_client_coreHttpReceivePipeline")))
 @interface SorawalletKtor_client_coreHttpReceivePipeline : SorawalletKtor_utilsPipeline<SorawalletKtor_client_coreHttpResponse *, SorawalletKotlinUnit *>
 - (instancetype)initWithDevelopmentMode:(BOOL)developmentMode __attribute__((swift_name("init(developmentMode:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithPhase:(SorawalletKtor_utilsPipelinePhase *)phase interceptors:(NSArray<id<SorawalletKotlinSuspendFunction2>> *)interceptors __attribute__((swift_name("init(phase:interceptors:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 - (instancetype)initWithPhases:(SorawalletKotlinArray<SorawalletKtor_utilsPipelinePhase *> *)phases __attribute__((swift_name("init(phases:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithPhase:(SorawalletKtor_utilsPipelinePhase *)phase interceptors:(NSArray<id<SorawalletKotlinSuspendFunction2>> *)interceptors __attribute__((swift_name("init(phase:interceptors:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @property (class, readonly, getter=companion) SorawalletKtor_client_coreHttpReceivePipelinePhases *companion __attribute__((swift_name("companion")));
 @property (readonly) BOOL developmentMode __attribute__((swift_name("developmentMode")));
 @end
@@ -2426,8 +2715,8 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Ktor_client_coreHttpRequestPipeline")))
 @interface SorawalletKtor_client_coreHttpRequestPipeline : SorawalletKtor_utilsPipeline<id, SorawalletKtor_client_coreHttpRequestBuilder *>
 - (instancetype)initWithDevelopmentMode:(BOOL)developmentMode __attribute__((swift_name("init(developmentMode:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithPhase:(SorawalletKtor_utilsPipelinePhase *)phase interceptors:(NSArray<id<SorawalletKotlinSuspendFunction2>> *)interceptors __attribute__((swift_name("init(phase:interceptors:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 - (instancetype)initWithPhases:(SorawalletKotlinArray<SorawalletKtor_utilsPipelinePhase *> *)phases __attribute__((swift_name("init(phases:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithPhase:(SorawalletKtor_utilsPipelinePhase *)phase interceptors:(NSArray<id<SorawalletKotlinSuspendFunction2>> *)interceptors __attribute__((swift_name("init(phase:interceptors:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @property (class, readonly, getter=companion) SorawalletKtor_client_coreHttpRequestPipelinePhases *companion __attribute__((swift_name("companion")));
 @property (readonly) BOOL developmentMode __attribute__((swift_name("developmentMode")));
 @end
@@ -2436,8 +2725,8 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Ktor_client_coreHttpResponsePipeline")))
 @interface SorawalletKtor_client_coreHttpResponsePipeline : SorawalletKtor_utilsPipeline<SorawalletKtor_client_coreHttpResponseContainer *, SorawalletKtor_client_coreHttpClientCall *>
 - (instancetype)initWithDevelopmentMode:(BOOL)developmentMode __attribute__((swift_name("init(developmentMode:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithPhase:(SorawalletKtor_utilsPipelinePhase *)phase interceptors:(NSArray<id<SorawalletKotlinSuspendFunction2>> *)interceptors __attribute__((swift_name("init(phase:interceptors:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 - (instancetype)initWithPhases:(SorawalletKotlinArray<SorawalletKtor_utilsPipelinePhase *> *)phases __attribute__((swift_name("init(phases:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithPhase:(SorawalletKtor_utilsPipelinePhase *)phase interceptors:(NSArray<id<SorawalletKotlinSuspendFunction2>> *)interceptors __attribute__((swift_name("init(phase:interceptors:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @property (class, readonly, getter=companion) SorawalletKtor_client_coreHttpResponsePipelinePhases *companion __attribute__((swift_name("companion")));
 @property (readonly) BOOL developmentMode __attribute__((swift_name("developmentMode")));
 @end
@@ -2446,8 +2735,8 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Ktor_client_coreHttpSendPipeline")))
 @interface SorawalletKtor_client_coreHttpSendPipeline : SorawalletKtor_utilsPipeline<id, SorawalletKtor_client_coreHttpRequestBuilder *>
 - (instancetype)initWithDevelopmentMode:(BOOL)developmentMode __attribute__((swift_name("init(developmentMode:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithPhase:(SorawalletKtor_utilsPipelinePhase *)phase interceptors:(NSArray<id<SorawalletKotlinSuspendFunction2>> *)interceptors __attribute__((swift_name("init(phase:interceptors:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 - (instancetype)initWithPhases:(SorawalletKotlinArray<SorawalletKtor_utilsPipelinePhase *> *)phases __attribute__((swift_name("init(phases:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithPhase:(SorawalletKtor_utilsPipelinePhase *)phase interceptors:(NSArray<id<SorawalletKotlinSuspendFunction2>> *)interceptors __attribute__((swift_name("init(phase:interceptors:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @property (class, readonly, getter=companion) SorawalletKtor_client_coreHttpSendPipelinePhases *companion __attribute__((swift_name("companion")));
 @property (readonly) BOOL developmentMode __attribute__((swift_name("developmentMode")));
 @end
@@ -2507,8 +2796,8 @@ __attribute__((swift_name("Ktor_httpContentType.Companion")))
 
 __attribute__((swift_name("Ktor_client_coreHttpClientCall")))
 @interface SorawalletKtor_client_coreHttpClientCall : SorawalletBase <SorawalletKotlinx_coroutines_coreCoroutineScope>
-- (instancetype)initWithClient:(SorawalletKtor_client_coreHttpClient *)client requestData:(SorawalletKtor_client_coreHttpRequestData *)requestData responseData:(SorawalletKtor_client_coreHttpResponseData *)responseData __attribute__((swift_name("init(client:requestData:responseData:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithClient:(SorawalletKtor_client_coreHttpClient *)client __attribute__((swift_name("init(client:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithClient:(SorawalletKtor_client_coreHttpClient *)client requestData:(SorawalletKtor_client_coreHttpRequestData *)requestData responseData:(SorawalletKtor_client_coreHttpResponseData *)responseData __attribute__((swift_name("init(client:requestData:responseData:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) SorawalletKtor_client_coreHttpClientCallCompanion *companion __attribute__((swift_name("companion")));
 
 /**
@@ -2570,13 +2859,13 @@ __attribute__((swift_name("Ktor_ioByteReadChannel")))
  * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)readAvailableDst:(SorawalletKtor_ioChunkBuffer *)dst completionHandler:(void (^)(SorawalletInt * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("readAvailable(dst:completionHandler:)")));
+- (int32_t)readAvailableMin:(int32_t)min block:(void (^)(SorawalletKtor_ioBuffer *))block __attribute__((swift_name("readAvailable(min:block:)")));
 
 /**
  * @note This method converts instances of CancellationException to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)readAvailableDst:(SorawalletKotlinByteArray *)dst offset:(int32_t)offset length:(int32_t)length completionHandler:(void (^)(SorawalletInt * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("readAvailable(dst:offset:length:completionHandler:)")));
-- (int32_t)readAvailableMin:(int32_t)min block:(void (^)(SorawalletKtor_ioBuffer *))block __attribute__((swift_name("readAvailable(min:block:)")));
 
 /**
  * @note This method converts instances of CancellationException to errors.
@@ -2755,6 +3044,23 @@ __attribute__((swift_name("KotlinIterator")))
 - (id _Nullable)next_ __attribute__((swift_name("next_()")));
 @end
 
+__attribute__((swift_name("Kotlinx_coroutines_coreFlowCollector")))
+@protocol SorawalletKotlinx_coroutines_coreFlowCollector
+@required
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)emitValue:(id _Nullable)value completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("emit(value:completionHandler:)")));
+@end
+
+__attribute__((swift_name("RuntimeQueryListener")))
+@protocol SorawalletRuntimeQueryListener
+@required
+- (void)queryResultsChanged __attribute__((swift_name("queryResultsChanged()")));
+@end
+
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Kotlinx_serialization_jsonJsonElement.Companion")))
 @interface SorawalletKotlinx_serialization_jsonJsonElementCompanion : SorawalletBase
@@ -2765,19 +3071,19 @@ __attribute__((swift_name("Kotlinx_serialization_jsonJsonElement.Companion")))
 - (id<SorawalletKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
+__attribute__((swift_name("KotlinMapEntry")))
+@protocol SorawalletKotlinMapEntry
+@required
+@property (readonly) id _Nullable key __attribute__((swift_name("key")));
+@property (readonly) id _Nullable value __attribute__((swift_name("value")));
+@end
+
 __attribute__((swift_name("KotlinByteIterator")))
 @interface SorawalletKotlinByteIterator : SorawalletBase <SorawalletKotlinIterator>
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (SorawalletByte *)next_ __attribute__((swift_name("next_()")));
 - (int8_t)nextByte __attribute__((swift_name("nextByte()")));
-@end
-
-__attribute__((swift_name("KotlinMapEntry")))
-@protocol SorawalletKotlinMapEntry
-@required
-@property (readonly) id _Nullable key __attribute__((swift_name("key")));
-@property (readonly) id _Nullable value __attribute__((swift_name("value")));
 @end
 
 __attribute__((swift_name("Kotlinx_serialization_coreCompositeEncoder")))
@@ -3302,8 +3608,8 @@ __attribute__((swift_name("Ktor_ioInput")))
  * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
 */
 - (void)markNoMoreChunksAvailable __attribute__((swift_name("markNoMoreChunksAvailable()")));
-- (int64_t)peekToDestination:(SorawalletKtor_ioMemory *)destination destinationOffset:(int64_t)destinationOffset offset:(int64_t)offset min:(int64_t)min max:(int64_t)max __attribute__((swift_name("peekTo(destination:destinationOffset:offset:min:max:)")));
 - (int32_t)peekToBuffer:(SorawalletKtor_ioChunkBuffer *)buffer __attribute__((swift_name("peekTo(buffer:)")));
+- (int64_t)peekToDestination:(SorawalletKtor_ioMemory *)destination destinationOffset:(int64_t)destinationOffset offset:(int64_t)offset min:(int64_t)min max:(int64_t)max __attribute__((swift_name("peekTo(destination:destinationOffset:offset:min:max:)")));
 - (int8_t)readByte __attribute__((swift_name("readByte()")));
 - (NSString *)readTextMin:(int32_t)min max:(int32_t)max __attribute__((swift_name("readText(min:max:)")));
 - (int32_t)readTextOut:(id<SorawalletKotlinAppendable>)out min:(int32_t)min max:(int32_t)max __attribute__((swift_name("readText(out:min:max:)")));
@@ -3553,8 +3859,8 @@ __attribute__((swift_name("Kotlinx_coroutines_coreJob")))
 - (id<SorawalletKotlinx_coroutines_coreChildHandle>)attachChildChild:(id<SorawalletKotlinx_coroutines_coreChildJob>)child __attribute__((swift_name("attachChild(child:)")));
 - (void)cancelCause_:(SorawalletKotlinCancellationException * _Nullable)cause __attribute__((swift_name("cancel(cause_:)")));
 - (SorawalletKotlinCancellationException *)getCancellationException __attribute__((swift_name("getCancellationException()")));
-- (id<SorawalletKotlinx_coroutines_coreDisposableHandle>)invokeOnCompletionOnCancelling:(BOOL)onCancelling invokeImmediately:(BOOL)invokeImmediately handler:(void (^)(SorawalletKotlinThrowable * _Nullable))handler __attribute__((swift_name("invokeOnCompletion(onCancelling:invokeImmediately:handler:)")));
 - (id<SorawalletKotlinx_coroutines_coreDisposableHandle>)invokeOnCompletionHandler:(void (^)(SorawalletKotlinThrowable * _Nullable))handler __attribute__((swift_name("invokeOnCompletion(handler:)")));
+- (id<SorawalletKotlinx_coroutines_coreDisposableHandle>)invokeOnCompletionOnCancelling:(BOOL)onCancelling invokeImmediately:(BOOL)invokeImmediately handler:(void (^)(SorawalletKotlinThrowable * _Nullable))handler __attribute__((swift_name("invokeOnCompletion(onCancelling:invokeImmediately:handler:)")));
 
 /**
  * @note This method converts instances of CancellationException to errors.
