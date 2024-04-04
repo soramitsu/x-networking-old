@@ -6,7 +6,7 @@ plugins {
     kotlin("android").version("1.9.22").apply(false)
     kotlin("multiplatform").version("1.9.22").apply(false)
     kotlin("plugin.serialization").version("1.9.22").apply(false)
-    id("org.sonarqube") version "4.4.1.3373"
+    id("org.sonarqube") version "5.0.0.4638"
 }
 
 tasks.register("clean", Delete::class) {
