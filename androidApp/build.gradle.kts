@@ -18,7 +18,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.3"
+        kotlinCompilerExtensionVersion = "1.5.8"
     }
     packaging {
         resources {
@@ -43,14 +43,14 @@ dependencies {
     implementation(project(mapOf("path" to ":lib:basic")))
     implementation(project(mapOf("path" to ":lib:fearlesswallet")))
     implementation(project(mapOf("path" to ":lib:sorawallet")))
-    implementation("androidx.compose.ui:ui:1.5.4")
-    implementation("androidx.compose.ui:ui-tooling:1.5.4")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.5.4")
-    implementation("androidx.compose.foundation:foundation:1.5.4")
-    implementation("androidx.compose.material:material:1.5.4")
+    implementation("androidx.compose.ui:ui:1.6.3")
+    implementation("androidx.compose.ui:ui-tooling:1.6.3")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.6.3")
+    implementation("androidx.compose.foundation:foundation:1.6.3")
+    implementation("androidx.compose.material:material:1.6.3")
     implementation("androidx.activity:activity-compose:1.8.2")
     implementation("com.google.android.material:material:1.11.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation("io.ktor:ktor-client-core:2.3.1")
 
     //test
@@ -61,7 +61,7 @@ dependencies {
     testImplementation("io.ktor:ktor-client-mock:2.3.1")
     testImplementation("io.ktor:ktor-client-content-negotiation:2.3.1")
     testImplementation("io.ktor:ktor-serialization-kotlinx-json:2.3.1")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.5.4")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.6.3")
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.test:rules:1.5.0")
     androidTestImplementation("androidx.work:work-testing:2.9.0")

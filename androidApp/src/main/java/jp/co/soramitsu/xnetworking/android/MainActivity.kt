@@ -60,7 +60,7 @@ private fun MainScreen() {
         Button(
             onClick = {
                 GlobalScope.launch {
-                    val drs = assetsInfo.open("qweqwe.txt").bufferedReader().use { it.readText() }.let {
+                    val drs = assetsInfo.open("drop.txt").bufferedReader().use { it.readText() }.let {
                         Json.decodeFromString<List<String>>(it)
                     }
                     try {
