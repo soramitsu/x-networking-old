@@ -1,0 +1,211 @@
+package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl
+
+import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.HistoryInfoRemoteLoader
+import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.HistoryItemsFilter
+import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.TxFilter
+import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.TxHistoryRepository
+import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.models.TxHistoryInfo
+import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.models.TxHistoryItem
+import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.wrappers.TxHistoryResult
+import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.builder.ExpectActualDBDriverFactory
+import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.usecase.FetchExtrinsicsAndSavePagedDecorator
+import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.usecase.FetchExtrinsicsAndSaveUseCase
+import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.utils.HistoryMapper
+import jp.co.soramitsu.xnetworking.core.engines.rest.api.models.RestClientException
+import jp.co.soramitsu.xnetworking.db.Extrinsics
+import jp.co.soramitsu.xnetworking.db.SignerInfo
+import jp.co.soramitsu.xnetworking.db.SoraHistoryDatabase
+
+class TxHistoryRepositoryImpl(
+    private val databaseDriverFactory: ExpectActualDBDriverFactory,
+    private val historyInfoRemoteLoader: HistoryInfoRemoteLoader,
+    private val historyItemsFilter: HistoryItemsFilter
+): TxHistoryRepository, HistoryItemsFilter by historyItemsFilter {
+
+    private val soraHistoryDBImpl = SoraHistoryDBImpl(
+        soraHistoryDatabase = SoraHistoryDatabase(
+            databaseDriverFactory.createDriver()
+        )
+    )
+
+    private val fetchExtrinsicsAndSaveUseCase = FetchExtrinsicsAndSaveUseCase(
+        soraHistoryDBImpl = soraHistoryDBImpl,
+        historyInfoRemoteLoader = historyInfoRemoteLoader
+    )
+
+    private val fetchExtrinsicsAndSavePagedDecorator = FetchExtrinsicsAndSavePagedDecorator(
+        fetchExtrinsicsAndSaveUseCase = fetchExtrinsicsAndSaveUseCase,
+        soraHistoryDBImpl = soraHistoryDBImpl,
+    )
+
+    private lateinit var curSignerInfo: SignerInfo
+
+    override fun getTransactionPeers(
+        query: String,
+        networkName: String
+    ): List<String> {
+        return soraHistoryDBImpl.getTransfersAddress(
+            query = query,
+            networkName = networkName
+        )
+    }
+
+    override fun getTransactionCached(
+        txHash: String,
+        address: String,
+        networkName: String,
+    ): TxHistoryInfo {
+        val extrinsic = soraHistoryDBImpl.getExtrinsic(
+            signAddress = address,
+            networkName = networkName,
+            txHash = txHash
+        )
+
+        return buildResultHistoryInfo(
+            endReached = true,
+            extrinsics = if (extrinsic == null)
+                emptyList() else listOf(extrinsic)
+        )
+    }
+
+    override fun getTransactionHistoryCached(
+        count: Int,
+        address: String,
+        networkName: String,
+    ): List<TxHistoryItem> {
+        var offset: Long = 0
+        val result = mutableListOf<TxHistoryItem>()
+
+        do {
+            val extrinsics = soraHistoryDBImpl.getExtrinsics(
+                signAddress = address,
+                networkName = networkName,
+                offset = offset,
+                count = count
+            )
+
+            offset += extrinsics.size
+
+            buildResultHistoryInfo(
+                endReached = true,
+                extrinsics = extrinsics
+            ).apply { result.addAll(items) }
+        } while (result.size < count && extrinsics.isNotEmpty())
+
+        return result.filterCachedHistoryItems()
+    }
+
+    override suspend fun getTransactionHistoryPaged(
+        address: String,
+        page: Long,
+        networkName: String,
+        chainId: String,
+        assetId: String,
+        filters: Set<TxFilter>
+    ): TxHistoryResult<TxHistoryItem> {
+        require(page >= 1) { "Page value must >= 1" }
+
+        curSignerInfo = soraHistoryDBImpl.getSignerInfo(address, networkName)
+
+        var error = if (page == 1L) {
+            try {
+                curSignerInfo = fetchExtrinsicsAndSaveUseCase<TxHistoryInfo>(
+                    cursor = "",
+                    signAddress = address,
+                    networkName = networkName,
+                    currentSignerInfo = curSignerInfo,
+                    chainId = chainId,
+                    assetId = assetId,
+                    filters = filters
+                )
+                null
+            } catch (t: RestClientException) {
+                t.message
+            }
+        } else {
+            null
+        }
+
+        var curPage = page
+        var endCursor: String? = null
+        var endReached = false
+        val list = mutableListOf<TxHistoryItem>()
+
+        while (true) {
+            val info = try {
+                val pagedExtrinsicsWrapper =
+                    fetchExtrinsicsAndSavePagedDecorator<TxHistoryInfo>(
+                        signAddress = address,
+                        networkName = networkName,
+                        page = curPage,
+                        currentSignerInfo = curSignerInfo,
+                        extrinsicsCountPerPage = 100, // TODO change
+                        chainId = chainId,
+                        assetId = assetId,
+                        filters = filters
+                    )
+
+                buildResultHistoryInfo(
+                    endReached = pagedExtrinsicsWrapper.isEndReached,
+                    extrinsics = pagedExtrinsicsWrapper.items
+                )
+            } catch (t: RestClientException) {
+                error = t.message
+                break
+            }
+
+            endCursor = info.endCursor
+            endReached = info.endReached
+
+            list.addAll(info.items)
+
+            if (list.size >= page || info.endReached)
+                break
+
+            curPage++
+        }
+
+        return TxHistoryResult(
+            endCursor = endCursor,
+            endReached = endReached,
+            page = curPage,
+            items = list.filterPagedHistoryItems(),
+            errorMessage = error,
+        )
+    }
+
+    override fun clearData(
+        address: String,
+        networkName: String
+    ) {
+        soraHistoryDBImpl.clearAddressData(
+            signAddress = address,
+            networkName = networkName
+        )
+    }
+
+    override fun clearAllData() {
+        soraHistoryDBImpl.clearDatabase()
+    }
+
+    private fun buildResultHistoryInfo(
+        endReached: Boolean,
+        extrinsics: List<Extrinsics>
+    ): TxHistoryInfo {
+        val mapped = extrinsics.map { extrinsic ->
+            if (extrinsic.batch.not()) {
+                val params = soraHistoryDBImpl.getExtrinsicParams(extrinsic.txHash)
+                HistoryMapper.mapParams(extrinsic, params)
+            } else {
+                val nestedExtrinsics = soraHistoryDBImpl.getExtrinsicNested(extrinsic.txHash)
+                val nestedMapped = nestedExtrinsics.map {
+                    val nestedParams = soraHistoryDBImpl.getExtrinsicParams(it.txHash)
+                    HistoryMapper.mapItemNested(it, nestedParams)
+                }
+                HistoryMapper.mapItems(extrinsic, nestedMapped)
+            }
+        }
+        return TxHistoryInfo("", endReached, mapped)
+    }
+
+}

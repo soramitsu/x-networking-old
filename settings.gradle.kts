@@ -14,6 +14,4 @@ pluginManagement {
 //}
 //rootProject.name = "AppXNetworking"
 include(":app")
-include(":core:basic")
-include(":core:sorawallet")
-include(":core:fearlesswallet")
+include(":core")

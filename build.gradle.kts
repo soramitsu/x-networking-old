@@ -20,6 +20,9 @@ allprojects {
         google()
         mavenCentral()
     }
+    afterEvaluate {
+        tasks.register("testClasses") {}
+    }
 }
 
 
