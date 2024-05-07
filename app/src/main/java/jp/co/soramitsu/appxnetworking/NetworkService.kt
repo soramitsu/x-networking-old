@@ -1,43 +1,36 @@
 package jp.co.soramitsu.appxnetworking
 
-import io.ktor.client.call.body
-import jp.co.soramitsu.xnetworking.basic.engines.rest.api.RestClient
-import jp.co.soramitsu.xnetworking.basic.engines.rest.api.models.AbstractRestServerRequest
-import jp.co.soramitsu.xnetworking.basic.networkclient.SoramitsuNetworkClient
-import jp.co.soramitsu.xnetworking.basic.txhistory.TxHistoryItem
-import jp.co.soramitsu.xnetworking.fearlesswallet.chainbuilder.FearlessChainsBuilder
-import jp.co.soramitsu.xnetworking.fearlesswallet.txhistory.client.SubQueryClientForFearlessWallet
-import jp.co.soramitsu.xnetworking.sorawallet.common.interactors.blockexplorer.api.BlockExplorerInteractor
-import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.blockexplorer.api.models.AssetsInfoResponse
-import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.mainconfig.SoraConfig
-import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.mainconfig.SoraRemoteConfigBuilder
-import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.polkaswapwhitelist.api.AbstractWhitelistedToken
-import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.polkaswapwhitelist.api.WhitelistRepository
-import jp.co.soramitsu.xnetworking.sorawallet.core.datasources.txhistory.client.SubQueryClientForSoraWallet
+import jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.api.BlockExplorerRepository
+import jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.api.models.AssetsInfoResponse
+import jp.co.soramitsu.xnetworking.core.datasources.polkaswapwhitelist.api.AbstractWhitelistedToken
+import jp.co.soramitsu.xnetworking.core.datasources.polkaswapwhitelist.api.WhitelistRepository
+import jp.co.soramitsu.xnetworking.core.engines.rest.api.RestClient
+import jp.co.soramitsu.xnetworking.core.engines.rest.api.models.AbstractRestServerRequest
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.builtins.serializer
 import java.util.concurrent.TimeUnit
 
 class NetworkService(
-    private val client: SoramitsuNetworkClient,
-    private val fearlessChainsBuilder: FearlessChainsBuilder,
-    private val soraConfigBuilder: SoraRemoteConfigBuilder,
-    private val subQueryClientForFearlessWallet: SubQueryClientForFearlessWallet,
-    private val subQueryClientForSoraWallet: SubQueryClientForSoraWallet,
+//    private val soraConfigBuilder: SoraRemoteConfigBuilder,
     private val restClient: RestClient,
-    private val blockExplorerInteractor: BlockExplorerInteractor,
+    private val blockExplorerRepository: BlockExplorerRepository,
     private val whitelistRepository: WhitelistRepository,
+//    private val txHistoryInteractor: FearlessTxHistoryInteractor
 ) {
 
     suspend fun getRequest() = restClient.get(
-        SimpleJSONGetRequestHolder(url = "https://www.github.com")
-    ).body<List<Int>>()
+        SimpleJSONGetRequestHolder(url = "https://www.github.com"),
+        ListSerializer(Int.serializer())
+    )
 
     suspend fun getAssets() = restClient.get(
         SimpleJSONGetRequestHolder(
             url = "https://raw.githubusercontent.com/soramitsu/fearless-utils/android/v2/chains/assets.json"
-        )
-    ).body<List<AssetRemote>>()
+        ),
+        ListSerializer(AssetRemote.serializer())
+    )
 
     suspend fun getSoraWhitelist(): List<AbstractWhitelistedToken> {
         return whitelistRepository.getWhitelistedTokens(WhitelistRepository.requestUrl)
@@ -46,7 +39,7 @@ class NetworkService(
     suspend fun getAssetsInfo(): List<AssetsInfoResponse> {
         val timeStampAsLong = TimeUnit.SECONDS.convert(System.currentTimeMillis(), TimeUnit.MILLISECONDS) - 24 * 60 * 60
 
-        return blockExplorerInteractor
+        return blockExplorerRepository
             .getAssetsInfo(
                 tokenIds = listOf(
                     "0x0200000000000000000000000000000000000000000000000000000000000000",
@@ -57,55 +50,49 @@ class NetworkService(
                     "0x0200080000000000000000000000000000000000000000000000000000000000",
                     "0x0200090000000000000000000000000000000000000000000000000000000000",
                 ),
-                timeStamp = timeStampAsLong.toInt()
+                timeStamp = timeStampAsLong.toInt(),
+                chainId = "",
             )
     }
 
-    suspend fun getFiat() = blockExplorerInteractor.getFiat()
+    suspend fun getFiat() = blockExplorerRepository.getFiat(chainId = "",)
 
-    suspend fun getRewards() = blockExplorerInteractor.getReferrerRewards(
+    suspend fun getRewards() = blockExplorerRepository.getReferrerRewards(
+        chainId = "",
         address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
     )
 
-    suspend fun getApy() = blockExplorerInteractor.getSbApyInfo()
-
-    suspend fun getHistorySora(page: Long, f: (TxHistoryItem) -> Boolean) =
-        subQueryClientForSoraWallet.getTransactionHistoryPaged(
-            address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
-            page = page,
-            filter = f
+    suspend fun getApy() = blockExplorerRepository.getSbApyInfo(
+        chainId = "",
         )
 
-    suspend fun getHistoryFearless(page: Long, f: (TxHistoryItem) -> Boolean) =
-        subQueryClientForFearlessWallet.getTransactionHistoryPaged(
-            address = "5ETrb47YCHE9pYxKfpm4b3bMNvKd7Zusi22yZLLHKadP5oYn",
-            networkName = "fearless",
-            page = page,
-            url = "https://api.subquery.network/sq/soramitsu/fearless-wallet-westend",
-            filter = f,
-        )
+//    suspend fun getHistorySora(page: Long) =
+//        txHistoryInteractor.getTransactionHistoryPaged(
+//            address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
+//            page = page,
+//            requestUrl = "",
+//            networkName = "fearless"
+//        )
 
-    suspend fun getChains() = fearlessChainsBuilder.getChains(
-        "2.0.18",
-        emptyList()
-    )
+//    suspend fun getHistoryFearless(page: Long) =
+//        txHistoryInteractor.getTransactionHistoryPaged(
+//            address = "5ETrb47YCHE9pYxKfpm4b3bMNvKd7Zusi22yZLLHKadP5oYn",
+//            networkName = "fearless",
+//            page = page,
+//            requestUrl = "https://api.subquery.network/sq/soramitsu/fearless-wallet-westend"
+//        )
 
-    suspend fun getPeers(query: String) =
-        subQueryClientForSoraWallet.getTransactionPeers(query)
+//    suspend fun getPeers(query: String) =
+//        txHistoryInteractor.getTransactionPeers(query, "fearless")
 
-    suspend fun getSoraConfig(): SoraConfig? {
-        return soraConfigBuilder.getConfig()
-    }
+//    suspend fun getSoraConfig(): SoraConfig? {
+//        return soraConfigBuilder.getConfig()
+//    }
 }
 
 private data class SimpleJSONGetRequestHolder(
-    private val url: String
-): AbstractRestServerRequest() {
-
-    override fun getUrl(): String = url
-
-    override fun getResponseContentType(): RestClient.ContentType = RestClient.ContentType.JSON
-}
+    override val url: String
+): AbstractRestServerRequest()
 
 @Serializable
 data class AssetRemote(
