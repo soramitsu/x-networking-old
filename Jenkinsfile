@@ -1,18 +1,15 @@
 @Library('jenkins-library') _
 
-new org.soramitsu.mainLibrary().call(
-  agentLabel: "android",
-  skipSonar: true,
-  skipDojo: true,
-  agentImage: "android-build-box-jdk11:latest",
-  nexusCredentials: "bot-soramitsu-rw",
-  buildCommand: './gradlew clean build',
-  testCommand: './gradlew test --info',
-  publishCommand:
-    '''./gradlew :core:basic:publishAndroidReleasePublicationToScnRepoRepository &&
-    ./gradlew :core:fearlesswallet:publishAndroidReleasePublicationToScnRepoRepository &&
-    ./gradlew :core:sorawallet:publishAndroidReleasePublicationToScnRepoRepository''',
-  publishLibrary: true,
-  skipDockerImage: true,
-  dojoProductType: "x-networking"
+def pipeline = new org.android.ShareFeature(
+  steps: this,
+  test: true,
+  agentImage: "build-tools/android-build-box-jdk11:latest",
+  buildCmd: 'clean build',
+  testCmd: 'test --info',
+  publishCmd: ':core:basic:publishAndroidReleasePublicationToScnRepoRepository :core:fearlesswallet:publishAndroidReleasePublicationToScnRepoRepository :core:sorawallet:publishAndroidReleasePublicationToScnRepoRepository',
+  sonarProjectKey: "sora:x-networking",
+  sonarProjectName: "x-networking",
+  dojoProductType: "sora-mobile"
 )
+
+pipeline.runPipeline()
