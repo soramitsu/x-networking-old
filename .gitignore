@@ -6,8 +6,6 @@
 *.xcuserstate
 
 core/build/*
-core/sorawallet/build/*
-core/fearlesswallet/build/*
 
 # Files for the ART/Dalvik VM
 *.dex

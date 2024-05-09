@@ -1,17 +1,17 @@
 pluginManagement {
     repositories {
+        google()
         gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
+dependencyResolutionManagement {
+    repositories {
         google()
         mavenCentral()
     }
 }
-//dependencyResolutionManagement {
-//    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-//    repositories {
-//        google()
-//        mavenCentral()
-//    }
-//}
-//rootProject.name = "AppXNetworking"
 include(":app")
+include(":androidApp")
 include(":core")
