@@ -1,15 +1,15 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.adapters.giantsquid
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.giantsquid
 
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.GraphQLSerialiableRequestWrapper
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.JsonPostRequest
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.GraphQLSerializableRequestWrapper
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.JsonPostRequest
 
 @Suppress("FunctionName")
-internal fun GiantSquidRequest(
+internal inline fun GiantSquidRequest(
     url: String,
     address: String
 ) = JsonPostRequest(
     url = url,
-    body = GraphQLSerialiableRequestWrapper(
+    body = GraphQLSerializableRequestWrapper(
         """
             query MyQuery {
               transfers(

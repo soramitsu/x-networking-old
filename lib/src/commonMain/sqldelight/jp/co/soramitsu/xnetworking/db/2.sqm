@@ -1,0 +1,2 @@
+ALTER TABLE Extrinsics RENAME COLUMN "networkName" TO chainId;
+ALTER TABLE SignerInfo RENAME COLUMN "networkName" TO chainId;

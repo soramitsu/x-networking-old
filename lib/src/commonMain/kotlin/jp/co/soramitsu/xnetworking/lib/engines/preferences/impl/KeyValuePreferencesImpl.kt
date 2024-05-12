@@ -1,10 +1,10 @@
-package jp.co.soramitsu.xnetworking.core.engines.preferences.impl
+package jp.co.soramitsu.xnetworking.lib.engines.preferences.impl
 
 import com.russhwolf.settings.get
 import com.russhwolf.settings.serialization.decodeValueOrNull
 import com.russhwolf.settings.serialization.encodeValue
-import jp.co.soramitsu.xnetworking.core.engines.preferences.api.KeyValuePreferences
-import jp.co.soramitsu.xnetworking.core.engines.preferences.impl.builder.ExpectActualKeyValuePreferencesEngineFactory
+import jp.co.soramitsu.xnetworking.lib.engines.preferences.api.KeyValuePreferences
+import jp.co.soramitsu.xnetworking.lib.engines.preferences.impl.builder.ExpectActualKeyValuePreferencesEngineFactory
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.ExperimentalSerializationApi

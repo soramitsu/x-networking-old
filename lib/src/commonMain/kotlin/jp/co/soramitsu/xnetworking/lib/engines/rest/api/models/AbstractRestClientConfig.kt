@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.core.engines.rest.api.models
+package jp.co.soramitsu.xnetworking.lib.engines.rest.api.models
 
 import kotlinx.serialization.json.Json
 

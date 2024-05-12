@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.core.datasources.polkaswapwhitelist.api
+package jp.co.soramitsu.xnetworking.lib.datasources.polkaswapwhitelist.api
 
 abstract class AbstractWhitelistedToken {
 

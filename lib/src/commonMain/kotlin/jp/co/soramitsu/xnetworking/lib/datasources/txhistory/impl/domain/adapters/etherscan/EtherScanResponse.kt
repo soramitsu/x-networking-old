@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.adapters.etherscan
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.etherscan
 
 import kotlinx.serialization.Serializable
 
@@ -9,7 +9,7 @@ internal class EtherScanResponse(
     val result: List<HistoryElement> = emptyList()
 ) {
     @Serializable
-    internal class HistoryElement(
+    class HistoryElement(
         val blockNumber: String,
         val timeStamp: Long,
         val hash: String,

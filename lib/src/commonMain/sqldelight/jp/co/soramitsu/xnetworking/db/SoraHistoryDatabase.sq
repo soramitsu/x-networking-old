@@ -9,7 +9,7 @@ CREATE TABLE Extrinsics (
     success INTEGER AS Boolean NOT NULL DEFAULT 0,
     batch INTEGER AS Boolean NOT NULL DEFAULT 0,
     parentHash TEXT,
-    networkName TEXT NOT NULL DEFAULT ""
+    chainId TEXT NOT NULL DEFAULT ""
 );
 
 CREATE TABLE ExtrinsicParam (
@@ -26,11 +26,11 @@ CREATE TABLE SignerInfo (
     oldTime INTEGER NOT NULL DEFAULT 0,
     oldCursor TEXT,
     endReached INTEGER AS Boolean NOT NULL DEFAULT 0,
-    networkName TEXT NOT NULL DEFAULT ""
+    chainId TEXT NOT NULL DEFAULT ""
 );
 
 insertExtrinsic:
-INSERT OR REPLACE INTO Extrinsics(txHash, signAddress, networkName, blockHash, module, method, networkFee, timestamp, success, batch, parentHash)
+INSERT OR REPLACE INTO Extrinsics(txHash, signAddress, chainId, blockHash, module, method, networkFee, timestamp, success, batch, parentHash)
 VALUES(?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?);
 
 insertExtrinsicParam:
@@ -39,7 +39,7 @@ VALUES (?, ?, ?);
 
 selectExtrinsicsPaged:
 SELECT Extrinsics.*
-FROM Extrinsics WHERE signAddress = :address AND networkName = :network AND parentHash ISNULL ORDER BY timestamp DESC LIMIT :limit OFFSET :offset;
+FROM Extrinsics WHERE signAddress = :address AND chainId = :network AND parentHash ISNULL ORDER BY timestamp DESC LIMIT :limit OFFSET :offset;
 
 selectExtrinsicsNested:
 SELECT Extrinsics.*
@@ -47,7 +47,7 @@ FROM Extrinsics WHERE parentHash = ?;
 
 selectExtrinsic:
 SELECT Extrinsics.*
-FROM Extrinsics WHERE txHash = :hash AND signAddress = :address AND networkName = :network;
+FROM Extrinsics WHERE txHash = :hash AND signAddress = :address AND chainId = :network;
 
 selectExtrinsicParams:
 SELECT ExtrinsicParam.*
@@ -56,29 +56,29 @@ FROM ExtrinsicParam WHERE extrinsicHash = ?;
 selectTransfersPeers:
 SELECT DISTINCT ExtrinsicParam.paramValue
 FROM ExtrinsicParam INNER JOIN Extrinsics ON ExtrinsicParam.extrinsicHash = Extrinsics.txHash
-WHERE (paramName = "to" OR paramName = "from") AND Extrinsics.networkName = :network
+WHERE (paramName = "to" OR paramName = "from") AND Extrinsics.chainId = :network
 AND paramValue LIKE '%' || :query || "%";
 
 selectSignerInfo:
 SELECT SignerInfo.*
-FROM SignerInfo WHERE signAddress = :address AND networkName = :network;
+FROM SignerInfo WHERE signAddress = :address AND chainId = :network;
 
 insertSignerInfo:
-INSERT OR REPLACE INTO SignerInfo(signAddress, networkName, topTime, oldTime, oldCursor, endReached)
+INSERT OR REPLACE INTO SignerInfo(signAddress, chainId, topTime, oldTime, oldCursor, endReached)
 VALUES (?, ?, ?, ?, ?, ?);
 
 insertSignerInfoFull:
-INSERT OR REPLACE INTO SignerInfo(signAddress, networkName, topTime, oldTime, oldCursor, endReached)
+INSERT OR REPLACE INTO SignerInfo(signAddress, chainId, topTime, oldTime, oldCursor, endReached)
 VALUES ?;
 
 removeAllExtrinsics:
 DELETE FROM Extrinsics;
 
 removeExtrinsics:
-DELETE FROM Extrinsics WHERE signAddress = :address AND networkName = :network;
+DELETE FROM Extrinsics WHERE signAddress = :address AND chainId = :network;
 
 removeAllSignerInfo:
 DELETE FROM SignerInfo;
 
 removeSignerInfo:
-DELETE FROM SignerInfo WHERE signAddress = :address AND networkName = :network;
+DELETE FROM SignerInfo WHERE signAddress = :address AND chainId = :network;

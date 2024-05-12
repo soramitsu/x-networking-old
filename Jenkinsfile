@@ -6,7 +6,7 @@ def pipeline = new org.android.ShareFeature(
   agentImage: "build-tools/android-build-box:jdk17",
   buildCmd: 'clean build',
   testCmd: 'test --info',
-  publishCmd: ':lib:basic:publishAndroidReleasePublicationToScnRepoRepository :lib:sorawallet:publishAndroidReleasePublicationToScnRepoRepository :lib:fearlesswallet:publishAndroidReleasePublicationToScnRepoRepository',
+  publishCmd: ':lib:publishAndroidReleasePublicationToScnRepoRepository',
   sonarProjectKey: "sora:x-networking",
   sonarProjectName: "x-networking",
   dojoProductType: "sora-mobile"

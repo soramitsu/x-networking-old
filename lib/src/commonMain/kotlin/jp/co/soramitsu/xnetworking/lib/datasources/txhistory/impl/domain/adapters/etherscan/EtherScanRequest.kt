@@ -1,9 +1,9 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.adapters.etherscan
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.etherscan
 
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.JsonGetRequest
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.JsonGetRequest
 
 @Suppress("FunctionName")
-internal fun NormalEtherScanRequest(
+internal inline fun NormalEtherScanRequest(
     url: String,
     address: String,
     apiKey: String
@@ -21,7 +21,7 @@ internal fun NormalEtherScanRequest(
 )
 
 @Suppress("FunctionName")
-internal fun ErcBepEtherScanRequest(
+internal inline fun ErcBepEtherScanRequest(
     url: String,
     contractAddress: String,
     address: String,

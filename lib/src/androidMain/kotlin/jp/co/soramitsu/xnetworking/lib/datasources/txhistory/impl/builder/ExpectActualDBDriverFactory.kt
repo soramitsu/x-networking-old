@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.builder
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.builder
 
 import android.content.Context
 import com.squareup.sqldelight.android.AndroidSqliteDriver

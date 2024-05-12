@@ -1,6 +1,6 @@
-package jp.co.soramitsu.xnetworking.core.datasources.polkaswapwhitelist.impl.models
+package jp.co.soramitsu.xnetworking.lib.datasources.polkaswapwhitelist.impl.models
 
-import jp.co.soramitsu.xnetworking.core.datasources.polkaswapwhitelist.api.AbstractWhitelistedToken
+import jp.co.soramitsu.xnetworking.lib.datasources.polkaswapwhitelist.api.AbstractWhitelistedToken
 
 internal data class InternalWhitelistedToken(
     private val tokenAddress: String,

@@ -1,8 +1,9 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.api
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api
 
 import com.apollographql.apollo3.exception.ApolloException
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.models.TxHistoryInfo
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.models.RestClientException
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryInfo
+import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.RestClientException
+import kotlinx.serialization.SerializationException
 import kotlin.coroutines.cancellation.CancellationException
 
 enum class TxFilter {
@@ -17,6 +18,7 @@ interface HistoryInfoRemoteLoader {
         ApolloException::class,
         RestClientException::class,
         CancellationException::class,
+        SerializationException::class,
         IllegalArgumentException::class,
         IllegalStateException::class,
         NullPointerException::class

@@ -1,10 +1,10 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.api
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api
 
 import com.apollographql.apollo3.exception.ApolloException
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.models.TxHistoryInfo
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.models.TxHistoryItem
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.wrappers.TxHistoryResult
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.models.RestClientException
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryInfo
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItem
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.wrappers.TxHistoryResult
+import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.RestClientException
 import kotlin.coroutines.cancellation.CancellationException
 
 interface TxHistoryRepository {
@@ -15,7 +15,7 @@ interface TxHistoryRepository {
     )
     fun getTransactionPeers(
         query: String,
-        networkName: String
+        chainId: String
     ): List<String>
 
     @Throws(
@@ -25,7 +25,7 @@ interface TxHistoryRepository {
     fun getTransactionHistoryCached(
         count: Int,
         address: String,
-        networkName: String,
+        chainId: String,
     ): List<TxHistoryItem>
 
     @Throws(
@@ -35,7 +35,7 @@ interface TxHistoryRepository {
     fun getTransactionCached(
         txHash: String,
         address: String,
-        networkName: String,
+        chainId: String,
     ): TxHistoryInfo
 
     @Throws(
@@ -49,7 +49,6 @@ interface TxHistoryRepository {
     suspend fun getTransactionHistoryPaged(
         address: String,
         page: Long,
-        networkName: String,
         chainId: String,
         assetId: String,
         filters: Set<TxFilter>
@@ -61,7 +60,7 @@ interface TxHistoryRepository {
     )
     fun clearData(
         address: String,
-        networkName: String
+        chainId: String
     )
 
     fun clearAllData()

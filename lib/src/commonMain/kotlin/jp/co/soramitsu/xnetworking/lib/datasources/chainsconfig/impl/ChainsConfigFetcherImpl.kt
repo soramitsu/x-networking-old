@@ -1,16 +1,16 @@
-package jp.co.soramitsu.xnetworking.core.datasources.chainsconfig.impl
+package jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.impl
 
-import jp.co.soramitsu.xnetworking.core.datasources.chainsconfig.api.ChainsConfigFetcher
-import jp.co.soramitsu.xnetworking.core.datasources.chainsconfig.api.models.ChainsConfig
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.RestClient
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.models.AbstractRestServerRequest
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ChainsConfigFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ChainsConfig
+import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
+import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.AbstractRestServerRequest
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.serialization.builtins.ListSerializer
 
 class ChainsConfigFetcherImpl(
     private val restClient: RestClient,
-    private val chainsRequestBuilder: () -> AbstractRestServerRequest
+    private val chainsRequest: AbstractRestServerRequest
 ): ChainsConfigFetcher {
 
     private val cachedValueReadWriteMutex: Mutex = Mutex()
@@ -22,7 +22,7 @@ class ChainsConfigFetcherImpl(
             cachedValueReadWriteMutex.withLock {
                 if (cachedValue == null)
                     cachedValue = restClient.get(
-                        request = chainsRequestBuilder(),
+                        request = chainsRequest,
                         kSerializer = ListSerializer(ChainsConfig.serializer())
                     ).associateBy { it.chainId }
             }

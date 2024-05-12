@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.adapters.reef
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.reef
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

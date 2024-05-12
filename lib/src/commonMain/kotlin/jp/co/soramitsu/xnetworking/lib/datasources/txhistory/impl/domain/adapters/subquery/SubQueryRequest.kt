@@ -1,13 +1,13 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.adapters.subquery
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.subquery
 
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.TxFilter
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.GraphQLSerialiableRequestWrapper
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.JsonPostRequest
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.utils.GraphQLExts.and
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.utils.GraphQLExts.anyOf
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.utils.GraphQLExts.not
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.utils.GraphQLExts.or
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.RestClient
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.TxFilter
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.GraphQLSerializableRequestWrapper
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.JsonPostRequest
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.utils.GraphQLExts.and
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.utils.GraphQLExts.anyOf
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.utils.GraphQLExts.not
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.utils.GraphQLExts.or
+import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
 
 @Suppress("FunctionName")
 internal fun SubQueryRequest(
@@ -19,7 +19,7 @@ internal fun SubQueryRequest(
     requestRewards: Boolean
 ) = JsonPostRequest(
     url = url,
-    body = GraphQLSerialiableRequestWrapper(
+    body = GraphQLSerializableRequestWrapper(
         """
             query {
                 historyElements(

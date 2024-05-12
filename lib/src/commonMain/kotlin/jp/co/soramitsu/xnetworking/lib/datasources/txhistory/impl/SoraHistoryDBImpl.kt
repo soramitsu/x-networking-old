@@ -1,6 +1,6 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl
 
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.models.TxHistoryInfo
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryInfo
 import jp.co.soramitsu.xnetworking.db.ExtrinsicParam
 import jp.co.soramitsu.xnetworking.db.Extrinsics
 import jp.co.soramitsu.xnetworking.db.SignerInfo
@@ -14,9 +14,9 @@ internal class SoraHistoryDBImpl(
 
     fun getTransfersAddress(
         query: String,
-        networkName: String
+        chainId: String
     ): List<String> {
-        return dbQuery.selectTransfersPeers(networkName, query).executeAsList()
+        return dbQuery.selectTransfersPeers(chainId, query).executeAsList()
     }
 
     fun getExtrinsicParams(
@@ -27,20 +27,20 @@ internal class SoraHistoryDBImpl(
 
     fun getExtrinsics(
         signAddress: String,
-        networkName: String,
+        chainId: String,
         offset: Long,
         count: Int
     ): List<Extrinsics> {
-        return dbQuery.selectExtrinsicsPaged(signAddress, networkName, count.toLong(), offset)
+        return dbQuery.selectExtrinsicsPaged(signAddress, chainId, count.toLong(), offset)
             .executeAsList()
     }
 
     fun getExtrinsic(
         signAddress: String,
-        networkName: String,
+        chainId: String,
         txHash: String
     ): Extrinsics? {
-        return dbQuery.selectExtrinsic(txHash, signAddress, networkName).executeAsOneOrNull()
+        return dbQuery.selectExtrinsic(txHash, signAddress, chainId).executeAsOneOrNull()
     }
 
     fun getExtrinsicNested(
@@ -51,7 +51,7 @@ internal class SoraHistoryDBImpl(
 
     fun insertExtrinsics(
         signAddress: String,
-        networkName: String,
+        chainId: String,
         response: TxHistoryInfo
     ): SignerInfo {
         dbQuery.transaction {
@@ -60,7 +60,7 @@ internal class SoraHistoryDBImpl(
                 dbQuery.insertExtrinsic(
                     txHash = historyResponseItem.id,
                     signAddress = signAddress,
-                    networkName = networkName,
+                    chainId = chainId,
                     blockHash = historyResponseItem.blockHash,
                     module = historyResponseItem.module,
                     method = historyResponseItem.method,
@@ -85,7 +85,7 @@ internal class SoraHistoryDBImpl(
                         dbQuery.insertExtrinsic(
                             txHash = hash,
                             signAddress = signAddress,
-                            networkName = networkName,
+                            chainId = chainId,
                             blockHash = historyResponseItem.blockHash,
                             module = itemNested.module,
                             method = itemNested.method,
@@ -108,7 +108,7 @@ internal class SoraHistoryDBImpl(
         }
         return SignerInfo(
             signAddress = signAddress,
-            networkName = networkName,
+            chainId = chainId,
             topTime = response.items.firstOrNull()?.timestamp?.toLong() ?: 0,
             oldTime = response.items.lastOrNull()?.timestamp?.toLong() ?: 0,
             oldCursor = response.endCursor,
@@ -118,15 +118,15 @@ internal class SoraHistoryDBImpl(
 
     fun getSignerInfo(
         signAddress: String,
-        networkName: String
+        chainId: String
     ): SignerInfo =
-        dbQuery.selectSignerInfo(signAddress, networkName).executeAsOneOrNull() ?: SignerInfo(
+        dbQuery.selectSignerInfo(signAddress, chainId).executeAsOneOrNull() ?: SignerInfo(
             signAddress,
             0,
             0,
             null,
             false,
-            networkName,
+            chainId,
         )
 
     fun insertSignerInfo(
@@ -135,11 +135,11 @@ internal class SoraHistoryDBImpl(
 
     fun clearAddressData(
         signAddress: String,
-        networkName: String
+        chainId: String
     ) {
         dbQuery.transaction {
-            dbQuery.removeExtrinsics(signAddress, networkName)
-            dbQuery.removeSignerInfo(signAddress, networkName)
+            dbQuery.removeExtrinsics(signAddress, chainId)
+            dbQuery.removeSignerInfo(signAddress, chainId)
         }
     }
 

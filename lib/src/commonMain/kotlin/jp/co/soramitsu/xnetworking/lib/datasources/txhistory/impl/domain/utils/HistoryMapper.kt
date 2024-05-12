@@ -1,8 +1,8 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.utils
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.utils
 
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.models.TxHistoryItem
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.models.TxHistoryItemNested
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.models.TxHistoryItemParam
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItem
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItemNested
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItemParam
 import jp.co.soramitsu.xnetworking.db.ExtrinsicParam
 import jp.co.soramitsu.xnetworking.db.Extrinsics
 

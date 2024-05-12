@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.core.engines.apollo.impl.utils
+package jp.co.soramitsu.xnetworking.lib.engines.apollo.impl.utils
 
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement

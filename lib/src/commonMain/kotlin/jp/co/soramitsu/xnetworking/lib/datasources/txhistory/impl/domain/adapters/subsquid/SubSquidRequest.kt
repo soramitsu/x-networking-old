@@ -1,18 +1,17 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.adapters.subsquid
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.subsquid
 
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.GraphQLSerialiableRequestWrapper
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.JsonPostRequest
-
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.GraphQLSerializableRequestWrapper
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.JsonPostRequest
 
 @Suppress("FunctionName")
-inline fun SubSquidRequest(
+internal inline fun SubSquidRequest(
     url: String,
     address: String,
     cursor: String? = null,
     limit: Int
 ) = JsonPostRequest(
     url = url,
-    body = GraphQLSerialiableRequestWrapper(
+    body = GraphQLSerializableRequestWrapper(
         """
             query MyQuery {
               historyElementsConnection(
