@@ -1,6 +1,6 @@
-package jp.co.soramitsu.xnetworking.core.engines.rest.api.models
+package jp.co.soramitsu.xnetworking.lib.engines.rest.api.models
 
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.RestClient
+import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
 
 abstract class AbstractRestServerRequest {
 

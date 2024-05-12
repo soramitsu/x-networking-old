@@ -1,8 +1,7 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain
 
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.RestClient
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.models.AbstractRestServerRequest
-import kotlinx.serialization.Serializable
+import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
+import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.AbstractRestServerRequest
 
 class JsonPostRequest(
     override val url: String,

@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.adapters.subsquid
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.subsquid
 
 import kotlinx.serialization.Serializable
 

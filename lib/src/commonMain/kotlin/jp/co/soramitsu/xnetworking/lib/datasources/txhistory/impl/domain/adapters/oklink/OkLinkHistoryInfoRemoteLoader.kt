@@ -1,12 +1,12 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.adapters.oklink
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.oklink
 
-import jp.co.soramitsu.xnetworking.core.datasources.chainsconfig.api.ChainsConfigFetcher
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.HistoryInfoRemoteLoader
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.TxFilter
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.models.TxHistoryInfo
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.models.TxHistoryItem
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.models.TxHistoryItemParam
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.RestClient
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ChainsConfigFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.HistoryInfoRemoteLoader
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.TxFilter
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryInfo
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItem
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItemParam
+import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
 
 class OkLinkHistoryInfoRemoteLoader(
     private val apiKeys: Map<String, String>,

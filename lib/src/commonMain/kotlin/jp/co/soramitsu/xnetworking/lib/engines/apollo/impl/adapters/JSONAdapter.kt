@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.core.engines.apollo.impl.adapters
+package jp.co.soramitsu.xnetworking.lib.engines.apollo.impl.adapters
 
 import com.apollographql.apollo3.api.Adapter
 import com.apollographql.apollo3.api.AnyAdapter

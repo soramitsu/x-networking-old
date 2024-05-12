@@ -1,10 +1,8 @@
-package jp.co.soramitsu.xnetworking.core.engines.apollo.impl
+package jp.co.soramitsu.xnetworking.lib.engines.apollo.impl
 
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Query
-import com.apollographql.apollo3.interceptor.ApolloInterceptor
-import com.apollographql.apollo3.network.http.LoggingInterceptor
-import jp.co.soramitsu.xnetworking.core.engines.apollo.api.ApolloClientStore
+import jp.co.soramitsu.xnetworking.lib.engines.apollo.api.ApolloClientStore
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
@@ -13,14 +11,6 @@ class ApolloClientStoreImpl: ApolloClientStore {
     private val mutex = Mutex()
 
     private val apolloClientsByUrl = mutableMapOf<String, ApolloClient>()
-
-    override suspend fun getClient(tag: Int): ApolloClient? {
-        return mutex.withLock {
-            apolloClientsByUrl.getOrElse(tag.toString()) {
-                null
-            }
-        }
-    }
 
     override suspend fun <Response : Query.Data> query(
         serverUrl: String,

@@ -1,9 +1,9 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.adapters.oklink
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.oklink
 
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.JsonGetRequest
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.JsonGetRequest
 
 @Suppress("FunctionName")
-internal fun OkLinkRequest(
+internal inline fun OkLinkRequest(
     url: String,
     address: String,
     symbol: String,

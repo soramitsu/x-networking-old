@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.models
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models
 
 data class TxHistoryItemNested(
     val module: String,

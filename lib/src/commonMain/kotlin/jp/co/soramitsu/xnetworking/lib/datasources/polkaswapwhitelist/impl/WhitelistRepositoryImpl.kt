@@ -1,12 +1,12 @@
-package jp.co.soramitsu.xnetworking.core.datasources.polkaswapwhitelist.impl
+package jp.co.soramitsu.xnetworking.lib.datasources.polkaswapwhitelist.impl
 
-import jp.co.soramitsu.xnetworking.core.datasources.polkaswapwhitelist.api.AbstractWhitelistedToken
-import jp.co.soramitsu.xnetworking.core.datasources.polkaswapwhitelist.api.WhitelistRepository
-import jp.co.soramitsu.xnetworking.core.datasources.polkaswapwhitelist.impl.models.InternalGetRequest
-import jp.co.soramitsu.xnetworking.core.datasources.polkaswapwhitelist.impl.models.InternalWhitelistedToken
-import jp.co.soramitsu.xnetworking.core.engines.apollo.impl.utils.asJsonObjectNullable
-import jp.co.soramitsu.xnetworking.core.engines.apollo.impl.utils.getPrimitiveContentOrEmpty
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.RestClient
+import jp.co.soramitsu.xnetworking.lib.datasources.polkaswapwhitelist.api.AbstractWhitelistedToken
+import jp.co.soramitsu.xnetworking.lib.datasources.polkaswapwhitelist.api.WhitelistRepository
+import jp.co.soramitsu.xnetworking.lib.datasources.polkaswapwhitelist.impl.models.InternalGetRequest
+import jp.co.soramitsu.xnetworking.lib.datasources.polkaswapwhitelist.impl.models.InternalWhitelistedToken
+import jp.co.soramitsu.xnetworking.lib.engines.apollo.impl.utils.asJsonObjectNullable
+import jp.co.soramitsu.xnetworking.lib.engines.apollo.impl.utils.getPrimitiveContentOrEmpty
+import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
 import kotlinx.serialization.json.JsonArray
 
 class WhitelistRepositoryImpl(

@@ -1,11 +1,11 @@
 package jp.co.soramitsu.appxnetworking
 
-import jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.api.BlockExplorerRepository
-import jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.api.models.AssetsInfoResponse
-import jp.co.soramitsu.xnetworking.core.datasources.polkaswapwhitelist.api.AbstractWhitelistedToken
-import jp.co.soramitsu.xnetworking.core.datasources.polkaswapwhitelist.api.WhitelistRepository
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.RestClient
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.models.AbstractRestServerRequest
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.BlockExplorerRepository
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.models.AssetsInfoResponse
+import jp.co.soramitsu.xnetworking.lib.datasources.polkaswapwhitelist.api.AbstractWhitelistedToken
+import jp.co.soramitsu.xnetworking.lib.datasources.polkaswapwhitelist.api.WhitelistRepository
+import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
+import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.AbstractRestServerRequest
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ListSerializer

@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.utils
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.utils
 
 internal object GraphQLExts {
 

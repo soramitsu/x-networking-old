@@ -16,9 +16,10 @@ import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
 internal fun httpClientBuilder(config: () -> AbstractRestClientConfig): ReadOnlyProperty<Any?, HttpClient> =
-    HttpClientBuilderD(config.invoke())
+    HttpClientBuilder(config.invoke())
 
-private class HttpClientBuilderD(config: AbstractRestClientConfig) : ReadOnlyProperty<Any?, HttpClient> {
+private class HttpClientBuilder(config: AbstractRestClientConfig) : ReadOnlyProperty<Any?, HttpClient> {
+
     private val value by lazy {
         HttpClient(ExpectActualHttpClientEngineFactory().createEngine()) {
             expectSuccess = true

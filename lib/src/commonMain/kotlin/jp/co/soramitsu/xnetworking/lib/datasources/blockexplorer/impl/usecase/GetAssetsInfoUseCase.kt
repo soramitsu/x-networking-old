@@ -1,12 +1,11 @@
-package jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.impl.usecase
+package jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.usecase
 
-import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Optional
 import jp.co.soramitsu.xnetworking.basic.common.Utils.toDoubleNan
-import jp.co.soramitsu.xnetworking.core.engines.apollo.impl.utils.getPrimitiveContentOrEmpty
-import jp.co.soramitsu.xnetworking.core.engines.apollo.impl.utils.asJsonObjectNullable
-import jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.api.models.AssetsInfoResponse
-import jp.co.soramitsu.xnetworking.core.engines.apollo.api.ApolloClientStore
+import jp.co.soramitsu.xnetworking.lib.engines.apollo.impl.utils.getPrimitiveContentOrEmpty
+import jp.co.soramitsu.xnetworking.lib.engines.apollo.impl.utils.asJsonObjectNullable
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.models.AssetsInfoResponse
+import jp.co.soramitsu.xnetworking.lib.engines.apollo.api.ApolloClientStore
 import jp.co.soramitsu.xnetworking.sorawallet.GetAssetsInfoQuery
 
 internal class GetAssetsInfoUseCase(

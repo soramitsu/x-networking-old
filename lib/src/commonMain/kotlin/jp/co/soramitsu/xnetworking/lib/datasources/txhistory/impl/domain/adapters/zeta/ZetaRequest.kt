@@ -1,9 +1,9 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.adapters.zeta
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.zeta
 
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.JsonGetRequest
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.JsonGetRequest
 
 @Suppress("FunctionName")
-internal fun TransactionsZetaRequest(
+internal inline fun TransactionsZetaRequest(
     url: String,
     address: String
 ) = JsonGetRequest(
@@ -25,7 +25,7 @@ internal fun TransactionsZetaRequest(
 )
 
 @Suppress("FunctionName")
-internal fun TokenTransfersZetaRequest(
+internal inline fun TokenTransfersZetaRequest(
     url: String,
     address: String,
     assetId: String

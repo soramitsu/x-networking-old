@@ -1,7 +1,7 @@
-package jp.co.soramitsu.xnetworking.core.datasources.chainsconfig.api
+package jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api
 
-import jp.co.soramitsu.xnetworking.core.datasources.chainsconfig.api.models.ChainsConfig
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.models.RestClientException
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ChainsConfig
+import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.RestClientException
 import kotlin.coroutines.cancellation.CancellationException
 
 interface ChainsConfigFetcher {

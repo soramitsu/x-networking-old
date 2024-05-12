@@ -1,9 +1,8 @@
-package jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.impl.usecase
+package jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.usecase
 
-import com.apollographql.apollo3.ApolloClient
 import jp.co.soramitsu.xnetworking.sorawallet.GetSbApyInfoQuery
-import jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.api.models.SbApyInfoResponse
-import jp.co.soramitsu.xnetworking.core.engines.apollo.api.ApolloClientStore
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.models.SbApyInfoResponse
+import jp.co.soramitsu.xnetworking.lib.engines.apollo.api.ApolloClientStore
 
 internal class GetSbApyInfoUseCase(
     private val apolloClientStore: ApolloClientStore

@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.core.engines.rest.impl
+package jp.co.soramitsu.xnetworking.lib.engines.rest.impl
 
 import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.RedirectResponseException
@@ -15,11 +15,11 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.http.userAgent
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.RestClient
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.models.AbstractRestClientConfig
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.models.AbstractRestServerRequest
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.models.RestClientException
-import jp.co.soramitsu.xnetworking.core.engines.rest.impl.builder.impl.HttpClientBuilderImpl
+import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
+import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.AbstractRestClientConfig
+import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.AbstractRestServerRequest
+import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.RestClientException
+import jp.co.soramitsu.xnetworking.lib.engines.rest.impl.builder.httpClientBuilder
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerializationException
 
@@ -27,19 +27,15 @@ class RestClientImpl(
     private val restClientConfig: AbstractRestClientConfig
 ): RestClient {
 
-    private val httpClient = HttpClientBuilderImpl()
-        .build(restClientConfig)
-
-    override val config: AbstractRestClientConfig
-        get() = restClientConfig
+    private val client by httpClientBuilder { restClientConfig }
 
     override suspend fun <T> post(
         request: AbstractRestServerRequest.WithBody,
         kSerializer: KSerializer<T>
-    ): T = config.getOrCreateJsonConfig().decodeFromString(
-        deserializer = kSerializer,
-        string = wrapInExceptionHandler {
-            httpClient.post(request.url) {
+    ): T = wrapInExceptionHandler {
+        restClientConfig.getOrCreateJsonConfig().decodeFromString(
+            deserializer = kSerializer,
+            string = client.post(request.url) {
                 if (request.requestContentType === RestClient.ContentType.JSON)
                     contentType(ContentType.Application.Json)
 
@@ -62,16 +58,16 @@ class RestClientImpl(
 
                 setBody(request.body)
             }.bodyAsText()
-        }
-    )
+        )
+    }
 
     override suspend fun <T> get(
         request: AbstractRestServerRequest,
         kSerializer: KSerializer<T>
-    ): T = config.getOrCreateJsonConfig().decodeFromString(
-        deserializer = kSerializer,
-        string = wrapInExceptionHandler {
-            httpClient.get(request.url) {
+    ): T = wrapInExceptionHandler {
+        restClientConfig.getOrCreateJsonConfig().decodeFromString(
+            deserializer = kSerializer,
+            string = client.get(request.url) {
                 request.bearerToken.apply {
                     if (!this.isNullOrBlank())
                         bearerAuth(this)
@@ -93,8 +89,8 @@ class RestClientImpl(
                     parameter(queryName, queryValue)
                 }
             }.bodyAsText()
-        }
-    )
+        )
+    }
 
     private suspend fun <Type> wrapInExceptionHandler(
         block: suspend () -> Type

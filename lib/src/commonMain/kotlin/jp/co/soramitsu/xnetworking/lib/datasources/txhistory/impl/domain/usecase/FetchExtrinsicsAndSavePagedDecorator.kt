@@ -1,7 +1,7 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.usecase
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.usecase
 
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.TxFilter
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.SoraHistoryDBImpl
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.TxFilter
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.SoraHistoryDBImpl
 import jp.co.soramitsu.xnetworking.db.Extrinsics
 import jp.co.soramitsu.xnetworking.db.SignerInfo
 
@@ -17,7 +17,6 @@ internal class FetchExtrinsicsAndSavePagedDecorator(
 
     suspend operator fun <T> invoke(
         signAddress: String,
-        networkName: String,
         page: Long,
         currentSignerInfo: SignerInfo,
         extrinsicsCountPerPage: Int,
@@ -29,29 +28,29 @@ internal class FetchExtrinsicsAndSavePagedDecorator(
 
         val extrinsics = soraHistoryDBImpl.getExtrinsics(
             signAddress = signAddress,
-            networkName = networkName,
+            chainId = chainId,
             offset = dbOffset,
             count = extrinsicsCountPerPage
         )
 
         dbOffset += extrinsics.size
 
-        if (extrinsics.size.toLong() >= extrinsicsCountPerPage) {
-            return PagedExtrinsicsWrapper(
+        return if (extrinsics.size.toLong() >= extrinsicsCountPerPage) {
+            PagedExtrinsicsWrapper(
                 isEndReached = false,
                 items = extrinsics
             )
         } else {
             if (currentSignerInfo.endReached) {
-                return PagedExtrinsicsWrapper(
+                PagedExtrinsicsWrapper(
                     isEndReached = true,
                     items = extrinsics
                 )
             } else {
                 val curSignerInfo = fetchExtrinsicsAndSaveUseCase<T>(
                     cursor = currentSignerInfo.oldCursor.orEmpty(),
+                    pageCount = extrinsicsCountPerPage,
                     signAddress = signAddress,
-                    networkName = networkName,
                     currentSignerInfo = currentSignerInfo,
                     chainId = chainId,
                     assetId = assetId,
@@ -62,14 +61,14 @@ internal class FetchExtrinsicsAndSavePagedDecorator(
 
                 val moreExtrinsics = soraHistoryDBImpl.getExtrinsics(
                     signAddress = signAddress,
-                    networkName = networkName,
+                    chainId = chainId,
                     offset = dbOffset,
                     count = extrinsicsRemainder
                 )
                 
                 dbOffset += moreExtrinsics.size
 
-                return PagedExtrinsicsWrapper(
+                PagedExtrinsicsWrapper(
                     isEndReached = curSignerInfo.endReached,
                     items = extrinsics.plus(moreExtrinsics)
                 )

@@ -7,6 +7,7 @@ plugins {
     kotlin("multiplatform").version("1.9.22").apply(false)
     kotlin("plugin.serialization").version("1.9.22").apply(false)
     id("org.sonarqube") version "5.0.0.4638"
+    id("com.apollographql.apollo3").version("3.8.2").apply(false)
 }
 
 allprojects {

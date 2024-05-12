@@ -1,8 +1,8 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.usecase
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.usecase
 
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.HistoryInfoRemoteLoader
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.TxFilter
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.SoraHistoryDBImpl
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.HistoryInfoRemoteLoader
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.TxFilter
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.SoraHistoryDBImpl
 import jp.co.soramitsu.xnetworking.db.SignerInfo
 import kotlin.math.max
 import kotlin.math.min
@@ -14,8 +14,8 @@ internal class FetchExtrinsicsAndSaveUseCase(
 
     suspend operator fun <T> invoke(
         cursor: String,
+        pageCount: Int,
         signAddress: String,
-        networkName: String,
         currentSignerInfo: SignerInfo,
         chainId: String,
         assetId: String,
@@ -23,9 +23,9 @@ internal class FetchExtrinsicsAndSaveUseCase(
     ): SignerInfo {
         val txHistoryInfo = soraHistoryDBImpl.insertExtrinsics(
             signAddress,
-            networkName,
+            chainId,
             historyInfoRemoteLoader.loadHistoryInfo(
-                pageCount = 100,
+                pageCount = pageCount,
                 cursor = cursor,
                 signAddress = signAddress,
                 chainId = chainId, 
@@ -47,7 +47,7 @@ internal class FetchExtrinsicsAndSaveUseCase(
 
         return SignerInfo(
             signAddress = signAddress,
-            networkName = networkName,
+            networkName = chainId,
             topTime = max(txHistoryInfo.topTime, currentSignerInfo.topTime),
             oldTime = if (isCurrentSignerTimestampIsInvalid)
                 txHistoryInfo.oldTime else min(txHistoryInfo.oldTime, currentSignerInfo.oldTime),

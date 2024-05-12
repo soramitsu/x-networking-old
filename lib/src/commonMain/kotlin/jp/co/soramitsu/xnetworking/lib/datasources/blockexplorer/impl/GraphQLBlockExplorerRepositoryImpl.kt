@@ -1,17 +1,17 @@
-package jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.impl
+package jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl
 
-import jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.api.BlockExplorerRepository
-import jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.api.models.AssetsInfoResponse
-import jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.api.models.FiatDataResponse
-import jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.api.models.ReferrerRewardResponse
-import jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.api.models.SbApyInfoResponse
-import jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.impl.usecase.GetAssetsInfoUseCase
-import jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.impl.usecase.GetFiatDataUseCase
-import jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.impl.usecase.GetReferrerRewardsUseCase
-import jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.impl.usecase.GetSbApyInfoUseCase
-import jp.co.soramitsu.xnetworking.core.datasources.chainsconfig.api.ChainsConfigFetcher
-import jp.co.soramitsu.xnetworking.core.datasources.chainsconfig.api.models.ChainsConfig
-import jp.co.soramitsu.xnetworking.core.engines.apollo.api.ApolloClientStore
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.BlockExplorerRepository
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.models.AssetsInfoResponse
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.models.FiatDataResponse
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.models.ReferrerRewardResponse
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.models.SbApyInfoResponse
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.usecase.GetAssetsInfoUseCase
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.usecase.GetFiatDataUseCase
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.usecase.GetReferrerRewardsUseCase
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.usecase.GetSbApyInfoUseCase
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ChainsConfigFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ChainsConfig
+import jp.co.soramitsu.xnetworking.lib.engines.apollo.api.ApolloClientStore
 
 class GraphQLBlockExplorerRepositoryImpl(
     apolloClientStore: ApolloClientStore,

@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.core.engines.preferences.impl.builder
+package jp.co.soramitsu.xnetworking.lib.engines.preferences.impl.builder
 
 import android.content.Context
 import com.russhwolf.settings.Settings

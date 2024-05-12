@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.wrappers
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.wrappers
 
 data class TxHistoryResult<R>(
     val endCursor: String?,

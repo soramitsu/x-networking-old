@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.adapters.giantsquid
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.giantsquid
 
 import kotlinx.serialization.Serializable
 

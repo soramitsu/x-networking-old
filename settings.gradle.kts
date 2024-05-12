@@ -12,6 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-include(":app")
+
 include(":androidApp")
-include(":core")
+include(":lib")

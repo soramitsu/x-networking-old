@@ -1,8 +1,7 @@
-package jp.co.soramitsu.xnetworking.core.engines.rest.api
+package jp.co.soramitsu.xnetworking.lib.engines.rest.api
 
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.models.AbstractRestClientConfig
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.models.AbstractRestServerRequest
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.models.RestClientException
+import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.AbstractRestServerRequest
+import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.RestClientException
 import kotlinx.serialization.KSerializer
 import kotlin.coroutines.cancellation.CancellationException
 
@@ -11,8 +10,6 @@ interface RestClient {
     enum class ContentType {
         JSON, NONE
     }
-
-    val config: AbstractRestClientConfig
 
     @Throws(
         RestClientException::class,

@@ -1,11 +1,11 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.adapters.reef
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.reef
 
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.TxFilter
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.GraphQLSerialiableRequestWrapper
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.JsonPostRequest
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.TxFilter
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.GraphQLSerializableRequestWrapper
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.JsonPostRequest
 
 @Suppress("FunctionName")
-inline fun ReefRequest(
+internal inline fun ReefRequest(
     url: String,
     address: String,
     limit: Int,
@@ -13,7 +13,7 @@ inline fun ReefRequest(
     txFilter: TxFilter
 ) = JsonPostRequest(
     url = url,
-    body = GraphQLSerialiableRequestWrapper(
+    body = GraphQLSerializableRequestWrapper(
         when(txFilter) {
             TxFilter.TRANSFER -> transfersRequest(address, limit, cursor)
             TxFilter.EXTRINSIC -> extrinsicsRequest(address, limit, cursor)
@@ -22,7 +22,7 @@ inline fun ReefRequest(
     ),
 )
 
-inline fun transfersRequest(
+internal inline fun transfersRequest(
     address: String,
     limit: Int,
     cursor: String?
@@ -79,7 +79,7 @@ inline fun transfersRequest(
     }
 """.trimIndent()
 
-inline fun rewardsRequest(
+internal inline fun rewardsRequest(
     address: String,
     limit: Int,
     cursor: String?
@@ -116,7 +116,7 @@ inline fun rewardsRequest(
     }
 """.trimIndent()
 
-inline fun extrinsicsRequest(
+internal inline fun extrinsicsRequest(
     address: String,
     limit: Int,
     cursor: String?

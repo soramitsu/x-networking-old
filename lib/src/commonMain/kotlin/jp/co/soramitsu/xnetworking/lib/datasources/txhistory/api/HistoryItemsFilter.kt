@@ -1,6 +1,6 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.api
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api
 
-import jp.co.soramitsu.xnetworking.core.datasources.txhistory.api.models.TxHistoryItem
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItem
 
 interface HistoryItemsFilter {
 

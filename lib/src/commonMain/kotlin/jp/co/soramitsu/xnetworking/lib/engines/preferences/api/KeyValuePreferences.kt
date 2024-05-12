@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.core.engines.preferences.api
+package jp.co.soramitsu.xnetworking.lib.engines.preferences.api
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.serialization.KSerializer

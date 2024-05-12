@@ -5,7 +5,11 @@
 *.aab
 *.xcuserstate
 
-core/build/*
+lib/build/*
+androidApp/build/*
+build/*
+
+lib/lib.podspec
 
 # Files for the ART/Dalvik VM
 *.dex

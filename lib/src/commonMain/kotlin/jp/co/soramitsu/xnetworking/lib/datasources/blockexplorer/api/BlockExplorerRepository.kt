@@ -1,11 +1,11 @@
-package jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.api
+package jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api
 
 import com.apollographql.apollo3.exception.ApolloException
-import jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.api.models.AssetsInfoResponse
-import jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.api.models.FiatDataResponse
-import jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.api.models.ReferrerRewardResponse
-import jp.co.soramitsu.xnetworking.core.datasources.blockexplorer.api.models.SbApyInfoResponse
-import jp.co.soramitsu.xnetworking.core.engines.rest.api.models.RestClientException
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.models.AssetsInfoResponse
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.models.FiatDataResponse
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.models.ReferrerRewardResponse
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.models.SbApyInfoResponse
+import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.RestClientException
 import kotlin.coroutines.cancellation.CancellationException
 
 interface BlockExplorerRepository {

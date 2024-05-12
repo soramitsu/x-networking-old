@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.core.datasources.chainsconfig.api.models
+package jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

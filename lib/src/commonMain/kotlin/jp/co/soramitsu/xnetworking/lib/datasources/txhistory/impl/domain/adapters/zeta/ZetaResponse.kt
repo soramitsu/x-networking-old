@@ -1,4 +1,4 @@
-package jp.co.soramitsu.xnetworking.core.datasources.txhistory.impl.domain.adapters.zeta
+package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.zeta
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
