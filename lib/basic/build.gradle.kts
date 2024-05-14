@@ -6,6 +6,7 @@ plugins {
     id("com.squareup.sqldelight")
     id("maven-publish")
     kotlin("plugin.serialization")
+    id("org.jetbrains.kotlinx.kover")
 }
 
 val libVersion: String by project
@@ -158,6 +159,58 @@ android {
         singleVariant("release") {
             withSourcesJar()
             withJavadocJar()
+        }
+    }
+}
+
+
+kover {
+    useJacoco()
+}
+
+koverReport {
+    androidReports("release") {
+        filters {
+            excludes {
+                classes(
+                    "*.BuildConfig",
+                    "**.models.*",
+                    "**.core.network.*",
+                    "**.di.*",
+                    "**.shared_utils.wsrpc.*",
+                    "*NetworkDataSource",
+                    "*NetworkDataSource\$*",
+                    "*ChainConnection",
+                    "*ChainConnection\$*",
+                    "**.runtime.definitions.TypeDefinitionsTreeV2",
+                    "**.runtime.definitions.TypeDefinitionsTreeV2\$*",
+
+                    // TODO: Coverage these modules by tests
+                    "**.core.rpc.*",
+                    "**.core.utils.*",
+                    "**.core.extrinsic.*",
+                )
+            }
+        }
+
+        xml {
+            onCheck = true
+            setReportFile(file("${project.rootDir}/report/coverage.xml"))
+        }
+
+        html {
+            onCheck = true
+        }
+
+        verify {
+            onCheck = true
+
+            rule {
+                isEnabled = true
+
+                minBound(20)
+                // TODO: Update to 85
+            }
         }
     }
 }

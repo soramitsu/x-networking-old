@@ -6,6 +6,7 @@ plugins {
     kotlin("android").version("1.9.22").apply(false)
     kotlin("multiplatform").version("1.9.22").apply(false)
     kotlin("plugin.serialization").version("1.9.22").apply(false)
+    id("org.jetbrains.kotlinx.kover").version("0.7.6").apply(false)
     id("org.sonarqube") version "5.0.0.4638"
 }
 
@@ -18,6 +19,6 @@ sonarqube {
         property("sonar.projectKey", "sora:x-networking")
         property("sonar.projectName", "x-networking")
         property("sonar.exclusions", "**/*.txt,**/*.kts")
-        property("sonar.coverage.jacoco.xmlReportPaths", "${project.projectDir}/build/reports/coverage/*.xml")
+        property("sonar.coverage.jacoco.xmlReportPaths", "${project.rootDir}/report/coverage.xml"))
     }
 }

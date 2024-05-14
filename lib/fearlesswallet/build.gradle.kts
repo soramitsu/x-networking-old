@@ -5,6 +5,7 @@ plugins {
     id("com.android.library")
     id("maven-publish")
     kotlin("plugin.serialization")
+    id("org.jetbrains.kotlinx.kover")
 }
 
 val libVersion: String by project
