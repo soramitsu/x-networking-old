@@ -173,3 +173,54 @@ tasks.register<Copy>("copyiOSTestResources") {
 }
 
 tasks.findByName("iosX64Test")!!.dependsOn("copyiOSTestResources")
+
+kover {
+    useJacoco()
+}
+
+koverReport {
+    androidReports("release") {
+        filters {
+            excludes {
+                classes(
+                    "*.BuildConfig",
+                    "**.models.*",
+                    "**.core.network.*",
+                    "**.di.*",
+                    "**.shared_utils.wsrpc.*",
+                    "*NetworkDataSource",
+                    "*NetworkDataSource\$*",
+                    "*ChainConnection",
+                    "*ChainConnection\$*",
+                    "**.runtime.definitions.TypeDefinitionsTreeV2",
+                    "**.runtime.definitions.TypeDefinitionsTreeV2\$*",
+
+                    // TODO: Coverage these modules by tests
+                    "**.core.rpc.*",
+                    "**.core.utils.*",
+                    "**.core.extrinsic.*",
+                )
+            }
+        }
+
+        xml {
+            onCheck = true
+            setReportFile(file("${project.rootDir}/report/coverage-fearless.xml"))
+        }
+
+        html {
+            onCheck = true
+        }
+
+        verify {
+            onCheck = true
+
+            rule {
+                isEnabled = true
+
+                minBound(13)
+                // TODO: Update to 85
+            }
+        }
+    }
+}

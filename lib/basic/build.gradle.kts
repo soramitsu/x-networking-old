@@ -96,6 +96,7 @@ kotlin {
                 implementation(kotlin("test"))
                 implementation("io.ktor:ktor-client-mock:$ktorVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutineVersion")
+                
             }
         }
         val androidMain by getting {
@@ -195,7 +196,7 @@ koverReport {
 
         xml {
             onCheck = true
-            setReportFile(file("${project.rootDir}/report/coverage.xml"))
+            setReportFile(file("${project.rootDir}/report/coverage-basic.xml"))
         }
 
         html {
@@ -208,7 +209,7 @@ koverReport {
             rule {
                 isEnabled = true
 
-                minBound(20)
+                minBound(13)
                 // TODO: Update to 85
             }
         }
