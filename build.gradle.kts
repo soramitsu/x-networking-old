@@ -19,6 +19,6 @@ sonarqube {
         property("sonar.projectKey", "sora:x-networking")
         property("sonar.projectName", "x-networking")
         property("sonar.exclusions", "**/*.txt,**/*.kts")
-        property("sonar.coverage.jacoco.xmlReportPaths", "${project.rootDir}/report/coverage.xml"))
+        property("sonar.coverage.jacoco.xmlReportPaths", "${project.rootDir}/report/coverage.xml")
     }
 }
