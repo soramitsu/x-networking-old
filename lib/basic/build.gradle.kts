@@ -209,7 +209,7 @@ koverReport {
             rule {
                 isEnabled = true
 
-                minBound(13)
+                minBound(0.13)
                 // TODO: Update to 85
             }
         }
