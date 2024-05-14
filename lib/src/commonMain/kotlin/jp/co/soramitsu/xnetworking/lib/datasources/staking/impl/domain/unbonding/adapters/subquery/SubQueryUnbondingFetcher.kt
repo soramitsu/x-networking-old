@@ -16,20 +16,20 @@ class SubQueryUnbondingFetcher(
         delegatorAddress: String,
         collatorAddress: String
     ): List<Unbonding> {
-        check(delegatorAddress.startsWith("0x")) {
+        require(delegatorAddress.startsWith("0x")) {
             "DelegatorAddress is not hex value address."
         }
-        check(collatorAddress.startsWith("0x")) {
+        require(collatorAddress.startsWith("0x")) {
             "CollatorAddress is not hex value address."
         }
 
         val config = chainsConfigFetcher.loadConfigOrGetCached()[chainId]
         val requestUrl =
-            requireNotNull(config?.externalApi?.history?.url) {
+            requireNotNull(config?.externalApi?.staking?.url) {
                 "Url for SubQuery stakingExplorer on chain with id - $chainId - is null."
             }
 
-        val rewards = restClient.post(
+        val nodes = restClient.post(
             request = SubQueryUnbondingRequest(
                 url = requestUrl,
                 delegatorAddress = delegatorAddress,
@@ -40,10 +40,10 @@ class SubQueryUnbondingFetcher(
             )
         ).data.delegatorHistoryElements.nodes
 
-        return rewards.map { reward ->
+        return nodes.map { historyElement ->
             Unbonding(
-                amount = reward.amount ?: "0",
-                timestamp = reward.timestamp ?: "0",
+                amount = historyElement.amount ?: "0",
+                timestamp = historyElement.timestamp ?: "0",
                 type = Unbonding.DelegationAction.REWARD
             )
         }

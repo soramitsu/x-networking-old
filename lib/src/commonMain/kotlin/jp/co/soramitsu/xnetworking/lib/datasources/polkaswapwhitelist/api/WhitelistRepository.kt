@@ -9,10 +9,6 @@ interface WhitelistRepository {
         RestClientException::class,
         CancellationException::class
     )
-    suspend fun getWhitelistedTokens(requestUrl: String): List<AbstractWhitelistedToken>
-
-    companion object {
-        const val requestUrl = "https://whitelist.polkaswap2.io/whitelist.json"
-    }
+    suspend fun getWhitelistedTokens(): List<AbstractWhitelistedToken>
 
 }

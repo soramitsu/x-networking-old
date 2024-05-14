@@ -16,16 +16,16 @@ class SubSquidUnbondingFetcher(
         delegatorAddress: String,
         collatorAddress: String
     ): List<Unbonding> {
-        check(delegatorAddress.startsWith("0x")) {
+        require(delegatorAddress.startsWith("0x")) {
             "DelegatorAddress is not hex value address."
         }
-        check(collatorAddress.startsWith("0x")) {
+        require(collatorAddress.startsWith("0x")) {
             "CollatorAddress is not hex value address."
         }
 
         val config = chainsConfigFetcher.loadConfigOrGetCached()[chainId]
         val requestUrl =
-            requireNotNull(config?.externalApi?.history?.url) {
+            requireNotNull(config?.externalApi?.staking?.url) {
                 "Url for SubSquid stakingExplorer on chain with id - $chainId - is null."
             }
 

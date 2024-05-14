@@ -6,7 +6,7 @@ import jp.co.soramitsu.xnetworking.lib.datasources.staking.api.adapters.ApyFetch
 
 class ApyFetcherFacade(
     private val chainsConfigFetcher: ChainsConfigFetcher,
-    private val unbondingFetcherMap: Map<ChainsConfig.ExternalApi.Type, ApyFetcher>
+    private val apyFetcherMap: Map<ChainsConfig.ExternalApi.Type, ApyFetcher>
 ): ApyFetcher {
 
     override suspend fun fetch(
@@ -18,7 +18,7 @@ class ApyFetcherFacade(
             "Type of staking explorer for chain with id - $chainId - is null."
         }
 
-        val fetcher = unbondingFetcherMap[type]
+        val fetcher = apyFetcherMap[type]
             ?: error("Remote Apy Loader could not have been found.")
 
         return fetcher.fetch(chainId, selectedCandidates)

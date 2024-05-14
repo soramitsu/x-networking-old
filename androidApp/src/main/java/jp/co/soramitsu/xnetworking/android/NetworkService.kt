@@ -33,7 +33,7 @@ class NetworkService(
     )
 
     suspend fun getSoraWhitelist(): List<AbstractWhitelistedToken> {
-        return whitelistRepository.getWhitelistedTokens(WhitelistRepository.requestUrl)
+        return whitelistRepository.getWhitelistedTokens()
     }
 
     suspend fun getAssetsInfo(): List<AssetsInfoResponse> {

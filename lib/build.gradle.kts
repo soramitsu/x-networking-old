@@ -11,6 +11,8 @@ plugins {
 
     id("com.squareup.sqldelight")
     id("com.apollographql.apollo3")
+
+    id("com.google.devtools.ksp")
 }
 
 val libVersion: String by project
@@ -115,6 +117,8 @@ kotlin {
             dependencies {
                 implementation(kotlin("test"))
                 implementation("io.ktor:ktor-client-mock:$ktorVersion")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutineVersion")
+                implementation("io.mockative:mockative:2.2.0")
             }
         }
 
@@ -122,7 +126,6 @@ kotlin {
             dependencies {
                 implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
                 implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
-                implementation("com.apollographql.apollo3:apollo-ast:$apolloGraphQLVersion")
             }
         }
         val androidUnitTest by getting
@@ -154,6 +157,14 @@ kotlin {
     android {
         publishAllLibraryVariants()
     }
+}
+
+dependencies {
+    configurations
+        .filter { it.name.startsWith("ksp") && it.name.contains("Test") }
+        .forEach {
+            add(it.name, "io.mockative:mockative-processor:2.2.0")
+        }
 }
 
 sqldelight {

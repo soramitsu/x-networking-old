@@ -15,9 +15,13 @@ class SubQueryValidatorsFetcher(
         stashAccountAddress: String,
         historicalRange: List<String>
     ): List<String> {
+        require(historicalRange.isNotEmpty()) {
+            "HistoricalRange provided is empty."
+        }
+
         val config = chainsConfigFetcher.loadConfigOrGetCached()[chainId]
         val requestUrl =
-            requireNotNull(config?.externalApi?.history?.url) {
+            requireNotNull(config?.externalApi?.staking?.url) {
                 "Url for SubQuery stakingExplorer on chain with id - $chainId - is null."
             }
 
