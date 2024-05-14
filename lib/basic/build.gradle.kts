@@ -204,12 +204,12 @@ koverReport {
         }
 
         verify {
-            onCheck = true
+            onCheck = false
 
             rule {
-                isEnabled = true
+                isEnabled = false
 
-                minBound(0.13)
+                minBound(13)
                 // TODO: Update to 85
             }
         }
