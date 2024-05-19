@@ -4,7 +4,7 @@ import jp.co.soramitsu.xnetworking.lib.datasources.staking.api.models.Unbonding
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.RestClientException
 import kotlin.coroutines.cancellation.CancellationException
 
-interface StakingRepository {
+abstract class StakingRepository {
 
     @Throws(
         RestClientException::class,
@@ -13,7 +13,7 @@ interface StakingRepository {
         IllegalStateException::class,
         NullPointerException::class
     )
-    suspend fun getUnbondingsList(
+    abstract suspend fun getUnbondingsList(
         chainId: String,
         delegatorAddress: String,
         collatorAddress: String
@@ -26,7 +26,7 @@ interface StakingRepository {
         IllegalStateException::class,
         NullPointerException::class
     )
-    suspend fun getValidatorsList(
+    abstract suspend fun getValidatorsList(
         chainId: String,
         stashAccountAddress: String,
         historicalRange: List<String>
@@ -39,7 +39,7 @@ interface StakingRepository {
         IllegalStateException::class,
         NullPointerException::class
     )
-    suspend fun getApy(
+    abstract suspend fun getApy(
         chainId: String,
         selectedCandidates: List<String>? = null
     ): Map<String, String?>

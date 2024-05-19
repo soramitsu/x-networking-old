@@ -1,6 +1,6 @@
 package jp.co.soramitsu.xnetworking.android
 
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.ChainInfo
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.ChainInfo
 
 enum class ChainAssetConstants(val chainId: String, val utilityAssetId: String) {
 

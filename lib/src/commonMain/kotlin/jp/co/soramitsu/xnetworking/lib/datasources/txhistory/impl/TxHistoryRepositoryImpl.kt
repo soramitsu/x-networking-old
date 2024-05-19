@@ -2,7 +2,7 @@ package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl
 
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.HistoryInfoRemoteLoader
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.HistoryItemsFilter
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.TxFilter
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxFilter
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.TxHistoryRepository
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryInfo
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItem
@@ -15,13 +15,13 @@ import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.RestClientExcepti
 import jp.co.soramitsu.xnetworking.db.Extrinsics
 import jp.co.soramitsu.xnetworking.db.SignerInfo
 import jp.co.soramitsu.xnetworking.db.SoraHistoryDatabase
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.ChainInfo
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.ChainInfo
 
 class TxHistoryRepositoryImpl(
     private val databaseDriverFactory: ExpectActualDBDriverFactory,
     private val historyInfoRemoteLoader: HistoryInfoRemoteLoader,
     private val historyItemsFilter: HistoryItemsFilter
-): TxHistoryRepository, HistoryItemsFilter by historyItemsFilter {
+): TxHistoryRepository(), HistoryItemsFilter by historyItemsFilter {
 
     private val soraHistoryDBImpl = SoraHistoryDBImpl(
         soraHistoryDatabase = SoraHistoryDatabase(

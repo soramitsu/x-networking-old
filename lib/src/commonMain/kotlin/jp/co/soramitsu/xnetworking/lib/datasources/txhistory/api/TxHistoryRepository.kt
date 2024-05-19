@@ -1,21 +1,22 @@
 package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api
 
 import com.apollographql.apollo3.exception.ApolloException
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.ChainInfo
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.TxFilter
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ExternalApiDAOException
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.ChainInfo
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxFilter
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryInfo
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItem
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.wrappers.TxHistoryResult
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.RestClientException
 import kotlin.coroutines.cancellation.CancellationException
 
-interface TxHistoryRepository {
+abstract class TxHistoryRepository {
 
     @Throws(
         CancellationException::class,
         IllegalArgumentException::class
     )
-    fun getTransactionPeers(
+    abstract fun getTransactionPeers(
         query: String,
         chainId: String
     ): List<String>
@@ -24,7 +25,7 @@ interface TxHistoryRepository {
         CancellationException::class,
         IllegalArgumentException::class
     )
-    fun getTransactionHistoryCached(
+    abstract fun getTransactionHistoryCached(
         count: Int,
         address: String,
         chainId: String,
@@ -34,7 +35,7 @@ interface TxHistoryRepository {
         CancellationException::class,
         IllegalArgumentException::class
     )
-    fun getTransactionCached(
+    abstract fun getTransactionCached(
         txHash: String,
         address: String,
         chainId: String,
@@ -44,11 +45,12 @@ interface TxHistoryRepository {
         ApolloException::class,
         RestClientException::class,
         CancellationException::class,
+        ExternalApiDAOException::class,
         IllegalArgumentException::class,
         IllegalStateException::class,
         NullPointerException::class
     )
-    suspend fun getTransactionHistoryPaged(
+    abstract suspend fun getTransactionHistoryPaged(
         address: String,
         page: Long,
         pageCount: Int,
@@ -60,11 +62,11 @@ interface TxHistoryRepository {
         CancellationException::class,
         IllegalArgumentException::class
     )
-    fun clearData(
+    abstract fun clearData(
         address: String,
         chainId: String
     )
 
-    fun clearAllData()
+    abstract fun clearAllData()
 
 }

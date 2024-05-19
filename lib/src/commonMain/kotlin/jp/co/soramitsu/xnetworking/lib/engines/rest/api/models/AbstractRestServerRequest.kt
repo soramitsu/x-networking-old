@@ -2,9 +2,7 @@ package jp.co.soramitsu.xnetworking.lib.engines.rest.api.models
 
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
 import kotlinx.serialization.DeserializationStrategy
-import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Transient
-import kotlinx.serialization.json.Json
 import kotlin.experimental.ExperimentalObjCRefinement
 import kotlin.native.HiddenFromObjC
 

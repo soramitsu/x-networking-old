@@ -5,6 +5,7 @@ import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.models.Asse
 import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.models.FiatDataResponse
 import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.models.ReferrerRewardResponse
 import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.models.SbApyInfoResponse
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ExternalApiDAOException
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.RestClientException
 import kotlin.coroutines.cancellation.CancellationException
 
@@ -14,6 +15,7 @@ abstract class BlockExplorerRepository {
         ApolloException::class,
         RestClientException::class,
         CancellationException::class,
+        ExternalApiDAOException::class,
         IllegalArgumentException::class,
         IllegalStateException::class
     )
@@ -27,6 +29,7 @@ abstract class BlockExplorerRepository {
         ApolloException::class,
         RestClientException::class,
         CancellationException::class,
+        ExternalApiDAOException::class,
         IllegalArgumentException::class,
         IllegalStateException::class
     )
@@ -38,6 +41,7 @@ abstract class BlockExplorerRepository {
         ApolloException::class,
         RestClientException::class,
         CancellationException::class,
+        ExternalApiDAOException::class,
         IllegalArgumentException::class,
         IllegalStateException::class
     )
@@ -50,6 +54,7 @@ abstract class BlockExplorerRepository {
         ApolloException::class,
         RestClientException::class,
         CancellationException::class,
+        ExternalApiDAOException::class,
         IllegalArgumentException::class,
         IllegalStateException::class
     )

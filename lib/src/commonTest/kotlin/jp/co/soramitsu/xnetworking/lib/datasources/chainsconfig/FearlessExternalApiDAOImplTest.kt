@@ -7,6 +7,7 @@ import io.mockative.coVerify
 import io.mockative.mock
 import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ConfigDAO
 import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.data.ConfigFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ExternalApiDAOException
 import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ExternalApiType
 import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.StakingOption
 import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.impl.FearlessConfigDAOImpl
@@ -15,6 +16,7 @@ import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlin.test.Test
+import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
 class FearlessExternalApiDAOImplTest {
@@ -30,6 +32,40 @@ class FearlessExternalApiDAOImplTest {
         FearlessConfigDAOImpl(
             configFetcher = configFetcher
         )
+
+    @Test
+    fun `TEST FearlessExternalApiDAO_historyType EXPECT ExternalApiDAOException_NullType`() = runTest {
+        // Test Data Start
+        val configResponseToReturn =
+            JsonObject(
+                content = mapOf(
+                    "chainId" to JsonPrimitive(chainId),
+                    "externalApi" to JsonObject(
+                        content = mapOf(
+                            "history" to JsonObject(
+                                content = emptyMap()
+                            )
+                        )
+                    )
+                )
+            )
+        // Test Data End
+
+        // Mock Preparation Start
+        coEvery {
+            configFetcher.fetch(chainId)
+        }.returns(configResponseToReturn)
+        // Mock Preparation End
+
+        assertFailsWith<ExternalApiDAOException.NullType> {
+            configDAO.historyType(chainId)
+        }
+
+        // Verification & Assertion
+        coVerify {
+            configFetcher.fetch(chainId)
+        }.wasInvoked(1)
+    }
 
     @Test
     fun `TEST FearlessExternalApiDAO_historyType EXPECT success`() = runTest {
@@ -67,6 +103,40 @@ class FearlessExternalApiDAOImplTest {
         }.wasInvoked(1)
 
         assertTrue { result === expectedResult }
+    }
+
+    @Test
+    fun `TEST FearlessExternalApiDAO_historyUrl EXPECT ExternalApiDAOException_NullUrl`() = runTest {
+        // Test Data Start
+        val configResponseToReturn =
+            JsonObject(
+                content = mapOf(
+                    "chainId" to JsonPrimitive(chainId),
+                    "externalApi" to JsonObject(
+                        content = mapOf(
+                            "history" to JsonObject(
+                                content = mapOf()
+                            )
+                        )
+                    )
+                )
+            )
+        // Test Data End
+
+        // Mock Preparation Start
+        coEvery {
+            configFetcher.fetch(chainId)
+        }.returns(configResponseToReturn)
+        // Mock Preparation End
+
+        assertFailsWith<ExternalApiDAOException.NullUrl> {
+            configDAO.historyUrl(chainId)
+        }
+
+        // Verification & Assertion
+        coVerify {
+            configFetcher.fetch(chainId)
+        }.wasInvoked(1)
     }
 
     @Test
@@ -108,6 +178,40 @@ class FearlessExternalApiDAOImplTest {
     }
 
     @Test
+    fun `TEST FearlessExternalApiDAO_stakingType EXPECT ExternalApiDAOException_NullType`() = runTest {
+        // Test Data Start
+        val configResponseToReturn =
+            JsonObject(
+                content = mapOf(
+                    "chainId" to JsonPrimitive(chainId),
+                    "externalApi" to JsonObject(
+                        content = mapOf(
+                            "staking" to JsonObject(
+                                content = mapOf()
+                            )
+                        )
+                    )
+                )
+            )
+        // Test Data End
+
+        // Mock Preparation Start
+        coEvery {
+            configFetcher.fetch(chainId)
+        }.returns(configResponseToReturn)
+        // Mock Preparation End
+
+        assertFailsWith<ExternalApiDAOException.NullType> {
+            configDAO.stakingType(chainId)
+        }
+
+        // Verification & Assertion
+        coVerify {
+            configFetcher.fetch(chainId)
+        }.wasInvoked(1)
+    }
+
+    @Test
     fun `TEST FearlessExternalApiDAO_stakingType EXPECT success`() = runTest {
         // Test Data Start
         val configResponseToReturn =
@@ -143,6 +247,40 @@ class FearlessExternalApiDAOImplTest {
         }.wasInvoked(1)
 
         assertTrue { result === expectedResult }
+    }
+
+    @Test
+    fun `TEST FearlessExternalApiDAO_stakingUrl EXPECT ExternalApiDAOException_NullUrl`() = runTest {
+        // Test Data Start
+        val configResponseToReturn =
+            JsonObject(
+                content = mapOf(
+                    "chainId" to JsonPrimitive(chainId),
+                    "externalApi" to JsonObject(
+                        content = mapOf(
+                            "staking" to JsonObject(
+                                content = mapOf()
+                            )
+                        )
+                    )
+                )
+            )
+        // Test Data End
+
+        // Mock Preparation Start
+        coEvery {
+            configFetcher.fetch(chainId)
+        }.returns(configResponseToReturn)
+        // Mock Preparation End
+
+        assertFailsWith<ExternalApiDAOException.NullUrl> {
+            configDAO.stakingUrl(chainId)
+        }
+
+        // Verification & Assertion
+        coVerify {
+            configFetcher.fetch(chainId)
+        }.wasInvoked(1)
     }
 
     @Test

@@ -26,4 +26,8 @@ class GraphQLSerializableRequestWrapper(
 
         return query == other.query
     }
+
+    override fun hashCode(): Int {
+        return query.hashCode()
+    }
 }

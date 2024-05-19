@@ -6,7 +6,7 @@ import jp.co.soramitsu.xnetworking.lib.engines.apollo.api.ApolloClientStore
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
-class ApolloClientStoreImpl: ApolloClientStore {
+class ApolloClientStoreImpl: ApolloClientStore() {
 
     private val mutex = Mutex()
 

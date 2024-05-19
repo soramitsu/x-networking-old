@@ -2,9 +2,9 @@ package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapte
 
 import com.apollographql.apollo3.api.Optional
 import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ConfigDAO
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.ChainInfo
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.ChainInfo
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.HistoryInfoRemoteLoader
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.TxFilter
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxFilter
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryInfo
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItem
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItemNested

@@ -1,6 +1,6 @@
 package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.reef
 
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.TxFilter
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxFilter
 import jp.co.soramitsu.xnetworking.lib.engines.utils.GraphQLResponseDataWrapper
 import jp.co.soramitsu.xnetworking.lib.engines.utils.GraphQLSerializableRequestWrapper
 import jp.co.soramitsu.xnetworking.lib.engines.utils.JsonPostRequest

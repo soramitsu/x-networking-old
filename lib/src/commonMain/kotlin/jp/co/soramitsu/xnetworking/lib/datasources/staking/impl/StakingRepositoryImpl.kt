@@ -10,7 +10,7 @@ class StakingRepositoryImpl(
     private val apyFetcher: ApyFetcher,
     private val validatorsFetcher: ValidatorsFetcher,
     private val unbondingFetcher: UnbondingFetcher,
-): StakingRepository {
+): StakingRepository() {
 
     override suspend fun getUnbondingsList(
         chainId: String,

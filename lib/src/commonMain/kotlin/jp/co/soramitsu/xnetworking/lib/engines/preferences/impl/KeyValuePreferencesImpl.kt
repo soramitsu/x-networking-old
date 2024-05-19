@@ -12,7 +12,7 @@ import kotlinx.serialization.KSerializer
 
 class KeyValuePreferencesImpl(
     private val keyValuePreferencesEngine: ExpectActualKeyValuePreferencesEngineFactory
-): KeyValuePreferences {
+): KeyValuePreferences() {
 
     private val settings = keyValuePreferencesEngine.createEngine()
 
