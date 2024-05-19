@@ -20,27 +20,25 @@ import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.AbstractRestClien
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.AbstractRestServerRequest
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.RestClientException
 import jp.co.soramitsu.xnetworking.lib.engines.rest.impl.builder.httpClientBuilder
-import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerializationException
 
 class RestClientImpl(
     private val restClientConfig: AbstractRestClientConfig
-): RestClient {
+): RestClient() {
 
     private val client by httpClientBuilder { restClientConfig }
 
     override suspend fun <T> post(
-        request: AbstractRestServerRequest.WithBody,
-        kSerializer: KSerializer<T>
+        request: AbstractRestServerRequest.WithBody<T>
     ): T = wrapInExceptionHandler {
         restClientConfig.getOrCreateJsonConfig().decodeFromString(
-            deserializer = kSerializer,
+            deserializer = request.responseDeserializer,
             string = client.post(request.url) {
                 if (request.requestContentType === RestClient.ContentType.JSON)
-                    contentType(ContentType.Application.Json)
+                    contentType(io.ktor.http.ContentType.Application.Json)
 
                 if (request.responseContentType === RestClient.ContentType.JSON)
-                    accept(ContentType.Application.Json)
+                    accept(io.ktor.http.ContentType.Application.Json)
 
                 request.headers?.filterNot { (key, value) ->
                     key.isBlank() || value.isBlank()
@@ -62,11 +60,10 @@ class RestClientImpl(
     }
 
     override suspend fun <T> get(
-        request: AbstractRestServerRequest,
-        kSerializer: KSerializer<T>
+        request: AbstractRestServerRequest<T>
     ): T = wrapInExceptionHandler {
         restClientConfig.getOrCreateJsonConfig().decodeFromString(
-            deserializer = kSerializer,
+            deserializer = request.responseDeserializer,
             string = client.get(request.url) {
                 request.bearerToken.apply {
                     if (!this.isNullOrBlank())
@@ -83,7 +80,7 @@ class RestClientImpl(
                 }
 
                 if (request.responseContentType === RestClient.ContentType.JSON)
-                    accept(ContentType.Application.Json)
+                    accept(io.ktor.http.ContentType.Application.Json)
 
                 request.queryParams?.forEach { (queryName, queryValue) ->
                     parameter(queryName, queryValue)

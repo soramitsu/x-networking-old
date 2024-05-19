@@ -1,20 +1,21 @@
 package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl
 
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.HistoryInfoRemoteLoader
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.HistoryInfoRemoteLoader
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.HistoryItemsFilter
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.TxFilter
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.TxFilter
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.TxHistoryRepository
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryInfo
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItem
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.wrappers.TxHistoryResult
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.wrappers.TxHistoryResult
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.builder.ExpectActualDBDriverFactory
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.usecase.FetchExtrinsicsAndSavePagedDecorator
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.usecase.FetchExtrinsicsAndSaveUseCase
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.utils.HistoryMapper
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.utils.HistoryMapper
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.RestClientException
 import jp.co.soramitsu.xnetworking.db.Extrinsics
 import jp.co.soramitsu.xnetworking.db.SignerInfo
 import jp.co.soramitsu.xnetworking.db.SoraHistoryDatabase
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.ChainInfo
 
 class TxHistoryRepositoryImpl(
     private val databaseDriverFactory: ExpectActualDBDriverFactory,
@@ -99,23 +100,21 @@ class TxHistoryRepositoryImpl(
         address: String,
         page: Long,
         pageCount: Int,
-        chainId: String,
-        assetId: String,
+        chainInfo: ChainInfo,
         filters: Set<TxFilter>
     ): TxHistoryResult<TxHistoryItem> {
         require(page >= 1) { "Page value must >= 1" }
 
-        curSignerInfo = soraHistoryDBImpl.getSignerInfo(address, chainId)
+        curSignerInfo = soraHistoryDBImpl.getSignerInfo(address, chainInfo.chainId)
 
         var error = if (page == 1L) {
             try {
                 curSignerInfo = fetchExtrinsicsAndSaveUseCase<TxHistoryInfo>(
-                    cursor = page.toString(),
+                    cursor = curSignerInfo.oldCursor,
                     pageCount = pageCount,
                     signAddress = address,
                     currentSignerInfo = curSignerInfo,
-                    chainId = chainId,
-                    assetId = assetId,
+                    chainInfo = chainInfo,
                     filters = filters
                 )
                 null
@@ -139,8 +138,7 @@ class TxHistoryRepositoryImpl(
                         page = curPage,
                         currentSignerInfo = curSignerInfo,
                         extrinsicsCountPerPage = pageCount,
-                        chainId = chainId,
-                        assetId = assetId,
+                        chainInfo = chainInfo,
                         filters = filters
                     )
 

@@ -1,8 +1,9 @@
 package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.etherscan
 
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ChainsConfigFetcher
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.HistoryInfoRemoteLoader
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.TxFilter
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ConfigDAO
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.ChainInfo
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.HistoryInfoRemoteLoader
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.TxFilter
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryInfo
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItem
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItemParam
@@ -10,42 +11,38 @@ import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
 
 class EtherScanHistoryInfoRemoteLoader(
     private val apiKeys: Map<String, String>,
-    private val chainsConfigFetcher: ChainsConfigFetcher,
+    private val configDAO: ConfigDAO,
     private val restClient: RestClient
-): HistoryInfoRemoteLoader {
+): HistoryInfoRemoteLoader() {
 
     override suspend fun loadHistoryInfo(
         pageCount: Int,
         cursor: String?,
         signAddress: String,
-        chainId: String,
-        assetId: String,
+        chainInfo: ChainInfo,
         filters: Set<TxFilter>
     ): TxHistoryInfo {
-        val config = chainsConfigFetcher.loadConfigOrGetCached()[chainId]
-        val assetType = config?.assets?.find { it.id == assetId }?.ethereumType
-        val requestUrl = requireNotNull(config?.externalApi?.history?.url) {
-            "Url for EtherScan blockExplorer on chain with id - $chainId - is null."
+        require(chainInfo is ChainInfo.WithEthereumType) {
+            "EtherScan blockExplorer can not be used with non-ethereum chains."
         }
 
         val response = restClient.get(
-            request = when(assetType) {
+            request = when(chainInfo.ethereumType) {
                 "normal" -> NormalEtherScanRequest(
-                    url = requestUrl,
+                    url = configDAO.historyUrl(chainInfo.chainId),
                     address = signAddress,
-                    apiKey = apiKeys[chainId]!!
+                    apiKey = apiKeys[chainInfo.chainId]!!
                 )
 
                 "erc20", "bep20" -> ErcBepEtherScanRequest(
-                    url = requestUrl,
-                    contractAddress = assetId,
+                    url = configDAO.historyUrl(chainInfo.chainId),
+                    contractAddress = chainInfo.contractAddress,
                     address = signAddress,
-                    apiKey = apiKeys[chainId]!!
+                    apiKey = apiKeys[chainInfo.chainId]!!
                 )
 
                 else -> error("Unknown AssetType for EtherScan BlockExplorer")
-            },
-            kSerializer = EtherScanResponse.serializer()
+            }
         )
 
         return TxHistoryInfo(

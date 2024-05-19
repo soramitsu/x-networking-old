@@ -1,167 +1,209 @@
 package jp.co.soramitsu.xnetworking.lib.datasources.staking.apy
 
 import io.mockative.Mock
-import io.mockative.any
 import io.mockative.classOf
 import io.mockative.coEvery
 import io.mockative.coVerify
 import io.mockative.mock
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ChainsConfigFetcher
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ChainsConfig
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ConfigDAO
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ExternalApiDAOException
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ExternalApiType
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.StakingOption
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.api.adapters.ApyFetcher
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.impl.domain.apy.ApyFetcherFacade
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
+import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
 class ApyFetcherFacadeTest {
 
-    @Mock
-    val chainsConfigFetcher = mock(classOf<ChainsConfigFetcher>())
+    private companion object {
+        const val chainId = "sora"
+        val selectedCandidates = emptyList<String>()
+    }
 
     @Mock
-    val apyFetcherMock = mock(classOf<ApyFetcher>())
+    private val configDAO = mock(classOf<ConfigDAO>())
+
+    @Mock
+    private val apyFetcherMock = mock(classOf<ApyFetcher>())
 
     @Test
-    fun `TEST apyFacade_fetch EXPECT IllegalArgumentException BECAUSE staking type is null`() = runTest {
-        // Test Data Start
-        val facade: ApyFetcher = ApyFetcherFacade(
-            chainsConfigFetcher = chainsConfigFetcher,
-            apyFetcherMap = mapOf(
-                ChainsConfig.ExternalApi.Type.Sora to apyFetcherMock
-            )
-        )
-        // Test Data End
-
-        coEvery { chainsConfigFetcher.loadConfigOrGetCached() }.returns(
-            listOf(
-                ChainsConfig(
-                    chainId = "sora",
-                    assets = emptyList(),
-                    externalApi = ChainsConfig.ExternalApi(
-                        history = null,
-                        staking = null,
-                        explorers = null
+    fun `TEST apyFacade_fetch EXPECT IllegalStateException BECAUSE network staking type is not paraChain`() =
+        runTest {
+            // Test Data Start
+            val facade: ApyFetcher =
+                ApyFetcherFacade(
+                    configDAO = configDAO,
+                    apyFetcherMap = mapOf(
+                        ExternalApiType.SORA to apyFetcherMock
                     )
                 )
-            ).associateBy { it.chainId }
-        )
+            // Test Data End
 
-        try {
-            facade.fetch(
-                chainId = "sora",
-                selectedCandidates = null
-            )
-        } catch (e: IllegalArgumentException) {
+            // Mocks Preparation Start
+            coEvery {
+                configDAO.staking(
+                    chainId = chainId
+                )
+            }.returns(StakingOption.RELAYCHAIN)
+            // Mocks Preparation End
+
+            assertFailsWith<IllegalStateException> {
+                facade.fetch(
+                    chainId = chainId,
+                    selectedCandidates = selectedCandidates
+                )
+            }
+
+            // Verification & Assertion
             coVerify {
                 apyFetcherMock.fetch(
-                    chainId = any(),
-                    selectedCandidates = any()
+                    chainId = chainId,
+                    selectedCandidates = selectedCandidates
                 )
             }.wasNotInvoked()
         }
+
+    @Test
+    fun `TEST apyFacade_fetch EXPECT ExternalApiDAOException_NullType BECAUSE staking type is null`() = runTest {
+        // Test Data Start
+        val facade: ApyFetcher =
+            ApyFetcherFacade(
+                configDAO = configDAO,
+                apyFetcherMap = mapOf(
+                    ExternalApiType.SORA to apyFetcherMock
+                )
+            )
+        // Test Data End
+
+        // Mocks Preparation Start
+        coEvery {
+            configDAO.stakingType(
+                chainId = chainId
+            )
+        }.throws(ExternalApiDAOException.NullType(chainId))
+
+        coEvery {
+            configDAO.staking(
+                chainId = chainId
+            )
+        }.returns(StakingOption.PARACHAIN)
+        // Mocks Preparation End
+
+        assertFailsWith<ExternalApiDAOException.NullType> {
+            facade.fetch(
+                chainId = chainId,
+                selectedCandidates = selectedCandidates
+            )
+        }
+
+        // Verification & Assertion
+        coVerify {
+            apyFetcherMock.fetch(
+                chainId = chainId,
+                selectedCandidates = selectedCandidates
+            )
+        }.wasNotInvoked()
     }
 
     @Test
     fun `TEST apyFacade_fetch EXPECT IllegalStateException BECAUSE fetcher not found`() = runTest {
         // Test Data Start
-        val facade: ApyFetcher = ApyFetcherFacade(
-            chainsConfigFetcher = chainsConfigFetcher,
-            apyFetcherMap = mapOf(
-                ChainsConfig.ExternalApi.Type.Sora to apyFetcherMock
+        val facade: ApyFetcher =
+            ApyFetcherFacade(
+                configDAO = configDAO,
+                apyFetcherMap = mapOf(
+                    ExternalApiType.SORA to apyFetcherMock
+                )
             )
-        )
         // Test Data End
 
-        coEvery { chainsConfigFetcher.loadConfigOrGetCached() }.returns(
-            listOf(
-                ChainsConfig(
-                    chainId = "sora",
-                    assets = emptyList(),
-                    externalApi = ChainsConfig.ExternalApi(
-                        history = null,
-                        staking = ChainsConfig.ExternalApi.PlainSection(
-                            type = ChainsConfig.ExternalApi.Type.SubQuery,
-                            url = "subquery.url"
-                        ),
-                        explorers = null
-                    )
-                )
-            ).associateBy { it.chainId }
-        )
-
-        try {
-            facade.fetch(
-                chainId = "sora",
-                selectedCandidates = null
+        // Mocks Preparation Start
+        coEvery {
+            configDAO.stakingType(
+                chainId = chainId
             )
-        } catch (e: IllegalStateException) {
-            coVerify {
-                apyFetcherMock.fetch(
-                    chainId = any(),
-                    selectedCandidates = any()
-                )
-            }.wasNotInvoked()
+        }.returns(ExternalApiType.SUBQUERY)
+
+        coEvery {
+            configDAO.staking(
+                chainId = chainId
+            )
+        }.returns(StakingOption.PARACHAIN)
+        // Mocks Preparation End
+
+        assertFailsWith<IllegalStateException> {
+            facade.fetch(
+                chainId = chainId,
+                selectedCandidates = selectedCandidates
+            )
         }
+
+        // Verification & Assertion
+        coVerify {
+            apyFetcherMock.fetch(
+                chainId = chainId,
+                selectedCandidates = selectedCandidates
+            )
+        }.wasNotInvoked()
     }
 
     @Test
     fun `TEST apyFacade_fetch EXPECT success`() = runTest {
         // Test Data Start
-        val facade: ApyFetcher = ApyFetcherFacade(
-            chainsConfigFetcher = chainsConfigFetcher,
-            apyFetcherMap = mapOf(
-                ChainsConfig.ExternalApi.Type.Sora to apyFetcherMock
+        val facade: ApyFetcher =
+            ApyFetcherFacade(
+                configDAO = configDAO,
+                apyFetcherMap = mapOf(
+                    ExternalApiType.SORA to apyFetcherMock
+                )
             )
-        )
 
-        val apyMapToReturn = mapOf(
-            "something" to null
-        )
+        val apyMapToReturn = mapOf("something" to null)
         // Test Data End
 
-        coEvery { chainsConfigFetcher.loadConfigOrGetCached() }.returns(
-            listOf(
-                ChainsConfig(
-                    chainId = "sora",
-                    assets = emptyList(),
-                    externalApi = ChainsConfig.ExternalApi(
-                        history = null,
-                        staking = ChainsConfig.ExternalApi.PlainSection(
-                            type = ChainsConfig.ExternalApi.Type.Sora,
-                            url = "sora.url"
-                        ),
-                        explorers = null
-                    )
-                )
-            ).associateBy { it.chainId }
-        )
-        
+        // Mocks Preparation Start
+        coEvery {
+            configDAO.stakingType(
+                chainId = chainId
+            )
+        }.returns(ExternalApiType.SORA)
+
+        coEvery {
+            configDAO.staking(
+                chainId = chainId
+            )
+        }.returns(StakingOption.PARACHAIN)
+
         coEvery {
             apyFetcherMock.fetch(
-                chainId = "sora",
-                selectedCandidates = null
+                chainId = chainId,
+                selectedCandidates = selectedCandidates
             )
         }.returns(apyMapToReturn)
+        // Mocks Preparation End
 
         val result = facade.fetch(
-            chainId = "sora",
-            selectedCandidates = null
+            chainId = chainId,
+            selectedCandidates = selectedCandidates
         )
-        
+
+        // Verification & Assertion
         coVerify {
             apyFetcherMock.fetch(
-                chainId = "sora",
-                selectedCandidates = null
+                chainId = chainId,
+                selectedCandidates = selectedCandidates
             )
         }.wasInvoked(1)
 
-        assertTrue {
-            apyMapToReturn.keys.containsAll(result.keys)
-        }
 
         assertTrue {
-            apyMapToReturn.values.containsAll(result.values)
+            val areKeysTheSame = apyMapToReturn.keys.containsAll(result.keys)
+            val areValuesTheSame = apyMapToReturn.values.containsAll(result.values)
+
+            areKeysTheSame && areValuesTheSame
         }
     }
 

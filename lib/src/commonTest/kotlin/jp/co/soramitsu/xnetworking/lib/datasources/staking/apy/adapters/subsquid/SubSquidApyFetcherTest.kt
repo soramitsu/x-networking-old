@@ -1,151 +1,160 @@
 package jp.co.soramitsu.xnetworking.lib.datasources.staking.apy.adapters.subsquid
 
 import io.mockative.Mock
-import io.mockative.any
 import io.mockative.classOf
 import io.mockative.coEvery
 import io.mockative.coVerify
 import io.mockative.eq
-import io.mockative.instanceOf
 import io.mockative.mock
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ChainsConfigFetcher
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ChainsConfig
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ConfigDAO
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ExternalApiDAOException
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.api.adapters.ApyFetcher
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.impl.domain.apy.adapters.subquid.SubSquidApyFetcher
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.impl.domain.apy.adapters.subquid.SubSquidApyRequest
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.impl.domain.apy.adapters.subquid.SubSquidApyResponse
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.GraphQLResponseDataWrapper
+import jp.co.soramitsu.xnetworking.lib.engines.utils.GraphQLResponseDataWrapper
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
+import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
 class SubSquidApyFetcherTest {
 
-    @Mock
-    val chainsConfigFetcher = mock(classOf<ChainsConfigFetcher>())
+    private companion object {
+        const val chainId = "polkadot"
+        const val requestUrl = "polkadot.url"
+    }
 
     @Mock
-    val restClient = mock(classOf<RestClient>())
+    private val configDAO = mock(classOf<ConfigDAO>())
+
+    @Mock
+    private val restClient = mock(classOf<RestClient>())
 
     private val fetcher: ApyFetcher = SubSquidApyFetcher(
-        chainsConfigFetcher = chainsConfigFetcher,
+        configDAO = configDAO,
         restClient = restClient
     )
 
     @Test
-    fun `TEST subquerySquidFetcher_fetch EXPECT IllegalArgumentException BECAUSE staking type is null`() =
+    fun `TEST subSquidApyFetcher_fetch EXPECT ExternalApiDAOException_NullUrl BECAUSE staking url is null`() =
         runTest {
-            coEvery { chainsConfigFetcher.loadConfigOrGetCached() }.returns(
-                listOf(
-                    ChainsConfig(
-                        chainId = "polkadot",
-                        assets = emptyList(),
-                        externalApi = ChainsConfig.ExternalApi(
-                            history = null,
-                            staking = null,
-                            explorers = null
-                        )
-                    )
-                ).associateBy { it.chainId }
-            )
+            // Test Data Start
+            val selectedCandidates = listOf("0xSomething")
 
-            try {
-                fetcher.fetch(
-                    chainId = "polkadot",
-                    selectedCandidates = listOf("0xSomething")
+            val apyRequestToMock =
+                SubSquidApyRequest(
+                    url = requestUrl
                 )
-            } catch (e: IllegalArgumentException) {
-                coVerify {
-                    restClient.post(
-                        request = any(),
-                        kSerializer = instanceOf(
-                            GraphQLResponseDataWrapper.serializer(
-                                SubSquidApyResponse.serializer()
-                            )
-                        )
-                    )
-                }.wasNotInvoked()
+            // Test Data End
+
+            // Mocks Preparation Start
+            coEvery {
+                configDAO.stakingUrl(
+                    chainId = chainId
+                )
+            }.throws(ExternalApiDAOException.NullUrl(chainId))
+            // Mocks Preparation End
+
+            assertFailsWith<ExternalApiDAOException.NullUrl> {
+                fetcher.fetch(
+                    chainId = chainId,
+                    selectedCandidates = selectedCandidates
+                )
             }
+
+            // Verification & Assertion
+            coVerify {
+                restClient.post(
+                    request = eq(apyRequestToMock),
+                )
+            }.wasNotInvoked()
         }
 
     @Test
-    fun `TEST subquerySquidFetcher_fetch EXPECT IllegalArgumentException BECAUSE selectedCandidates lack hex prefix`() =
+    fun `TEST subSquidApyFetcher_fetch EXPECT IllegalArgumentException BECAUSE selectedCandidates lack hex prefix`() =
         runTest {
-            try {
-                fetcher.fetch(
-                    chainId = "polkadot",
-                    selectedCandidates = listOf("")
+            // Test Data Start
+            val selectedCandidates = listOf("")
+
+            val apyRequestToMock =
+                SubSquidApyRequest(
+                    url = requestUrl
                 )
-            } catch (e: IllegalArgumentException) {
-                coVerify {
-                    restClient.post(
-                        request = any(),
-                        kSerializer = instanceOf(
-                            GraphQLResponseDataWrapper.serializer(
-                                SubSquidApyResponse.serializer()
-                            )
-                        )
-                    )
-                }.wasNotInvoked()
+            // Test Data End
+
+            // Mocks Preparation Start
+            coEvery {
+                configDAO.stakingUrl(
+                    chainId = chainId
+                )
+            }.returns(requestUrl)
+            // Mocks Preparation End
+
+            assertFailsWith<IllegalArgumentException> {
+                fetcher.fetch(
+                    chainId = chainId,
+                    selectedCandidates = selectedCandidates
+                )
             }
+
+            // Verification & Assertion
+            coVerify {
+                restClient.post(
+                    request = eq(apyRequestToMock),
+                )
+            }.wasNotInvoked()
         }
 
     @Test
-    fun `TEST subquerySquidFetcher_fetch EXPECT success`() = runTest {
+    fun `TEST subSquidApyFetcher_fetch EXPECT success`() = runTest {
         // Test Data Start
-        val polkadotUrl = "polkadot.url"
+        val selectedCandidates = listOf("0xSomething")
 
-        val selectedCandidates = listOf("0xSomethinig")
+        val apyRequestToMock =
+            SubSquidApyRequest(
+                url = requestUrl
+            )
 
-        val apyRequestToMock = SubSquidApyRequest(
-            url = polkadotUrl
-        )
-
-        val apyResponseToReturn = GraphQLResponseDataWrapper(
-            data = SubSquidApyResponse(
-                stakers = listOf(
-                    SubSquidApyResponse.CollatorApyElement(
-                        stashId = "stashId_123",
-                        apr24h = "apr_123"
+        val apyResponseToReturn =
+            GraphQLResponseDataWrapper(
+                data = SubSquidApyResponse(
+                    stakers = listOf(
+                        SubSquidApyResponse.CollatorApyElement(
+                            stashId = "stashId_123",
+                            apr24h = "apr_123"
+                        )
                     )
                 )
             )
-        )
         // Test Data End
 
-        coEvery { chainsConfigFetcher.loadConfigOrGetCached() }.returns(
-            listOf(
-                ChainsConfig(
-                    chainId = "polkadot",
-                    assets = emptyList(),
-                    externalApi = ChainsConfig.ExternalApi(
-                        history = null,
-                        staking = ChainsConfig.ExternalApi.PlainSection(
-                            type = ChainsConfig.ExternalApi.Type.SubSquid,
-                            url = polkadotUrl
-                        ),
-                        explorers = null
-                    )
-                )
-            ).associateBy { it.chainId }
-        )
+        // Mocks Preparation Start
+        coEvery {
+            configDAO.stakingUrl(
+                chainId = chainId
+            )
+        }.returns(requestUrl)
 
         coEvery {
             restClient.post(
                 request = eq(apyRequestToMock),
-                kSerializer = instanceOf(
-                    GraphQLResponseDataWrapper.serializer(
-                        SubSquidApyResponse.serializer()
-                    )
-                )
             )
         }.returns(apyResponseToReturn)
+        // Mocks Preparation End
 
         val result = fetcher.fetch(
-            chainId = "polkadot",
+            chainId = chainId,
             selectedCandidates = selectedCandidates
         )
+
+        // Verification & Assertion
+        coVerify {
+            restClient.post(
+                request = eq(apyRequestToMock),
+            )
+        }.wasInvoked(1)
 
         assertTrue {
             val keysComparison = result.keys.containsAll(

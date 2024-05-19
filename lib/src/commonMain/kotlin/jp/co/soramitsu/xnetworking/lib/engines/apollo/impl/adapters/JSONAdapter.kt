@@ -55,7 +55,7 @@ class JSONAdapter: Adapter<JsonElement> {
     private fun adaptSerialization(element: JsonElement): Any =
         when(element) {
             is JsonArray -> element.map {
-                adaptSerialization(element)
+                adaptSerialization(it)
             }
             is JsonObject -> element.mapValues {
                 adaptSerialization(it.value)

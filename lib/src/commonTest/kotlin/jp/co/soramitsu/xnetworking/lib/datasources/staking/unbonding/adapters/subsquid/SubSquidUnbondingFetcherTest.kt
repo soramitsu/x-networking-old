@@ -1,177 +1,221 @@
 package jp.co.soramitsu.xnetworking.lib.datasources.staking.unbonding.adapters.subsquid
 
 import io.mockative.Mock
-import io.mockative.any
 import io.mockative.classOf
 import io.mockative.coEvery
 import io.mockative.coVerify
-import io.mockative.instanceOf
+import io.mockative.eq
 import io.mockative.mock
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ChainsConfigFetcher
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ChainsConfig
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ConfigDAO
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ExternalApiDAOException
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.api.adapters.UnbondingFetcher
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.api.models.Unbonding
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.impl.domain.unbonding.adapters.subsquid.SubSquidUnbondingFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.staking.impl.domain.unbonding.adapters.subsquid.SubSquidUnbondingRequest
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.impl.domain.unbonding.adapters.subsquid.SubSquidUnbondingResponse
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.GraphQLResponseDataWrapper
+import jp.co.soramitsu.xnetworking.lib.engines.utils.GraphQLResponseDataWrapper
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
+import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
 class SubSquidUnbondingFetcherTest {
 
-    @Mock
-    val chainsConfigFetcher = mock(classOf<ChainsConfigFetcher>())
+    private companion object {
+        const val chainId = "polkadot"
+        const val requestUrl = "polkadot.url"
+    }
 
     @Mock
-    val restClient = mock(classOf<RestClient>())
+    private val configDAO = mock(classOf<ConfigDAO>())
+
+    @Mock
+    private val restClient = mock(classOf<RestClient>())
 
     private val fetcher: UnbondingFetcher = SubSquidUnbondingFetcher(
-        chainsConfigFetcher = chainsConfigFetcher,
+        configDAO = configDAO,
         restClient = restClient
     )
 
     @Test
-    fun `TEST subqueryUnbondingFetcher_fetch EXPECT IllegalArgumentException BECAUSE staking type is null`() =
+    fun `TEST subSquidUnbondingFetcher_fetch EXPECT ExternalApiDAOException_NullUrl BECAUSE staking url is null`() =
         runTest {
-            coEvery { chainsConfigFetcher.loadConfigOrGetCached() }.returns(
-                listOf(
-                    ChainsConfig(
-                        chainId = "polkadot",
-                        assets = emptyList(),
-                        externalApi = ChainsConfig.ExternalApi(
-                            history = null,
-                            staking = null,
-                            explorers = null
-                        )
-                    )
-                ).associateBy { it.chainId }
-            )
+            // Test Data Start
+            val delegatorAddress = "0xSomething"
+            val collatorAddress = "0xSomething"
 
-            try {
-                fetcher.fetch(
-                    chainId = "polkadot",
-                    delegatorAddress = "0xSomething",
-                    collatorAddress = "0xSomething"
+            val unbondingRequestToMock =
+                SubSquidUnbondingRequest(
+                    url = requestUrl,
+                    delegatorAddress = delegatorAddress,
+                    collatorAddress = collatorAddress
                 )
-            } catch (e: IllegalArgumentException) {
-                coVerify {
-                    restClient.post(
-                        request = any(),
-                        kSerializer = instanceOf(
-                            GraphQLResponseDataWrapper.serializer(
-                                SubSquidUnbondingResponse.serializer()
-                            )
-                        )
-                    )
-                }.wasNotInvoked()
+            // Test Data End
+
+            // Mocks Preparation Start
+            coEvery {
+                configDAO.stakingUrl(
+                    chainId = chainId
+                )
+            }.throws(ExternalApiDAOException.NullUrl(chainId))
+            // Mocks Preparation End
+
+            assertFailsWith<ExternalApiDAOException.NullUrl> {
+                fetcher.fetch(
+                    chainId = chainId,
+                    delegatorAddress = delegatorAddress,
+                    collatorAddress = collatorAddress
+                )
             }
+
+            // Verification & Assertion
+            coVerify {
+                restClient.post(
+                    request = eq(unbondingRequestToMock),
+                )
+            }.wasNotInvoked()
         }
 
     @Test
-    fun `TEST subqueryUnbondingFetcher_fetch EXPECT IllegalArgumentException BECAUSE delegatorAddress has no hex prefix`() =
+    fun `TEST subSquidUnbondingFetcher_fetch EXPECT IllegalArgumentException BECAUSE delegatorAddress has no hex prefix`() =
         runTest {
-            try {
-                fetcher.fetch(
-                    chainId = "polkadot",
-                    delegatorAddress = "",
-                    collatorAddress = "0xSomething"
+            // Test Data Start
+            val delegatorAddress = ""
+            val collatorAddress = "0xSomething"
+
+            val unbondingRequestToMock =
+                SubSquidUnbondingRequest(
+                    url = requestUrl,
+                    delegatorAddress = delegatorAddress,
+                    collatorAddress = collatorAddress
                 )
-            } catch (e: IllegalArgumentException) {
-                coVerify {
-                    restClient.post(
-                        request = any(),
-                        kSerializer = instanceOf(
-                            GraphQLResponseDataWrapper.serializer(
-                                SubSquidUnbondingResponse.serializer()
-                            )
-                        )
-                    )
-                }.wasNotInvoked()
+            // Test Data End
+
+            // Mocks Preparation Start
+            coEvery {
+                configDAO.stakingUrl(
+                    chainId = chainId
+                )
+            }.returns(requestUrl)
+            // Mocks Preparation End
+
+            assertFailsWith<IllegalArgumentException> {
+                fetcher.fetch(
+                    chainId = chainId,
+                    delegatorAddress = delegatorAddress,
+                    collatorAddress = collatorAddress
+                )
             }
+
+            // Verification & Assertion
+            coVerify {
+                restClient.post(
+                    request = eq(unbondingRequestToMock),
+                )
+            }.wasNotInvoked()
         }
 
     @Test
-    fun `TEST subqueryUnbondingFetcher_fetch EXPECT IllegalArgumentException BECAUSE collatorAddress has no hex prefix`() =
+    fun `TEST subSquidUnbondingFetcher_fetch EXPECT IllegalArgumentException BECAUSE collatorAddress has no hex prefix`() =
         runTest {
-            try {
-                fetcher.fetch(
-                    chainId = "polkadot",
-                    delegatorAddress = "0xSomething",
-                    collatorAddress = ""
+            // Test Data Start
+            val delegatorAddress = "0xSomething"
+            val collatorAddress = ""
+
+            val unbondingRequestToMock =
+                SubSquidUnbondingRequest(
+                    url = requestUrl,
+                    delegatorAddress = delegatorAddress,
+                    collatorAddress = collatorAddress
                 )
-            } catch (e: IllegalArgumentException) {
-                coVerify {
-                    restClient.post(
-                        request = any(),
-                        kSerializer = instanceOf(
-                            GraphQLResponseDataWrapper.serializer(
-                                SubSquidUnbondingResponse.serializer()
-                            )
-                        )
-                    )
-                }.wasNotInvoked()
+            // Test Data End
+
+            // Mocks Preparation Start
+            coEvery {
+                configDAO.stakingUrl(
+                    chainId = chainId
+                )
+            }.returns(requestUrl)
+            // Mocks Preparation End
+
+            assertFailsWith<IllegalArgumentException> {
+                fetcher.fetch(
+                    chainId = chainId,
+                    delegatorAddress = delegatorAddress,
+                    collatorAddress = collatorAddress
+                )
             }
+
+            // Verification & Assertion
+            coVerify {
+                restClient.post(
+                    request = eq(unbondingRequestToMock),
+                )
+            }.wasNotInvoked()
         }
 
     @Test
-    fun `TEST subqueryUnbondingFetcher_fetch EXPECT success`() = runTest {
+    fun `TEST subSquidUnbondingFetcher_fetch EXPECT success`() = runTest {
         // Test Data Start
-        val responseToReturn = GraphQLResponseDataWrapper(
-            data = SubSquidUnbondingResponse(
-                rewards = listOf(
-                    SubSquidUnbondingResponse.Reward(
-                        id = "id_123",
-                        amount = "123",
-                        blockNumber = 1,
-                        round = 12,
-                        timestamp = "timestamp_123",
-                        extrinsicHash = "extrinsicHash_123"
+        val delegatorAddress = "0xSomething"
+        val collatorAddress = "0xSomething"
+
+        val unbondingRequestToMock =
+            SubSquidUnbondingRequest(
+                url = requestUrl,
+                delegatorAddress = delegatorAddress,
+                collatorAddress = collatorAddress
+            )
+
+        val unbondingResponseToReturn =
+            GraphQLResponseDataWrapper(
+                data = SubSquidUnbondingResponse(
+                    rewards = listOf(
+                        SubSquidUnbondingResponse.Reward(
+                            id = "id_123",
+                            amount = "123",
+                            blockNumber = 1,
+                            round = 12,
+                            timestamp = "timestamp_123",
+                            extrinsicHash = "extrinsicHash_123"
+                        )
                     )
                 )
             )
-        )
         // Test Data End
 
-        coEvery { chainsConfigFetcher.loadConfigOrGetCached() }.returns(
-            listOf(
-                ChainsConfig(
-                    chainId = "polkadot",
-                    assets = emptyList(),
-                    externalApi = ChainsConfig.ExternalApi(
-                        history = null,
-                        staking = ChainsConfig.ExternalApi.PlainSection(
-                            type = ChainsConfig.ExternalApi.Type.SubSquid,
-                            url = "polkadot.url"
-                        ),
-                        explorers = null
-                    )
-                )
-            ).associateBy { it.chainId }
-        )
+        // Mocks Preparation Start
+        coEvery {
+            configDAO.stakingUrl(
+                chainId = chainId
+            )
+        }.returns(requestUrl)
 
         coEvery {
             restClient.post(
-                request = any(),
-                kSerializer = instanceOf(
-                    GraphQLResponseDataWrapper.serializer(
-                        SubSquidUnbondingResponse.serializer()
-                    )
-                )
+                request = eq(unbondingRequestToMock),
             )
-        }.returns(responseToReturn)
+        }.returns(unbondingResponseToReturn)
+        // Mocks Preparation End
 
         val result = fetcher.fetch(
-            chainId = "polkadot",
-            delegatorAddress = "0xSomething",
-            collatorAddress = "0xSomething"
+            chainId = chainId,
+            delegatorAddress = delegatorAddress,
+            collatorAddress = collatorAddress
         )
+
+        // Verification & Assertion
+        coVerify {
+            restClient.post(
+                request = eq(unbondingRequestToMock),
+            )
+        }.wasInvoked(1)
 
         assertTrue {
             result.foldRightIndexed(true) { index, unbonding, acc ->
                 val expectedUnbonding =
-                    responseToReturn.data.rewards[index].run {
+                    unbondingResponseToReturn.data.rewards[index].run {
                         Unbonding(
                             amount = amount ?: "0",
                             timestamp = timestamp ?: "0",

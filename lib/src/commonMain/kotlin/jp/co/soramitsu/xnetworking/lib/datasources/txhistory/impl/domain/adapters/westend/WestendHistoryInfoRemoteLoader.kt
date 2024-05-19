@@ -1,40 +1,42 @@
 package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.westend
 
 import com.apollographql.apollo3.api.Optional
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ChainsConfigFetcher
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.HistoryInfoRemoteLoader
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.TxFilter
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.HistoryInfoRemoteLoader
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.TxFilter
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryInfo
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItem
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItemParam
 import jp.co.soramitsu.xnetworking.lib.engines.apollo.api.ApolloClientStore
-import jp.co.soramitsu.xnetworking.lib.engines.apollo.impl.utils.asJsonObjectNullable
-import jp.co.soramitsu.xnetworking.lib.engines.apollo.impl.utils.getPrimitiveContentOrEmpty
 import jp.co.soramitsu.xnetworking.fearlesswallet.GetFearlessHistoryElementsQuery
 import jp.co.soramitsu.xnetworking.fearlesswallet.type.HistoryElementsOrderBy
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ConfigDAO
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.ChainInfo
+import jp.co.soramitsu.xnetworking.lib.engines.utils.fieldOrNull
 
 class WestendHistoryInfoRemoteLoader(
     private val apolloClientStore: ApolloClientStore,
-    private val chainsConfigFetcher: ChainsConfigFetcher
-): HistoryInfoRemoteLoader {
+    private val configDAO: ConfigDAO
+): HistoryInfoRemoteLoader() {
 
     override suspend fun loadHistoryInfo(
         pageCount: Int,
         cursor: String?,
         signAddress: String,
-        chainId: String,
-        assetId: String,
+        chainInfo: ChainInfo,
         filters: Set<TxFilter>
     ): TxHistoryInfo {
-        val config = chainsConfigFetcher.loadConfigOrGetCached()[chainId]
-        val requestUrl = requireNotNull(config?.externalApi?.history?.url) {
-            "Url for WestEnd blockExplorer on chain with id - $chainId - is null."
+        if (filters.isEmpty()) {
+            return TxHistoryInfo(
+                endCursor = cursor,
+                endReached = false,
+                items = emptyList()
+            )
         }
 
-        val response = requireNotNull(
+        val response = checkNotNull(
             apolloClientStore.query(
-                requestUrl,
-                GetFearlessHistoryElementsQuery(
+                serverUrl = configDAO.historyUrl(chainInfo.chainId),
+                query = GetFearlessHistoryElementsQuery(
                     pageCount = pageCount,
                     cursor = cursor.orEmpty(),
                     address = signAddress,
@@ -44,113 +46,119 @@ class WestendHistoryInfoRemoteLoader(
         ) { "GetHistoryElementsQuery response is null" }
 
         // Unparsing JSON scalar and normally typed contents
-        val items =
-            response.nodes.filterNotNull().map {
-                val rewards = it.reward?.asJsonObjectNullable?.let { jsonObject ->
-                        listOf(
-                            TxHistoryItemParam(
-                                "amount",
-                                jsonObject.getPrimitiveContentOrEmpty("amount")
-                            ),
-                            TxHistoryItemParam(
-                                "era",
-                                jsonObject.getPrimitiveContentOrEmpty("era")
-                            ),
-                            TxHistoryItemParam(
-                                "isReward",
-                                jsonObject.getPrimitiveContentOrEmpty("isReward")
-                            ),
-                            TxHistoryItemParam(
-                                "validator",
-                                jsonObject.getPrimitiveContentOrEmpty("validator")
-                            ),
-                        )
-                    }
+        val items = mutableListOf<TxHistoryItem>()
 
-                val transfers = it.transfer?.asJsonObjectNullable?.let { jsonObject ->
-                        listOf(
-                            TxHistoryItemParam(
-                                "block",
-                                jsonObject.getPrimitiveContentOrEmpty("block")
-                            ),
-                            TxHistoryItemParam(
-                                "amount",
-                                jsonObject.getPrimitiveContentOrEmpty("amount")
-                            ),
-                            TxHistoryItemParam(
-                                "fee",
-                                jsonObject.getPrimitiveContentOrEmpty("fee")
-                            ),
-                            TxHistoryItemParam(
-                                "to",
-                                jsonObject.getPrimitiveContentOrEmpty("to")
-                            ),
-                            TxHistoryItemParam(
-                                "from",
-                                jsonObject.getPrimitiveContentOrEmpty("from")
-                            ),
-                            TxHistoryItemParam(
-                                "extrinsicHash",
-                                jsonObject.getPrimitiveContentOrEmpty("extrinsicHash")
-                            ),
-                            TxHistoryItemParam(
-                                "success",
-                                jsonObject.getPrimitiveContentOrEmpty("success")
-                            )
-                        )
-                    }
+        val responseItems = response.nodes.asSequence()
+            .filterNotNull()
 
-                val extrinsics = it.extrinsic?.asJsonObjectNullable?.let { jsonObject ->
-                        listOf(
-                            TxHistoryItemParam(
-                                "call",
-                                jsonObject.getPrimitiveContentOrEmpty("call")
-                            ),
-                            TxHistoryItemParam(
-                                "fee",
-                                jsonObject.getPrimitiveContentOrEmpty("fee")
-                            ),
-                            TxHistoryItemParam(
-                                "hash",
-                                jsonObject.getPrimitiveContentOrEmpty("hash")
-                            ),
-                            TxHistoryItemParam(
-                                "module",
-                                jsonObject.getPrimitiveContentOrEmpty("module")
-                            ),
-                            TxHistoryItemParam(
-                                "success",
-                                jsonObject.getPrimitiveContentOrEmpty("success")
-                            ),
-                        )
-                    }
-
+        if (TxFilter.REWARD in filters) {
+            responseItems.map {
                 TxHistoryItem(
                     id = it.id,
                     blockHash = "",
-                    module = when {
-                        rewards != null -> "reward"
-                        transfers != null -> "transfer"
-                        extrinsics != null -> "extrinsic"
-                        else -> ""
-                    },
+                    module = "reward",
                     method = "",
                     timestamp = it.timestamp,
-                    networkFee = "",
+                    networkFee = "0",
                     success = true,
                     nestedData = null,
-                    data = when {
-                        rewards != null -> rewards
-                        transfers != null -> transfers
-                        extrinsics != null -> extrinsics
-                        else -> null
-                    },
+                    data = it.reward?.let { jsonObject ->
+                        listOf(
+                            TxHistoryItemParam(
+                                "amount",
+                                jsonObject.fieldOrNull("amount").orEmpty()
+                            ),
+                            TxHistoryItemParam(
+                                "era",
+                                jsonObject.fieldOrNull("era").orEmpty()
+                            ),
+                            TxHistoryItemParam(
+                                "isReward",
+                                jsonObject.fieldOrNull("isReward").orEmpty()
+                            ),
+                            TxHistoryItemParam(
+                                "validator",
+                                jsonObject.fieldOrNull("validator").orEmpty()
+                            ),
+                        )
+                    }
                 )
-            }
+            }.toCollection(items)
+        }
+
+        if (TxFilter.TRANSFER in filters) {
+            responseItems.map {
+                TxHistoryItem(
+                    id = it.id,
+                    blockHash = "",
+                    module = "transfer",
+                    method = "",
+                    timestamp = it.timestamp,
+                    networkFee = it.transfer.fieldOrNull("fee").orEmpty(),
+                    success = it.transfer.fieldOrNull("success")?.toBooleanStrictOrNull() ?: false,
+                    nestedData = null,
+                    data = it.transfer?.let { jsonObject ->
+                        listOf(
+                            TxHistoryItemParam(
+                                "block",
+                                jsonObject.fieldOrNull("block").orEmpty()
+                            ),
+                            TxHistoryItemParam(
+                                "amount",
+                                jsonObject.fieldOrNull("amount").orEmpty()
+                            ),
+                            TxHistoryItemParam(
+                                "to",
+                                jsonObject.fieldOrNull("to").orEmpty()
+                            ),
+                            TxHistoryItemParam(
+                                "from",
+                                jsonObject.fieldOrNull("from").orEmpty()
+                            ),
+                            TxHistoryItemParam(
+                                "extrinsicHash",
+                                jsonObject.fieldOrNull("extrinsicHash").orEmpty()
+                            )
+                        )
+                    }
+                )
+            }.toCollection(items)
+        }
+
+        if (TxFilter.EXTRINSIC in filters) {
+            responseItems.map {
+                TxHistoryItem(
+                    id = it.id,
+                    blockHash = "",
+                    module = "extrinsic",
+                    method = "",
+                    timestamp = it.timestamp,
+                    networkFee = it.extrinsic.fieldOrNull("fee").orEmpty(),
+                    success = it.extrinsic.fieldOrNull("success")?.toBooleanStrictOrNull() ?: false,
+                    nestedData = null,
+                    data = it.extrinsic?.let { jsonObject ->
+                        listOf(
+                            TxHistoryItemParam(
+                                "call",
+                                jsonObject.fieldOrNull("call").orEmpty()
+                            ),
+                            TxHistoryItemParam(
+                                "hash",
+                                jsonObject.fieldOrNull("hash").orEmpty()
+                            ),
+                            TxHistoryItemParam(
+                                "module",
+                                jsonObject.fieldOrNull("module").orEmpty()
+                            ),
+                        )
+                    }
+                )
+            }.toCollection(items)
+        }
 
         return TxHistoryInfo(
             endCursor = response.pageInfo.endCursor,
-            endReached = response.pageInfo.hasNextPage,
+            endReached = !response.pageInfo.hasNextPage,
             items = items
         )
     }

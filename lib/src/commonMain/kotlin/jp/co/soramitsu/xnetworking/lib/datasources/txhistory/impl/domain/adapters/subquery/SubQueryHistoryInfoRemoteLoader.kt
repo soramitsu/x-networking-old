@@ -1,56 +1,56 @@
 package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.subquery
 
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ChainsConfigFetcher
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.HistoryInfoRemoteLoader
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.TxFilter
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ConfigDAO
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.ChainInfo
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.HistoryInfoRemoteLoader
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.TxFilter
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryInfo
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItem
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItemParam
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.GraphQLResponseDataWrapper
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
 
 class SubQueryHistoryInfoRemoteLoader(
-    private val chainsConfigFetcher: ChainsConfigFetcher,
+    private val configDAO: ConfigDAO,
     private val restClient: RestClient
-): HistoryInfoRemoteLoader {
+): HistoryInfoRemoteLoader() {
 
     override suspend fun loadHistoryInfo(
         pageCount: Int,
         cursor: String?,
         signAddress: String,
-        chainId: String,
-        assetId: String,
+        chainInfo: ChainInfo,
         filters: Set<TxFilter>
     ): TxHistoryInfo {
-        val config = chainsConfigFetcher.loadConfigOrGetCached()[chainId]
-        val stakingType = config?.assets?.find { it.id == assetId }?.staking
-        val requestUrl = requireNotNull(config?.externalApi?.history?.url) {
-            "Url for SubQuery blockExplorer on chain with id - $chainId - is null."
+        if (filters.isEmpty()) {
+            return TxHistoryInfo(
+                endCursor = cursor,
+                endReached = false,
+                items = emptyList()
+            )
         }
 
         val historyElements = restClient.post(
             request = SubQueryRequest(
-                url = requestUrl,
+                url = configDAO.historyUrl(chainInfo.chainId),
                 cursor = cursor,
                 pageCount = pageCount,
                 address = signAddress,
                 filters = filters,
-                requestRewards = stakingType != null
-            ),
-            kSerializer = GraphQLResponseDataWrapper.serializer(
-                SubQueryResponse.serializer()
+                requestRewards = configDAO.staking(chainInfo.chainId) != null
             )
         ).data.historyElements
 
-        return TxHistoryInfo(
-            endCursor = historyElements.pageInfo.endCursor,
-            endReached = historyElements.pageInfo.endCursor == null,
-            items = historyElements.nodes.mapNotNull { node ->
+        val items = mutableListOf<TxHistoryItem>()
+
+        val nodes = historyElements.nodes.asSequence()
+
+        if (TxFilter.TRANSFER in filters) {
+            nodes.mapNotNull { node ->
                 node.transfer?.let {
                     TxHistoryItem(
                         id = node.id,
                         blockHash = it.block,
-                        module = "",
+                        module = "transfer",
                         method = "",
                         timestamp = node.timestamp,
                         nestedData = emptyList(),
@@ -75,36 +75,25 @@ class SubQueryHistoryInfoRemoteLoader(
                                 "from",
                                 it.from
                             ),
-                        )
-                    )
-                }?.run { return@mapNotNull this }
-
-                node.extrinsic?.let {
-                    TxHistoryItem(
-                        id = node.id,
-                        blockHash = it.hash,
-                        module = it.module,
-                        method = it.call,
-                        timestamp = node.timestamp,
-                        nestedData = emptyList(),
-                        networkFee = it.fee,
-                        success = it.success,
-                        data = listOfNotNull(
-                            it.assetId?.let { tokenId ->
+                            it.extrinsicHash?.let { extrinsicHash ->
                                 TxHistoryItemParam(
-                                    "tokenId",
-                                    tokenId
+                                    "extrinsicHash",
+                                    extrinsicHash
                                 )
-                            }
+                            },
                         )
                     )
-                }?.run { return@mapNotNull this }
+                }
+            }.toCollection(items)
+        }
 
+        if (TxFilter.REWARD in filters) {
+            nodes.mapNotNull { node ->
                 node.reward?.let {
                     TxHistoryItem(
                         id = node.id,
                         blockHash = "",
-                        module = "",
+                        module = "reward",
                         method = "",
                         timestamp = node.timestamp,
                         nestedData = emptyList(),
@@ -135,10 +124,47 @@ class SubQueryHistoryInfoRemoteLoader(
                             ),
                         )
                     )
-                }?.run { return@mapNotNull this }
+                }
+            }.toCollection(items)
+        }
 
-                return@mapNotNull null
-            }
+        if (TxFilter.EXTRINSIC in filters) {
+            nodes.mapNotNull { node ->
+                node.extrinsic?.let {
+                    TxHistoryItem(
+                        id = node.id,
+                        blockHash = it.hash,
+                        module = "extrinsic",
+                        method = "",
+                        timestamp = node.timestamp,
+                        nestedData = emptyList(),
+                        networkFee = it.fee,
+                        success = it.success,
+                        data = listOfNotNull(
+                            it.assetId?.let { tokenId ->
+                                TxHistoryItemParam(
+                                    "tokenId",
+                                    tokenId
+                                )
+                            },
+                            TxHistoryItemParam(
+                                "module",
+                                it.module
+                            ),
+                            TxHistoryItemParam(
+                                "call",
+                                it.call
+                            ),
+                        )
+                    )
+                }
+            }.toCollection(items)
+        }
+
+        return TxHistoryInfo(
+            endCursor = historyElements.pageInfo.endCursor,
+            endReached = historyElements.pageInfo.endCursor == null,
+            items = items
         )
     }
 

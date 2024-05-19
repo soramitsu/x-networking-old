@@ -25,7 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.TxFilter
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.TxFilter
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
@@ -103,8 +103,7 @@ private fun MainScreen() {
                                 pageCount = 1,
                                 cursor = page,
                                 signAddress = "paste your OkLink address",
-                                chainId = ChainAssetConstants.OkLink.chainId,
-                                assetId = ChainAssetConstants.OkLink.utilityAssetId,
+                                chainInfo = ChainInfoConstants.OkLink.chainInfo,
                                 filters = setOf(TxFilter.TRANSFER)
                             )
                             Log.e(

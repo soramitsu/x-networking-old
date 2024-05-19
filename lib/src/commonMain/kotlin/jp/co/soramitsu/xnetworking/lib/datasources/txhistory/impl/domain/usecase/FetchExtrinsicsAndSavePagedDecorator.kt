@@ -1,9 +1,10 @@
 package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.usecase
 
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.TxFilter
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.TxFilter
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.SoraHistoryDBImpl
 import jp.co.soramitsu.xnetworking.db.Extrinsics
 import jp.co.soramitsu.xnetworking.db.SignerInfo
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.ChainInfo
 
 internal class FetchExtrinsicsAndSavePagedDecorator(
     private val fetchExtrinsicsAndSaveUseCase: FetchExtrinsicsAndSaveUseCase,
@@ -20,15 +21,14 @@ internal class FetchExtrinsicsAndSavePagedDecorator(
         page: Long,
         currentSignerInfo: SignerInfo,
         extrinsicsCountPerPage: Int,
-        chainId: String,
-        assetId: String,
+        chainInfo: ChainInfo,
         filters: Set<TxFilter>
     ): PagedExtrinsicsWrapper {
         var dbOffset = (page - 1) * extrinsicsCountPerPage
 
         val extrinsics = soraHistoryDBImpl.getExtrinsics(
             signAddress = signAddress,
-            chainId = chainId,
+            chainId = chainInfo.chainId,
             offset = dbOffset,
             count = extrinsicsCountPerPage
         )
@@ -48,12 +48,11 @@ internal class FetchExtrinsicsAndSavePagedDecorator(
                 )
             } else {
                 val curSignerInfo = fetchExtrinsicsAndSaveUseCase<T>(
-                    cursor = currentSignerInfo.oldCursor.orEmpty(),
+                    cursor = currentSignerInfo.oldCursor,
                     pageCount = extrinsicsCountPerPage,
                     signAddress = signAddress,
                     currentSignerInfo = currentSignerInfo,
-                    chainId = chainId,
-                    assetId = assetId,
+                    chainInfo = chainInfo,
                     filters = filters
                 )
 
@@ -61,7 +60,7 @@ internal class FetchExtrinsicsAndSavePagedDecorator(
 
                 val moreExtrinsics = soraHistoryDBImpl.getExtrinsics(
                     signAddress = signAddress,
-                    chainId = chainId,
+                    chainId = chainInfo.chainId,
                     offset = dbOffset,
                     count = extrinsicsRemainder
                 )

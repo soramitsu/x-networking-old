@@ -1,154 +1,185 @@
 package jp.co.soramitsu.xnetworking.lib.datasources.staking.validators.adapters.sora
 
 import io.mockative.Mock
-import io.mockative.any
 import io.mockative.classOf
 import io.mockative.coEvery
 import io.mockative.coVerify
-import io.mockative.instanceOf
+import io.mockative.eq
 import io.mockative.mock
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ChainsConfigFetcher
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ChainsConfig
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ConfigDAO
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ExternalApiDAOException
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.api.adapters.ValidatorsFetcher
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.impl.domain.validators.adapters.sora.SoraValidatorsFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.staking.impl.domain.validators.adapters.sora.SoraValidatorsRequest
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.impl.domain.validators.adapters.sora.SoraValidatorsResponse
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.GraphQLResponseDataWrapper
+import jp.co.soramitsu.xnetworking.lib.engines.utils.GraphQLResponseDataWrapper
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
+import kotlin.test.assertFailsWith
 
 class SoraValidatorsFetcherTest {
 
-    @Mock
-    val chainsConfigFetcher = mock(classOf<ChainsConfigFetcher>())
+    private companion object {
+        const val chainId = "sora"
+        const val requestUrl = "sora.url"
+
+        const val stashAccountAddress = ""
+    }
 
     @Mock
-    val restClient = mock(classOf<RestClient>())
+    private val configDAO = mock(classOf<ConfigDAO>())
+
+    @Mock
+    private val restClient = mock(classOf<RestClient>())
 
     private val fetcher: ValidatorsFetcher = SoraValidatorsFetcher(
-        chainsConfigFetcher = chainsConfigFetcher,
+        configDAO = configDAO,
         restClient = restClient
     )
 
     @Test
-    fun `TEST soraValidatorsFetcher_fetch EXPECT IllegalArgumentException BECAUSE staking type is null`() =
+    fun `TEST soraValidatorsFetcher_fetch EXPECT ExternalApiDAOException_NullUrl BECAUSE staking url is null`() =
         runTest {
-            coEvery { chainsConfigFetcher.loadConfigOrGetCached() }.returns(
-                listOf(
-                    ChainsConfig(
-                        chainId = "sora",
-                        assets = emptyList(),
-                        externalApi = ChainsConfig.ExternalApi(
-                            history = null,
-                            staking = null,
-                            explorers = null
-                        )
-                    )
-                ).associateBy { it.chainId }
-            )
+            // Test Data Start
+            val historicalRange = listOf("from", "to")
 
-            try {
-                fetcher.fetch(
-                    chainId = "sora",
-                    stashAccountAddress = "",
-                    historicalRange = emptyList()
+            val validatorsRequestToMock =
+                SoraValidatorsRequest(
+                    url = requestUrl,
+                    accountAddress = stashAccountAddress,
+                    eraFrom = historicalRange.first(),
+                    eraTo = historicalRange.last()
                 )
-            } catch (e: IllegalArgumentException) {
-                coVerify {
-                    restClient.post(
-                        request = any(),
-                        kSerializer = instanceOf(
-                            GraphQLResponseDataWrapper.serializer(
-                                SoraValidatorsResponse.serializer()
-                            )
-                        )
-                    )
-                }.wasNotInvoked()
+            // Test Data End
+
+            // Mocks Preparation Start
+            coEvery {
+                configDAO.stakingUrl(
+                    chainId = chainId
+                )
+            }.throws(ExternalApiDAOException.NullUrl(chainId))
+            // Mocks Preparation End
+
+            assertFailsWith<ExternalApiDAOException.NullUrl> {
+                fetcher.fetch(
+                    chainId = chainId,
+                    stashAccountAddress = stashAccountAddress,
+                    historicalRange = historicalRange
+                )
             }
+
+            // Verification & Assertion
+            coVerify {
+                restClient.post(
+                    request = eq(validatorsRequestToMock)
+                )
+            }.wasNotInvoked()
         }
 
     @Test
     fun `TEST soraValidatorsFetcher_fetch EXPECT IllegalArgumentException BECAUSE historical range is empty`() =
         runTest {
-            try {
-                fetcher.fetch(
-                    chainId = "sora",
-                    stashAccountAddress = "",
-                    historicalRange = emptyList()
+            // Test Data Start
+            val historicalRange = emptyList<String>()
+
+            val validatorsRequestToMock =
+                SoraValidatorsRequest(
+                    url = requestUrl,
+                    accountAddress = stashAccountAddress,
+                    eraFrom = "should not be accessed",
+                    eraTo = "should not be accessed"
                 )
-            } catch (e: IllegalArgumentException) {
-                coVerify {
-                    restClient.post(
-                        request = any(),
-                        kSerializer = instanceOf(
-                            GraphQLResponseDataWrapper.serializer(
-                                SoraValidatorsResponse.serializer()
-                            )
-                        )
-                    )
-                }.wasNotInvoked()
+            // Test Data End
+
+            // Mocks Preparation Start
+            coEvery {
+                configDAO.stakingUrl(
+                    chainId = chainId
+                )
+            }.returns(requestUrl)
+            // Mocks Preparation End
+
+            assertFailsWith<IllegalArgumentException> {
+                fetcher.fetch(
+                    chainId = chainId,
+                    stashAccountAddress = stashAccountAddress,
+                    historicalRange = historicalRange
+                )
             }
+
+            // Verification & Assertion
+            coVerify {
+                restClient.post(
+                    request = eq(validatorsRequestToMock)
+                )
+            }.wasNotInvoked()
         }
 
     @Test
     fun `TEST soraValidatorsFetcher_fetch EXPECT success`() = runTest {
         // Test Data Start
-        val responseToReturn = GraphQLResponseDataWrapper(
-            data = SoraValidatorsResponse(
-                stakingEraNominators = listOf(
-                    SoraValidatorsResponse.Nominator(
-                        nominations = listOf(
-                            SoraValidatorsResponse.Nominator.Nomination(
-                                validator = SoraValidatorsResponse.Nominator.Nomination.Validator(
-                                    id = "123"
+        val historicalRange = listOf("from", "to")
+
+        val validatorsRequestToMock =
+            SoraValidatorsRequest(
+                url = requestUrl,
+                accountAddress = stashAccountAddress,
+                eraFrom = historicalRange.first(),
+                eraTo = historicalRange.last()
+            )
+
+        val validatorsResponseToReturn =
+            GraphQLResponseDataWrapper(
+                data = SoraValidatorsResponse(
+                    stakingEraNominators = listOf(
+                        SoraValidatorsResponse.Nominator(
+                            nominations = listOf(
+                                SoraValidatorsResponse.Nominator.Nomination(
+                                    validator = SoraValidatorsResponse.Nominator.Nomination.Validator(
+                                        id = "123"
+                                    )
                                 )
                             )
                         )
                     )
                 )
             )
-        )
         // Test Data End
 
-        coEvery { chainsConfigFetcher.loadConfigOrGetCached() }.returns(
-            listOf(
-                ChainsConfig(
-                    chainId = "sora",
-                    assets = emptyList(),
-                    externalApi = ChainsConfig.ExternalApi(
-                        history = null,
-                        staking = ChainsConfig.ExternalApi.PlainSection(
-                            type = ChainsConfig.ExternalApi.Type.Sora,
-                            url = "sora.url"
-                        ),
-                        explorers = null
-                    )
-                )
-            ).associateBy { it.chainId }
-        )
+        // Mocks Preparation Start
+        coEvery {
+            configDAO.stakingUrl(
+                chainId = chainId
+            )
+        }.returns(requestUrl)
 
         coEvery {
             restClient.post(
-                request = any(),
-                kSerializer = instanceOf(
-                    GraphQLResponseDataWrapper.serializer(
-                        SoraValidatorsResponse.serializer()
-                    )
-                )
+                request = eq(validatorsRequestToMock),
             )
-        }.returns(responseToReturn)
+        }.returns(validatorsResponseToReturn)
+        // Mocks Preparation End
 
         val result = fetcher.fetch(
-            chainId = "sora",
-            stashAccountAddress = "",
-            historicalRange = listOf(
-                "from", "to"
-            )
+            chainId = chainId,
+            stashAccountAddress = stashAccountAddress,
+            historicalRange = historicalRange
         )
 
+        // Verification & Assertion
+        coVerify {
+            restClient.post(
+                request = eq(validatorsRequestToMock),
+            )
+        }.wasInvoked(1)
+
         assertContentEquals(
-            responseToReturn.data.stakingEraNominators.flatMap { it.nominations }.mapNotNull { it.validator.id }.distinct(),
+            validatorsResponseToReturn.data.stakingEraNominators
+                .flatMap { it.nominations }
+                .mapNotNull { it.validator.id }
+                .distinct(),
             result
         )
     }

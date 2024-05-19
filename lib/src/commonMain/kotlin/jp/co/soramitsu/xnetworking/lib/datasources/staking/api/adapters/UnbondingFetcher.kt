@@ -4,7 +4,7 @@ import jp.co.soramitsu.xnetworking.lib.datasources.staking.api.models.Unbonding
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.RestClientException
 import kotlin.coroutines.cancellation.CancellationException
 
-fun interface UnbondingFetcher {
+abstract class UnbondingFetcher {
 
     @Throws(
         RestClientException::class,
@@ -13,7 +13,7 @@ fun interface UnbondingFetcher {
         IllegalStateException::class,
         NullPointerException::class
     )
-    suspend fun fetch(
+    abstract suspend fun fetch(
         chainId: String,
         delegatorAddress: String,
         collatorAddress: String

@@ -1,15 +1,14 @@
 package jp.co.soramitsu.xnetworking.lib.datasources.staking.impl.domain.unbonding.adapters.subsquid
 
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ChainsConfigFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ConfigDAO
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.api.adapters.UnbondingFetcher
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.api.models.Unbonding
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.GraphQLResponseDataWrapper
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
 
 class SubSquidUnbondingFetcher(
-    private val chainsConfigFetcher: ChainsConfigFetcher,
+    private val configDAO: ConfigDAO,
     private val restClient: RestClient
-): UnbondingFetcher {
+): UnbondingFetcher() {
 
     override suspend fun fetch(
         chainId: String,
@@ -23,20 +22,11 @@ class SubSquidUnbondingFetcher(
             "CollatorAddress is not hex value address."
         }
 
-        val config = chainsConfigFetcher.loadConfigOrGetCached()[chainId]
-        val requestUrl =
-            requireNotNull(config?.externalApi?.staking?.url) {
-                "Url for SubSquid stakingExplorer on chain with id - $chainId - is null."
-            }
-
         val rewards = restClient.post(
             request = SubSquidUnbondingRequest(
-                url = requestUrl,
+                url = configDAO.stakingUrl(chainId),
                 delegatorAddress = delegatorAddress,
                 collatorAddress = collatorAddress
-            ),
-            kSerializer = GraphQLResponseDataWrapper.serializer(
-                SubSquidUnbondingResponse.serializer()
             )
         ).data.rewards
 

@@ -1,31 +1,27 @@
 package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters
 
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ChainsConfig
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ChainsConfigFetcher
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.HistoryInfoRemoteLoader
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.TxFilter
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ConfigDAO
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ExternalApiType
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.ChainInfo
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.HistoryInfoRemoteLoader
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.TxFilter
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryInfo
 
 class HistoryInfoRemoteLoaderFacade(
-    private val loaders: Map<ChainsConfig.ExternalApi.Type, HistoryInfoRemoteLoader>,
-    private val chainsConfigFetcher: ChainsConfigFetcher,
-): HistoryInfoRemoteLoader {
+    private val configDAO: ConfigDAO,
+    private val loaders: Map<ExternalApiType, HistoryInfoRemoteLoader>,
+): HistoryInfoRemoteLoader() {
     override suspend fun loadHistoryInfo(
         pageCount: Int,
         cursor: String?,
         signAddress: String,
-        chainId: String,
-        assetId: String,
+        chainInfo: ChainInfo,
         filters: Set<TxFilter>
     ): TxHistoryInfo {
-        val config = chainsConfigFetcher.loadConfigOrGetCached()[chainId]
-        val explorerType = requireNotNull(config?.externalApi?.history?.type) {
-            "ExplorerType for chain with id - $chainId - is null."
+        val loader = checkNotNull(loaders[configDAO.historyType(chainInfo.chainId)]) {
+            "Remote History Loader could not have been found."
         }
 
-        val loader = loaders[explorerType]
-            ?: error("Remote History Loader could not have been found.")
-
-        return loader.loadHistoryInfo(pageCount, cursor, signAddress, chainId, assetId, filters)
+        return loader.loadHistoryInfo(pageCount, cursor, signAddress, chainInfo, filters)
     }
 }

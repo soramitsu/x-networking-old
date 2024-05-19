@@ -3,18 +3,17 @@ package jp.co.soramitsu.xnetworking.lib.datasources.polkaswapwhitelist.impl
 import jp.co.soramitsu.xnetworking.lib.datasources.polkaswapwhitelist.api.AbstractWhitelistedToken
 import jp.co.soramitsu.xnetworking.lib.datasources.polkaswapwhitelist.api.WhitelistRepository
 import jp.co.soramitsu.xnetworking.lib.datasources.polkaswapwhitelist.impl.models.InternalWhitelistedToken
-import jp.co.soramitsu.xnetworking.lib.engines.apollo.impl.utils.asJsonObjectNullable
-import jp.co.soramitsu.xnetworking.lib.engines.apollo.impl.utils.getPrimitiveContentOrEmpty
+import jp.co.soramitsu.xnetworking.lib.engines.utils.JsonGetRequest
+import jp.co.soramitsu.xnetworking.lib.engines.utils.fieldOrNull
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
-import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.AbstractRestServerRequest
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.serialization.json.JsonArray
 
 class WhitelistRepositoryImpl(
     private val restClient: RestClient,
-    private val configRequest: AbstractRestServerRequest
-): WhitelistRepository {
+    private val configRequestUrl: String
+): WhitelistRepository() {
 
     private val cachedValueReadWriteMutex: Mutex = Mutex()
     private var cachedValue: List<AbstractWhitelistedToken>? = null
@@ -32,12 +31,14 @@ class WhitelistRepositoryImpl(
 
     private suspend fun fetchConfig(): List<AbstractWhitelistedToken> {
         return restClient.get(
-            request = configRequest,
-            kSerializer = JsonArray.serializer()
+            request = JsonGetRequest(
+                url = configRequestUrl,
+                responseDeserializer = JsonArray.serializer()
+            )
         ).map {
             InternalWhitelistedToken(
-                tokenAddress = it.asJsonObjectNullable.getPrimitiveContentOrEmpty("address"),
-                rawIconLink = it.asJsonObjectNullable.getPrimitiveContentOrEmpty("icon"),
+                tokenAddress = it.fieldOrNull("address").orEmpty(),
+                rawIconLink = it.fieldOrNull("icon").orEmpty(),
             )
         }
     }

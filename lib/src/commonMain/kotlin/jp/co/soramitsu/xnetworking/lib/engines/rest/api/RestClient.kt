@@ -4,28 +4,25 @@ import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.AbstractRestServe
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.RestClientException
 import kotlinx.serialization.KSerializer
 import kotlin.coroutines.cancellation.CancellationException
+import kotlin.experimental.ExperimentalObjCRefinement
+import kotlin.native.HiddenFromObjC
+import kotlin.reflect.KClass
 
-interface RestClient {
+abstract class RestClient {
 
     enum class ContentType {
         JSON, NONE
     }
 
-    @Throws(
-        RestClientException::class,
-        CancellationException::class
-    )
-    suspend fun <T> post(
-        request: AbstractRestServerRequest.WithBody,
-        kSerializer: KSerializer<T>
+    @OptIn(ExperimentalObjCRefinement::class)
+    @HiddenFromObjC
+    abstract suspend fun <T> post(
+        request: AbstractRestServerRequest.WithBody<T>
     ): T
 
-    @Throws(
-        RestClientException::class,
-        CancellationException::class
-    )
-    suspend fun <T> get(
-        request: AbstractRestServerRequest,
-        kSerializer: KSerializer<T>
+    @OptIn(ExperimentalObjCRefinement::class)
+    @HiddenFromObjC
+    abstract suspend fun <T> get(
+        request: AbstractRestServerRequest<T>
     ): T
 }

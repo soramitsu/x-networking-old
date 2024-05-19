@@ -1,45 +1,42 @@
 package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.zeta
 
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ChainsConfigFetcher
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.HistoryInfoRemoteLoader
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.TxFilter
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ConfigDAO
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.ChainInfo
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.HistoryInfoRemoteLoader
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.TxFilter
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryInfo
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItem
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItemParam
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
 
 class ZetaHistoryInfoRemoteLoader(
-    private val chainsConfigFetcher: ChainsConfigFetcher,
+    private val configDAO: ConfigDAO,
     private val restClient: RestClient
-): HistoryInfoRemoteLoader {
+): HistoryInfoRemoteLoader() {
 
     override suspend fun loadHistoryInfo(
         pageCount: Int,
         cursor: String?,
         signAddress: String,
-        chainId: String,
-        assetId: String,
+        chainInfo: ChainInfo,
         filters: Set<TxFilter>
     ): TxHistoryInfo {
-        val config = chainsConfigFetcher.loadConfigOrGetCached()[chainId]
-        val assetType = config?.assets?.find { it.id == assetId }?.ethereumType
-        val requestUrl = requireNotNull(config?.externalApi?.history?.url) {
-            "Url for Zeta blockExplorer on chain with id - $chainId - is null."
+        require(chainInfo is ChainInfo.WithEthereumType) {
+            "Zeta blockExplorer can not be used with non-ethereum chains."
         }
 
         val response = restClient.get(
-            request = when(assetType) {
+            request = when(chainInfo.ethereumType) {
                 "normal" -> TransactionsZetaRequest(
-                    url = requestUrl,
+                    url = configDAO.historyUrl(chainInfo.chainId),
                     address = signAddress
                 )
                 else -> TokenTransfersZetaRequest(
-                    url = requestUrl,
+                    url = configDAO.historyUrl(chainInfo.chainId),
                     address = signAddress,
-                    assetId = assetId
+                    assetId = chainInfo.contractAddress
                 )
-            },
-            kSerializer = ZetaResponse.serializer()
+            }
         )
 
         return TxHistoryInfo(

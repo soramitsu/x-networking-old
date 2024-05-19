@@ -1,9 +1,10 @@
 package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.usecase
 
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.HistoryInfoRemoteLoader
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.TxFilter
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.HistoryInfoRemoteLoader
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.TxFilter
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.SoraHistoryDBImpl
 import jp.co.soramitsu.xnetworking.db.SignerInfo
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.ChainInfo
 import kotlin.math.max
 import kotlin.math.min
 
@@ -13,23 +14,21 @@ internal class FetchExtrinsicsAndSaveUseCase(
 ) {
 
     suspend operator fun <T> invoke(
-        cursor: String,
+        cursor: String?,
         pageCount: Int,
         signAddress: String,
         currentSignerInfo: SignerInfo,
-        chainId: String,
-        assetId: String,
+        chainInfo: ChainInfo,
         filters: Set<TxFilter>
     ): SignerInfo {
         val txHistoryInfo = soraHistoryDBImpl.insertExtrinsics(
             signAddress,
-            chainId,
+            chainInfo.chainId,
             historyInfoRemoteLoader.loadHistoryInfo(
                 pageCount = pageCount,
                 cursor = cursor,
                 signAddress = signAddress,
-                chainId = chainId, 
-                assetId = assetId,
+                chainInfo = chainInfo,
                 filters = filters
             )
         )
@@ -47,7 +46,7 @@ internal class FetchExtrinsicsAndSaveUseCase(
 
         return SignerInfo(
             signAddress = signAddress,
-            networkName = chainId,
+            networkName = chainInfo.chainId,
             topTime = max(txHistoryInfo.topTime, currentSignerInfo.topTime),
             oldTime = if (isCurrentSignerTimestampIsInvalid)
                 txHistoryInfo.oldTime else min(txHistoryInfo.oldTime, currentSignerInfo.oldTime),

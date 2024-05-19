@@ -205,6 +205,7 @@ apollo {
         schemaFiles.setFrom(file("../schema/fearless_westend_schema.graphqls"))
         srcDir(file("${project.projectDir}/src/commonMain/qraphql/queries/txhistory/fearless"))
         outputDir.set(File("${project.buildDir}/generated/apollo/fearless", "schemas"))
+        generateDataBuilders.set(true)
 
         mapScalarToKotlinString("Cursor")
         mapScalarToKotlinString("BigFloat")
@@ -221,6 +222,7 @@ apollo {
         schemaFiles.setFrom(file("../schema/sora_schema.graphqls"))
         srcDir(files("${project.projectDir}/src/commonMain/qraphql/queries/blockexplorer", "${project.projectDir}/src/commonMain/qraphql/queries/txhistory/sora"))
         outputDir.set(File("${project.buildDir}/generated/apollo/sora", "schemas"))
+        generateDataBuilders.set(true)
 
         mapScalarToKotlinString("Cursor")
         mapScalarToKotlinString("BigFloat")

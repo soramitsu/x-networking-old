@@ -7,7 +7,7 @@ import jp.co.soramitsu.xnetworking.db.SignerInfo
 import jp.co.soramitsu.xnetworking.db.SoraHistoryDatabase
 
 internal class SoraHistoryDBImpl(
-    private val soraHistoryDatabase: SoraHistoryDatabase
+    soraHistoryDatabase: SoraHistoryDatabase
 ) {
 
     private val dbQuery = soraHistoryDatabase.soraHistoryDatabaseQueries

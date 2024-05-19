@@ -3,7 +3,7 @@ package jp.co.soramitsu.xnetworking.lib.datasources.staking.api.adapters
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.RestClientException
 import kotlin.coroutines.cancellation.CancellationException
 
-fun interface ValidatorsFetcher {
+abstract class ValidatorsFetcher {
 
     @Throws(
         RestClientException::class,
@@ -12,7 +12,7 @@ fun interface ValidatorsFetcher {
         IllegalStateException::class,
         NullPointerException::class
     )
-    suspend fun fetch(
+    abstract suspend fun fetch(
         chainId: String,
         stashAccountAddress: String,
         historicalRange: List<String>

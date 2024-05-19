@@ -1,165 +1,214 @@
 package jp.co.soramitsu.xnetworking.lib.datasources.staking.validators
 
 import io.mockative.Mock
-import io.mockative.any
 import io.mockative.classOf
 import io.mockative.coEvery
 import io.mockative.coVerify
 import io.mockative.mock
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ChainsConfigFetcher
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ChainsConfig
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ConfigDAO
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ExternalApiDAOException
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ExternalApiType
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.StakingOption
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.api.adapters.ValidatorsFetcher
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.impl.domain.validators.ValidatorsFetcherFacade
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
+import kotlin.test.assertFailsWith
 
 class ValidatorsFetcherFacadeTest {
 
-    @Mock
-    val chainsConfigFetcher = mock(classOf<ChainsConfigFetcher>())
+    private companion object {
+        const val chainId = "sora"
+        const val stashAccountAddress = ""
+
+        val historicalRange = emptyList<String>()
+    }
 
     @Mock
-    val validatorsFetcherMock = mock(classOf<ValidatorsFetcher>())
+    private val configDAO = mock(classOf<ConfigDAO>())
+
+    @Mock
+    private val validatorsFetcherMock = mock(classOf<ValidatorsFetcher>())
 
     @Test
-    fun `TEST validatorsFacade_fetch EXPECT IllegalArgumentException BECAUSE staking type is null`() = runTest {
-        // Test Data Start
-        val facade: ValidatorsFetcher = ValidatorsFetcherFacade(
-            chainsConfigFetcher = chainsConfigFetcher,
-            validatorsFetcherMap = mapOf(
-                ChainsConfig.ExternalApi.Type.Sora to validatorsFetcherMock
-            )
-        )
-        // Test Data End
-
-        coEvery { chainsConfigFetcher.loadConfigOrGetCached() }.returns(
-            listOf(
-                ChainsConfig(
-                    chainId = "sora",
-                    assets = emptyList(),
-                    externalApi = ChainsConfig.ExternalApi(
-                        history = null,
-                        staking = null,
-                        explorers = null
+    fun `TEST validatorsFacade_fetch EXPECT IllegalStateException BECAUSE network staking type is not relayChain`() =
+        runTest {
+            // Test Data Start
+            val facade: ValidatorsFetcher =
+                ValidatorsFetcherFacade(
+                    configDAO = configDAO,
+                    validatorsFetcherMap = mapOf(
+                        ExternalApiType.SORA to validatorsFetcherMock
                     )
                 )
-            ).associateBy { it.chainId }
-        )
+            // Test Data End
 
-        try {
-            facade.fetch(
-                chainId = "sora",
-                stashAccountAddress = "",
-                historicalRange = emptyList()
-            )
-        } catch (e: IllegalArgumentException) {
+            // Mocks Preparation Start
+            coEvery {
+                configDAO.staking(
+                    chainId = chainId
+                )
+            }.returns(StakingOption.PARACHAIN)
+            // Mocks Preparation End
+
+            assertFailsWith<IllegalStateException> {
+                facade.fetch(
+                    chainId = chainId,
+                    stashAccountAddress = stashAccountAddress,
+                    historicalRange = historicalRange
+                )
+            }
+
+            // Verification & Assertion
             coVerify {
                 validatorsFetcherMock.fetch(
-                    chainId = any(),
-                    stashAccountAddress = any(),
-                    historicalRange = any()
+                    chainId = chainId,
+                    stashAccountAddress = stashAccountAddress,
+                    historicalRange = historicalRange
                 )
             }.wasNotInvoked()
         }
-    }
 
     @Test
-    fun `TEST validatorsFacade_fetch EXPECT IllegalStateException BECAUSE fetcher not found`() = runTest {
-        // Test Data Start
-        val facade: ValidatorsFetcher = ValidatorsFetcherFacade(
-            chainsConfigFetcher = chainsConfigFetcher,
-            validatorsFetcherMap = mapOf(
-                ChainsConfig.ExternalApi.Type.Sora to validatorsFetcherMock
-            )
-        )
-        // Test Data End
-
-        coEvery { chainsConfigFetcher.loadConfigOrGetCached() }.returns(
-            listOf(
-                ChainsConfig(
-                    chainId = "sora",
-                    assets = emptyList(),
-                    externalApi = ChainsConfig.ExternalApi(
-                        history = null,
-                        staking = ChainsConfig.ExternalApi.PlainSection(
-                            type = ChainsConfig.ExternalApi.Type.SubQuery,
-                            url = "subquery.url"
-                        ),
-                        explorers = null
+    fun `TEST validatorsFacade_fetch EXPECT ExternalApiDAOException_NullType BECAUSE externalApi_stakingType is null`() =
+        runTest {
+            // Test Data Start
+            val facade: ValidatorsFetcher =
+                ValidatorsFetcherFacade(
+                    configDAO = configDAO,
+                    validatorsFetcherMap = mapOf(
+                        ExternalApiType.SORA to validatorsFetcherMock
                     )
                 )
-            ).associateBy { it.chainId }
-        )
+            // Test Data End
 
-        try {
-            facade.fetch(
-                chainId = "sora",
-                stashAccountAddress = "",
-                historicalRange = emptyList()
-            )
-        } catch (e: IllegalStateException) {
+            // Mocks Preparation Start
+            coEvery {
+                configDAO.stakingType(
+                    chainId = chainId
+                )
+            }.throws(ExternalApiDAOException.NullType(chainId))
+
+            coEvery {
+                configDAO.staking(
+                    chainId = chainId
+                )
+            }.returns(StakingOption.RELAYCHAIN)
+            // Mocks Preparation End
+
+            assertFailsWith<ExternalApiDAOException.NullType> {
+                facade.fetch(
+                    chainId = chainId,
+                    stashAccountAddress = stashAccountAddress,
+                    historicalRange = historicalRange
+                )
+            }
+
+            // Verification & Assertion
             coVerify {
                 validatorsFetcherMock.fetch(
-                    chainId = any(),
-                    stashAccountAddress = any(),
-                    historicalRange = any()
+                    chainId = chainId,
+                    stashAccountAddress = stashAccountAddress,
+                    historicalRange = historicalRange
                 )
             }.wasNotInvoked()
         }
-    }
+
+    @Test
+    fun `TEST validatorsFacade_fetch EXPECT IllegalStateException BECAUSE fetcher not found`() =
+        runTest {
+            // Test Data Start
+            val facade: ValidatorsFetcher =
+                ValidatorsFetcherFacade(
+                    configDAO = configDAO,
+                    validatorsFetcherMap = mapOf(
+                        ExternalApiType.SORA to validatorsFetcherMock
+                    )
+                )
+            // Test Data End
+
+            // Mocks Preparation Start
+            coEvery {
+                configDAO.stakingType(
+                    chainId = chainId
+                )
+            }.returns(ExternalApiType.SUBQUERY)
+
+            coEvery {
+                configDAO.staking(
+                    chainId = chainId
+                )
+            }.returns(StakingOption.RELAYCHAIN)
+            // Mocks Preparation End
+
+            assertFailsWith<IllegalStateException> {
+                facade.fetch(
+                    chainId = chainId,
+                    stashAccountAddress = stashAccountAddress,
+                    historicalRange = historicalRange
+                )
+            }
+
+            // Verification & Assertion
+            coVerify {
+                validatorsFetcherMock.fetch(
+                    chainId = chainId,
+                    stashAccountAddress = stashAccountAddress,
+                    historicalRange = historicalRange
+                )
+            }.wasNotInvoked()
+        }
 
     @Test
     fun `TEST validatorsFacade_fetch EXPECT success`() = runTest {
         // Test Data Start
-        val facade: ValidatorsFetcher = ValidatorsFetcherFacade(
-            chainsConfigFetcher = chainsConfigFetcher,
-            validatorsFetcherMap = mapOf(
-                ChainsConfig.ExternalApi.Type.Sora to validatorsFetcherMock
+        val facade: ValidatorsFetcher =
+            ValidatorsFetcherFacade(
+                configDAO = configDAO,
+                validatorsFetcherMap = mapOf(
+                    ExternalApiType.SORA to validatorsFetcherMock
+                )
             )
-        )
 
-        val validatorsListToReturn = listOf(
-            "something"
-        )
+        val validatorsListToReturn = listOf("something")
         // Test Data End
 
-        coEvery { chainsConfigFetcher.loadConfigOrGetCached() }.returns(
-            listOf(
-                ChainsConfig(
-                    chainId = "sora",
-                    assets = emptyList(),
-                    externalApi = ChainsConfig.ExternalApi(
-                        history = null,
-                        staking = ChainsConfig.ExternalApi.PlainSection(
-                            type = ChainsConfig.ExternalApi.Type.Sora,
-                            url = "sora.url"
-                        ),
-                        explorers = null
-                    )
-                )
-            ).associateBy { it.chainId }
-        )
+        // Mocks Preparation Start
+        coEvery {
+            configDAO.stakingType(
+                chainId = chainId
+            )
+        }.returns(ExternalApiType.SORA)
+
+        coEvery {
+            configDAO.staking(
+                chainId = chainId
+            )
+        }.returns(StakingOption.RELAYCHAIN)
 
         coEvery {
             validatorsFetcherMock.fetch(
-                chainId = "sora",
-                stashAccountAddress = "",
-                historicalRange = emptyList()
+                chainId = chainId,
+                stashAccountAddress = stashAccountAddress,
+                historicalRange = historicalRange
             )
         }.returns(validatorsListToReturn)
+        // Mocks Preparation End
+
 
         val result = facade.fetch(
-            chainId = "sora",
-            stashAccountAddress = "",
-            historicalRange = emptyList()
+            chainId = chainId,
+            stashAccountAddress = stashAccountAddress,
+            historicalRange = historicalRange
         )
 
+        // Verification & Assertion
         coVerify {
             validatorsFetcherMock.fetch(
-                chainId = "sora",
-                stashAccountAddress = "",
-                historicalRange = emptyList()
+                chainId = chainId,
+                stashAccountAddress = stashAccountAddress,
+                historicalRange = historicalRange
             )
         }.wasInvoked(1)
 

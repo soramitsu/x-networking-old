@@ -1,48 +1,51 @@
 package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.subsquid
 
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ChainsConfigFetcher
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.HistoryInfoRemoteLoader
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.TxFilter
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ConfigDAO
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.ChainInfo
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.HistoryInfoRemoteLoader
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.TxFilter
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryInfo
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItem
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItemParam
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.GraphQLResponseDataWrapper
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
 
 class SubSquidHistoryInfoRemoteLoader(
-    private val chainsConfigFetcher: ChainsConfigFetcher,
+    private val configDAO: ConfigDAO,
     private val restClient: RestClient
-): HistoryInfoRemoteLoader {
+): HistoryInfoRemoteLoader() {
 
     override suspend fun loadHistoryInfo(
         pageCount: Int,
         cursor: String?,
         signAddress: String,
-        chainId: String,
-        assetId: String,
+        chainInfo: ChainInfo,
         filters: Set<TxFilter>
     ): TxHistoryInfo {
-        val config = chainsConfigFetcher.loadConfigOrGetCached()[chainId]
-        val requestUrl = requireNotNull(config?.externalApi?.history?.url) {
-            "Url for SubSquid blockExplorer on chain with id - $chainId - is null."
+        if (filters.isEmpty()) {
+            return TxHistoryInfo(
+                endCursor = cursor,
+                endReached = false,
+                items = emptyList()
+            )
         }
 
         val connection = restClient.post(
             request = SubSquidRequest(
-                url = requestUrl,
+                url = configDAO.historyUrl(chainInfo.chainId),
                 address = signAddress,
                 limit = pageCount,
                 cursor = cursor
-            ),
-            kSerializer = GraphQLResponseDataWrapper.serializer(
-                SubSquidResponse.serializer()
             )
         ).data.historyElementsConnection
 
-        return TxHistoryInfo(
-            endCursor = connection.pageInfo.endCursor,
-            endReached = connection.pageInfo.hasNextPage?.not() ?: true,
-            items = connection.edges.map { it.node }.mapNotNull { node ->
+        val items = mutableListOf<TxHistoryItem>()
+
+        val nodes = connection.edges
+            .map(SubSquidResponse.HistoryElementsConnection.Node::node)
+            .asSequence()
+
+        if (TxFilter.TRANSFER in filters) {
+            nodes.mapNotNull { node ->
                 node.transfer?.let {
                     TxHistoryItem(
                         id = node.extrinsicIdx ?: "",
@@ -68,8 +71,12 @@ class SubSquidHistoryInfoRemoteLoader(
                             ),
                         )
                     )
-                }?.run { return@mapNotNull this }
+                }
+            }.toCollection(items)
+        }
 
+        if (TxFilter.REWARD in filters) {
+            nodes.mapNotNull { node ->
                 node.reward?.let {
                     TxHistoryItem(
                         id = node.extrinsicIdx ?: "",
@@ -95,10 +102,14 @@ class SubSquidHistoryInfoRemoteLoader(
                             ),
                         )
                     )
-                }?.run { return@mapNotNull this }
+                }
+            }.toCollection(items)
+        }
 
-                return@mapNotNull null
-            }
+        return TxHistoryInfo(
+            endCursor = connection.pageInfo.endCursor,
+            endReached = connection.pageInfo.hasNextPage?.not() ?: true,
+            items = items
         )
     }
 

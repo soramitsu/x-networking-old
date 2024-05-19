@@ -1,9 +1,11 @@
 package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api
 
 import com.apollographql.apollo3.exception.ApolloException
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.ChainInfo
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.TxFilter
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryInfo
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItem
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.wrappers.TxHistoryResult
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.wrappers.TxHistoryResult
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.RestClientException
 import kotlin.coroutines.cancellation.CancellationException
 
@@ -50,8 +52,7 @@ interface TxHistoryRepository {
         address: String,
         page: Long,
         pageCount: Int,
-        chainId: String,
-        assetId: String,
+        chainInfo: ChainInfo,
         filters: Set<TxFilter>
     ): TxHistoryResult<TxHistoryItem>
 

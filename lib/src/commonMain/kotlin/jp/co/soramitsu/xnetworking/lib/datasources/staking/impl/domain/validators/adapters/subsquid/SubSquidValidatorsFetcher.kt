@@ -2,7 +2,7 @@ package jp.co.soramitsu.xnetworking.lib.datasources.staking.impl.domain.validato
 
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.api.adapters.ValidatorsFetcher
 
-class SubSquidValidatorsFetcher: ValidatorsFetcher {
+class SubSquidValidatorsFetcher: ValidatorsFetcher() {
 
     override suspend fun fetch(
         chainId: String,

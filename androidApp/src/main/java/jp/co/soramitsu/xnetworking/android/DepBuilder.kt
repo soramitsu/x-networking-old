@@ -1,17 +1,22 @@
 package jp.co.soramitsu.xnetworking.android
 
-import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.GraphQLBlockExplorerRepositoryImpl
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ChainsConfigFetcher
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ChainsConfig
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.impl.ChainsConfigFetcherImpl
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.HistoryInfoRemoteLoader
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.JsonGetRequest
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.BlockExplorerRepositoryImpl
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.adapters.SoraAssetsInfoFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.adapters.SoraFiatDataFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.adapters.SoraReferrerRewardsFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.adapters.SoraSbApyFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.data.ConfigFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ConfigDAO
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ExternalApiType
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.impl.data.InMemorySavingConfigFetcherImpl
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.impl.FearlessConfigDAOImpl
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.HistoryInfoRemoteLoader
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.HistoryInfoRemoteLoaderFacade
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.etherscan.EtherScanHistoryInfoRemoteLoader
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.giantsquid.GiantSquidHistoryInfoRemoteLoader
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.oklink.OkLinkHistoryInfoRemoteLoader
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.reef.ReefHistoryInfoRemoteLoader
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.sora.SoraHistoryInfoRemoteLoader
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.sorasubquery.SoraSubQueryHistoryInfoRemoteLoader
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.subquery.SubQueryHistoryInfoRemoteLoader
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.subsquid.SubSquidHistoryInfoRemoteLoader
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.zeta.ZetaHistoryInfoRemoteLoader
@@ -42,61 +47,79 @@ object DepBuilder {
         }
     )
 
+    init {
+    }
+
     private val apolloClientStore: ApolloClientStore = ApolloClientStoreImpl()
 
-    private val chainsConfigFetcher: ChainsConfigFetcher = ChainsConfigFetcherImpl(
+    val configFetcher: ConfigFetcher = InMemorySavingConfigFetcherImpl(
         restClient = restClient,
-        chainsRequest = JsonGetRequest(
-            url = "https://raw.githubusercontent.com/soramitsu/shared-features-utils/develop-free/chains/v9/chains_dev.json"
-        )
+        chainsRequestUrl = "https://raw.githubusercontent.com/soramitsu/shared-features-utils/develop-free/chains/v9/chains_dev.json"
     )
 
+    private val configDAO: ConfigDAO = FearlessConfigDAOImpl(configFetcher)
+
     val historyRemoteLoaderFacade: HistoryInfoRemoteLoader = HistoryInfoRemoteLoaderFacade(
-        chainsConfigFetcher = chainsConfigFetcher,
+        configDAO = configDAO,
         loaders = mapOf(
-            ChainsConfig.ExternalApi.Type.EtherScan to EtherScanHistoryInfoRemoteLoader(
-                chainsConfigFetcher = chainsConfigFetcher,
+            ExternalApiType.ETHERSCAN to EtherScanHistoryInfoRemoteLoader(
+                configDAO = configDAO,
                 restClient = restClient,
                 apiKeys = mapOf(
                     ChainAssetConstants.EtherScan.chainId to "paste your EtherScan key"
                 )
             ),
-            ChainsConfig.ExternalApi.Type.GiantSquid to GiantSquidHistoryInfoRemoteLoader(
-                chainsConfigFetcher = chainsConfigFetcher,
+            ExternalApiType.GIANTSQUID to GiantSquidHistoryInfoRemoteLoader(
+                configDAO = configDAO,
                 restClient = restClient
             ),
-            ChainsConfig.ExternalApi.Type.OkLink to OkLinkHistoryInfoRemoteLoader(
-                chainsConfigFetcher = chainsConfigFetcher,
+            ExternalApiType.OKLINK to OkLinkHistoryInfoRemoteLoader(
+                configDAO = configDAO,
                 restClient = restClient,
                 apiKeys = mapOf(
                     ChainAssetConstants.OkLink.chainId to "paste your OkLink key"
                 )
             ),
-            ChainsConfig.ExternalApi.Type.Reef to ReefHistoryInfoRemoteLoader(
-                chainsConfigFetcher = chainsConfigFetcher,
+            ExternalApiType.REEF to ReefHistoryInfoRemoteLoader(
+                configDAO = configDAO,
                 restClient = restClient
             ),
-            ChainsConfig.ExternalApi.Type.Sora to SoraHistoryInfoRemoteLoader(
-                chainsConfigFetcher = chainsConfigFetcher,
+            ExternalApiType.SORA to SoraSubQueryHistoryInfoRemoteLoader(
+                configDAO = configDAO,
                 apolloClientStore = apolloClientStore
             ),
-            ChainsConfig.ExternalApi.Type.SubSquid to SubSquidHistoryInfoRemoteLoader(
-                chainsConfigFetcher = chainsConfigFetcher,
+            ExternalApiType.SUBSQUID to SubSquidHistoryInfoRemoteLoader(
+                configDAO = configDAO,
                 restClient = restClient
             ),
-            ChainsConfig.ExternalApi.Type.SubQuery to SubQueryHistoryInfoRemoteLoader(
-                chainsConfigFetcher = chainsConfigFetcher,
+            ExternalApiType.SUBQUERY to SubQueryHistoryInfoRemoteLoader(
+                configDAO = configDAO,
                 restClient = restClient
             ),
-            ChainsConfig.ExternalApi.Type.Zeta to ZetaHistoryInfoRemoteLoader(
-                chainsConfigFetcher = chainsConfigFetcher,
+            ExternalApiType.ZETA to ZetaHistoryInfoRemoteLoader(
+                configDAO = configDAO,
                 restClient = restClient
             )
         )
     )
 
-    val blockExplorerRepository = GraphQLBlockExplorerRepositoryImpl(
-        apolloClientStore = apolloClientStore,
-        chainsConfigFetcher = chainsConfigFetcher
+    val blockExplorerRepository = BlockExplorerRepositoryImpl(
+        assetsInfoFetcher = SoraAssetsInfoFetcher(
+            apolloClientStore = apolloClientStore,
+            configDAO = configDAO
+        ),
+        fiatDataFetcher = SoraFiatDataFetcher(
+            apolloClientStore = apolloClientStore,
+            configDAO = configDAO
+        ),
+        referrerRewardFetcher = SoraReferrerRewardsFetcher(
+            apolloClientStore = apolloClientStore,
+            configDAO = configDAO
+        ),
+        sbApyFetcher = SoraSbApyFetcher(
+            apolloClientStore = apolloClientStore,
+            configDAO = configDAO
+        ),
+        configDAO = configDAO
     )
 }

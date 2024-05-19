@@ -1,8 +1,9 @@
 package jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.adapters.oklink
 
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ChainsConfigFetcher
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.HistoryInfoRemoteLoader
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.TxFilter
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ConfigDAO
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.ChainInfo
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.HistoryInfoRemoteLoader
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.adapters.TxFilter
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryInfo
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItem
 import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxHistoryItemParam
@@ -10,36 +11,26 @@ import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
 
 class OkLinkHistoryInfoRemoteLoader(
     private val apiKeys: Map<String, String>,
-    private val chainsConfigFetcher: ChainsConfigFetcher,
+    private val configDAO: ConfigDAO,
     private val restClient: RestClient
-): HistoryInfoRemoteLoader {
+): HistoryInfoRemoteLoader() {
 
     override suspend fun loadHistoryInfo(
         pageCount: Int,
         cursor: String?,
         signAddress: String,
-        chainId: String,
-        assetId: String,
+        chainInfo: ChainInfo,
         filters: Set<TxFilter>
     ): TxHistoryInfo {
-        val config = chainsConfigFetcher.loadConfigOrGetCached()[chainId]
-
-        val assetSymbol = requireNotNull(config?.assets?.find { it.id == assetId }?.symbol) {
-            "Symbol for asset with id - $assetId - is null."
-        }
-
-        val requestUrl = requireNotNull(config?.externalApi?.history?.url) {
-            "Url for OkLink blockExplorer on chain with id - $chainId - is null."
-        }
+        require(chainInfo is ChainInfo.WithAssetSymbol)
 
         val response = restClient.get(
             request = OkLinkRequest(
-                url = requestUrl,
+                url = configDAO.historyUrl(chainInfo.chainId),
                 address = signAddress,
-                symbol = assetSymbol,
-                apiKey = apiKeys[chainId]!!,
-            ),
-            kSerializer = OkLinkResponse.serializer()
+                symbol = chainInfo.symbol,
+                apiKey = apiKeys[chainInfo.chainId]!!,
+            )
         )
 
         check(response.code == 0) {
@@ -101,6 +92,10 @@ class OkLinkHistoryInfoRemoteLoader(
                         TxHistoryItemParam(
                             "contractAddress",
                             it.tokenContractAddress
+                        ),
+                        TxHistoryItemParam(
+                            "challengeStatus",
+                            it.challengeStatus
                         ),
                         TxHistoryItemParam(
                             "state",

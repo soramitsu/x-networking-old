@@ -6,6 +6,7 @@ import jp.co.soramitsu.xnetworking.lib.datasources.polkaswapwhitelist.api.Abstra
 import jp.co.soramitsu.xnetworking.lib.datasources.polkaswapwhitelist.api.WhitelistRepository
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.AbstractRestServerRequest
+import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ListSerializer
@@ -21,15 +22,13 @@ class NetworkService(
 ) {
 
     suspend fun getRequest() = restClient.get(
-        SimpleJSONGetRequestHolder(url = "https://www.github.com"),
-        ListSerializer(Int.serializer())
+        SimpleJSONGetRequestHolder(url = "https://www.github.com")
     )
 
     suspend fun getAssets() = restClient.get(
         SimpleJSONGetRequestHolder(
             url = "https://raw.githubusercontent.com/soramitsu/fearless-utils/android/v2/chains/assets.json"
-        ),
-        ListSerializer(AssetRemote.serializer())
+        )
     )
 
     suspend fun getSoraWhitelist(): List<AbstractWhitelistedToken> {
@@ -91,8 +90,9 @@ class NetworkService(
 }
 
 private data class SimpleJSONGetRequestHolder(
-    override val url: String
-): AbstractRestServerRequest()
+    override val url: String,
+    override val responseDeserializer: DeserializationStrategy<List<AssetRemote>> = ListSerializer(AssetRemote.serializer())
+): AbstractRestServerRequest<List<AssetRemote>>()
 
 @Serializable
 data class AssetRemote(

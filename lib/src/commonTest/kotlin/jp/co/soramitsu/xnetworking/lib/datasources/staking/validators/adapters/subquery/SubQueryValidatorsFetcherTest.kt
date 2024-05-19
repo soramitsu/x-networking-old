@@ -1,156 +1,186 @@
 package jp.co.soramitsu.xnetworking.lib.datasources.staking.validators.adapters.subquery
 
 import io.mockative.Mock
-import io.mockative.any
 import io.mockative.classOf
 import io.mockative.coEvery
 import io.mockative.coVerify
-import io.mockative.instanceOf
+import io.mockative.eq
 import io.mockative.mock
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ChainsConfigFetcher
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ChainsConfig
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ConfigDAO
+import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ExternalApiDAOException
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.api.adapters.ValidatorsFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.staking.impl.domain.validators.adapters.sora.SoraValidatorsRequest
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.impl.domain.validators.adapters.subquery.SubQueryValidatorsFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.staking.impl.domain.validators.adapters.subquery.SubQueryValidatorsRequest
 import jp.co.soramitsu.xnetworking.lib.datasources.staking.impl.domain.validators.adapters.subquery.SubQueryValidatorsResponse
-import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.impl.domain.GraphQLResponseDataWrapper
+import jp.co.soramitsu.xnetworking.lib.engines.utils.GraphQLResponseDataWrapper
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
+import kotlin.test.assertFailsWith
 
 class SubQueryValidatorsFetcherTest {
 
-    @Mock
-    val chainsConfigFetcher = mock(classOf<ChainsConfigFetcher>())
+    private companion object {
+        const val chainId = "quartz"
+        const val requestUrl = "quartz.url"
+
+        const val stashAccountAddress = ""
+    }
 
     @Mock
-    val restClient = mock(classOf<RestClient>())
+    private val configDAO = mock(classOf<ConfigDAO>())
+
+    @Mock
+    private val restClient = mock(classOf<RestClient>())
 
     private val fetcher: ValidatorsFetcher = SubQueryValidatorsFetcher(
-        chainsConfigFetcher = chainsConfigFetcher,
+        configDAO = configDAO,
         restClient = restClient
     )
 
     @Test
-    fun `TEST subqueryValidatorsFetcher_fetch EXPECT IllegalArgumentException BECAUSE staking type is null`() =
+    fun `TEST subQueryValidatorsFetcher_fetch EXPECT ExternalApiDAOException_NullUrl BECAUSE staking url is null`() =
         runTest {
-            coEvery { chainsConfigFetcher.loadConfigOrGetCached() }.returns(
-                listOf(
-                    ChainsConfig(
-                        chainId = "quartz",
-                        assets = emptyList(),
-                        externalApi = ChainsConfig.ExternalApi(
-                            history = null,
-                            staking = null,
-                            explorers = null
-                        )
-                    )
-                ).associateBy { it.chainId }
-            )
+            // Test Data Start
+            val historicalRange = listOf("from", "to")
 
-            try {
-                fetcher.fetch(
-                    chainId = "quartz",
-                    stashAccountAddress = "",
-                    historicalRange = emptyList()
+            val validatorsRequestToMock =
+                SoraValidatorsRequest(
+                    url = requestUrl,
+                    accountAddress = stashAccountAddress,
+                    eraFrom = historicalRange.first(),
+                    eraTo = historicalRange.last()
                 )
-            } catch (e: IllegalArgumentException) {
-                coVerify {
-                    restClient.post(
-                        request = any(),
-                        kSerializer = instanceOf(
-                            GraphQLResponseDataWrapper.serializer(
-                                SubQueryValidatorsResponse.serializer()
-                            )
-                        )
-                    )
-                }.wasNotInvoked()
+            // Test Data End
+
+            // Mocks Preparation Start
+            coEvery {
+                configDAO.stakingUrl(
+                    chainId = chainId
+                )
+            }.throws(ExternalApiDAOException.NullUrl(chainId))
+            // Mocks Preparation End
+
+            assertFailsWith<ExternalApiDAOException.NullUrl> {
+                fetcher.fetch(
+                    chainId = chainId,
+                    stashAccountAddress = stashAccountAddress,
+                    historicalRange = historicalRange
+                )
             }
+
+            // Verification & Assertion
+            coVerify {
+                restClient.post(
+                    request = eq(validatorsRequestToMock)
+                )
+            }.wasNotInvoked()
         }
 
     @Test
-    fun `TEST subqueryValidatorsFetcher_fetch EXPECT IllegalArgumentException BECAUSE historical range is empty`() =
+    fun `TEST subQueryValidatorsFetcher_fetch EXPECT IllegalArgumentException BECAUSE historical range is empty`() =
         runTest {
-            try {
-                fetcher.fetch(
-                    chainId = "quartz",
-                    stashAccountAddress = "",
-                    historicalRange = emptyList()
+            // Test Data Start
+            val historicalRange = emptyList<String>()
+
+            val validatorsRequestToMock =
+                SubQueryValidatorsRequest(
+                    url = requestUrl,
+                    accountAddress = stashAccountAddress,
+                    eraFrom = "should not be accessed",
+                    eraTo = "should not be accessed"
                 )
-            } catch (e: IllegalArgumentException) {
-                coVerify {
-                    restClient.post(
-                        request = any(),
-                        kSerializer = instanceOf(
-                            GraphQLResponseDataWrapper.serializer(
-                                SubQueryValidatorsResponse.serializer()
-                            )
-                        )
-                    )
-                }.wasNotInvoked()
+            // Test Data End
+
+            // Mocks Preparation Start
+            coEvery {
+                configDAO.stakingUrl(
+                    chainId = chainId
+                )
+            }.returns(requestUrl)
+            // Mocks Preparation End
+
+            assertFailsWith<IllegalArgumentException> {
+                fetcher.fetch(
+                    chainId = chainId,
+                    stashAccountAddress = stashAccountAddress,
+                    historicalRange = historicalRange
+                )
             }
+
+            // Verification & Assertion
+            coVerify {
+                restClient.post(
+                    request = eq(validatorsRequestToMock)
+                )
+            }.wasNotInvoked()
         }
 
     @Test
-    fun `TEST subqueryValidatorsFetcher_fetch EXPECT success`() = runTest {
+    fun `TEST subQueryValidatorsFetcher_fetch EXPECT success`() = runTest {
         // Test Data Start
-        val responseToReturn = GraphQLResponseDataWrapper(
-            data = SubQueryValidatorsResponse(
-                query = SubQueryValidatorsResponse.EraValidatorInfo(
-                    eraValidatorInfos = SubQueryValidatorsResponse.EraValidatorInfo.Nodes(
-                        nodes = listOf(
-                            SubQueryValidatorsResponse.EraValidatorInfo.Nodes.Node(
-                                id = "123",
-                                address = "address",
-                                era = "123",
-                                total = "123",
-                                own = "own"
+        val historicalRange = listOf("from", "to")
+
+        val validatorsRequestToMock =
+            SubQueryValidatorsRequest(
+                url = requestUrl,
+                accountAddress = stashAccountAddress,
+                eraFrom = historicalRange.first(),
+                eraTo = historicalRange.last()
+            )
+
+        val validatorsResponseToReturn =
+            GraphQLResponseDataWrapper(
+                data = SubQueryValidatorsResponse(
+                    query = SubQueryValidatorsResponse.EraValidatorInfo(
+                        eraValidatorInfos = SubQueryValidatorsResponse.EraValidatorInfo.Nodes(
+                            nodes = listOf(
+                                SubQueryValidatorsResponse.EraValidatorInfo.Nodes.Node(
+                                    id = "123",
+                                    address = "address",
+                                    era = "123",
+                                    total = "123",
+                                    own = "own"
+                                )
                             )
                         )
                     )
                 )
             )
-        )
         // Test Data End
 
-        coEvery { chainsConfigFetcher.loadConfigOrGetCached() }.returns(
-            listOf(
-                ChainsConfig(
-                    chainId = "quartz",
-                    assets = emptyList(),
-                    externalApi = ChainsConfig.ExternalApi(
-                        history = null,
-                        staking = ChainsConfig.ExternalApi.PlainSection(
-                            type = ChainsConfig.ExternalApi.Type.SubQuery,
-                            url = "quartz.url"
-                        ),
-                        explorers = null
-                    )
-                )
-            ).associateBy { it.chainId }
-        )
+        // Mocks Preparation Start
+        coEvery {
+            configDAO.stakingUrl(
+                chainId = chainId
+            )
+        }.returns(requestUrl)
 
         coEvery {
             restClient.post(
-                request = any(),
-                kSerializer = instanceOf(
-                    GraphQLResponseDataWrapper.serializer(
-                        SubQueryValidatorsResponse.serializer()
-                    )
-                )
+                request = eq(validatorsRequestToMock),
             )
-        }.returns(responseToReturn)
+        }.returns(validatorsResponseToReturn)
+        // Mocks Preparation End
 
         val result = fetcher.fetch(
-            chainId = "quartz",
-            stashAccountAddress = "",
-            historicalRange = listOf(
-                "from", "to"
-            )
+            chainId = chainId,
+            stashAccountAddress = stashAccountAddress,
+            historicalRange = historicalRange
         )
 
+        // Verification & Assertion
+        coVerify {
+            restClient.post(
+                request = eq(validatorsRequestToMock),
+            )
+        }.wasInvoked(1)
+
         assertContentEquals(
-            responseToReturn.data.query?.eraValidatorInfos?.nodes?.map { it.address }.orEmpty(),
+            validatorsResponseToReturn.data.query?.eraValidatorInfos?.nodes
+                ?.map { it.address }.orEmpty(),
             result
         )
     }

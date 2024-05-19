@@ -8,7 +8,7 @@ import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.models.SbAp
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.RestClientException
 import kotlin.coroutines.cancellation.CancellationException
 
-interface BlockExplorerRepository {
+abstract class BlockExplorerRepository {
 
     @Throws(
         ApolloException::class,
@@ -17,7 +17,7 @@ interface BlockExplorerRepository {
         IllegalArgumentException::class,
         IllegalStateException::class
     )
-    suspend fun getAssetsInfo(
+    abstract suspend fun getAssetsInfo(
         chainId: String,
         tokenIds: List<String>,
         timeStamp: Int
@@ -30,7 +30,7 @@ interface BlockExplorerRepository {
         IllegalArgumentException::class,
         IllegalStateException::class
     )
-    suspend fun getFiat(
+    abstract suspend fun getFiat(
         chainId: String
     ): List<FiatDataResponse>
 
@@ -41,7 +41,7 @@ interface BlockExplorerRepository {
         IllegalArgumentException::class,
         IllegalStateException::class
     )
-    suspend fun getReferrerRewards(
+    abstract suspend fun getReferrerRewards(
         chainId: String,
         address: String
     ): List<ReferrerRewardResponse>
@@ -53,7 +53,7 @@ interface BlockExplorerRepository {
         IllegalArgumentException::class,
         IllegalStateException::class
     )
-    suspend fun getSbApyInfo(
+    abstract suspend fun getSbApyInfo(
         chainId: String
     ): List<SbApyInfoResponse>
 
