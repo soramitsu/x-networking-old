@@ -9,6 +9,7 @@ plugins {
     id("org.sonarqube") version "5.0.0.4638"
     id("com.apollographql.apollo3").version("3.8.2").apply(false)
     id("com.google.devtools.ksp").version("1.9.22-1.0.16").apply(false)
+    id("org.jetbrains.kotlinx.kover").version("0.7.6").apply(false)
 }
 
 allprojects {
@@ -31,6 +32,6 @@ sonarqube {
         property("sonar.projectKey", "sora:x-networking")
         property("sonar.projectName", "x-networking")
         property("sonar.exclusions", "**/*.txt,**/*.kts")
-        property("sonar.coverage.jacoco.xmlReportPaths", "${project.projectDir}/build/reports/coverage/*.xml")
+        property("sonar.coverage.jacoco.xmlReportPaths", "${project.rootDir}/report/coverage.xml")
     }
 }
