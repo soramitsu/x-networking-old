@@ -4,6 +4,13 @@ import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.RestClientExcepti
 import kotlinx.serialization.json.JsonObject
 import kotlin.coroutines.cancellation.CancellationException
 
+/**
+ * This is an abstract config fetcher since it returns JsonObject without
+ * it being deserialized, due to the fact that different configs have different
+ * representations.
+ *
+ * It is a publicly available for reason: to make mocking process easier
+ */
 abstract class ConfigFetcher {
     @Throws(
         RestClientException::class,

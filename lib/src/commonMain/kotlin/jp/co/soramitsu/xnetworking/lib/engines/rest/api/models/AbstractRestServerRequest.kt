@@ -25,6 +25,9 @@ abstract class AbstractRestServerRequest<T> {
     @Transient
     abstract val responseDeserializer: DeserializationStrategy<T>
 
+    /**
+     * Specific Implementation of equals that ignores @param #responseDeserializer
+     */
     override fun equals(other: Any?): Boolean {
         if (other !is AbstractRestServerRequest<*>)
             return false
@@ -35,25 +38,31 @@ abstract class AbstractRestServerRequest<T> {
         var areEqual = true
 
         areEqual = areEqual.and(bearerToken == other.bearerToken)
-        if (headers != null) {
-            if (other.headers == null)
-                return false
 
-            areEqual = areEqual.and(headers!!.keys.containsAll(other.headers!!.keys))
-            areEqual = areEqual.and(headers!!.values.containsAll(other.headers!!.values))
+        headers?.let { thisHeaders ->
+            val otherHeaders = other.headers ?: return false
+
+            areEqual = areEqual.and(thisHeaders.keys.containsAll(otherHeaders.keys))
+            areEqual = areEqual.and(thisHeaders.values.containsAll(otherHeaders.values))
         }
+
         areEqual = areEqual.and(userAgent == other.userAgent)
-        if (queryParams != null) {
-            if (other.queryParams == null)
-                return false
 
-            areEqual = areEqual.and(queryParams!!.keys.containsAll(other.queryParams!!.keys))
-            areEqual = areEqual.and(queryParams!!.values.containsAll(other.queryParams!!.values))
+        queryParams?.let { thisQueryParams ->
+            val otherQueryParams = other.queryParams ?: return false
+
+            areEqual = areEqual.and(thisQueryParams.keys.containsAll(otherQueryParams.keys))
+            areEqual = areEqual.and(thisQueryParams.values.containsAll(otherQueryParams.values))
         }
+
         areEqual = areEqual.and(responseContentType === other.responseContentType)
         areEqual = areEqual.and(url == other.url)
 
         return areEqual
+    }
+
+    override fun hashCode(): Int {
+        return super.hashCode()
     }
 
     abstract class WithBody<Response>: AbstractRestServerRequest<Response>() {

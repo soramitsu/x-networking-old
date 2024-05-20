@@ -65,7 +65,7 @@ private fun MainScreen() {
                     try {
                         Log.e("foxxx", "r start btn 1")
                         val r = DepBuilder.blockExplorerRepository.getAssetsInfo(
-                            ChainAssetConstants.Sora.chainId,
+                            ChainInfoConstants.Sora.chainInfo.chainId,
                             drs,
                             (TimeUnit.SECONDS.convert(System.currentTimeMillis(), TimeUnit.MILLISECONDS) - 24 * 60 * 60).toInt()
                         )
@@ -130,7 +130,7 @@ private fun MainScreen() {
                     Log.e("foxxx", "r start btn 3")
                     try {
 //                        val r = DepBuilder.blockExplorerRepository.getFiat(ChainAssetConstants.Sora.chainId)
-                        val r = DepBuilder.blockExplorerRepository.getSbApyInfo(ChainAssetConstants.Sora.chainId)
+                        val r = DepBuilder.blockExplorerRepository.getApy(ChainInfoConstants.Sora.chainInfo.chainId)
 //                        val r = DepBuilder.blockExplorerRepository.getReferrerRewards(ChainAssetConstants.Sora.chainId, "")
                         Log.e("foxxx", "r = $r")
                     } catch (t: Throwable) {

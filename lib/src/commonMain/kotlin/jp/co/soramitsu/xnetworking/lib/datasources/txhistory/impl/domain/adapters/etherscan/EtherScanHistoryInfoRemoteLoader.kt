@@ -31,14 +31,18 @@ class EtherScanHistoryInfoRemoteLoader(
                 "normal" -> NormalEtherScanRequest(
                     url = configDAO.historyUrl(chainInfo.chainId),
                     address = signAddress,
-                    apiKey = apiKeys[chainInfo.chainId]!!
+                    apiKey = requireNotNull(
+                        apiKeys[chainInfo.chainId]
+                    ) { "Api key for etherScan chain with id - ${chainInfo.chainId} - is not set." }
                 )
 
                 "erc20", "bep20" -> ErcBepEtherScanRequest(
                     url = configDAO.historyUrl(chainInfo.chainId),
                     contractAddress = chainInfo.contractAddress,
                     address = signAddress,
-                    apiKey = apiKeys[chainInfo.chainId]!!
+                    apiKey = requireNotNull(
+                        apiKeys[chainInfo.chainId]
+                    ) { "Api key for etherScan chain with id - ${chainInfo.chainId} - is not set." }
                 )
 
                 else -> error("Unknown AssetType for EtherScan BlockExplorer")

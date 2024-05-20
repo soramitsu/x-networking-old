@@ -48,8 +48,12 @@ class ReefHistoryInfoRemoteLoader(
             ).data.transfersConnection
 
             response?.edges?.map {
+                val transferId = requireNotNull(
+                    it.node.id
+                ) { "Can not create txHistoryItem, id must not be null" }
+
                 TxHistoryItem(
-                    id = it.node.id!!,
+                    id = transferId,
                     blockHash = it.node.extrinsicHash ?: "",
                     module = "transfer",
                     method = "",

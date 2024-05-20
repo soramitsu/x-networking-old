@@ -29,7 +29,7 @@ class OkLinkHistoryInfoRemoteLoader(
                 url = configDAO.historyUrl(chainInfo.chainId),
                 address = signAddress,
                 symbol = chainInfo.symbol,
-                apiKey = apiKeys[chainInfo.chainId]!!,
+                apiKey = checkNotNull(apiKeys[chainInfo.chainId]),
             )
         )
 

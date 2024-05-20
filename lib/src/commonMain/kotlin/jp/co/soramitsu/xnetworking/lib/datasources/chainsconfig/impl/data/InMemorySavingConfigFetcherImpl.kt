@@ -25,7 +25,9 @@ class InMemorySavingConfigFetcherImpl(
                     cachedValue = fetchConfig()
             }
         }
-        return cachedValue?.get(chainId)!!
+        return requireNotNull(
+            cachedValue?.get(chainId)
+        ) { "Tried to fetch config for chain with id - $chainId - but it was missing." }
     }
 
     private suspend fun fetchConfig(): Map<String, JsonObject> {

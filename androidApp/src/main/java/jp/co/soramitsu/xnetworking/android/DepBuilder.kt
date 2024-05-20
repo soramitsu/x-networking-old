@@ -1,11 +1,23 @@
 package jp.co.soramitsu.xnetworking.android
 
 import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.BlockExplorerRepositoryImpl
-import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.adapters.SoraAssetsInfoFetcher
-import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.adapters.SoraFiatDataFetcher
-import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.adapters.SoraReferrerRewardsFetcher
-import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.adapters.SoraSbApyFetcher
-import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.data.ConfigFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.domain.assetinfo.sora.SoraAssetInfoFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.domain.fiat.sora.SoraFiatFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.domain.referralreward.sora.SoraReferralRewardsFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.domain.apy.ApyFetcherFacade
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.domain.apy.adapters.sora.SoraApyFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.domain.apy.adapters.subquery.SubQueryApyFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.domain.apy.adapters.subquid.SubSquidApyFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.domain.assetinfo.AssetInfoFetcherFacade
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.domain.fiat.FiatFetcherFacade
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.domain.referralreward.ReferralRewardFetcherFacade
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.domain.unbonding.UnbondingFetcherFacade
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.domain.unbonding.adapters.subquery.SubQueryUnbondingFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.domain.unbonding.adapters.subsquid.SubSquidUnbondingFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.domain.validators.ValidatorsFetcherFacade
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.domain.validators.adapters.sora.SoraValidatorsFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.domain.validators.adapters.subquery.SubQueryValidatorsFetcher
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.impl.domain.validators.adapters.subsquid.SubSquidValidatorsFetcher
 import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.ConfigDAO
 import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.api.models.ExternalApiType
 import jp.co.soramitsu.xnetworking.lib.datasources.chainsconfig.impl.data.InMemorySavingConfigFetcherImpl
@@ -47,17 +59,14 @@ object DepBuilder {
         }
     )
 
-    init {
-    }
-
     private val apolloClientStore: ApolloClientStore = ApolloClientStoreImpl()
 
-    val configFetcher: ConfigFetcher = InMemorySavingConfigFetcherImpl(
-        restClient = restClient,
-        chainsRequestUrl = "https://raw.githubusercontent.com/soramitsu/shared-features-utils/develop-free/chains/v9/chains_dev.json"
+    private val configDAO: ConfigDAO = FearlessConfigDAOImpl(
+        configFetcher = InMemorySavingConfigFetcherImpl(
+            restClient = restClient,
+            chainsRequestUrl = "https://raw.githubusercontent.com/soramitsu/shared-features-utils/develop-free/chains/v9/chains_dev.json"
+        )
     )
-
-    private val configDAO: ConfigDAO = FearlessConfigDAOImpl(configFetcher)
 
     val historyRemoteLoaderFacade: HistoryInfoRemoteLoader = HistoryInfoRemoteLoaderFacade(
         configDAO = configDAO,
@@ -66,7 +75,7 @@ object DepBuilder {
                 configDAO = configDAO,
                 restClient = restClient,
                 apiKeys = mapOf(
-                    ChainAssetConstants.EtherScan.chainId to "paste your EtherScan key"
+                    ChainInfoConstants.EtherScan.chainInfo.chainId to "paste your EtherScan key"
                 )
             ),
             ExternalApiType.GIANTSQUID to GiantSquidHistoryInfoRemoteLoader(
@@ -77,7 +86,7 @@ object DepBuilder {
                 configDAO = configDAO,
                 restClient = restClient,
                 apiKeys = mapOf(
-                    ChainAssetConstants.OkLink.chainId to "paste your OkLink key"
+                    ChainInfoConstants.OkLink.chainInfo.chainId to "paste your OkLink key"
                 )
             ),
             ExternalApiType.REEF to ReefHistoryInfoRemoteLoader(
@@ -104,22 +113,76 @@ object DepBuilder {
     )
 
     val blockExplorerRepository = BlockExplorerRepositoryImpl(
-        assetsInfoFetcher = SoraAssetsInfoFetcher(
-            apolloClientStore = apolloClientStore,
-            configDAO = configDAO
+        assetInfoFetcher = AssetInfoFetcherFacade(
+            configDAO = configDAO,
+            fetchersMap = mapOf(
+                ExternalApiType.SORA to SoraAssetInfoFetcher(
+                    configDAO = configDAO,
+                    apolloClientStore = apolloClientStore
+                )
+            )
         ),
-        fiatDataFetcher = SoraFiatDataFetcher(
-            apolloClientStore = apolloClientStore,
-            configDAO = configDAO
+        apyFetcher = ApyFetcherFacade(
+            configDAO = configDAO,
+            fetchersMap = mapOf(
+                ExternalApiType.SORA to SoraApyFetcher(
+                    configDAO = configDAO,
+                    apolloClientStore = apolloClientStore
+                ),
+                ExternalApiType.SUBQUERY to SubQueryApyFetcher(
+                    configDAO = configDAO,
+                    restClient = restClient
+                ),
+                ExternalApiType.SUBSQUID to SubSquidApyFetcher(
+                    configDAO = configDAO,
+                    restClient = restClient
+                )
+            )
         ),
-        referrerRewardFetcher = SoraReferrerRewardsFetcher(
-            apolloClientStore = apolloClientStore,
-            configDAO = configDAO
+        fiatFetcher = FiatFetcherFacade(
+            configDAO = configDAO,
+            fetchersMap = mapOf(
+                ExternalApiType.SORA to SoraFiatFetcher(
+                    configDAO = configDAO,
+                    apolloClientStore = apolloClientStore
+                )
+            )
         ),
-        sbApyFetcher = SoraSbApyFetcher(
-            apolloClientStore = apolloClientStore,
-            configDAO = configDAO
+        referralRewardFetcher = ReferralRewardFetcherFacade(
+            configDAO = configDAO,
+            fetchersMap = mapOf(
+                ExternalApiType.SORA to SoraReferralRewardsFetcher(
+                    configDAO = configDAO,
+                    apolloClientStore = apolloClientStore
+                )
+            )
         ),
-        configDAO = configDAO
+        unbondingFetcher = UnbondingFetcherFacade(
+            configDAO = configDAO,
+            fetchersMap = mapOf(
+                ExternalApiType.SUBQUERY to SubQueryUnbondingFetcher(
+                    configDAO = configDAO,
+                    restClient = restClient
+                ),
+                ExternalApiType.SUBSQUID to SubSquidUnbondingFetcher(
+                    configDAO = configDAO,
+                    restClient = restClient
+                )
+            )
+        ),
+        validatorsFetcher = ValidatorsFetcherFacade(
+            configDAO = configDAO,
+            fetchersMap = mapOf(
+                ExternalApiType.SORA to SoraValidatorsFetcher(
+                    configDAO = configDAO,
+                    restClient = restClient
+                ),
+                ExternalApiType.SUBQUERY to SubQueryValidatorsFetcher(
+                    configDAO = configDAO,
+                    restClient = restClient
+                ),
+                ExternalApiType.SUBSQUID to SubSquidValidatorsFetcher()
+            )
+        )
     )
 }

@@ -121,6 +121,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-mock:$ktorVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutineVersion")
                 implementation("io.mockative:mockative:2.2.0")
+                implementation("io.ktor:ktor-client-mock:$ktorVersion")
             }
         }
 

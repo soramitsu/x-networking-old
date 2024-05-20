@@ -1,24 +1,20 @@
 package jp.co.soramitsu.appxnetworking
 
+import androidx.constraintlayout.solver.state.State.Chain
+import jp.co.soramitsu.xnetworking.android.ChainInfoConstants
 import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.BlockExplorerRepository
-import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.models.AssetsInfoResponse
-import jp.co.soramitsu.xnetworking.lib.datasources.polkaswapwhitelist.api.AbstractWhitelistedToken
-import jp.co.soramitsu.xnetworking.lib.datasources.polkaswapwhitelist.api.WhitelistRepository
+import jp.co.soramitsu.xnetworking.lib.datasources.blockexplorer.api.models.AssetInfo
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.RestClient
 import jp.co.soramitsu.xnetworking.lib.engines.rest.api.models.AbstractRestServerRequest
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ListSerializer
-import kotlinx.serialization.builtins.serializer
 import java.util.concurrent.TimeUnit
 
 class NetworkService(
-//    private val soraConfigBuilder: SoraRemoteConfigBuilder,
     private val restClient: RestClient,
-    private val blockExplorerRepository: BlockExplorerRepository,
-    private val whitelistRepository: WhitelistRepository,
-//    private val txHistoryInteractor: FearlessTxHistoryInteractor
+    private val blockExplorerRepository: BlockExplorerRepository
 ) {
 
     suspend fun getRequest() = restClient.get(
@@ -31,39 +27,36 @@ class NetworkService(
         )
     )
 
-    suspend fun getSoraWhitelist(): List<AbstractWhitelistedToken> {
-        return whitelistRepository.getWhitelistedTokens()
-    }
-
-    suspend fun getAssetsInfo(): List<AssetsInfoResponse> {
+    suspend fun getAssetsInfo(): List<AssetInfo> {
         val timeStampAsLong = TimeUnit.SECONDS.convert(System.currentTimeMillis(), TimeUnit.MILLISECONDS) - 24 * 60 * 60
 
-        return blockExplorerRepository
-            .getAssetsInfo(
-                tokenIds = listOf(
-                    "0x0200000000000000000000000000000000000000000000000000000000000000",
-                    "0x0200040000000000000000000000000000000000000000000000000000000000",
-                    "0x0200050000000000000000000000000000000000000000000000000000000000",
-                    "0x0200060000000000000000000000000000000000000000000000000000000000",
-                    "0x0200070000000000000000000000000000000000000000000000000000000000",
-                    "0x0200080000000000000000000000000000000000000000000000000000000000",
-                    "0x0200090000000000000000000000000000000000000000000000000000000000",
-                ),
-                timeStamp = timeStampAsLong.toInt(),
-                chainId = "",
-            )
+        return blockExplorerRepository.getAssetsInfo(
+            chainId = ChainInfoConstants.Sora.chainInfo.chainId,
+            tokenIds = listOf(
+                "0x0200000000000000000000000000000000000000000000000000000000000000",
+                "0x0200040000000000000000000000000000000000000000000000000000000000",
+                "0x0200050000000000000000000000000000000000000000000000000000000000",
+                "0x0200060000000000000000000000000000000000000000000000000000000000",
+                "0x0200070000000000000000000000000000000000000000000000000000000000",
+                "0x0200080000000000000000000000000000000000000000000000000000000000",
+                "0x0200090000000000000000000000000000000000000000000000000000000000",
+            ),
+            timeStamp = timeStampAsLong.toInt()
+        )
     }
 
-    suspend fun getFiat() = blockExplorerRepository.getFiat(chainId = "",)
+    suspend fun getFiat() = blockExplorerRepository.getFiat(
+        chainId = ChainInfoConstants.Sora.chainInfo.chainId
+    )
 
-    suspend fun getRewards() = blockExplorerRepository.getReferrerRewards(
-        chainId = "",
+    suspend fun getRewards() = blockExplorerRepository.getReferralReward(
+        chainId = ChainInfoConstants.Sora.chainInfo.chainId,
         address = "cnVkoGs3rEMqLqY27c2nfVXJRGdzNJk2ns78DcqtppaSRe8qm",
     )
 
-    suspend fun getApy() = blockExplorerRepository.getSbApyInfo(
-        chainId = "",
-        )
+    suspend fun getApy() = blockExplorerRepository.getApy(
+        chainId = ChainInfoConstants.Sora.chainInfo.chainId
+    )
 
 //    suspend fun getHistorySora(page: Long) =
 //        txHistoryInteractor.getTransactionHistoryPaged(
