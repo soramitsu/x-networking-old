@@ -18,7 +18,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -26,16 +25,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import jp.co.soramitsu.xnetworking.lib.datasources.txhistory.api.models.TxFilter
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import java.util.concurrent.TimeUnit
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DepBuilder.build(applicationContext)
         setContent {
             MyApplicationTheme {
                 Surface(
@@ -65,7 +64,11 @@ private fun MainScreen() {
                     }
                     try {
                         Log.e("foxxx", "r start btn 1")
-                        val r = DepBuilder.networkService.getAssetsInfo(drs)
+                        val r = DepBuilder.blockExplorerRepository.getAssetsInfo(
+                            ChainInfoConstants.Sora.chainInfo.chainId,
+                            drs,
+                            (TimeUnit.SECONDS.convert(System.currentTimeMillis(), TimeUnit.MILLISECONDS) - 24 * 60 * 60).toInt()
+                        )
                         Log.e("foxxx", "r = ${r.size}")
                         Log.e("foxxx", "r = ${r}")
                     } catch (t: Throwable) {
@@ -96,14 +99,18 @@ private fun MainScreen() {
                     GlobalScope.launch {
                         Log.e("foxxx", "r start btn 2")
                         try {
-                            val r = DepBuilder.networkService.getHistorySora(page.toLong()) {
-                                true
-                            }!!
+                            val r = DepBuilder.historyRemoteLoaderFacade.loadHistoryInfo(
+                                pageCount = 1,
+                                cursor = page,
+                                signAddress = "paste your OkLink address",
+                                chainInfo = ChainInfoConstants.OkLink.chainInfo,
+                                filters = setOf(TxFilter.TRANSFER)
+                            )
                             Log.e(
                                 "foxxx",
-                                "r = ${r.endReached} ${r.page} ${r.items.size} ${r.errorMessage}"
+                                "r = ${r.items}"
                             )
-                            res = "${r.endReached}; ${r.page}; ${r.items.size}"
+                            res = "${r.endReached}; ${page}; ${r.items.size}"
                         } catch (t: Throwable) {
                             res = t.localizedMessage ?: "Throwable"
                             Log.e("foxxx", "t= ${t.localizedMessage}")
@@ -122,9 +129,9 @@ private fun MainScreen() {
                 GlobalScope.launch {
                     Log.e("foxxx", "r start btn 3")
                     try {
-//                        val r = DepBuilder.networkService.getFiat()
-                        val r = DepBuilder.networkService.getApy()
-//                        val r = DepBuilder.networkService.getRewards()
+//                        val r = DepBuilder.blockExplorerRepository.getFiat(ChainAssetConstants.Sora.chainId)
+                        val r = DepBuilder.blockExplorerRepository.getApy(ChainInfoConstants.Sora.chainInfo.chainId)
+//                        val r = DepBuilder.blockExplorerRepository.getReferrerRewards(ChainAssetConstants.Sora.chainId, "")
                         Log.e("foxxx", "r = $r")
                     } catch (t: Throwable) {
                         Log.e("foxxx", "t = ${t.localizedMessage}")
@@ -135,25 +142,25 @@ private fun MainScreen() {
                 Text(text = "btn3")
             },
         )
-        Spacer(modifier = Modifier.size(8.dp))
-        Button(
-            onClick = {
-                GlobalScope.launch {
-                    Log.e("foxxx", "r start btn 4")
-                    try {
-//                        val url = "https://raw.githubusercontent.com/arvifox/arvifoxandroid/develop/felete/mwr/chains.json"
-                        val url = "http://www.arvifox.com/soramitsu/chains.json"
-                        val r = DepBuilder.soraNetworkClient.createJsonRequest<List<ChainDto>>(url)
-                        Log.e("foxxx", "r = $r")
-                    } catch (t: Throwable) {
-                        Log.e("foxxx", "t = ${t.localizedMessage}")
-                    }
-                }
-            },
-            content = {
-                Text(text = "btn4")
-            },
-        )
+//        Spacer(modifier = Modifier.size(8.dp))
+//        Button(
+//            onClick = {
+//                GlobalScope.launch {
+//                    Log.e("foxxx", "r start btn 4")
+//                    try {
+////                        val url = "https://raw.githubusercontent.com/arvifox/arvifoxandroid/develop/felete/mwr/chains.json"
+//                        val url = "http://www.arvifox.com/soramitsu/chains.json"
+//                        val r = DepBuilder.soraNetworkClient.createJsonRequest<List<ChainDto>>(url)
+//                        Log.e("foxxx", "r = $r")
+//                    } catch (t: Throwable) {
+//                        Log.e("foxxx", "t = ${t.localizedMessage}")
+//                    }
+//                }
+//            },
+//            content = {
+//                Text(text = "btn4")
+//            },
+//        )
     }
 }
 

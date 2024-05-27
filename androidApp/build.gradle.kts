@@ -8,7 +8,7 @@ android {
     namespace = "jp.co.soramitsu.xnetworking.android"
     compileSdk = 34
     defaultConfig {
-        applicationId = "jp.co.soramitsu.xnetworking.android"
+        applicationId = "jp.co.soramitsu.appxnetworking"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -40,9 +40,7 @@ android {
 }
 
 dependencies {
-    implementation(project(mapOf("path" to ":lib:basic")))
-    implementation(project(mapOf("path" to ":lib:fearlesswallet")))
-    implementation(project(mapOf("path" to ":lib:sorawallet")))
+    implementation(project(mapOf("path" to ":lib")))
     implementation("androidx.compose.ui:ui:1.6.3")
     implementation("androidx.compose.ui:ui-tooling:1.6.3")
     implementation("androidx.compose.ui:ui-tooling-preview:1.6.3")

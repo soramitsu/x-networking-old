@@ -13,8 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "xnetworking"
 include(":androidApp")
-include(":lib:basic")
-include(":lib:fearlesswallet")
-include(":lib:sorawallet")
+include(":lib")
